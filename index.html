@@ -1,263 +1,165 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebThunder - Портфолио по созданию сайтов</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>web-thunder — Сайты, которые вдохновляют</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <div class="logo-icon"></div>
-                    <span class="logo-text">WebThunder</span>
-                </div>
-                
-                <!-- Desktop Navigation -->
-                <nav class="nav">
-                    <button class="nav-link active" data-section="home">Главная</button>
-                    <button class="nav-link" data-section="about">О нас</button>
-                    <button class="nav-link" data-section="services">Услуги</button>
-                    <button class="nav-link" data-section="portfolio">Портфолио</button>
-                    <button class="nav-link" data-section="testimonials">Отзывы</button>
-                    <button class="nav-link" data-section="contact">Контакты</button>
-                </nav>
+  <!-- Навигация -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">⚡ web-thunder</div>
+      <nav class="nav">
+        <ul class="nav-list">
+          <li><a href="#home">Главная</a></li>
+          <li><a href="#about">О себе</a></li>
+          <li><a href="#portfolio">Портфолио</a></li>
+          <li><a href="#contact">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="hamburger" id="hamburger">☰</div>
+    </div>
+  </header>
 
-                <!-- Mobile menu button -->
-                <button class="mobile-menu-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Mobile Navigation -->
-            <div class="mobile-nav">
-                <button class="mobile-nav-link" data-section="home">Главная</button>
-                <button class="mobile-nav-link" data-section="about">О нас</button>
-                <button class="mobile-nav-link" data-section="services">Услуги</button>
-                <button class="mobile-nav-link" data-section="portfolio">Портфолио</button>
-                <button class="mobile-nav-link" data-section="testimonials">Отзывы</button>
-                <button class="mobile-nav-link" data-section="contact">Контакты</button>
-            </div>
+  <!-- Главная -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Привет, я <span class="highlight">Данил</span> — веб-разработчик, который создаёт сайты, <span class="soft-accent">как будто они дышат</span>.</h1>
+        <p>Чистый код. Современный дизайн. Быстрая загрузка.  
+        Я помогаю стартапам, фрилансерам и малому бизнесу получить сайт, которым <strong>хочется хвастаться</strong>.</p>
+        <div class="cta-buttons">
+          <a href="#portfolio" class="btn btn-primary">Посмотреть мои работы</a>
+          <a href="#contact" class="btn btn-outline">Заказать сайт</a>
         </div>
-    </header>
+      </div>
+      <div class="hero-image">
+        <img src="https://via.placeholder.com/500x400/f8f9ff/4361ee?text=Web+Design+by+Daniil" alt="Сайт от Данила" />
+      </div>
+    </div>
+  </section>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1>Создаю сайты, которые <span class="highlight">приносят результат</span></h1>
-                        <p class="hero-subtitle">Профессиональная разработка сайтов под ключ для бизнеса. Современный дизайн, высокая производительность и SEO-оптимизация.</p>
-                        <div class="hero-buttons">
-                            <button class="btn-primary" data-section="contact">Заказать консультацию</button>
-                            <button class="btn-secondary" data-section="portfolio">Посмотреть портфолио</button>
-                        </div>
-                    </div>
-                    <div class="hero-image">
-                        <div class="image-overlay"></div>
-                        <img src="https://placehold.co/600x400/6366f1/ffffff?text=Web+Development" alt="Web Development">
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- О себе -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2>Кто я и <span class="highlight">почему выбирают меня</span></h2>
+      <div class="about-flex">
+        <div class="about-text">
+          <p>Меня зовут <strong>Данил</strong>, и я верю, что <strong>хороший сайт — это не просто страница</strong>. Это <strong>опыт, впечатление, доверие</strong>.</p>
+          <p>Я не просто верстаю — я <strong>превращаю идеи в цифровые истории</strong>, которые работают на бизнес и вдохновляют пользователей.</p>
+          <p>Мой подход:</p>
+          <ul class="approach">
+            <li>🎯 <strong>Понимаю задачу</strong> — слушаю клиента</li>
+            <li>📐 <strong>Прототипирую</strong> — чтобы всё было понятно</li>
+            <li>⚡ <strong>Верстаю с нулём компромиссов</strong> по скорости и адаптиву</li>
+            <li>✅ <strong>Тестирую</strong> — на всех устройствах и браузерах</li>
+          </ul>
+          <p>Хочешь сайт, который <strong>работает, выглядит дорого и приносит клиентов</strong>? Давай сделаем его вместе.</p>
+        </div>
+        <div class="about-photo">
+          <img src="https://via.placeholder.com/300x400/eef2ff/3a7bd5?text=Данил" alt="Фото Данила" />
+        </div>
+      </div>
 
-        <!-- About Section -->
-        <section id="about" class="section about">
-            <div class="container">
-                <div class="section-header">
-                    <h2>О нас</h2>
-                    <p>Опытный веб-разработчик с более чем 5 годами опыта в создании сайтов для бизнеса</p>
-                </div>
-                <div class="about-content">
-                    <p class="about-text">Моя цель — создавать не просто красивые сайты, а эффективные инструменты для бизнеса, которые помогают клиентам достигать их целей и увеличивать прибыль.</p>
-                    <div class="features-grid">
-                        <div class="feature">
-                            <div class="feature-icon quality"></div>
-                            <h4>Качество</h4>
-                            <p>Только проверенные технологии и лучшие практики разработки</p>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-icon time"></div>
-                            <h4>Сроки</h4>
-                            <p>Четкие сроки выполнения и прозрачный процесс разработки</p>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-icon support"></div>
-                            <h4>Поддержка</h4>
-                            <p>Постоянная поддержка и консультации после запуска проекта</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <div class="skills">
+        <h3>Технологии, с которыми я работаю</h3>
+        <div class="skills-grid">
+          <span class="skill-tag">HTML5</span>
+          <span class="skill-tag">CSS3</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Responsive</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Figma</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Services Section -->
-        <section id="services" class="section services">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Услуги</h2>
-                    <p>Комплексное решение для вашего бизнеса в интернете</p>
-                </div>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon code"></div>
-                        <h3>Создание сайтов</h3>
-                        <p>Профессиональная разработка современных и адаптивных сайтов под ключ</p>
-                        <div class="service-price">от 20 000 ₽</div>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon search"></div>
-                        <h3>SEO-оптимизация</h3>
-                        <p>Повышение видимости сайта в поисковых системах и привлечение целевой аудитории</p>
-                        <div class="service-price">от 10 000 ₽/мес</div>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon settings"></div>
-                        <h3>Поддержка сайтов</h3>
-                        <p>Техническая поддержка, обновления и обслуживание вашего веб-ресурса</p>
-                        <div class="service-price">от 5 000 ₽/мес</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <!-- Портфолио -->
+  <section id="portfolio" class="portfolio">
+    <div class="container">
+      <h2>Посмотри, <span class="highlight">что я уже создал</span></h2>
+      <p class="portfolio-subtitle">Каждый проект — это вызов, решённый с душой.</p>
 
-        <!-- Portfolio Section -->
-        <section id="portfolio" class="section portfolio">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Портфолио</h2>
-                    <p>Примеры моих работ и успешных проектов для клиентов</p>
-                </div>
-                
-                <!-- Category Filter -->
-                <div class="portfolio-filters">
-                    <button class="filter-btn active" data-category="all">Все проекты</button>
-                    <button class="filter-btn" data-category="ecommerce">Интернет-магазины</button>
-                    <button class="filter-btn" data-category="corporate">Корпоративные сайты</button>
-                    <button class="filter-btn" data-category="landing">Лендинги</button>
-                    <button class="filter-btn" data-category="blog">Блоги</button>
-                </div>
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">Все</button>
+        <button class="filter-btn" data-filter="personal">Личные</button>
+        <button class="filter-btn" data-filter="commercial">Коммерческие</button>
+        <button class="filter-btn" data-filter="study">Учебные</button>
+      </div>
 
-                <!-- Portfolio Grid -->
-                <div class="portfolio-grid">
-                    <div class="portfolio-item" data-category="ecommerce">
-                        <div class="portfolio-image">
-                            <img src="https://placehold.co/400x300/6366f1/ffffff?text=E-commerce+Site" alt="E-commerce платформа">
-                            <div class="portfolio-overlay">
-                                <a href="#" target="_blank" class="portfolio-link">Посмотреть проект</a>
-                            </div>
-                        </div>
-                        <div class="portfolio-content">
-                            <h3>E-commerce платформа</h3>
-                            <p>Интернет-магазин с полным циклом покупок</p>
-                            <div class="technologies">
-                                <span>React</span>
-                                <span>Node.js</span>
-                                <span>MongoDB</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-item" data-category="corporate">
-                        <div class="portfolio-image">
-                            <img src="https://placehold.co/400x300/8b5cf6/ffffff?text=Corporate+Site" alt="Корпоративный сайт">
-                            <div class="portfolio-overlay">
-                                <a href="#" target="_blank" class="portfolio-link">Посмотреть проект</a>
-                            </div>
-                        </div>
-                        <div class="portfolio-content">
-                            <h3>Корпоративный сайт</h3>
-                            <p>Официальный сайт компании с CRM интеграцией</p>
-                            <div class="technologies">
-                                <span>WordPress</span>
-                                <span>PHP</span>
-                                <span>MySQL</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-item" data-category="landing">
-                        <div class="portfolio-image">
-                            <img src="https://placehold.co/400x300/06b6d4/ffffff?text=Landing+Page" alt="Лендинг для стартапа">
-                            <div class="portfolio-overlay">
-                                <a href="#" target="_blank" class="portfolio-link">Посмотреть проект</a>
-                            </div>
-                        </div>
-                        <div class="portfolio-content">
-                            <h3>Лендинг для стартапа</h3>
-                            <p>Одностраничный сайт для привлечения инвестиций</p>
-                            <div class="technologies">
-                                <span>HTML5</span>
-                                <span>CSS3</span>
-                                <span>JavaScript</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="portfolio-item" data-category="blog">
-                        <div class="portfolio-image">
-                            <img src="https://placehold.co/400x300/10b981/ffffff?text=Blog+Platform" alt="Блог-платформа">
-                            <div class="portfolio-overlay">
-                                <a href="#" target="_blank" class="portfolio-link">Посмотреть проект</a>
-                            </div>
-                        </div>
-                        <div class="portfolio-content">
-                            <h3>Блог-платформа</h3>
-                            <p>Платформа для публикации контента с комментариями</p>
-                            <div class="technologies">
-                                <span>Next.js</span>
-                                <span>Tailwind CSS</span>
-                                <span>Sanity</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+      <div class="portfolio-grid">
+        <div class="portfolio-item" data-category="commercial">
+          <img src="https://via.placeholder.com/400x300/f0f8ff/4361ee?text=Landing+Page" alt="Landing Page" />
+          <div class="portfolio-info">
+            <h3>Landing для дизайн-студии</h3>
+            <p>Скорость загрузки — 1.2 сек. Адаптив на 100%.</p>
+            <a href="#" class="view-link">Посмотреть →</a>
+          </div>
+        </div>
 
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="section testimonials">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Отзывы клиентов</h2>
-                    <p>Что говорят мои клиенты о работе со мной</p>
-                </div>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <div class="testimonial-rating">
-                            <svg class="star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" /></svg>
-                            <svg class="star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" /></svg>
-                            <svg class="star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" /></svg>
-                            <svg class="star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" /></svg>
-                            <svg class="star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" /></svg>
-                        </div>
-                        <p class="testimonial-text">"Отличная работа! Сайт превзошел все ожидания. Продажи выросли на 150% за первый месяц после запуска."</p>
-                        <div class="testimonial-author">
-                            <h4>Анна Петрова</h4>
-                            <p>Интернет-магазин "Цветы"</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-rating">
-                            <svg class="star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" /></svg>
-                            <svg class="star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" /></svg>
-                            <svg class="star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" /></svg>
-                            <svg class="star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" /></svg>
-                            <svg class="star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" /></svg>
-                        </div>
-                        <p class="testimonial-text">"Профессиональный подход, четкие сроки и отличный результат. Рекомендую всем, кто хочет качественный сайт."</p>
-                        <div class="testimonial-author">
-                            <h4>Дмитрий Сидоров</h4>
-                            <p>Студия дизайна "Арт"</p>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-rating">
-                            <svg class="star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" /></svg>
-                            <svg class="star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" /></svg>
-                            <svg class="star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" /></svg>
-                            <svg class="star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.54-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.462a1 1 0 00.95-.69l1.07-3.292z" /></svg>
-                            <svg class="star" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-
+        <div class="portfolio-item" data-category="personal">
+          <img src="https://via.placeholder.com/400x300/f0fff4/2b8a3e?text=Blog+Redesign" alt="Блог" />
+          <div class="portfolio-info">
+            <h3>Персональный блог</h3>
+            <p>Минимализм, читаемость, анимации при прокрутке.</p>
+            <a href="#" class="view-link">GitHub →</a>
+          </div>
+        </div>
+
+        <div class="portfolio-item" data-category="personal">
+          <img src="https://via.placeholder.com/400x300/fffaf0/d97706?text=UI+Kit" alt="UI Kit" />
+          <div class="portfolio-info">
+            <h3>UI-кит для SaaS</h3>
+            <p>Готовые компоненты для быстрой разработки.</p>
+            <a href="#" class="view-link">Демо →</a>
+          </div>
+        </div>
+
+        <div class="portfolio-item" data-category="study">
+          <img src="https://via.placeholder.com/400x300/f3f4f6/6b7280?text=JS+App" alt="JS App" />
+          <div class="portfolio-info">
+            <h3>Калькулятор расходов</h3>
+            <p>Обучение: работа с DOM и логикой.</p>
+            <a href="#" class="view-link">GitHub →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Контакты -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Готов к <span class="highlight">твоему проекту</span>?</h2>
+      <p class="contact-subtitle">Оставь заявку — и уже завтра у тебя будет макет или первый экран.</p>
+
+      <form id="contactForm" class="contact-form">
+        <input type="text" name="name" placeholder="Твоё имя" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <textarea name="message" placeholder="Расскажи о своём проекте (хотя бы пару слов)" rows="5" required></textarea>
+        <button type="submit" class="btn btn-primary full">Отправить заявку</button>
+      </form>
+
+      <div class="contact-links">
+        <p>Или пиши напрямую:</p>
+        <a href="mailto:hello@web-thunder.dev">📧 hello@web-thunder.dev</a> •
+        <a href="https://t.me/daniil_web" target="_blank">💬 Telegram</a> •
+        <a href="https://github.com/daniil-web" target="_blank">🐙 GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer class="footer">
+    <div class="container">
+      <p>Копирайт: © 2025 web-thunder. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script src="code.js"></script>
+</body>
+</html>
