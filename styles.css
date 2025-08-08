@@ -1,3 +1,4 @@
+/* Переменные тем */
 :root {
   --bg: #121212;
   --text: #e0e0e0;
@@ -31,7 +32,6 @@ body {
   line-height: 1.6;
   transition: background 0.4s, color 0.4s;
   min-height: 100vh;
-  position: relative;
 }
 
 .container {
@@ -41,13 +41,13 @@ body {
   padding: 40px 0;
 }
 
-/* Header */
+/* Шапка */
 .header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(18, 18, 18, 0.9);
+  background: rgba(18, 18, 18, 0.95);
   backdrop-filter: blur(10px);
   z-index: 1000;
   border-bottom: 1px solid var(--border);
@@ -95,10 +95,9 @@ body {
   cursor: pointer;
 }
 
-/* Sections */
+/* Секции */
 .section {
   padding: 100px 0;
-  position: relative;
 }
 
 .hero {
@@ -173,7 +172,7 @@ body {
   border: 2px solid var(--primary);
 }
 
-/* About */
+/* О себе */
 .about-content {
   display: flex;
   flex-wrap: wrap;
@@ -203,7 +202,7 @@ body {
   font-size: 0.9rem;
 }
 
-/* Portfolio */
+/* Портфолио */
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -273,7 +272,7 @@ body {
   color: #000;
 }
 
-/* Reviews */
+/* Отзывы */
 .reviews-grid {
   display: flex;
   flex-direction: column;
@@ -299,9 +298,10 @@ body {
 
 .stars {
   color: gold;
+  font-weight: bold;
 }
 
-/* Contact */
+/* Контакты */
 .contact-form {
   max-width: 500px;
   margin: 0 auto 2rem;
@@ -328,7 +328,7 @@ body {
   text-decoration: none;
 }
 
-/* Chat */
+/* Чат */
 .chat-toggle {
   position: fixed;
   bottom: 30px;
@@ -443,7 +443,7 @@ body {
   color: #000;
 }
 
-/* Responsive */
+/* Адаптив */
 @media (max-width: 768px) {
   .hero h1 {
     font-size: 2rem;
@@ -453,8 +453,8 @@ body {
     font-size: 0.9rem;
   }
   .about-content {
-    flex-direction: column;
     text-align: center;
+    flex-direction: column;
   }
   .btn {
     width: 100%;
