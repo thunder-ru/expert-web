@@ -38,9 +38,17 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// Фильтрация портфолио
+// Фильтрация портфолио — ИСПРАВЛЕНО: проекты видны сразу
 const filterBtns = document.querySelectorAll('.filter-btn');
 const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+// Показываем все проекты при загрузке
+window.addEventListener('load', () => {
+  portfolioItems.forEach(item => {
+    item.style.display = 'block';
+    item.classList.add('loaded');
+  });
+});
 
 filterBtns.forEach(btn => {
   btn.addEventListener('click', () => {
@@ -62,7 +70,7 @@ filterBtns.forEach(btn => {
 
 // Плавное появление элементов при прокрутке
 const animateOnScroll = () => {
-  document.querySelectorAll('.about-flex, .skills, .portfolio-subtitle, .contact-subtitle').forEach(el => {
+  document.querySelectorAll('.about-flex, .skills, .portfolio-subtitle, .testimonials, .contact-subtitle').forEach(el => {
     const pos = el.getBoundingClientRect().top;
     if (pos < window.innerHeight - 100 && !el.classList.contains('animated')) {
       el.style.opacity = 0;
