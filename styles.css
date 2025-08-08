@@ -5,13 +5,30 @@
   box-sizing: border-box;
 }
 
-/* Новый фон */
+/* ТЁМНЫЙ ФОН — глубокий космос */
 body {
   font-family: 'Inter', sans-serif;
   line-height: 1.7;
-  color: #1a1a1a;
-  background: linear-gradient(135deg, #f7f9fc 0%, #f0f4ff 100%);
+  color: #e0e0e0;
+  background: #0a0a0a;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(67, 97, 238, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(138, 43, 226, 0.1) 0%, transparent 40%);
   scroll-behavior: smooth;
+  position: relative;
+}
+
+/* Мягкая текстура (опционально) */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: -1;
 }
 
 .container {
@@ -23,7 +40,7 @@ body {
 
 h1, h2, h3 {
   font-family: 'Outfit', sans-serif;
-  color: #111;
+  color: #ffffff;
   margin-bottom: 1.2rem;
 }
 
@@ -46,28 +63,29 @@ h3 {
 }
 
 p {
-  color: #444;
+  color: #bbbbbb;
   margin-bottom: 1rem;
   font-size: 1.1rem;
 }
 
 a {
-  color: #4361ee;
+  color: #4cc9f0;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 a:hover {
-  color: #3a56d4;
+  color: #7ee8fa;
 }
 
 /* Выделения */
 .highlight {
-  color: #4361ee;
+  color: #4cc9f0;
+  text-shadow: 0 0 10px rgba(76, 201, 240, 0.4);
 }
 
 .soft-accent {
-  color: #3a7bd5;
+  color: #a9a3f5;
   font-weight: 600;
 }
 
@@ -82,27 +100,49 @@ a:hover {
   border: none;
   display: inline-block;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-primary {
-  background: #4361ee;
+  background: linear-gradient(90deg, #4361ee, #7209b7);
   color: white;
-  box-shadow: 0 4px 15px rgba(67, 97, 238, 0.2);
+  box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(67, 97, 238, 0.3);
+  box-shadow: 0 6px 25px rgba(67, 97, 238, 0.5);
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: rotate(30deg);
+  animation: shine 1.5s infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) rotate(30deg); }
+  100% { transform: translateX(100%) rotate(30deg); }
 }
 
 .btn-outline {
   background: transparent;
-  color: #4361ee;
-  border: 2px solid #4361ee;
+  color: #4cc9f0;
+  border: 2px solid #4cc9f0;
+  box-shadow: 0 0 10px rgba(76, 201, 240, 0.2);
 }
 
 .btn-outline:hover {
-  background: rgba(67, 97, 238, 0.1);
+  background: rgba(76, 201, 240, 0.1);
+  box-shadow: 0 0 20px rgba(76, 201, 240, 0.4);
+  color: #7ee8fa;
 }
 
 .full {
@@ -119,18 +159,17 @@ a:hover {
 
 /* Хедер */
 .header {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(10, 10, 10, 0.95);
   backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
   z-index: 1000;
   padding: 15px 0;
-  transition: box-shadow 0.3s ease;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .header.scrolled {
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
 }
 
 .header .container {
@@ -142,7 +181,7 @@ a:hover {
 .logo {
   font-weight: 700;
   font-size: 1.5rem;
-  color: #3a7bd5;
+  color: #4cc9f0;
   white-space: nowrap;
   min-width: 140px;
   display: flex;
@@ -150,7 +189,8 @@ a:hover {
 }
 
 .logo:hover {
-  color: #4361ee;
+  color: #7ee8fa;
+  text-shadow: 0 0 15px rgba(76, 201, 240, 0.6);
 }
 
 .nav {
@@ -167,7 +207,7 @@ a:hover {
 }
 
 .nav-list a {
-  color: #333;
+  color: #bbbbbb;
   font-weight: 500;
   font-size: 1rem;
   position: relative;
@@ -182,7 +222,7 @@ a:hover {
   left: 0;
   width: 0;
   height: 2px;
-  background: #4361ee;
+  background: linear-gradient(90deg, #4361ee, #7209b7);
   transition: width 0.4s ease;
 }
 
@@ -193,24 +233,29 @@ a:hover {
 
 .nav-list a:hover,
 .nav-list a.active {
-  color: #4361ee;
+  color: #4cc9f0;
 }
 
 .hamburger {
   display: none;
   font-size: 1.8rem;
-  color: #3a7bd5;
+  color: #4cc9f0;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
   position: absolute;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
 }
 
+.hamburger:hover {
+  color: #7ee8fa;
+  transform: translateY(-50%) scale(1.1);
+}
+
 .hamburger.open {
-  transform: rotate(90deg);
-  color: #4361ee;
+  color: #7ee8fa;
+  transform: rotate(90deg) scale(1.1);
 }
 
 /* Главная */
@@ -234,13 +279,14 @@ a:hover {
   width: 100%;
   max-width: 500px;
   border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 30px rgba(67, 97, 238, 0.2);
   transition: transform 0.4s ease;
-  border: 1px solid #e0e7ff;
+  border: 1px solid rgba(76, 201, 240, 0.3);
 }
 
 .hero-image img:hover {
   transform: translateY(-5px);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 40px rgba(67, 97, 238, 0.3);
 }
 
 .cta-buttons {
@@ -253,12 +299,14 @@ a:hover {
 /* О себе */
 .about {
   padding: 100px 0;
-  background: white;
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(10px);
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   overflow: hidden;
   margin: 0 auto;
   max-width: 1100px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .about-text {
@@ -275,18 +323,22 @@ a:hover {
 
 .stat-item {
   text-align: center;
+  background: rgba(67, 97, 238, 0.1);
+  padding: 15px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(67, 97, 238, 0.2);
 }
 
 .stat-item strong {
   display: block;
   font-size: 1.8rem;
-  color: #4361ee;
+  color: #4cc9f0;
   font-weight: 700;
 }
 
 .stat-item span {
   font-size: 0.9rem;
-  color: #666;
+  color: #aaa;
 }
 
 .skills {
@@ -297,7 +349,7 @@ a:hover {
 .skills h3 {
   font-size: 1.5rem;
   margin-bottom: 20px;
-  color: #333;
+  color: #e0e0e0;
 }
 
 .skills-grid {
@@ -308,12 +360,18 @@ a:hover {
 }
 
 .skill-tag {
-  background: #eef2ff;
-  color: #3a7bd5;
+  background: rgba(67, 97, 238, 0.2);
+  color: #4cc9f0;
   padding: 8px 16px;
   border-radius: 30px;
   font-size: 0.9rem;
   font-weight: 500;
+  border: 1px solid rgba(67, 97, 238, 0.3);
+}
+
+.skill-tag:hover {
+  background: rgba(67, 97, 238, 0.4);
+  box-shadow: 0 0 15px rgba(67, 97, 238, 0.3);
 }
 
 /* Гарантии */
@@ -324,26 +382,29 @@ a:hover {
 
 .guarantees h3 {
   margin-bottom: 40px;
+  color: #e0e0e0;
 }
 
 .guarantee {
-  background: #f8f9ff;
+  background: rgba(30, 30, 30, 0.7);
   padding: 20px;
   border-radius: 16px;
   margin: 15px 0;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   max-width: 600px;
   margin: 15px auto;
   text-align: left;
-  transition: transform 0.3s ease;
+  border: 1px solid rgba(67, 97, 238, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .guarantee:hover {
   transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0, 0.5), 0 0 20px rgba(67, 97, 238, 0.2);
 }
 
 .guarantee strong {
-  color: #1a1a1a;
+  color: #4cc9f0;
   display: block;
   margin-bottom: 5px;
 }
@@ -355,7 +416,7 @@ a:hover {
 
 .portfolio-subtitle {
   text-align: center;
-  color: #666;
+  color: #aaa;
   font-size: 1.1rem;
   max-width: 600px;
   margin: 0 auto 40px;
@@ -371,18 +432,19 @@ a:hover {
 
 .filter-btn {
   padding: 10px 20px;
-  background: white;
-  border: 2px solid #ddd;
+  background: rgba(30, 30, 30, 0.7);
+  border: 2px solid rgba(67, 97, 238, 0.4);
   border-radius: 30px;
   cursor: pointer;
   font-weight: 500;
+  color: #bbbbbb;
   transition: all 0.3s ease;
 }
 
 .filter-btn.active, .filter-btn:hover {
-  background: #4361ee;
+  background: linear-gradient(90deg, #4361ee, #7209b7);
   color: white;
-  border-color: #4361ee;
+  box-shadow: 0 0 15px rgba(67, 97, 238, 0.4);
 }
 
 .portfolio-grid {
@@ -392,13 +454,14 @@ a:hover {
 }
 
 .portfolio-item {
-  background: white;
+  background: rgba(25, 25, 25, 0.8);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   opacity: 0;
   transform: translateY(20px);
+  border: 1px solid rgba(67, 97, 238, 0.2);
 }
 
 .portfolio-item.loaded {
@@ -424,7 +487,7 @@ a:hover {
 .portfolio-info h3 {
   font-size: 1.3rem;
   margin-bottom: 8px;
-  color: #1a1a1a;
+  color: #ffffff;
 }
 
 .tech-icons {
@@ -436,13 +499,19 @@ a:hover {
 
 .tech-icons span {
   opacity: 0.7;
+  color: #aaa;
 }
 
 .view-link {
-  color: #4361ee;
+  color: #4cc9f0;
   font-weight: 600;
   display: inline-block;
   margin-top: 8px;
+  text-shadow: 0 0 5px rgba(76, 201, 240, 0.3);
+}
+
+.view-link:hover {
+  color: #7ee8fa;
 }
 
 /* Как заказать */
@@ -459,23 +528,25 @@ a:hover {
 }
 
 .step {
-  background: white;
+  background: rgba(20, 20, 20, 0.8);
   padding: 30px;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   transition: transform 0.3s ease;
   position: relative;
-  z-index: 1; /* Для анимации парения */
+  z-index: 1;
+  border: 1px solid rgba(67, 97, 238, 0.2);
 }
 
 .step:hover {
   transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0, 0.6), 0 0 30px rgba(67, 97, 238, 0.3);
 }
 
 .step-number {
   width: 50px;
   height: 50px;
-  background: #4361ee;
+  background: linear-gradient(90deg, #4361ee, #7209b7);
   color: white;
   border-radius: 50%;
   display: flex;
@@ -484,17 +555,18 @@ a:hover {
   font-weight: 700;
   font-size: 1.2rem;
   margin: 0 auto 15px;
+  box-shadow: 0 0 15px rgba(67, 97, 238, 0.5);
 }
 
 .step h3 {
   font-size: 1.6rem;
   margin-bottom: 10px;
-  color: #1a1a1a;
+  color: #ffffff;
 }
 
 .step p {
   font-size: 1rem;
-  color: #444;
+  color: #aaa;
   line-height: 1.6;
 }
 
@@ -503,26 +575,31 @@ a:hover {
   max-width: 300px;
   margin-top: 15px;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4), 0 0 10px rgba(67, 97, 238, 0.2);
   transition: transform 0.3s ease;
+  border: 1px solid rgba(76, 201, 240, 0.3);
 }
 
 .demo-preview:hover {
   transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5), 0 0 20px rgba(67, 97, 238, 0.4);
 }
 
 /* Отзывы */
 .testimonials {
   padding: 100px 0;
-  background: white;
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(10px);
   border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   margin: 0 auto 60px;
   max-width: 1100px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .testimonials h2 {
   margin-bottom: 50px;
+  color: #ffffff;
 }
 
 .testimonials-grid {
@@ -532,22 +609,22 @@ a:hover {
 }
 
 .testimonial {
-  background: #f8f9ff;
+  background: rgba(30, 30, 30, 0.7);
   padding: 25px;
   border-radius: 16px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   transition: transform 0.3s ease;
-  border: 1px solid #e0e7ff;
+  border: 1px solid rgba(67, 97, 238, 0.2);
 }
 
 .testimonial:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(0,0,0, 0.5), 0 0 20px rgba(67, 97, 238, 0.3);
 }
 
 .quote {
   font-style: italic;
-  color: #333;
+  color: #e0e0e0;
   line-height: 1.6;
   margin-bottom: 15px;
   font-size: 1.05rem;
@@ -555,7 +632,7 @@ a:hover {
 
 .author {
   font-weight: 600;
-  color: #4361ee;
+  color: #4cc9f0;
   font-size: 0.95rem;
 }
 
@@ -568,7 +645,7 @@ a:hover {
 .contact-subtitle {
   max-width: 600px;
   margin: 15px auto 30px;
-  color: #666;
+  color: #aaa;
   font-size: 1.1rem;
 }
 
@@ -582,39 +659,46 @@ a:hover {
   width: 100%;
   padding: 16px;
   margin-bottom: 20px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid rgba(100, 100, 100, 0.4);
   border-radius: 12px;
+  background: rgba(30, 30, 30, 0.7);
+  color: #e0e0e0;
   font-family: inherit;
   font-size: 1rem;
-  transition: border 0.3s ease;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
   outline: none;
-  border-color: #4361ee;
-  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+  border-color: #4cc9f0;
+  box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.2);
 }
 
 .contact-links {
   margin-top: 50px;
-  color: #666;
+  color: #aaa;
   font-size: 0.95rem;
 }
 
 .contact-links a {
-  color: #4361ee;
+  color: #4cc9f0;
   margin: 0 8px;
+}
+
+.contact-links a:hover {
+  color: #7ee8fa;
 }
 
 /* Футер */
 .footer {
-  background: #1a1a1a;
-  color: #aaa;
+  background: #0a0a0a;
+  color: #666;
   text-align: center;
   padding: 30px 0;
   font-size: 0.95rem;
-  border-top: 1px solid #333;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
 }
 
 .footer p {
@@ -628,15 +712,15 @@ a:hover {
     top: 70px;
     left: 0;
     right: 0;
-    background: rgba(255, 255, 255, 0.98);
+    background: rgba(10, 10, 10, 0.98);
     backdrop-filter: blur(10px);
     z-index: 999;
     padding: 20px 0;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     transform: translateY(-100%);
     opacity: 0;
     transition: all 0.3s ease;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .nav.active {
