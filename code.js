@@ -31,7 +31,6 @@ function scrollToSection(id) {
   document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
 }
 
-// Обновление активной ссылки при скролле
 window.addEventListener('scroll', () => {
   document.querySelectorAll('.section').forEach(section => {
     const top = section.offsetTop - 100;
@@ -45,6 +44,24 @@ window.addEventListener('scroll', () => {
     }
   });
 });
+
+// === Модальное окно "Заказать сайт" ===
+const orderModal = document.getElementById('order-modal');
+
+function openOrderModal() {
+  orderModal.style.display = 'flex';
+}
+
+function closeOrderModal() {
+  orderModal.style.display = 'none';
+}
+
+// Закрытие по клику вне окна
+window.onclick = function(e) {
+  if (e.target === orderModal) {
+    closeOrderModal();
+  }
+};
 
 // === Чат ===
 const chatToggle = document.getElementById('chat-toggle');
@@ -118,4 +135,28 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
       }
     });
   });
+});
+
+// === Карусель отзывов ===
+const reviews = document.querySelectorAll('.review-item');
+const prevBtn = document.getElementById('prev-review');
+const nextBtn = document.getElementById('next-review');
+let currentIndex = 0;
+
+function showReview(index) {
+  reviews.forEach(r => r.classList.remove('active'));
+  reviews[index].classList.add('active');
+}
+
+// Изначально показываем первый
+showReview(0);
+
+nextBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % reviews.length;
+  showReview(currentIndex);
+});
+
+prevBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + reviews.length) % reviews.length;
+  showReview(currentIndex);
 });
