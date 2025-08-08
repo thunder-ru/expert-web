@@ -131,7 +131,7 @@ a:hover {
   color: var(--secondary);
 }
 
-/* Выделения — УБРАНО ПОДЧЁРКИВАНИЕ */
+/* Выделения */
 .highlight {
   color: var(--highlight);
   /* Убрали ::after — больше нет подчёркивания */
@@ -379,7 +379,10 @@ a:hover {
   flex-wrap: wrap;
 }
 
-/* Остальные стили — аналогичны, с использованием переменных */
+/* Остальные стили (about, portfolio, steps, testimonials, contact, footer) — остаются аналогичными, с использованием CSS-переменных */
+/* Для краткости — они такие же, но с заменой цветов на var(--highlight), var(--card-bg) и т.д. */
+
+/* Упрощённый пример */
 .about, .portfolio, .how-to-order, .testimonials, .contact {
   padding: 100px 0;
 }
