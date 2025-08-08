@@ -1,123 +1,106 @@
-// Тема: Light / Dark Mode
-const htmlRoot = document.documentElement; // используем documentElement
+// === Переключение темы ===
 const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
 
-// Проверяем сохранённую тему
-const savedTheme = localStorage.getItem('theme');
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const savedTheme = localStorage.getItem('theme') || 'dark';
+body.classList.toggle('light-theme', savedTheme === 'light');
+updateIcon();
 
-// Устанавливаем тему
-const setTheme = (theme) => {
-  htmlRoot.setAttribute('data-theme', theme);
-  themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
-  localStorage.setItem('theme', theme);
-};
-
-// Если есть сохранённая тема — используем её
-if (savedTheme) {
-  setTheme(savedTheme);
-} else {
-  // Иначе — по умолчанию тёмная, если система тёмная
-  setTheme(prefersDark ? 'dark' : 'light');
+function updateIcon() {
+  const icon = themeToggle.querySelector('i');
+  icon.className = body.classList.contains('light-theme') ? 'fas fa-moon' : 'fas fa-sun';
 }
 
-// Переключение темы
 themeToggle.addEventListener('click', () => {
-  const currentTheme = htmlRoot.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  setTheme(newTheme);
+  body.classList.toggle('light-theme');
+  const isLight = body.classList.contains('light-theme');
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  updateIcon();
 });
 
-// Мобильное меню
-const hamburger = document.getElementById('hamburger');
-const nav = document.querySelector('.nav');
-
-hamburger.addEventListener('click', () => {
-  nav.classList.toggle('active');
-  hamburger.classList.toggle('open');
+// === Навигация с плавной прокруткой ===
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    scrollToSection(targetId);
+  });
 });
 
-// Плавный скролл + активный пункт меню
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('.nav-list a');
+function scrollToSection(id) {
+  document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+}
 
-window.addEventListener('scroll', () => {
-  const header = document.querySelector('.header');
-  if (window.scrollY > 50) {
-    header.classList.add('scrolled');
+// === Чат GPT ===
+const chatToggle = document.getElementById('chat-toggle');
+const chatModal = document.getElementById('chat-modal');
+const chatBody = document.getElementById('chat-body');
+const userInput = document.getElementById('user-input');
+
+function openChat() {
+  chatModal.style.display = 'block';
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function closeChat() {
+  chatModal.style.display = 'none';
+}
+
+function sendMessage() {
+  const text = userInput.value.trim();
+  if (!text) return;
+
+  // Сообщение пользователя
+  const userMsg = document.createElement('div');
+  userMsg.className = 'message user';
+  userMsg.textContent = text;
+  chatBody.appendChild(userMsg);
+
+  // Ответ бота
+  const botMsg = document.createElement('div');
+  botMsg.className = 'message bot';
+  botMsg.textContent = getBotResponse(text.toLowerCase());
+  chatBody.appendChild(botMsg);
+
+  userInput.value = '';
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function handleKeyPress(e) {
+  if (e.key === 'Enter') sendMessage();
+}
+
+function getBotResponse(input) {
+  if (input.includes('стоит') || input.includes('цена')) {
+    return 'Сайт от 15 000 руб. Точный расчёт после обсуждения задачи.';
+  } else if (input.includes('срок') || input.includes('длительность')) {
+    return 'Срок — от 5 до 14 дней. Всё зависит от сложности и ваших пожеланий.';
+  } else if (input.includes('магазин') || input.includes('интернет-магазин')) {
+    return 'Да, могу создать интернет-магазин на React + Firebase или другом стеке.';
+  } else if (input.includes('лендинг') || input.includes('одностраничник')) {
+    return 'Лендинг — от 10 000 руб. Полностью адаптивный, с формой и анимациями.';
+  } else if (input.includes('технологии') || input.includes('stack')) {
+    return 'Работаю с HTML, CSS, JavaScript, React, Git, Figma. Все сайты — адаптивные и быстрые.';
   } else {
-    header.classList.remove('scrolled');
+    return 'Спасибо за вопрос! Я передал его Данилу — он свяжется с вами в ближайшее время.';
   }
+}
 
-  let current = '';
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 100;
-    const sectionHeight = section.clientHeight;
-    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-      current = section.getAttribute('id');
-    }
-  });
-
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === `#${current}`) {
-      link.classList.add('active');
-    }
-  });
+// Открытие/закрытие чата
+chatToggle.addEventListener('click', () => {
+  chatModal.style.display === 'block' ? closeChat() : openChat();
 });
 
-// Фильтрация портфолио
-const filterBtns = document.querySelectorAll('.filter-btn');
-const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-window.addEventListener('load', () => {
-  portfolioItems.forEach(item => {
-    item.style.display = 'block';
-    item.classList.add('loaded');
-  });
-});
-
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    filterBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    const filter = btn.getAttribute('data-filter');
-    portfolioItems.forEach(item => {
-      if (filter === 'all' || item.getAttribute('data-category') === filter) {
-        item.style.display = 'block';
-        setTimeout(() => item.classList.add('loaded'), 50);
-      } else {
-        item.style.display = 'none';
-        item.classList.remove('loaded');
-      }
-    });
-  });
-});
-
-// Улучшенная анимация прокрутки
-const animateOnScroll = () => {
-  document.querySelectorAll('.about, .portfolio, .how-to-order, .testimonials, .contact').forEach(el => {
-    const pos = el.getBoundingClientRect().top;
-    if (pos < window.innerHeight - 100 && !el.classList.contains('animated')) {
-      el.style.opacity = 0;
-      el.style.transform = 'translateY(30px)';
-      el.style.transition = 'all 0.8s ease';
-      setTimeout(() => {
-        el.style.opacity = 1;
-        el.style.transform = 'translateY(0)';
-        el.classList.add('animated');
-      }, 100);
+// Обновление активной ссылки при скролле
+window.addEventListener('scroll', () => {
+  document.querySelectorAll('.section').forEach(section => {
+    const top = section.offsetTop - 100;
+    const bottom = top + section.offsetHeight;
+    if (window.scrollY >= top && window.scrollY < bottom) {
+      const id = section.getAttribute('id');
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+      });
     }
   });
-};
-
-window.addEventListener('scroll', animateOnScroll);
-window.addEventListener('load', animateOnScroll);
-
-// Форма
-document.getElementById('contactForm').addEventListener('submit', e => {
-  e.preventDefault();
-  alert('✅ Спасибо! Я свяжусь с тобой в течение 24 часов.');
-  e.target.reset();
 });
