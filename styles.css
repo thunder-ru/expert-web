@@ -18,6 +18,9 @@
   --text-light: #444;
   --footer-bg: #f0f4ff;
   --btn-bg: #4361ee;
+  --btn-outline: #4361ee;
+  --btn-hover: #3a56d4;
+  --btn-outline-hover: rgba(67, 97, 238, 0.1);
 }
 
 /* Тёмная тема */
@@ -33,6 +36,9 @@
   --text-light: #aaa;
   --footer-bg: #0a0a0a;
   --btn-bg: #4cc9f0;
+  --btn-outline: #4cc9f0;
+  --btn-hover: #7ee8fa;
+  --btn-outline-hover: rgba(76, 201, 240, 0.1);
 }
 
 /* Тело */
@@ -134,7 +140,6 @@ a:hover {
 /* Выделения */
 .highlight {
   color: var(--highlight);
-  /* Убрали ::after — больше нет подчёркивания */
 }
 
 .soft-accent {
@@ -142,7 +147,7 @@ a:hover {
   font-weight: 600;
 }
 
-/* Кнопки */
+/* Кнопки — ЕДИНЫЙ СТИЛЬ */
 .btn {
   padding: 14px 30px;
   border-radius: 12px;
@@ -155,12 +160,18 @@ a:hover {
   text-align: center;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 15px var(--shadow);
 }
 
+/* Основная кнопка — градиент */
 .btn-primary {
   background: linear-gradient(90deg, var(--highlight), #3a0ca3);
   color: white;
-  box-shadow: 0 4px 15px var(--shadow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px var(--shadow-hover);
 }
 
 .btn-primary::after {
@@ -180,23 +191,21 @@ a:hover {
   100% { transform: translateX(100%) rotate(30deg); }
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 25px var(--shadow-hover);
-}
-
+/* Контурная кнопка */
 .btn-outline {
   background: transparent;
-  color: var(--highlight);
-  border: 2px solid var(--highlight);
+  color: var(--btn-outline);
+  border: 2px solid var(--btn-outline);
   box-shadow: 0 0 10px rgba(67, 97, 238, 0.1);
 }
 
 .btn-outline:hover {
-  background: rgba(67, 97, 238, 0.05);
+  background: var(--btn-outline-hover);
   box-shadow: 0 0 20px rgba(67, 97, 238, 0.2);
+  color: var(--btn-hover);
 }
 
+/* Кнопка "вся" — на всю ширину */
 .full {
   width: 100%;
   max-width: 500px;
@@ -204,95 +213,38 @@ a:hover {
   display: block;
 }
 
+/* Большая кнопка */
 .large {
   padding: 16px 40px;
   font-size: 1.1rem;
 }
 
-/* Хедер */
-.header {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  padding: 15px 0;
-  border-bottom: 1px solid var(--border);
-  transition: box-shadow 0.3s ease;
-}
-
-[data-theme="dark"] .header {
-  background: rgba(10, 10, 10, 0.95);
-  border-bottom: 1px solid #333;
-}
-
-.header.scrolled {
-  box-shadow: 0 5px 30px var(--shadow);
-}
-
-.header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: var(--secondary);
-  white-space: nowrap;
-  min-width: 140px;
-  display: flex;
-  align-items: center;
-}
-
-.logo:hover {
-  color: var(--highlight);
-}
-
-.nav {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.nav-list {
-  display: flex;
-  list-style: none;
-  gap: 2.5rem;
-  margin: 0;
-}
-
-.nav-list a {
-  color: var(--text);
+/* Фильтры портфолио */
+.filter-btn {
+  padding: 10px 20px;
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 30px;
+  cursor: pointer;
   font-weight: 500;
-  font-size: 1rem;
-  position: relative;
-  padding: 5px 0;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  color: #333;
 }
 
-.nav-list a::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--highlight), #3a0ca3);
-  transition: width 0.4s ease;
+[data-theme="dark"] .filter-btn {
+  background: #1a1a1a;
+  border: 2px solid #444;
+  color: #aaa;
 }
 
-.nav-list a:hover::before,
-.nav-list a.active::before {
-  width: 100%;
+.filter-btn.active, .filter-btn:hover {
+  background: var(--highlight);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 0 15px rgba(67, 97, 238, 0.3);
 }
 
-.nav-list a:hover,
-.nav-list a.active {
-  color: var(--highlight);
-}
-
+/* Кнопка меню */
 .hamburger {
   display: none;
   font-size: 1.8rem;
@@ -303,16 +255,27 @@ a:hover {
   right: 60px;
   top: 50%;
   transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--highlight);
+  color: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .hamburger:hover {
-  color: var(--highlight);
   transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
 
 .hamburger.open {
   color: var(--highlight);
-  transform: rotate(90deg) scale(1.1);
+  background: white;
+  border: 2px solid var(--highlight);
+  transform: rotate(90deg);
 }
 
 /* Кнопка темы */
@@ -342,45 +305,61 @@ a:hover {
   box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
 
-/* Главная */
-.hero {
-  padding: 140px 0 100px;
+/* Ссылки-кнопки (например, в портфолио) */
+.view-link {
+  color: var(--highlight);
+  font-weight: 600;
+  display: inline-block;
+  margin-top: 8px;
+  text-decoration: none;
+  position: relative;
+  padding: 0 5px;
+  transition: color 0.3s ease;
 }
 
-.hero .container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 60px;
+.view-link::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--highlight);
+  transition: width 0.3s ease;
 }
 
-.hero-content {
-  flex: 1;
-  min-width: 300px;
-}
-
-.hero-image img {
+.view-link:hover::after {
   width: 100%;
-  max-width: 500px;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px var(--shadow);
-  transition: transform 0.4s ease;
-  border: 1px solid var(--border);
 }
 
-.hero-image img:hover {
-  transform: translateY(-5px);
+/* Хедер */
+.header {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border);
+  transition: box-shadow 0.3s ease;
 }
 
-.cta-buttons {
-  margin-top: 30px;
+[data-theme="dark"] .header {
+  background: rgba(10, 10, 10, 0.95);
+  border-bottom: 1px solid #333;
+}
+
+.header.scrolled {
+  box-shadow: 0 5px 30px var(--shadow);
+}
+
+.header .container {
   display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* Остальные стили (about, portfolio, steps, testimonials, contact, footer) — остаются аналогичными, с использованием CSS-переменных */
-/* Для краткости — они такие же, но с заменой цветов на var(--highlight), var(--card-bg) и т.д. */
+/* Остальные стили (about, portfolio, steps, testimonials, contact, footer) — остаются аналогичными */
 
 /* Упрощённый пример */
 .about, .portfolio, .how-to-order, .testimonials, .contact {
