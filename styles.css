@@ -147,7 +147,7 @@ a:hover {
   font-weight: 600;
 }
 
-/* Кнопки — ЕДИНЫЙ СТИЛЬ */
+/* Кнопки */
 .btn {
   padding: 14px 30px;
   border-radius: 12px;
@@ -359,20 +359,204 @@ a:hover {
   align-items: center;
 }
 
-/* Остальные стили (about, portfolio, steps, testimonials, contact, footer) — остаются аналогичными */
+.logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--secondary);
+  white-space: nowrap;
+  min-width: 140px;
+  display: flex;
+  align-items: center;
+}
 
-/* Упрощённый пример */
-.about, .portfolio, .how-to-order, .testimonials, .contact {
+.logo:hover {
+  color: var(--highlight);
+}
+
+.nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 2.5rem;
+  margin: 0;
+}
+
+.nav-list a {
+  color: var(--text);
+  font-weight: 500;
+  font-size: 1rem;
+  position: relative;
+  padding: 5px 0;
+  transition: color 0.3s ease;
+}
+
+.nav-list a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--highlight), #3a0ca3);
+  transition: width 0.4s ease;
+}
+
+.nav-list a:hover::before,
+.nav-list a.active::before {
+  width: 100%;
+}
+
+.nav-list a:hover,
+.nav-list a.active {
+  color: var(--highlight);
+}
+
+/* Как заказать */
+.how-to-order {
   padding: 100px 0;
 }
 
-.about, .portfolio, .how-to-order, .testimonials, .contact, .footer {
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+}
+
+.step {
   background: var(--card-bg);
-  border-radius: 20px;
-  margin: 0 auto 60px;
-  max-width: 1100px;
-  border: 1px solid var(--border);
+  padding: 30px;
+  border-radius: 16px;
   box-shadow: 0 10px 30px var(--shadow);
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.step:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px var(--shadow-hover);
+}
+
+.step-number {
+  width: 50px;
+  height: 50px;
+  background: var(--highlight);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin: 0 auto 15px;
+}
+
+.step h3 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.step p {
+  font-size: 1rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+
+/* Отзывы */
+.testimonials {
+  padding: 100px 0;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.testimonial {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px var(--shadow);
+  transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.testimonial:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px var(--shadow-hover);
+}
+
+.testimonial-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.quote {
+  font-style: italic;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 15px;
+  font-size: 1.05rem;
+}
+
+.author {
+  font-weight: 600;
+  color: var(--highlight);
+  font-size: 0.95rem;
+}
+
+/* Контакты */
+.contact {
+  padding: 100px 0;
+}
+
+.contact-subtitle {
+  max-width: 600px;
+  margin: 15px auto 30px;
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 20px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--card-bg);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--highlight);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+}
+
+.contact-links {
+  margin-top: 50px;
+  color: var(--text-light);
+  font-size: 0.95rem;
+}
+
+.contact-links a {
+  color: var(--highlight);
+  margin: 0 8px;
 }
 
 /* Футер */
