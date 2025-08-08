@@ -17,6 +17,7 @@
           <li><a href="#home">Главная</a></li>
           <li><a href="#about">О себе</a></li>
           <li><a href="#portfolio">Портфолио</a></li>
+          <li><a href="#testimonials">Отзывы</a></li>
           <li><a href="#contact">Контакты</a></li>
         </ul>
       </nav>
@@ -50,17 +51,27 @@
         <div class="about-text">
           <p>Меня зовут <strong>Данил</strong>, и я верю, что <strong>хороший сайт — это не просто страница</strong>. Это <strong>опыт, впечатление, доверие</strong>.</p>
           <p>Я не просто верстаю — я <strong>превращаю идеи в цифровые истории</strong>, которые работают на бизнес и вдохновляют пользователей.</p>
-          <p>Мой подход:</p>
-          <ul class="approach">
-            <li>🎯 <strong>Понимаю задачу</strong> — слушаю клиента</li>
-            <li>📐 <strong>Прототипирую</strong> — чтобы всё было понятно</li>
-            <li>⚡ <strong>Верстаю с нулём компромиссов</strong> по скорости и адаптиву</li>
-            <li>✅ <strong>Тестирую</strong> — на всех устройствах и браузерах</li>
-          </ul>
-          <p>Хочешь сайт, который <strong>работает, выглядит дорого и приносит клиентов</strong>? Давай сделаем его вместе.</p>
+
+          <div class="stats">
+            <div class="stat-item">
+              <strong>5+</strong>
+              <span>проектов</span>
+            </div>
+            <div class="stat-item">
+              <strong>3</strong>
+              <span>года опыта</span>
+            </div>
+            <div class="stat-item">
+              <strong>100%</strong>
+              <span>адаптив</span>
+            </div>
+          </div>
+
+          <p><em>«Хороший сайт должен работать, нравиться и приносить результат»</em></p>
         </div>
         <div class="about-photo">
           <img src="https://via.placeholder.com/300x400/eef2ff/3a7bd5?text=Данил" alt="Фото Данила" />
+          <p class="photo-caption">Данил — веб-разработчик, создающий сайты с душой</p>
         </div>
       </div>
 
@@ -95,6 +106,11 @@
         <div class="portfolio-item" data-category="commercial">
           <img src="https://via.placeholder.com/400x300/f0f8ff/4361ee?text=Landing+Page" alt="Landing Page" />
           <div class="portfolio-info">
+            <div class="tech-icons">
+              <span title="HTML">⚡</span>
+              <span title="CSS">🎨</span>
+              <span title="JS">📜</span>
+            </div>
             <h3>Landing для дизайн-студии</h3>
             <p>Скорость загрузки — 1.2 сек. Адаптив на 100%.</p>
             <a href="#" class="view-link">Посмотреть →</a>
@@ -104,6 +120,10 @@
         <div class="portfolio-item" data-category="personal">
           <img src="https://via.placeholder.com/400x300/f0fff4/2b8a3e?text=Blog+Redesign" alt="Блог" />
           <div class="portfolio-info">
+            <div class="tech-icons">
+              <span title="HTML">⚡</span>
+              <span title="CSS">🎨</span>
+            </div>
             <h3>Персональный блог</h3>
             <p>Минимализм, читаемость, анимации при прокрутке.</p>
             <a href="#" class="view-link">GitHub →</a>
@@ -113,6 +133,10 @@
         <div class="portfolio-item" data-category="personal">
           <img src="https://via.placeholder.com/400x300/fffaf0/d97706?text=UI+Kit" alt="UI Kit" />
           <div class="portfolio-info">
+            <div class="tech-icons">
+              <span title="Figma">🖌️</span>
+              <span title="HTML/CSS">⚡</span>
+            </div>
             <h3>UI-кит для SaaS</h3>
             <p>Готовые компоненты для быстрой разработки.</p>
             <a href="#" class="view-link">Демо →</a>
@@ -122,10 +146,34 @@
         <div class="portfolio-item" data-category="study">
           <img src="https://via.placeholder.com/400x300/f3f4f6/6b7280?text=JS+App" alt="JS App" />
           <div class="portfolio-info">
+            <div class="tech-icons">
+              <span title="JavaScript">📜</span>
+            </div>
             <h3>Калькулятор расходов</h3>
             <p>Обучение: работа с DOM и логикой.</p>
             <a href="#" class="view-link">GitHub →</a>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Отзывы -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <h2>Что говорят <span class="highlight">мои клиенты</span></h2>
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <p class="quote">«Данил сделал сайт за 10 дней, и он выглядит дороже любого агентства. Очень доволен!»</p>
+          <p class="author">— Алексей, владелец студии дизайна</p>
+        </div>
+        <div class="testimonial">
+          <p class="quote">«Быстро, качественно, без лишних слов. Рекомендую как фронтенда для MVP.»</p>
+          <p class="author">— Мария, стартапер</p>
+        </div>
+        <div class="testimonial">
+          <p class="quote">«Отличная коммуникация, понял задачу с полуслова. Сайт загружается мгновенно.»</p>
+          <p class="author">— Иван, фрилансер</p>
         </div>
       </div>
     </div>
