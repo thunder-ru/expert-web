@@ -1,12 +1,13 @@
 /* Переменные тем */
 :root {
-  --bg: #121212;
+  --bg: #0a0a0a;
   --text: #e0e0e0;
   --primary: #00f0ff;
   --secondary: #fff000;
-  --card-bg: #1e1e1e;
+  --card-bg: #1a1a1a;
   --border: #333;
-  --shadow: 0 4px 12px rgba(0, 240, 255, 0.1);
+  --shadow: 0 4px 15px rgba(0, 240, 255, 0.15);
+  --font-large: 1.1rem;
 }
 
 .light-theme {
@@ -16,7 +17,7 @@
   --secondary: #ff6b00;
   --card-bg: #f8f9fa;
   --border: #ddd;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -29,16 +30,36 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: 'Open Sans', sans-serif;
-  line-height: 1.6;
-  transition: background 0.4s, color 0.4s;
+  line-height: 1.7;
+  transition: background 0.5s, color 0.5s;
   min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
 }
 
 .container {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 50px 0;
+}
+
+/* Звёзды на фоне */
+#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><defs><radialGradient id="g" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="white"/><stop offset="100%" stop-color="transparent"/></radialGradient></defs><script xmlns="http://www.w3.org/2000/svg">var s=document.currentScript.parentNode;for(var i=0;i<100;i++){var x=Math.random()*100;var y=Math.random()*100;var e=document.createElementNS("http://www.w3.org/2000/svg","circle");e.setAttribute("cx",x+"%");e.setAttribute("cy",y+"%");e.setAttribute("r","0.3");e.setAttribute("fill","white");e.style.opacity=Math.random();e.style.animationDelay=(Math.random()*10)+"s";s.appendChild(e);}</script></svg>');
+  animation: stars 50s linear infinite;
+}
+
+@keyframes stars {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
 }
 
 /* Шапка */
@@ -47,7 +68,7 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  background: rgba(18, 18, 18, 0.95);
+  background: rgba(10, 10, 10, 0.95);
   backdrop-filter: blur(10px);
   z-index: 1000;
   border-bottom: 1px solid var(--border);
@@ -57,13 +78,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
+  padding: 18px 20px;
 }
 
 .logo {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  font-size: 1.8rem;
+  font-weight: 800;
+  font-size: 2.2rem;
   color: var(--primary);
   text-decoration: none;
 }
@@ -74,12 +95,13 @@ body {
 
 .nav {
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .nav-link {
   color: var(--text);
   text-decoration: none;
+  font-size: 1.1rem;
   transition: color 0.3s;
 }
 
@@ -91,73 +113,79 @@ body {
   background: none;
   border: none;
   color: var(--text);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   cursor: pointer;
 }
 
 /* Секции */
 .section {
-  padding: 100px 0;
+  padding: 110px 0;
 }
 
 .hero {
   text-align: center;
-  padding-top: 180px;
+  padding-top: 190px;
 }
 
 .hero h1 {
   font-family: 'Montserrat', sans-serif;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1.2rem;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  line-height: 1.2;
 }
 
 .hero p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  max-width: 700px;
+  font-size: 1.4rem;
+  margin-bottom: 2.5rem;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  color: #ccc;
 }
 
 .services {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin: 2rem 0;
+  gap: 2.5rem;
+  margin: 2.5rem 0;
   flex-wrap: wrap;
 }
 
 .service-item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   background: var(--card-bg);
-  padding: 12px 20px;
-  border-radius: 12px;
+  padding: 14px 24px;
+  border-radius: 14px;
   border: 1px solid var(--border);
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
 .cta-buttons {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: center;
   flex-wrap: wrap;
 }
 
 .btn {
-  padding: 12px 28px;
+  padding: 14px 32px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   font-weight: 600;
-  transition: transform 0.2s, box-shadow 0.2s;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
 }
 
 .btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
   box-shadow: var(--shadow);
 }
 
@@ -172,97 +200,118 @@ body {
   border: 2px solid var(--primary);
 }
 
+.btn.small {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 5px rgba(0, 240, 255, 0.4); }
+  to { box-shadow: 0 0 20px rgba(255, 240, 0, 0.6); }
+}
+
 /* О себе */
 .about-content {
   display: flex;
   flex-wrap: wrap;
-  gap: 3rem;
+  gap: 4rem;
   align-items: center;
 }
 
 .avatar {
-  width: 180px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid var(--primary);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
 }
 
 .skills {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin: 1.5rem 0;
+  margin: 1.8rem 0;
 }
 
 .skills span {
   background: var(--card-bg);
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 0.9rem;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 1rem;
+  border: 1px solid var(--border);
 }
 
 /* Портфолио */
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2.5rem;
 }
 
 .portfolio-item {
   background: var(--card-bg);
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: var(--shadow);
-  transition: transform 0.3s;
+  transition: transform 0.4s ease;
+  padding: 1rem;
 }
 
 .portfolio-item:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 240, 255, 0.2);
 }
 
 .portfolio-item img {
   width: 100%;
-  height: 200px;
+  height: 180px;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 .portfolio-item h3 {
-  padding: 1rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+  margin: 1rem 0 0.5rem;
 }
 
 .portfolio-item p {
-  padding: 0 1rem;
   color: #aaa;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
+  margin-bottom: 0.8rem;
 }
 
 .tech {
-  display: block;
+  display: inline-block;
   padding: 6px 12px;
   background: var(--primary);
   color: #000;
-  font-size: 0.85rem;
-  margin: 0.5rem 1rem 1rem;
+  font-size: 0.9rem;
   border-radius: 6px;
-  width: max-content;
+  margin-right: 8px;
 }
 
+/* Фильтры */
 .filters {
   display: flex;
-  gap: 10px;
   justify-content: center;
-  margin: 2rem 0;
+  gap: 12px;
+  margin: 2.5rem 0;
   flex-wrap: wrap;
 }
 
 .filter-btn {
-  padding: 8px 16px;
+  padding: 10px 20px;
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 12px;
+  font-size: 1.05rem;
   cursor: pointer;
   transition: all 0.3s;
 }
@@ -270,62 +319,76 @@ body {
 .filter-btn.active, .filter-btn:hover {
   background: var(--primary);
   color: #000;
+  transform: scale(1.05);
 }
 
 /* Отзывы */
 .reviews-grid {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  max-width: 800px;
-  margin: 2rem auto;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 2.5rem auto;
 }
 
 .review {
-  display: flex;
-  gap: 1rem;
   background: var(--card-bg);
-  padding: 1.5rem;
-  border-radius: 12px;
+  padding: 1.8rem;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  display: flex;
+  gap: 1.5rem;
   align-items: flex-start;
 }
 
 .review-avatar {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
+  border: 3px solid var(--primary);
 }
 
 .stars {
   color: gold;
   font-weight: bold;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+.review-content p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
 }
 
 /* Контакты */
 .contact-form {
-  max-width: 500px;
-  margin: 0 auto 2rem;
+  max-width: 550px;
+  margin: 0 auto 2.5rem;
 }
 
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 1rem;
+  padding: 14px;
+  margin-bottom: 1.2rem;
   background: var(--card-bg);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   color: var(--text);
+  font-size: 1.1rem;
 }
 
 .contact-info {
   text-align: center;
   margin-top: 2rem;
+  font-size: 1.1rem;
 }
 
 .contact-info a {
   color: var(--primary);
   text-decoration: none;
+  font-weight: 600;
 }
 
 /* Чат */
@@ -333,75 +396,77 @@ body {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   background: var(--primary);
   color: #000;
   border: none;
-  font-size: 1.5rem;
-  box-shadow: 0 4px 15px rgba(0, 240, 255, 0.4);
+  font-size: 1.7rem;
+  box-shadow: 0 0 20px rgba(255, 240, 0, 0.5);
   cursor: pointer;
   z-index: 100;
-  animation: pulse 2s infinite;
+  animation: pulse 2s infinite, float 6s ease-in-out infinite;
 }
 
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 .chat-modal {
   position: fixed;
-  bottom: 100px;
+  bottom: 110px;
   right: 30px;
-  width: 320px;
-  height: 400px;
+  width: 340px;
+  height: 420px;
   background: var(--card-bg);
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
   overflow: hidden;
   display: none;
   z-index: 99;
   border: 1px solid var(--border);
+  backdrop-filter: blur(10px);
 }
 
 .chat-header {
   background: var(--primary);
   color: #000;
-  padding: 12px;
+  padding: 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-weight: 600;
 }
 
 .chat-header h3 {
-  font-size: 1rem;
+  font-size: 1.1rem;
   margin: 0;
 }
 
 .chat-header button {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   cursor: pointer;
 }
 
 .chat-body {
-  padding: 12px;
-  height: 300px;
+  padding: 14px;
+  height: 320px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  font-size: 1.05rem;
 }
 
 .message {
-  padding: 10px 14px;
-  border-radius: 12px;
+  padding: 12px 16px;
+  border-radius: 14px;
   max-width: 80%;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .message.bot {
@@ -418,46 +483,40 @@ body {
 
 .chat-input {
   display: flex;
-  padding: 10px;
+  padding: 12px;
   border-top: 1px solid var(--border);
   background: var(--bg);
 }
 
 .chat-input input {
   flex: 1;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   background: var(--card-bg);
   color: var(--text);
+  font-size: 1.05rem;
 }
 
 .chat-input button {
   background: var(--primary);
   border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  margin-left: 8px;
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  margin-left: 10px;
   cursor: pointer;
   color: #000;
+  font-size: 1.1rem;
 }
 
 /* Адаптив */
 @media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2rem;
-  }
-  .nav {
-    gap: 1rem;
-    font-size: 0.9rem;
-  }
-  .about-content {
-    text-align: center;
-    flex-direction: column;
-  }
-  .btn {
-    width: 100%;
-    max-width: 300px;
-  }
+  .hero h1 { font-size: 2.3rem; }
+  .hero p { font-size: 1.2rem; }
+  .nav { gap: 1.2rem; }
+  .nav-link { font-size: 1rem; }
+  .logo { font-size: 1.8rem; }
+  .btn { width: 100%; max-width: 320px; }
+  .about-content { text-align: center; }
 }
