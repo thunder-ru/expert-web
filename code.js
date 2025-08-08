@@ -1,23 +1,31 @@
 // Тема: Light / Dark Mode
-const htmlRoot = document.getElementById('html-root');
+const htmlRoot = document.documentElement; // используем documentElement
 const themeToggle = document.getElementById('theme-toggle');
 
 // Проверяем сохранённую тему
 const savedTheme = localStorage.getItem('theme');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+// Устанавливаем тему
+const setTheme = (theme) => {
+  htmlRoot.setAttribute('data-theme', theme);
+  themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('theme', theme);
+};
+
+// Если есть сохранённая тема — используем её
 if (savedTheme) {
-  htmlRoot.setAttribute('data-theme', savedTheme);
-  themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  setTheme(savedTheme);
+} else {
+  // Иначе — по умолчанию тёмная, если система тёмная
+  setTheme(prefersDark ? 'dark' : 'light');
 }
 
 // Переключение темы
 themeToggle.addEventListener('click', () => {
   const currentTheme = htmlRoot.getAttribute('data-theme');
   const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  
-  htmlRoot.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-  
-  themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+  setTheme(newTheme);
 });
 
 // Мобильное меню
@@ -87,30 +95,22 @@ filterBtns.forEach(btn => {
   });
 });
 
-// Улучшенная анимация прокрутки (scroll reveal)
+// Улучшенная анимация прокрутки
 const animateOnScroll = () => {
   document.querySelectorAll('.about, .portfolio, .how-to-order, .testimonials, .contact').forEach(el => {
     const pos = el.getBoundingClientRect().top;
-    const delay = el.dataset.delay || 0;
-    
     if (pos < window.innerHeight - 100 && !el.classList.contains('animated')) {
       el.style.opacity = 0;
       el.style.transform = 'translateY(30px)';
-      el.style.transition = `all 0.8s ease ${delay}s`;
-      
+      el.style.transition = 'all 0.8s ease';
       setTimeout(() => {
         el.style.opacity = 1;
         el.style.transform = 'translateY(0)';
         el.classList.add('animated');
-      }, 100 + (delay * 1000));
+      }, 100);
     }
   });
 };
-
-// Добавим delay для эффекта "поочерёдного появления"
-document.querySelector('.how-to-order').dataset.delay = 0.1;
-document.querySelector('.testimonials').dataset.delay = 0.2;
-document.querySelector('.contact').dataset.delay = 0.3;
 
 window.addEventListener('scroll', animateOnScroll);
 window.addEventListener('load', animateOnScroll);
