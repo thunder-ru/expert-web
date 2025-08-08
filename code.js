@@ -1,9 +1,9 @@
-// Мобильное меню с анимацией иконки
+// Мобильное меню с анимацией и иконкой
 const hamburger = document.getElementById('hamburger');
-const navList = document.querySelector('.nav-list');
+const nav = document.querySelector('.nav');
 
 hamburger.addEventListener('click', () => {
-  navList.classList.toggle('active');
+  nav.classList.toggle('active');
   hamburger.classList.toggle('open');
 });
 
@@ -12,7 +12,6 @@ const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav-list a');
 
 window.addEventListener('scroll', () => {
-  // Тень под хедером при прокрутке
   const header = document.querySelector('.header');
   if (window.scrollY > 50) {
     header.classList.add('scrolled');
@@ -20,7 +19,6 @@ window.addEventListener('scroll', () => {
     header.classList.remove('scrolled');
   }
 
-  // Активный пункт меню
   let current = '';
   sections.forEach(section => {
     const sectionTop = section.offsetTop - 100;
@@ -38,11 +36,10 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// Фильтрация портфолио — ИСПРАВЛЕНО: проекты видны сразу
+// Фильтрация портфолио — проекты видны сразу
 const filterBtns = document.querySelectorAll('.filter-btn');
 const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-// Показываем все проекты при загрузке
 window.addEventListener('load', () => {
   portfolioItems.forEach(item => {
     item.style.display = 'block';
@@ -68,7 +65,7 @@ filterBtns.forEach(btn => {
   });
 });
 
-// Плавное появление элементов при прокрутке
+// Плавное появление
 const animateOnScroll = () => {
   document.querySelectorAll('.about-flex, .skills, .portfolio-subtitle, .testimonials, .contact-subtitle').forEach(el => {
     const pos = el.getBoundingClientRect().top;
@@ -88,7 +85,7 @@ const animateOnScroll = () => {
 window.addEventListener('scroll', animateOnScroll);
 window.addEventListener('load', animateOnScroll);
 
-// Форма обратной связи
+// Форма
 document.getElementById('contactForm').addEventListener('submit', e => {
   e.preventDefault();
   alert('✅ Спасибо! Я свяжусь с тобой в течение 24 часов.');
