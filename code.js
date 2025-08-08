@@ -3,7 +3,7 @@ const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
 
 const savedTheme = localStorage.getItem('theme') || 'dark';
-body.classList.toggle('light-theme', savedTheme === 'light');
+if (savedTheme === 'light') body.classList.add('light-theme');
 updateIcon();
 
 function updateIcon() {
@@ -18,7 +18,7 @@ themeToggle.addEventListener('click', () => {
   updateIcon();
 });
 
-// === Навигация с плавной прокруткой ===
+// === Плавная прокрутка и активная ссылка ===
 document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', function(e) {
     e.preventDefault();
@@ -31,7 +31,22 @@ function scrollToSection(id) {
   document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
 }
 
-// === Чат GPT ===
+// Обновление активной ссылки при скролле
+window.addEventListener('scroll', () => {
+  document.querySelectorAll('.section').forEach(section => {
+    const top = section.offsetTop - 100;
+    const bottom = top + section.offsetHeight;
+    if (window.scrollY >= top && window.scrollY < bottom) {
+      const id = section.getAttribute('id');
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${id}`) link.classList.add('active');
+      });
+    }
+  });
+});
+
+// === Чат ===
 const chatToggle = document.getElementById('chat-toggle');
 const chatModal = document.getElementById('chat-modal');
 const chatBody = document.getElementById('chat-body');
@@ -39,7 +54,7 @@ const userInput = document.getElementById('user-input');
 
 function openChat() {
   chatModal.style.display = 'block';
-  chatBody.scrollTop = chatBody.scrollHeight;
+  setTimeout(() => chatBody.scrollTop = chatBody.scrollHeight, 100);
 }
 
 function closeChat() {
@@ -50,20 +65,18 @@ function sendMessage() {
   const text = userInput.value.trim();
   if (!text) return;
 
-  // Сообщение пользователя
   const userMsg = document.createElement('div');
   userMsg.className = 'message user';
   userMsg.textContent = text;
   chatBody.appendChild(userMsg);
 
-  // Ответ бота
   const botMsg = document.createElement('div');
   botMsg.className = 'message bot';
   botMsg.textContent = getBotResponse(text.toLowerCase());
   chatBody.appendChild(botMsg);
 
   userInput.value = '';
-  chatBody.scrollTop = chatBody.scrollHeight;
+  setTimeout(() => chatBody.scrollTop = chatBody.scrollHeight, 100);
 }
 
 function handleKeyPress(e) {
@@ -72,35 +85,37 @@ function handleKeyPress(e) {
 
 function getBotResponse(input) {
   if (input.includes('стоит') || input.includes('цена')) {
-    return 'Сайт от 15 000 руб. Точный расчёт после обсуждения задачи.';
+    return 'Сайт от 15 000 руб. Но! Если запуститесь в ближайшие 3 дня — сделаю за 12 000.';
   } else if (input.includes('срок') || input.includes('длительность')) {
-    return 'Срок — от 5 до 14 дней. Всё зависит от сложности и ваших пожеланий.';
+    return '5–7 дней. Готовый сайт уже через неделю. Без задержек.';
   } else if (input.includes('магазин') || input.includes('интернет-магазин')) {
-    return 'Да, могу создать интернет-магазин на React + Firebase или другом стеке.';
+    return 'Да. Сделаю интернет-магазин на React + Firebase. С корзиной, оплатой, админкой.';
   } else if (input.includes('лендинг') || input.includes('одностраничник')) {
-    return 'Лендинг — от 10 000 руб. Полностью адаптивный, с формой и анимациями.';
-  } else if (input.includes('технологии') || input.includes('stack')) {
-    return 'Работаю с HTML, CSS, JavaScript, React, Git, Figma. Все сайты — адаптивные и быстрые.';
+    return 'Лендинг — от 10 000 руб. Адаптивный, с формой, анимациями и высокой конверсией.';
+  } else if (input.includes('предоплат') || input.includes('оплата')) {
+    return 'Никакой предоплаты. Оплата — только после того, как сайт готов и вам нравится.';
   } else {
     return 'Спасибо за вопрос! Я передал его Данилу — он свяжется с вами в ближайшее время.';
   }
 }
 
-// Открытие/закрытие чата
 chatToggle.addEventListener('click', () => {
   chatModal.style.display === 'block' ? closeChat() : openChat();
 });
 
-// Обновление активной ссылки при скролле
-window.addEventListener('scroll', () => {
-  document.querySelectorAll('.section').forEach(section => {
-    const top = section.offsetTop - 100;
-    const bottom = top + section.offsetHeight;
-    if (window.scrollY >= top && window.scrollY < bottom) {
-      const id = section.getAttribute('id');
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-      });
-    }
+// === Фильтры портфолио ===
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const filter = btn.getAttribute('data-filter');
+    document.querySelectorAll('.portfolio-item').forEach(item => {
+      if (filter === 'all' || item.getAttribute('data-type') === filter) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
   });
 });
