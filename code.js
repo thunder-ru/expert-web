@@ -67,7 +67,7 @@ filterBtns.forEach(btn => {
 
 // Плавное появление
 const animateOnScroll = () => {
-  document.querySelectorAll('.about-flex, .skills, .portfolio-subtitle, .testimonials, .contact-subtitle').forEach(el => {
+  document.querySelectorAll('.about-text, .skills, .portfolio-subtitle, .testimonials, .contact-subtitle, .guarantees').forEach(el => {
     const pos = el.getBoundingClientRect().top;
     if (pos < window.innerHeight - 100 && !el.classList.contains('animated')) {
       el.style.opacity = 0;
