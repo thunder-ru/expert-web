@@ -17,6 +17,7 @@
   --shadow-hover: rgba(0, 0, 0, 0.12);
   --text-light: #444;
   --footer-bg: #f0f4ff;
+  --btn-bg: #4361ee;
 }
 
 /* Тёмная тема */
@@ -31,6 +32,7 @@
   --shadow-hover: rgba(0, 0, 0, 0.3);
   --text-light: #aaa;
   --footer-bg: #0a0a0a;
+  --btn-bg: #4cc9f0;
 }
 
 /* Тело */
@@ -41,6 +43,7 @@ body {
   background: var(--bg);
   scroll-behavior: smooth;
   position: relative;
+  transition: background 0.4s ease;
 }
 
 /* Звёзды в тёмной теме */
@@ -51,18 +54,20 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.1;
   pointer-events: none;
   z-index: -1;
-  animation: star-flicker 3s infinite linear;
+  animation: star-flicker 3s infinite alternate;
 }
 
 @keyframes star-flicker {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.05; }
 }
 
-/* Текстура */
+/* Текстура (только в светлой теме) */
 body::before {
   content: '';
   position: fixed;
@@ -73,6 +78,10 @@ body::before {
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   pointer-events: none;
   z-index: -1;
+}
+
+[data-theme="dark"] body::before {
+  display: none;
 }
 
 .container {
@@ -122,22 +131,10 @@ a:hover {
   color: var(--secondary);
 }
 
-/* Выделения */
+/* Выделения — УБРАНО ПОДЧЁРКИВАНИЕ */
 .highlight {
   color: var(--highlight);
-  position: relative;
-}
-
-.highlight::after {
-  content: '';
-  position: absolute;
-  bottom: 2px;
-  left: 0;
-  width: 100%;
-  height: 8px;
-  background: rgba(67, 97, 238, 0.2);
-  z-index: -1;
-  border-radius: 4px;
+  /* Убрали ::after — больше нет подчёркивания */
 }
 
 .soft-accent {
@@ -214,7 +211,7 @@ a:hover {
 
 /* Хедер */
 .header {
-  background: rgba(var(--card-bg-rgb), 0.95);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
@@ -222,6 +219,11 @@ a:hover {
   padding: 15px 0;
   border-bottom: 1px solid var(--border);
   transition: box-shadow 0.3s ease;
+}
+
+[data-theme="dark"] .header {
+  background: rgba(10, 10, 10, 0.95);
+  border-bottom: 1px solid #333;
 }
 
 .header.scrolled {
@@ -319,7 +321,7 @@ a:hover {
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  background: var(--highlight);
+  background: var(--btn-bg);
   color: white;
   border: none;
   width: 40px;
@@ -332,6 +334,7 @@ a:hover {
   justify-content: center;
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 10;
 }
 
 .theme-btn:hover {
@@ -376,10 +379,7 @@ a:hover {
   flex-wrap: wrap;
 }
 
-/* Остальные стили (about, portfolio, steps, testimonials, contact, footer) — остаются аналогичными, с использованием CSS-переменных */
-/* Для краткости — они такие же, но с заменой цветов на var(--highlight), var(--card-bg) и т.д. */
-
-/* Упрощённый пример */
+/* Остальные стили — аналогичны, с использованием переменных */
 .about, .portfolio, .how-to-order, .testimonials, .contact {
   padding: 100px 0;
 }
