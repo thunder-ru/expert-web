@@ -69,10 +69,6 @@
 
           <p><em>«Хороший сайт должен работать, нравиться и приносить результат»</em></p>
         </div>
-        <div class="about-photo">
-          <img src="https://via.placeholder.com/300x400/eef2ff/3a7bd5?text=Данил" alt="Фото Данила" />
-          <p class="photo-caption">Данил — веб-разработчик, создающий сайты с душой</p>
-        </div>
       </div>
 
       <div class="skills">
@@ -81,9 +77,7 @@
           <span class="skill-tag">HTML5</span>
           <span class="skill-tag">CSS3</span>
           <span class="skill-tag">JavaScript</span>
-          <span class="skill-tag">Responsive</span>
-          <span class="skill-tag">Git</span>
-          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Конструктор</span>
         </div>
       </div>
     </div>
@@ -97,14 +91,43 @@
 
       <div class="filters">
         <button class="filter-btn active" data-filter="all">Все</button>
-        <button class="filter-btn" data-filter="personal">Личные</button>
+        <button class="filter-btn" data-filter="game">Игровые</button>
         <button class="filter-btn" data-filter="commercial">Коммерческие</button>
         <button class="filter-btn" data-filter="study">Учебные</button>
       </div>
 
       <div class="portfolio-grid">
+        <!-- Игровые проекты -->
+        <div class="portfolio-item" data-category="game">
+          <img src="https://via.placeholder.com/400x300/593b8b/ffffff?text=Game+1" alt="Игра 1" />
+          <div class="portfolio-info">
+            <div class="tech-icons">
+              <span title="HTML">⚡</span>
+              <span title="CSS">🎨</span>
+              <span title="JS">📜</span>
+            </div>
+            <h3>Аркада "Космический стрелок"</h3>
+            <p>Игра на JavaScript с анимацией, коллизиями и системой очков.</p>
+            <a href="#" class="view-link">Играть →</a>
+          </div>
+        </div>
+
+        <div class="portfolio-item" data-category="game">
+          <img src="https://via.placeholder.com/400x300/d946ef/ffffff?text=Game+2" alt="Игра 2" />
+          <div class="portfolio-info">
+            <div class="tech-icons">
+              <span title="JS">📜</span>
+              <span title="Конструктор">🧩</span>
+            </div>
+            <h3>Гонки: Убеги от полиции</h3>
+            <p>Игра с динамическим движением, управлением и уровнем сложности.</p>
+            <a href="#" class="view-link">Играть →</a>
+          </div>
+        </div>
+
+        <!-- Коммерческий -->
         <div class="portfolio-item" data-category="commercial">
-          <img src="https://via.placeholder.com/400x300/f0f8ff/4361ee?text=Landing+Page" alt="Landing Page" />
+          <img src="https://via.placeholder.com/400x300/4361ee/ffffff?text=Landing+Page" alt="Landing Page" />
           <div class="portfolio-info">
             <div class="tech-icons">
               <span title="HTML">⚡</span>
@@ -117,34 +140,9 @@
           </div>
         </div>
 
-        <div class="portfolio-item" data-category="personal">
-          <img src="https://via.placeholder.com/400x300/f0fff4/2b8a3e?text=Blog+Redesign" alt="Блог" />
-          <div class="portfolio-info">
-            <div class="tech-icons">
-              <span title="HTML">⚡</span>
-              <span title="CSS">🎨</span>
-            </div>
-            <h3>Персональный блог</h3>
-            <p>Минимализм, читаемость, анимации при прокрутке.</p>
-            <a href="#" class="view-link">GitHub →</a>
-          </div>
-        </div>
-
-        <div class="portfolio-item" data-category="personal">
-          <img src="https://via.placeholder.com/400x300/fffaf0/d97706?text=UI+Kit" alt="UI Kit" />
-          <div class="portfolio-info">
-            <div class="tech-icons">
-              <span title="Figma">🖌️</span>
-              <span title="HTML/CSS">⚡</span>
-            </div>
-            <h3>UI-кит для SaaS</h3>
-            <p>Готовые компоненты для быстрой разработки.</p>
-            <a href="#" class="view-link">Демо →</a>
-          </div>
-        </div>
-
+        <!-- Учебные -->
         <div class="portfolio-item" data-category="study">
-          <img src="https://via.placeholder.com/400x300/f3f4f6/6b7280?text=JS+App" alt="JS App" />
+          <img src="https://via.placeholder.com/400x300/10b981/ffffff?text=JS+App" alt="JS App" />
           <div class="portfolio-info">
             <div class="tech-icons">
               <span title="JavaScript">📜</span>
