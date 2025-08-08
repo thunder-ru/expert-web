@@ -4,28 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>web-thunder — Создание сайтов под ключ</title>
-  <meta name="description" content="Современные, быстрые и адаптивные сайты от Данила. Опыт 2 года. Портфолио, отзывы, консультация." />
+  <meta name="description" content="Современные, быстрые и адаптивные сайты от Данила. Опыт 2 года." />
 
-  <!-- Fonts -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans&display=swap" rel="stylesheet">
 
-  <!-- Icons -->
+  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
   <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/particles.css" />
-
-  <!-- Favicon -->
-  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="dark-theme">
-  <div id="particles-js"></div>
-
-  <!-- Header -->
   <header class="header">
     <div class="container">
-      <a href="#" class="logo">web<span>thunder</span></a>
+      <a href="#home" class="logo">web<span>thunder</span></a>
       <nav class="nav">
         <a href="#home" class="nav-link active">Главная</a>
         <a href="#about" class="nav-link">О себе</a>
@@ -34,21 +27,21 @@
         <a href="#contact" class="nav-link">Контакты</a>
       </nav>
       <button id="theme-toggle" class="theme-toggle">
-        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
       </button>
     </div>
   </header>
 
   <main>
-    <!-- Home -->
+    <!-- Главная -->
     <section id="home" class="section hero">
       <div class="container">
         <h1>Привет! Я Данил — веб-разработчик с опытом около 2 лет.</h1>
         <p>Создаю современные, быстрые и адаптивные сайты под ключ.</p>
         <div class="services">
           <div class="service-item"><i class="fas fa-mouse-pointer"></i> Лендинги</div>
-          <div class="service-item"><i class="fas fa-shopping-cart"></i> Интернет-магазины</div>
-          <div class="service-item"><i class="fas fa-building"></i> Корпоративные сайты</div>
+          <div class="service-item"><i class="fas fa-shopping-cart"></i> Магазины</div>
+          <div class="service-item"><i class="fas fa-building"></i> Корпоративные</div>
         </div>
         <div class="cta-buttons">
           <button class="btn primary" onclick="openChat()">Получить консультацию</button>
@@ -57,11 +50,11 @@
       </div>
     </section>
 
-    <!-- About -->
+    <!-- О себе -->
     <section id="about" class="section about">
       <div class="container">
         <div class="about-content">
-          <img src="assets/images/avatar.jpg" alt="Данил" class="avatar" />
+          <img src="https://i.pravatar.cc/300?img=63" alt="Данил" class="avatar" />
           <div>
             <h2>О себе</h2>
             <p>
@@ -84,7 +77,7 @@
       </div>
     </section>
 
-    <!-- Portfolio -->
+    <!-- Портфолио -->
     <section id="portfolio" class="section portfolio">
       <div class="container">
         <h2>Портфолио</h2>
@@ -96,19 +89,19 @@
         </div>
         <div class="portfolio-grid">
           <div class="portfolio-item" data-type="landing">
-            <img src="assets/images/project-1.jpg" alt="Проект 1" />
+            <img src="https://picsum.photos/id/237/300/200" alt="Проект 1" />
             <h3>Лендинг для клиники</h3>
             <p>Адаптивный лендинг с формой записи</p>
             <span class="tech">HTML, CSS, JS</span>
           </div>
           <div class="portfolio-item" data-type="shop">
-            <img src="assets/images/project-2.jpg" alt="Проект 2" />
+            <img src="https://picsum.photos/id/42/300/200" alt="Проект 2" />
             <h3>Интернет-магазин косметики</h3>
             <p>Полноценный магазин с корзиной</p>
             <span class="tech">React, Firebase</span>
           </div>
           <div class="portfolio-item" data-type="corporate">
-            <img src="assets/images/project-3.jpg" alt="Проект 3" />
+            <img src="https://picsum.photos/id/1/300/200" alt="Проект 3" />
             <h3>Сайт IT-компании</h3>
             <p>Корпоративный сайт с блогом</p>
             <span class="tech">Next.js, Tailwind</span>
@@ -117,13 +110,13 @@
       </div>
     </section>
 
-    <!-- Reviews -->
+    <!-- Отзывы -->
     <section id="reviews" class="section reviews">
       <div class="container">
         <h2>Отзывы клиентов</h2>
         <div class="reviews-grid">
           <div class="review">
-            <img src="assets/images/review1.jpg" alt="Анна" class="review-avatar" />
+            <img src="https://i.pravatar.cc/100?img=32" alt="Анна" class="review-avatar" />
             <div class="review-content">
               <div class="stars">★★★★★</div>
               <p>«Данил создал сайт за 7 дней. Все точно в срок, дизайн — огонь!»</p>
@@ -131,7 +124,7 @@
             </div>
           </div>
           <div class="review">
-            <img src="assets/images/review2.jpg" alt="Иван" class="review-avatar" />
+            <img src="https://i.pravatar.cc/100?img=41" alt="Иван" class="review-avatar" />
             <div class="review-content">
               <div class="stars">★★★★★</div>
               <p>«Быстро, качественно, с пониманием задач. Рекомендую!»</p>
@@ -142,7 +135,7 @@
       </div>
     </section>
 
-    <!-- Contact -->
+    <!-- Контакты -->
     <section id="contact" class="section contact">
       <div class="container">
         <h2>Связаться</h2>
@@ -161,31 +154,27 @@
     </section>
   </main>
 
-  <!-- Chat Button -->
+  <!-- Кнопка чата -->
   <button id="chat-toggle" class="chat-toggle">
     <i class="fas fa-bolt"></i>
   </button>
 
-  <!-- Chat Modal -->
+  <!-- Окно чата -->
   <div id="chat-modal" class="chat-modal">
     <div class="chat-header">
       <h3>web-thunder Chat</h3>
       <button onclick="closeChat()">&times;</button>
     </div>
     <div id="chat-body" class="chat-body">
-      <div class="message bot">Привет! Я — ваш виртуальный помощник. Какой сайт вы хотите создать?</div>
+      <div class="message bot">Привет! Я — ваш помощник. Спрашивайте о сайтах, сроках и ценах!</div>
     </div>
     <div class="chat-input">
-      <input type="text" id="user-input" placeholder="Напишите вопрос..." onkeypress="handleKeyPress(event)" />
+      <input type="text" id="user-input" placeholder="Напишите вопрос..." onkeypress="handleKeyPress(event)">
       <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
     </div>
   </div>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script src="js/theme.js"></script>
-  <script src="js/chat.js"></script>
-  <script src="js/portfolio.js"></script>
-  <script src="js/main.js"></script>
+  <!-- Подключение JS -->
+  <script src="code.js"></script>
 </body>
 </html>
