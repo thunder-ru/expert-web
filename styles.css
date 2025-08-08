@@ -38,6 +38,12 @@ h2 {
   margin-bottom: 1rem;
 }
 
+h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
 p {
   color: #444;
   margin-bottom: 1rem;
@@ -245,32 +251,8 @@ a:hover {
   background: white;
 }
 
-.about-flex {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 60px;
-  align-items: flex-start;
-  margin: 50px 0;
-}
-
 .about-text {
-  flex: 2;
-  min-width: 300px;
-}
-
-.about-photo img {
-  width: 100%;
-  max-width: 300px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.photo-caption {
-  text-align: center;
-  font-size: 0.9rem;
-  color: #666;
-  margin-top: 10px;
-  font-style: italic;
+  margin-bottom: 50px;
 }
 
 .stats {
@@ -278,6 +260,7 @@ a:hover {
   gap: 30px;
   margin: 20px 0 30px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .stat-item {
@@ -297,7 +280,7 @@ a:hover {
 }
 
 .skills {
-  margin-top: 60px;
+  margin-bottom: 60px;
   text-align: center;
 }
 
@@ -321,6 +304,33 @@ a:hover {
   border-radius: 30px;
   font-size: 0.9rem;
   font-weight: 500;
+}
+
+/* Гарантии */
+.guarantees {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.guarantees h3 {
+  margin-bottom: 40px;
+}
+
+.guarantee {
+  background: #f8f9ff;
+  padding: 20px;
+  border-radius: 16px;
+  margin: 15px 0;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  max-width: 600px;
+  margin: 15px auto;
+  text-align: left;
+}
+
+.guarantee strong {
+  color: #1a1a1a;
+  display: block;
+  margin-bottom: 5px;
 }
 
 /* Портфолио */
@@ -579,16 +589,7 @@ a:hover {
     order: -1;
   }
 
-  .about-flex {
-    flex-direction: column;
-  }
-
-  .about-photo {
-    display: flex;
-    justify-content: center;
-  }
-
-  .stats {
+  .stats, .guarantees {
     justify-content: center;
   }
 }
