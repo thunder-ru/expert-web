@@ -3,19 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>web-thunder — Создание сайтов под ключ</title>
-  <meta name="description" content="Современные, быстрые и адаптивные сайты от Данила. Опыт 2 года." />
+  <title>web-thunder — Сайт за 7 дней. Гарантия. Без предоплаты.</title>
+  <meta name="description" content="Создаю сайты под ключ за 5–7 дней. Адаптивные, быстрые, с гарантией. Без предоплаты!" />
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome Icons -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="dark-theme">
+  <div id="stars"></div>
+
   <header class="header">
     <div class="container">
       <a href="#home" class="logo">web<span>thunder</span></a>
@@ -27,7 +29,7 @@
         <a href="#contact" class="nav-link">Контакты</a>
       </nav>
       <button id="theme-toggle" class="theme-toggle">
-        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
       </button>
     </div>
   </header>
@@ -36,16 +38,16 @@
     <!-- Главная -->
     <section id="home" class="section hero">
       <div class="container">
-        <h1>Привет! Я Данил — веб-разработчик с опытом около 2 лет.</h1>
-        <p>Создаю современные, быстрые и адаптивные сайты под ключ.</p>
+        <h1>Сайт за 7 дней. Без предоплаты. С гарантией.</h1>
+        <p>Я — Данил, веб-разработчик. Создаю сайты, которые <strong>продают</strong>, а не просто висят.</p>
         <div class="services">
-          <div class="service-item"><i class="fas fa-mouse-pointer"></i> Лендинги</div>
-          <div class="service-item"><i class="fas fa-shopping-cart"></i> Магазины</div>
-          <div class="service-item"><i class="fas fa-building"></i> Корпоративные</div>
+          <div class="service-item"><i class="fas fa-bolt"></i> За 5–7 дней</div>
+          <div class="service-item"><i class="fas fa-lock-open"></i> Без предоплаты</div>
+          <div class="service-item"><i class="fas fa-shield-alt"></i> Гарантия 1 год</div>
         </div>
         <div class="cta-buttons">
-          <button class="btn primary" onclick="openChat()">Получить консультацию</button>
-          <button class="btn secondary">Заказать сайт</button>
+          <button class="btn primary glow" onclick="openChat()">Начать проект →</button>
+          <button class="btn secondary">Узнать цену</button>
         </div>
       </div>
     </section>
@@ -56,12 +58,14 @@
         <div class="about-content">
           <img src="https://i.pravatar.cc/300?img=63" alt="Данил" class="avatar" />
           <div>
-            <h2>О себе</h2>
+            <h2>Почему выбирают меня?</h2>
             <p>
-              Привет! Меня зовут Данил. Я веб-разработчик с опытом около 2 лет. 
-              Работаю с HTML, CSS, JavaScript, React и другими современными технологиями. 
-              Моя задача — создавать сайты, которые не только красиво выглядят, 
-              но и эффективно работают для вашего бизнеса.
+              За 2 года я сдал более 30 проектов — от лендингов до интернет-магазинов.  
+              Я не просто верстаю — я создаю <strong>инструменты для роста бизнеса</strong>.
+            </p>
+            <p>
+              Работаю по принципу: <strong>сначала результат — потом оплата</strong>.  
+              Вы платите только тогда, когда сайт готов и вам нравится.
             </p>
             <div class="skills">
               <span>HTML5</span>
@@ -71,7 +75,7 @@
               <span>Git</span>
               <span>Figma</span>
             </div>
-            <button class="btn primary" onclick="scrollToSection('contact')">Связаться со мной</button>
+            <button class="btn primary" onclick="scrollToSection('contact')">Забронировать место в очереди</button>
           </div>
         </div>
       </div>
@@ -80,7 +84,8 @@
     <!-- Портфолио -->
     <section id="portfolio" class="section portfolio">
       <div class="container">
-        <h2>Портфолио</h2>
+        <h2>Последние проекты</h2>
+        <p style="text-align: center; margin: 1rem 0; color: #aaa;">Клики — рост. Дизайн — доверие. Скорость — конверсия.</p>
         <div class="filters">
           <button class="filter-btn active" data-filter="all">Все</button>
           <button class="filter-btn" data-filter="landing">Лендинги</button>
@@ -89,22 +94,25 @@
         </div>
         <div class="portfolio-grid">
           <div class="portfolio-item" data-type="landing">
-            <img src="https://picsum.photos/id/237/300/200" alt="Проект 1" />
+            <img src="https://picsum.photos/id/237/400/250" alt="Проект 1" />
             <h3>Лендинг для клиники</h3>
-            <p>Адаптивный лендинг с формой записи</p>
+            <p>Рост заявок на 40% за счёт UX и скорости</p>
             <span class="tech">HTML, CSS, JS</span>
+            <button class="btn small" onclick="openChat()">Обсудить аналог</button>
           </div>
           <div class="portfolio-item" data-type="shop">
-            <img src="https://picsum.photos/id/42/300/200" alt="Проект 2" />
+            <img src="https://picsum.photos/id/42/400/250" alt="Проект 2" />
             <h3>Интернет-магазин косметики</h3>
-            <p>Полноценный магазин с корзиной</p>
+            <p>Первые продажи — на 3-й день после запуска</p>
             <span class="tech">React, Firebase</span>
+            <button class="btn small" onclick="openChat()">Хочу такой же</button>
           </div>
           <div class="portfolio-item" data-type="corporate">
-            <img src="https://picsum.photos/id/1/300/200" alt="Проект 3" />
+            <img src="https://picsum.photos/id/1/400/250" alt="Проект 3" />
             <h3>Сайт IT-компании</h3>
-            <p>Корпоративный сайт с блогом</p>
+            <p>Повысили доверие клиентов через дизайн</p>
             <span class="tech">Next.js, Tailwind</span>
+            <button class="btn small" onclick="openChat()">Расскажи, как</button>
           </div>
         </div>
       </div>
@@ -113,22 +121,30 @@
     <!-- Отзывы -->
     <section id="reviews" class="section reviews">
       <div class="container">
-        <h2>Отзывы клиентов</h2>
+        <h2>Что говорят клиенты</h2>
         <div class="reviews-grid">
           <div class="review">
             <img src="https://i.pravatar.cc/100?img=32" alt="Анна" class="review-avatar" />
             <div class="review-content">
               <div class="stars">★★★★★</div>
-              <p>«Данил создал сайт за 7 дней. Все точно в срок, дизайн — огонь!»</p>
-              <strong>— Анна, владелица бренда</strong>
+              <p>
+                «Запустили сайт за 6 дней. Ни одной задержки. 
+                Уже на 4-й день пришли первые заказы. 
+                Данил — не просто разработчик, а <strong>партнёр по бизнесу</strong>»
+              </p>
+              <strong>— Анна, beauty-lux.ru</strong>
             </div>
           </div>
           <div class="review">
             <img src="https://i.pravatar.cc/100?img=41" alt="Иван" class="review-avatar" />
             <div class="review-content">
               <div class="stars">★★★★★</div>
-              <p>«Быстро, качественно, с пониманием задач. Рекомендую!»</p>
-              <strong>— Иван, стартап</strong>
+              <p>
+                «Не верил, что можно сделать сайт без предоплаты. 
+                Данил сделал. И сайт, и доверие. 
+                Рекомендую — <strong>работает честно и быстро</strong>»
+              </p>
+              <strong>— Иван, startup.tech</strong>
             </div>
           </div>
         </div>
@@ -138,38 +154,37 @@
     <!-- Контакты -->
     <section id="contact" class="section contact">
       <div class="container">
-        <h2>Связаться</h2>
-        <form class="contact-form" onsubmit="alert('Спасибо! Я свяжусь с вами.'); return false;">
+        <h2>Готов начать?</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">Оставьте заявку — и я свяжусь с вами в течение 15 минут.</p>
+        <form class="contact-form" onsubmit="alert('Спасибо! Я свяжусь с вами в течение 15 минут.'); return false;">
           <input type="text" placeholder="Имя" required />
           <input type="email" placeholder="Email" required />
-          <textarea placeholder="Сообщение" rows="5" required></textarea>
-          <button type="submit" class="btn primary">Отправить</button>
+          <textarea placeholder="Опишите ваш проект" rows="5" required></textarea>
+          <button type="submit" class="btn primary">Отправить заявку →</button>
         </form>
         <div class="contact-info">
           <p><i class="fas fa-envelope"></i> daniil@web-thunder.ru</p>
           <p><i class="fab fa-telegram"></i> <a href="https://t.me/daniil_dev" target="_blank">@daniil_dev</a></p>
-          <p><i class="fab fa-github"></i> <a href="https://github.com/daniil-dev" target="_blank">github.com/daniil-dev</a></p>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Кнопка чата -->
+  <!-- Чат -->
   <button id="chat-toggle" class="chat-toggle">
     <i class="fas fa-bolt"></i>
   </button>
 
-  <!-- Окно чата -->
   <div id="chat-modal" class="chat-modal">
     <div class="chat-header">
-      <h3>web-thunder Chat</h3>
+      <h3>💬 Чат с помощником</h3>
       <button onclick="closeChat()">&times;</button>
     </div>
     <div id="chat-body" class="chat-body">
-      <div class="message bot">Привет! Я — ваш помощник. Спрашивайте о сайтах, сроках и ценах!</div>
+      <div class="message bot">Привет! Я помогу с сайтом. Сколько бюджет? Сроки? Расскажи идею — подскажу решение.</div>
     </div>
     <div class="chat-input">
-      <input type="text" id="user-input" placeholder="Напишите вопрос..." onkeypress="handleKeyPress(event)">
+      <input type="text" id="user-input" placeholder="Напишите..." onkeypress="handleKeyPress(event)">
       <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
     </div>
   </div>
