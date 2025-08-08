@@ -481,6 +481,8 @@ a:hover {
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   transition: transform 0.3s ease;
+  position: relative;
+  z-index: 1; /* Для анимации парения */
 }
 
 .step:hover {
@@ -499,6 +501,23 @@ a:hover {
   font-weight: 700;
   font-size: 1.2rem;
   margin: 0 auto 15px;
+}
+
+.step h3 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+
+.step p {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.large {
+  padding: 16px 40px;
+  font-size: 1.1rem;
 }
 
 /* Отзывы */
