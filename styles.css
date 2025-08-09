@@ -35,6 +35,61 @@ body {
   box-shadow: 0 0 10px rgba(255, 107, 53, 0.4);
 }
 
+/* Фоновая сетка (киберпанк-стиль) */
+.body-bg {
+  background: 
+    radial-gradient(circle at 20% 35%, rgba(106, 90, 205, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 75%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
+    linear-gradient(90deg, 
+      rgba(138, 125, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(0deg, 
+      rgba(138, 125, 255, 0.03) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.3;
+  animation: pulse-bg 8s infinite alternate;
+}
+
+@keyframes pulse-bg {
+  0% { opacity: 0.2; }
+  100% { opacity: 0.4; }
+}
+
+/* Светлячки */
+.particle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: #8a7dff;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(138, 125, 255, 0.6);
+  animation: float 6s infinite ease-in-out;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+.particle:nth-child(1) { animation-delay: 0s; background: #ff6b35; box-shadow: 0 0 15px rgba(255, 107, 53, 0.8); }
+.particle:nth-child(2) { animation-delay: 1s; background: #6a5acd; box-shadow: 0 0 15px rgba(106, 90, 205, 0.8); }
+.particle:nth-child(3) { animation-delay: 2s; background: #8a7dff; box-shadow: 0 0 15px rgba(138, 125, 255, 0.8); }
+.particle:nth-child(4) { animation-delay: 3s; background: #ff6b35; box-shadow: 0 0 12px rgba(255, 107, 53, 0.6); }
+.particle:nth-child(5) { animation-delay: 4s; background: #6a5acd; box-shadow: 0 0 12px rgba(106, 90, 205, 0.6); }
+.particle:nth-child(6) { animation-delay: 5s; background: #8a7dff; box-shadow: 0 0 10px rgba(138, 125, 255, 0.6); }
+
+@keyframes float {
+  0% { transform: translateY(0) translateX(0); opacity: 0.6; }
+  50% { transform: translateY(-100vh) translateX(100vw); opacity: 0.2; }
+  100% { transform: translateY(-200vh) translateX(-50vw); opacity: 0; }
+}
+
 /* Шапка */
 .header {
   position: fixed;
@@ -79,6 +134,32 @@ body {
   font-size: 1.5rem;
   color: #8a7dff;
   cursor: pointer;
+}
+
+/* Статистика */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  background: rgba(15, 15, 30, 0.8);
+  padding: 12px 0;
+  font-size: 0.95rem;
+  color: #aaa;
+  border-bottom: 1px solid rgba(138, 125, 255, 0.1);
+}
+
+.stat strong {
+  color: #8a7dff;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .stats-bar {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+    font-size: 0.9rem;
+  }
 }
 
 /* Кнопки */
@@ -443,9 +524,66 @@ body {
   font-size: 0.95rem;
 }
 
+/* Гарантии */
+.guarantee-banner {
+  grid-column: 1 / -1;
+  background: rgba(106, 90, 205, 0.15);
+  padding: 16px;
+  border-radius: 12px;
+  text-align: center;
+  color: #ccccff;
+  font-size: 0.95rem;
+  border: 1px solid rgba(106, 90, 205, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.guarantee-banner i {
+  color: #8a7dff;
+  font-size: 1.2rem;
+}
+
 .text-center {
   text-align: center;
   margin-top: 40px;
+}
+
+/* Отзывы */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.testimonial-card {
+  background: rgba(30, 30, 50, 0.6);
+  padding: 25px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(138, 125, 255, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(138, 125, 255, 0.2);
+}
+
+.quote {
+  font-style: italic;
+  color: #e0e0ff;
+  line-height: 1.7;
+  margin-bottom: 15px;
+  font-size: 1.05rem;
+}
+
+.author {
+  color: #8a7dff;
+  font-weight: 600;
+  font-size: 0.95rem;
 }
 
 /* Контакты */
@@ -604,7 +742,7 @@ body {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   box-shadow: 0 10px 20px rgba(255, 107, 53, 0.4);
@@ -687,7 +825,6 @@ body {
   }
 }
 
-/* iPhone SE, старые устройства */
 @media (max-width: 375px) {
   .container {
     padding: 0 15px;
@@ -700,20 +837,5 @@ body {
   .btn-glow {
     padding: 12px 20px;
     font-size: 0.95rem;
-  }
-
-  .progress-bar {
-    height: 2px;
-  }
-}
-
-/* Скрыть FAB на десктопе */
-.fab {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .fab {
-    display: flex;
   }
 }
