@@ -80,7 +80,7 @@ function getCookie(name) {
 
 // EmailJS
 (function() {
-  emailjs.init("YOUR_PUBLIC_KEY");
+  emailjs.init("YOUR_PUBLIC_KEY"); // ← Замените на ваш ключ
 
   const form = document.getElementById('contactForm');
   if (form) {
@@ -94,7 +94,7 @@ function getCookie(name) {
           success.classList.remove('hidden');
           setTimeout(() => success.classList.add('hidden'), 5000);
         }, (err) => {
-          alert('Ошибка: ' + JSON.stringify(err));
+          alert('Ошибка отправки: ' + JSON.stringify(err));
         });
     });
   }
