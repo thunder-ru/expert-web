@@ -1,53 +1,56 @@
-// Плавная прокрутка
+// Плавная прокрутка к секции
 function scrollToSection(id) {
-  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
 }
 
 // Мобильное меню
 function toggleMenu() {
-  document.querySelector('.nav').classList.toggle('active');
+  const nav = document.querySelector('.nav');
+  if (nav) nav.classList.toggle('active');
 }
 
 // Анимации при прокрутке
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -100px 0px'
-};
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = 1;
-      entry.target.style.transform = 'translateY(0)';
-      observer.unobserve(entry.target);
-    }
+  document.querySelectorAll('.service-card, .about-text, .portfolio-item, #contactForm').forEach(el => {
+    el.style.opacity = 0;
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
   });
-}, observerOptions);
-
-document.querySelectorAll('.service-card, .about-text, .portfolio-grid, #contactForm').forEach(el => {
-  el.style.opacity = 0;
-  el.style.transform = 'translateY(30px)';
-  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-  observer.observe(el);
 });
 
 // EmailJS
 (function() {
-  emailjs.init("YOUR_PUBLIC_KEY"); // ← Заменить на реальный ключ
+  // Замените на ваш EmailJS Public Key
+  emailjs.init("YOUR_PUBLIC_KEY");
 
   const form = document.getElementById('contactForm');
-  form.addEventListener('submit', function(event) {
-    event.preventDefault();
+  if (form) {
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
 
-    emailjs.sendForm('default_service', 'template_contact', this)
-      .then(() => {
-        form.reset();
-        document.getElementById('successMessage').classList.remove('hidden');
-        setTimeout(() => {
-          document.getElementById('successMessage').classList.add('hidden');
-        }, 5000);
-      }, (err) => {
-        alert('Ошибка: ' + JSON.stringify(err));
-      });
-  });
+      emailjs.sendForm('default_service', 'template_contact', this)
+        .then(() => {
+          form.reset();
+          const success = document.getElementById('successMessage');
+          success.classList.remove('hidden');
+          setTimeout(() => success.classList.add('hidden'), 5000);
+        }, (err) => {
+          alert('Ошибка отправки: ' + JSON.stringify(err));
+        });
+    });
+  }
 })();
