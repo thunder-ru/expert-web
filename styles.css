@@ -1,7 +1,7 @@
 /* Переменные тем */
 :root {
   --bg: #0a0a0a;
-  --text: #ffffff; /* Белый текст */
+  --text: #ffffff;
   --primary: #00f0ff;
   --secondary: #fff000;
   --card-bg: #1a1a1a;
@@ -63,8 +63,7 @@ body {
   left: 0;
   width: 100%;
   height: 200%;
-  background-image: 
-    radial-gradient(white 1px, transparent 1px);
+  background-image: radial-gradient(white 1px, transparent 1px);
   background-size: 50px 50px;
   opacity: 0.2;
   animation: stars 60s linear infinite;
@@ -157,6 +156,15 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   line-height: 1.2;
+}
+
+.colorful-text {
+  animation: colorfulText 5s ease-in-out infinite;
+}
+
+@keyframes colorfulText {
+  0%, 100% { background-position: 0 0; }
+  50% { background-position: -100% 0; }
 }
 
 .hero p {
