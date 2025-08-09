@@ -2,11 +2,11 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>thunder-web — DanilDev</title>
-  <meta name="description" content="Портфолио веб-разработчика Данила. Создаю быстрые и красивые сайты под ключ."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>DanilDev | thunder-web — Веб-разработка под ключ</title>
+  <meta name="description" content="Портфолио веб-разработчика Данила. Создаю быстрые, красивые сайты, которые приносят заказы."/>
   <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
   <script src="https://kit.fontawesome.com/3b9a5e3f6b.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -14,52 +14,61 @@
   <!-- Шапка -->
   <header class="header" id="home">
     <div class="container">
-      <div class="logo">thunder-web</div>
+      <div class="logo">⚡ thunder-web</div>
       <nav class="nav">
         <a href="#about">Обо мне</a>
         <a href="#portfolio">Портфолио</a>
         <a href="#services">Услуги</a>
         <a href="#contact">Контакты</a>
       </nav>
-      <button class="btn-primary" onclick="scrollToSection('contact')">Заказать консультацию</button>
+      <button class="btn-glow" onclick="scrollToSection('contact')">Заказать консультацию</button>
       <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
     </div>
   </header>
 
   <!-- Главный экран -->
   <section class="hero">
+    <div class="hero-overlay"></div>
     <div class="container">
-      <h1>Превращаю идеи в <span class="highlight">мощные сайты</span></h1>
-      <p>Веб-разработчик с 2+ годами опыта. Создаю сайты, которые работают на ваш бизнес.</p>
-      <button class="btn-primary" onclick="scrollToSection('contact')">Начать проект</button>
+      <div class="hero-content" id="heroText">
+        <h1>Я — <span class="neon">DanilDev</span><br>Создаю сайты,<br>которые <span class="highlight">продают</span></h1>
+        <p>Веб-разработчик с опытом. От идеи до запуска — быстро, качественно, с гарантией результата.</p>
+        <div class="hero-buttons">
+          <button class="btn-primary" onclick="scrollToSection('portfolio')">Смотреть портфолио</button>
+          <button class="btn-outline" onclick="scrollToSection('services')">Узнать цену</button>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Обо мне -->
   <section class="section" id="about">
     <div class="container">
-      <h2 class="section-title">Обо мне</h2>
-      <div class="about-content">
-        <div class="about-text">
+      <div class="about-wrapper">
+        <div class="about-text" id="aboutText">
+          <h2>Веб-разработка —<br>это <span class="neon">искусство кода</span></h2>
           <p>
-            Я — <strong>Данил</strong>, веб-разработчик, который превращает идеи в мощные цифровые решения.
-            Моя миссия — создавать <strong>быстрые, красивые и функциональные сайты</strong>, которые не просто выглядят круто,
-            но и приносят реальные результаты.
+            Меня зовут <strong>Данил</strong>. Я создаю сайты, которые не просто выглядят круто,
+            но и <strong>работают на ваш бизнес</strong>. За последние 2 года я реализовал более 15 проектов
+            для стартапов, малого бизнеса и маркетинговых агентств.
           </p>
           <p>
-            Работаю как с нуля, так и с доработкой существующих проектов. Всегда ориентируюсь на UX, производительность и SEO.
+            Я не просто верстаю — я <strong>думаю о результате</strong>: конверсии, скорости, SEO, UX.
           </p>
-          <button class="btn-outline" onclick="scrollToSection('contact')">Получить консультацию</button>
+          <div class="skills">
+            <h3>Навыки</h3>
+            <ul>
+              <li>HTML5 / CSS3 / SCSS</li>
+              <li>JavaScript (ES6+)</li>
+              <li>Responsive & Cross-browser</li>
+              <li>Конструкторы: Tilda, Webflow, Wix</li>
+            </ul>
+          </div>
+          <button class="btn-glow" onclick="scrollToSection('contact')">Начать проект</button>
         </div>
-        <div class="skills">
-          <h3>Навыки</h3>
-          <ul>
-            <li>HTML5 / CSS3 / SCSS</li>
-            <li>JavaScript (ES6+)</li>
-            <li>Responsive Design</li>
-            <li>Cross-browser compatibility</li>
-            <li>Конструктор сайтов (Tilda, Webflow, Wix)</li>
-          </ul>
+        <div class="about-image">
+          <div class="glow-border"></div>
+          <img src="assets/images/avatar.jpg" alt="Данил — веб-разработчик">
         </div>
       </div>
     </div>
@@ -69,13 +78,17 @@
   <section class="section" id="portfolio">
     <div class="container">
       <h2 class="section-title">Портфолио</h2>
-      <div class="portfolio-grid">
+      <p class="portfolio-subtitle">Реальные проекты, которые я создал</p>
+      <div class="portfolio-grid" id="portfolioGrid">
         <div class="portfolio-item"><img src="assets/images/project1.jpg" alt="Проект 1"></div>
         <div class="portfolio-item"><img src="assets/images/project2.jpg" alt="Проект 2"></div>
         <div class="portfolio-item"><img src="assets/images/project3.jpg" alt="Проект 3"></div>
         <div class="portfolio-item"><img src="assets/images/project4.jpg" alt="Проект 4"></div>
         <div class="portfolio-item"><img src="assets/images/project5.jpg" alt="Проект 5"></div>
         <div class="portfolio-item"><img src="assets/images/project6.jpg" alt="Проект 6"></div>
+      </div>
+      <div class="text-center">
+        <button class="btn-outline" onclick="scrollToSection('contact')">Заказать такой же сайт</button>
       </div>
     </div>
   </section>
@@ -85,25 +98,25 @@
     <div class="container">
       <h2 class="section-title">Услуги</h2>
       <div class="services-grid">
-        <div class="service-card">
-          <h3>Разработка веб-сайтов под ключ</h3>
-          <p>Создание сайта от идеи до запуска — с учётом UX, SEO и адаптивности.</p>
-          <button class="btn-primary" onclick="scrollToSection('contact')">Заказать сайт</button>
+        <div class="service-card" id="service1">
+          <h3>Сайт под ключ</h3>
+          <p>Полный цикл: от идеи до запуска. Адаптив, SEO, безопасность.</p>
+          <button class="btn-glow-sm" onclick="scrollToSection('contact')">Заказать</button>
         </div>
-        <div class="service-card">
+        <div class="service-card" id="service2">
           <h3>Верстка макетов</h3>
-          <p>Точная, быстрая и чистая верстка с поддержкой всех устройств.</p>
-          <button class="btn-primary" onclick="scrollToSection('contact')">Заказать верстку</button>
+          <p>Чистый код по Figma. Pixel perfect, кроссбраузерность.</p>
+          <button class="btn-glow-sm" onclick="scrollToSection('contact')">Заказать</button>
         </div>
-        <div class="service-card">
-          <h3>Поддержка и доработка</h3>
-          <p>Исправление багов, добавление функций, оптимизация.</p>
-          <button class="btn-primary" onclick="scrollToSection('contact')">Узнать цену</button>
+        <div class="service-card" id="service3">
+          <h3>Поддержка сайтов</h3>
+          <p>Обновления, исправление багов, добавление функций.</p>
+          <button class="btn-glow-sm" onclick="scrollToSection('contact')">Узнать цену</button>
         </div>
-        <div class="service-card">
-          <h3>SEO-оптимизация и ускорение</h3>
-          <p>Повышение скорости загрузки и позиций в поиске.</p>
-          <button class="btn-primary" onclick="scrollToSection('contact')">Проверить сайт</button>
+        <div class="service-card" id="service4">
+          <h3>Оптимизация и SEO</h3>
+          <p>Ускорение, индексация, повышение позиций в поиске.</p>
+          <button class="btn-glow-sm" onclick="scrollToSection('contact')">Проверить сайт</button>
         </div>
       </div>
     </div>
@@ -112,21 +125,25 @@
   <!-- Контакты -->
   <section class="section" id="contact">
     <div class="container">
-      <h2 class="section-title">Контакты</h2>
+      <h2 class="section-title">Готовы к проекту?</h2>
+      <p class="contact-subtitle">Напишите мне — и через 24 часа у вас будет прототип сайта.</p>
       <div class="contact-content">
         <div class="contact-info">
           <p><i class="fas fa-envelope"></i> <a href="mailto:rosanov.danila2016@yandex.ru">rosanov.danila2016@yandex.ru</a></p>
           <p><i class="fab fa-telegram"></i> <a href="https://t.me/overgrand" target="_blank">@overgrand</a></p>
+          <div class="response-time">
+            <small>Отвечаю в течение 2 часов</small>
+          </div>
         </div>
         <form class="contact-form" id="contactForm">
           <input type="text" name="name" placeholder="Ваше имя" required>
           <input type="email" name="email" placeholder="Email" required>
-          <textarea name="message" placeholder="Сообщение" rows="5" required></textarea>
-          <button type="submit" class="btn-primary">Отправить сообщение</button>
+          <textarea name="message" placeholder="Опишите ваш проект (минимум 20 символов)" rows="5" minlength="20" required></textarea>
+          <button type="submit" class="btn-glow">Отправить запрос</button>
         </form>
       </div>
       <div id="successMessage" class="success hidden">
-        Сообщение отправлено! Я свяжусь с вами в ближайшее время.
+        ✅ Сообщение отправлено! Я свяжусь с вами в ближайшее время.
       </div>
     </div>
   </section>
@@ -134,15 +151,14 @@
   <!-- Подвал -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2025 thunder-web. Все права защищены.</p>
+      <p>⚡ thunder-web — <span class="neon-footer">сайты, как молния</span></p>
       <div class="footer-links">
         <a href="#privacy">Политика конфиденциальности</a>
-        <a href="#tos">Пользовательское соглашение</a>
       </div>
     </div>
   </footer>
 
-  <!-- Подключение EmailJS -->
+  <!-- EmailJS -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script src="code.js"></script>
 </body>
