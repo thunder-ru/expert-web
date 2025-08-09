@@ -56,12 +56,50 @@ function closeOrderModal() {
   orderModal.style.display = 'none';
 }
 
-// Закрытие по клику вне окна
 window.onclick = function(e) {
   if (e.target === orderModal) {
     closeOrderModal();
   }
 };
+
+// === Telegram Bot API ===
+const BOT_TOKEN = '7386843105:AAEj2578692ZjKj56321234567890123456'; // Замени на свой
+const CHAT_ID = '123456789'; // Замени на свой ID
+
+async function sendToTelegram(e) {
+  e.preventDefault();
+  const form = e.target;
+  const name = form.name.value;
+  const contact = form.contact.value;
+  const project = form.project.value;
+
+  const message = `
+  📩 <b>Новая заявка!</b>
+  👤 <b>Имя:</b> ${name}
+  📱 <b>Контакт:</b> ${contact}
+  💼 <b>Проект:</b> ${project}
+  `;
+
+  const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+  const data = {
+    chat_id: CHAT_ID,
+    text: message,
+    parse_mode: 'HTML'
+  };
+
+  try {
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    alert('Заявка отправлена! Я свяжусь с вами в течение 15 минут.');
+    closeOrderModal();
+    form.reset();
+  } catch (error) {
+    alert('Ошибка отправки. Напишите мне в Telegram: @overgrand');
+  }
+}
 
 // === Чат ===
 const chatToggle = document.getElementById('chat-toggle');
@@ -120,23 +158,6 @@ chatToggle.addEventListener('click', () => {
   chatModal.style.display === 'block' ? closeChat() : openChat();
 });
 
-// === Фильтры портфолио ===
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    const filter = btn.getAttribute('data-filter');
-    document.querySelectorAll('.portfolio-item').forEach(item => {
-      if (filter === 'all' || item.getAttribute('data-type') === filter) {
-        item.style.display = 'block';
-      } else {
-        item.style.display = 'none';
-      }
-    });
-  });
-});
-
 // === Карусель отзывов ===
 const reviews = document.querySelectorAll('.review-item');
 const prevBtn = document.getElementById('prev-review');
@@ -148,7 +169,6 @@ function showReview(index) {
   reviews[index].classList.add('active');
 }
 
-// Изначально показываем первый
 showReview(0);
 
 nextBtn.addEventListener('click', () => {
