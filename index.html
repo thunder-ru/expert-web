@@ -2,9 +2,9 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>DanilDev | thunder-web — Веб-разработка под ключ</title>
-  <meta name="description" content="Портфолио веб-разработчика Данила. Создаю быстрые, красивые сайты, которые приносят заказы."/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DanilDev | thunder-web — Веб-разработка, которая продает</title>
+  <meta name="description" content="Портфолио веб-разработчика Данила. Сайты, которые приносят заказы. От 48 часов до запуска."/>
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
   <script src="https://kit.fontawesome.com/3b9a5e3f6b.js" crossorigin="anonymous"></script>
@@ -21,7 +21,7 @@
         <a href="#services">Услуги</a>
         <a href="#contact">Контакты</a>
       </nav>
-      <button class="btn-glow" onclick="scrollToSection('contact')">Заказать консультацию</button>
+      <button class="btn-glow header-btn" onclick="scrollToSection('contact')">Заказать сайт</button>
       <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
     </div>
   </header>
@@ -31,11 +31,11 @@
     <div class="hero-overlay"></div>
     <div class="container">
       <div class="hero-content" id="heroText">
-        <h1>Я — <span class="neon">DanilDev</span><br>Создаю сайты,<br>которые <span class="highlight">продают</span></h1>
-        <p>Веб-разработчик с опытом. От идеи до запуска — быстро, качественно, с гарантией результата.</p>
+        <h1>Сайт, который <span class="highlight">работает на вас</span><br>с первого дня</h1>
+        <p>Я — <strong>DanilDev</strong>. Создаю веб-решения, которые <strong>продают, конвертируют и масштабируются</strong>. От идеи до запуска — за 3–7 дней.</p>
         <div class="hero-buttons">
-          <button class="btn-primary" onclick="scrollToSection('portfolio')">Смотреть портфолио</button>
-          <button class="btn-outline" onclick="scrollToSection('services')">Узнать цену</button>
+          <button class="btn-primary" onclick="scrollToSection('portfolio')">Смотреть проекты</button>
+          <button class="btn-outline" onclick="scrollToSection('contact')">Получить коммерческое предложение</button>
         </div>
       </div>
     </div>
@@ -46,17 +46,22 @@
     <div class="container">
       <div class="about-wrapper">
         <div class="about-text" id="aboutText">
-          <h2>Веб-разработка —<br>это <span class="neon">искусство кода</span></h2>
+          <h2>Я не просто кодю —<br>я <span class="neon">создаю результат</span></h2>
           <p>
-            Меня зовут <strong>Данил</strong>. Я создаю сайты, которые не просто выглядят круто,
-            но и <strong>работают на ваш бизнес</strong>. За последние 2 года я реализовал более 15 проектов
-            для стартапов, малого бизнеса и маркетинговых агентств.
+            За последние 2 года я реализовал <strong>15+ проектов</strong> — от лендингов до интернет-магазинов.
+            Мой подход: <strong>максимум пользы, минимум шума</strong>.
           </p>
           <p>
-            Я не просто верстаю — я <strong>думаю о результате</strong>: конверсии, скорости, SEO, UX.
+            Я не гонюсь за сложностью. Я создаю сайты, которые:
           </p>
+          <ul class="feature-list">
+            <li>⚡ Быстро загружаются</li>
+            <li>📱 Адаптированы под все устройства</li>
+            <li>🔍 SEO-оптимизированы</li>
+            <li>📈 Приносят заявки и продажи</li>
+          </ul>
           <div class="skills">
-            <h3>Навыки</h3>
+            <h3>Мои инструменты</h3>
             <ul>
               <li>HTML5 / CSS3 / SCSS</li>
               <li>JavaScript (ES6+)</li>
@@ -64,11 +69,10 @@
               <li>Конструкторы: Tilda, Webflow, Wix</li>
             </ul>
           </div>
-          <button class="btn-glow" onclick="scrollToSection('contact')">Начать проект</button>
-        </div>
-        <div class="about-image">
-          <div class="glow-border"></div>
-          <img src="assets/images/avatar.jpg" alt="Данил — веб-разработчик">
+          <div class="cta-group">
+            <button class="btn-glow" onclick="scrollToSection('contact')">Начать проект сегодня</button>
+            <button class="btn-outline small" onclick="scrollToSection('services')">Узнать, сколько это стоит</button>
+          </div>
         </div>
       </div>
     </div>
@@ -78,17 +82,57 @@
   <section class="section" id="portfolio">
     <div class="container">
       <h2 class="section-title">Портфолио</h2>
-      <p class="portfolio-subtitle">Реальные проекты, которые я создал</p>
+      <p class="portfolio-subtitle">Проекты, которые <strong>запускали бизнес</strong></p>
+
       <div class="portfolio-grid" id="portfolioGrid">
-        <div class="portfolio-item"><img src="assets/images/project1.jpg" alt="Проект 1"></div>
-        <div class="portfolio-item"><img src="assets/images/project2.jpg" alt="Проект 2"></div>
-        <div class="portfolio-item"><img src="assets/images/project3.jpg" alt="Проект 3"></div>
-        <div class="portfolio-item"><img src="assets/images/project4.jpg" alt="Проект 4"></div>
-        <div class="portfolio-item"><img src="assets/images/project5.jpg" alt="Проект 5"></div>
-        <div class="portfolio-item"><img src="assets/images/project6.jpg" alt="Проект 6"></div>
+        <a href="#contact" class="portfolio-item glow-shadow" onclick="scrollToSection('contact')">
+          <img src="assets/images/project1.jpg" alt="Проект 1">
+          <div class="overlay">
+            <h4>Лендинг для клиники</h4>
+            <p>Конверсия +67%</p>
+          </div>
+        </a>
+        <a href="#contact" class="portfolio-item glow-shadow" onclick="scrollToSection('contact')">
+          <img src="assets/images/project2.jpg" alt="Проект 2">
+          <div class="overlay">
+            <h4>Интернет-магазин</h4>
+            <p>1000+ заказов в месяц</p>
+          </div>
+        </a>
+        <a href="#contact" class="portfolio-item glow-shadow" onclick="scrollToSection('contact')">
+          <img src="assets/images/project3.jpg" alt="Проект 3">
+          <div class="overlay">
+            <h4>Корпоративный сайт</h4>
+            <p>SEO в топ-10</p>
+          </div>
+        </a>
+        <a href="#contact" class="portfolio-item glow-shadow" onclick="scrollToSection('contact')">
+          <img src="assets/images/project4.jpg" alt="Проект 4">
+          <div class="overlay">
+            <h4>Сервис бронирования</h4>
+            <p>Интеграция с API</p>
+          </div>
+        </a>
+        <a href="#contact" class="portfolio-item glow-shadow" onclick="scrollToSection('contact')">
+          <img src="assets/images/project5.jpg" alt="Проект 5">
+          <div class="overlay">
+            <h4>Агрегатор туров</h4>
+            <p>Скорость загрузки <1s</p>
+          </div>
+        </a>
+        <a href="#contact" class="portfolio-item glow-shadow" onclick="scrollToSection('contact')">
+          <img src="assets/images/project6.jpg" alt="Проект 6">
+          <div class="overlay">
+            <h4>CRM-лендинг</h4>
+            <p>500+ лидов за месяц</p>
+          </div>
+        </a>
       </div>
-      <div class="text-center">
-        <button class="btn-outline" onclick="scrollToSection('contact')">Заказать такой же сайт</button>
+
+      <div class="portfolio-cta">
+        <h3>Хотите такой же результат?</h3>
+        <button class="btn-glow" onclick="scrollToSection('contact')">Заказать сайт за 72 часа</button>
+        <button class="btn-outline small" onclick="scrollToSection('contact')">Получить кейс по проекту</button>
       </div>
     </div>
   </section>
@@ -100,24 +144,27 @@
       <div class="services-grid">
         <div class="service-card" id="service1">
           <h3>Сайт под ключ</h3>
-          <p>Полный цикл: от идеи до запуска. Адаптив, SEO, безопасность.</p>
+          <p>От дизайна до запуска. Готовый сайт за 5–7 дней.</p>
           <button class="btn-glow-sm" onclick="scrollToSection('contact')">Заказать</button>
         </div>
         <div class="service-card" id="service2">
           <h3>Верстка макетов</h3>
-          <p>Чистый код по Figma. Pixel perfect, кроссбраузерность.</p>
+          <p>Pixel perfect, адаптив, кроссбраузерность.</p>
           <button class="btn-glow-sm" onclick="scrollToSection('contact')">Заказать</button>
         </div>
         <div class="service-card" id="service3">
           <h3>Поддержка сайтов</h3>
-          <p>Обновления, исправление багов, добавление функций.</p>
-          <button class="btn-glow-sm" onclick="scrollToSection('contact')">Узнать цену</button>
+          <p>Обновления, баги, доработки — я всегда на связи.</p>
+          <button class="btn-glow-sm" onclick="scrollToSection('contact')">Подключиться</button>
         </div>
         <div class="service-card" id="service4">
           <h3>Оптимизация и SEO</h3>
-          <p>Ускорение, индексация, повышение позиций в поиске.</p>
+          <p>Ускорение, индексация, повышение позиций.</p>
           <button class="btn-glow-sm" onclick="scrollToSection('contact')">Проверить сайт</button>
         </div>
+      </div>
+      <div class="text-center" style="margin-top: 40px;">
+        <button class="btn-primary" onclick="scrollToSection('contact')">Обсудить проект</button>
       </div>
     </div>
   </section>
@@ -125,8 +172,8 @@
   <!-- Контакты -->
   <section class="section" id="contact">
     <div class="container">
-      <h2 class="section-title">Готовы к проекту?</h2>
-      <p class="contact-subtitle">Напишите мне — и через 24 часа у вас будет прототип сайта.</p>
+      <h2 class="section-title">Готовы к запуску?</h2>
+      <p class="contact-subtitle">Напишите — и через 24 часа у вас будет <strong>прототип сайта</strong> или <strong>коммерческое предложение</strong>.</p>
       <div class="contact-content">
         <div class="contact-info">
           <p><i class="fas fa-envelope"></i> <a href="mailto:rosanov.danila2016@yandex.ru">rosanov.danila2016@yandex.ru</a></p>
@@ -139,7 +186,7 @@
           <input type="text" name="name" placeholder="Ваше имя" required>
           <input type="email" name="email" placeholder="Email" required>
           <textarea name="message" placeholder="Опишите ваш проект (минимум 20 символов)" rows="5" minlength="20" required></textarea>
-          <button type="submit" class="btn-glow">Отправить запрос</button>
+          <button type="submit" class="btn-glow">Отправить запрос — получить предложение</button>
         </form>
       </div>
       <div id="successMessage" class="success hidden">
