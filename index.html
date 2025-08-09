@@ -14,6 +14,15 @@
   <!-- Прогресс-бар -->
   <div class="progress-bar" id="progressBar"></div>
 
+  <!-- Фоновая сетка и светлячки -->
+  <div class="body-bg"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+
   <!-- Шапка -->
   <header class="header" id="home">
     <div class="container">
@@ -28,6 +37,13 @@
       <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
     </div>
   </header>
+
+  <!-- Статистика -->
+  <div class="stats-bar">
+    <div class="stat"><strong>15+</strong> проектов</div>
+    <div class="stat"><strong>98%</strong> довольных клиентов</div>
+    <div class="stat"><strong>72ч</strong> — средний срок запуска</div>
+  </div>
 
   <!-- Главный экран -->
   <section class="hero">
@@ -90,44 +106,44 @@
       <div class="portfolio-grid" id="portfolioGrid">
         <!-- Проект 1: Велодрайв -->
         <a href="javascript:void(0)" class="portfolio-item glow-shadow" onclick="scrollToSection('contact')">
-          <img src="assets/images/portfolio/velodrayv.jpg" alt="Велодрайв">
+          <img src="assets/images/portfolio/velodrayv.jpg" alt="Интернет-магазин велосипедов Велодрайв">
           <div class="overlay">
             <h4>Интернет-магазин велосипедов</h4>
             <p>Конверсия +75%</p>
           </div>
         </a>
 
-        <!-- Остальные проекты -->
+        <!-- Примеры других проектов (замените на свои) -->
         <a href="javascript:void(0)" class="portfolio-item glow-shadow" onclick="scrollToSection('contact')">
-          <img src="assets/images/craftum2.jpg" alt="Craftum проект 2">
+          <img src="assets/images/craftum2.jpg" alt="Лендинг для стартапа">
           <div class="overlay">
             <h4>Лендинг для стартапа</h4>
             <p>Конверсия +80%</p>
           </div>
         </a>
         <a href="javascript:void(0)" class="portfolio-item glow-shadow" onclick="scrollToSection('contact')">
-          <img src="assets/images/craftum3.jpg" alt="Craftum проект 3">
+          <img src="assets/images/craftum3.jpg" alt="Корпоративный сайт">
           <div class="overlay">
             <h4>Корпоративный сайт</h4>
             <p>SEO в топ-10</p>
           </div>
         </a>
         <a href="javascript:void(0)" class="portfolio-item glow-shadow" onclick="scrollToSection('contact')">
-          <img src="assets/images/craftum4.jpg" alt="Craftum проект 4">
+          <img src="assets/images/craftum4.jpg" alt="CRM-система">
           <div class="overlay">
             <h4>CRM-система</h4>
             <p>Интеграция с API</p>
           </div>
         </a>
         <a href="javascript:void(0)" class="portfolio-item glow-shadow" onclick="scrollToSection('contact')">
-          <img src="assets/images/craftum5.jpg" alt="Craftum проект 5">
+          <img src="assets/images/craftum5.jpg" alt="Сервис бронирования">
           <div class="overlay">
             <h4>Сервис бронирования</h4>
             <p>500+ броней в месяц</p>
           </div>
         </a>
         <a href="javascript:void(0)" class="portfolio-item glow-shadow" onclick="scrollToSection('contact')">
-          <img src="assets/images/craftum6.jpg" alt="Craftum проект 6">
+          <img src="assets/images/craftum6.jpg" alt="Агрегатор услуг">
           <div class="overlay">
             <h4>Агрегатор услуг</h4>
             <p>Скорость <1s</p>
@@ -169,6 +185,13 @@
           <button class="btn-glow-sm" onclick="scrollToSection('contact')">Проверить сайт</button>
         </div>
       </div>
+
+      <!-- Гарантии -->
+      <div class="guarantee-banner">
+        <i class="fas fa-shield-alt"></i>
+        <span>Гарантия 30 дней на исправление багов. Сроки в договоре. Оплата частями.</span>
+      </div>
+
       <div class="text-center" style="margin-top: 40px;">
         <button class="btn-primary" onclick="scrollToSection('contact')">Обсудить проект</button>
       </div>
