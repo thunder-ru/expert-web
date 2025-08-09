@@ -2,21 +2,24 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DanilDev | thunder-web — Веб-разработка, которая приносит клиентов</title>
-  <meta name="description" content="Портфолио веб-разработчика Данила. Создаю сайты, которые продают. От 72 часов до запуска.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>thunder-web — Веб-решения, которые работают</title>
+  <meta name="description" content="Сайты под ключ. Быстро. Качественно. С гарантией результата.">
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
   <script src="https://kit.fontawesome.com/3b9a5e3f6b.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
+  <!-- Прогресс-бар -->
+  <div class="progress-bar" id="progressBar"></div>
+
   <!-- Шапка -->
   <header class="header" id="home">
     <div class="container">
       <div class="logo">⚡ thunder-web</div>
       <nav class="nav">
-        <a href="#about">Обо мне</a>
+        <a href="#about">О нас</a>
         <a href="#portfolio">Портфолио</a>
         <a href="#services">Услуги</a>
         <a href="#contact">Контакты</a>
@@ -32,27 +35,27 @@
     <div class="container">
       <div class="hero-content" id="heroText">
         <h1>Сайт, который <span class="highlight">работает на вас</span><br>с первого дня</h1>
-        <p>Я — <strong>DanilDev</strong>. Создаю веб-решения, которые <strong>продают, конвертируют и масштабируются</strong>. От идеи до запуска — за 3–7 дней.</p>
+        <p>Мы создаём веб-решения, которые <strong>продают, конвертируют и масштабируются</strong>. От идеи до запуска — за 3–7 дней.</p>
         <div class="hero-buttons">
           <button class="btn-primary" onclick="scrollToSection('portfolio')">Смотреть проекты</button>
-          <button class="btn-outline" onclick="scrollToSection('contact')">Получить коммерческое предложение</button>
+          <button class="btn-outline" onclick="scrollToSection('contact')">Получить предложение</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Обо мне -->
+  <!-- О нас -->
   <section class="section" id="about">
     <div class="container">
       <div class="about-wrapper">
         <div class="about-text" id="aboutText">
-          <h2>Я не пишу код.<br>Я <span class="neon">создаю прибыль</span></h2>
+          <h2>Мы не пишем код.<br>Мы <span class="neon">создаём прибыль</span></h2>
           <p>
-            За последние 2 года я реализовал <strong>15+ проектов</strong> — от лендингов до интернет-магазинов.
-            Мой подход: <strong>максимум пользы, минимум шума</strong>.
+            За последние 2 года мы реализовали <strong>15+ проектов</strong> — от лендингов до интернет-магазинов.
+            Наш подход: <strong>максимум пользы, минимум шума</strong>.
           </p>
           <p>
-            Я не гонюсь за сложностью. Я создаю сайты, которые:
+            Мы не гонимся за сложностью. Мы создаём сайты, которые:
           </p>
           <ul class="feature-list">
             <li>⚡ Быстро загружаются</li>
@@ -61,17 +64,17 @@
             <li>📈 Приносят заявки и продажи</li>
           </ul>
           <div class="skills">
-            <h3>Мои инструменты</h3>
+            <h3>Инструменты</h3>
             <ul>
               <li>HTML5 / CSS3 / SCSS</li>
               <li>JavaScript (ES6+)</li>
               <li>Responsive & Cross-browser</li>
-              <li>Работаю с конструкторами</li>
+              <li>Работа с конструкторами</li>
             </ul>
           </div>
           <div class="cta-group">
             <button class="btn-glow" onclick="scrollToSection('contact')">Начать проект сегодня</button>
-            <button class="btn-outline small" onclick="scrollToSection('services')">Узнать, сколько это стоит</button>
+            <button class="btn-outline small" onclick="scrollToSection('services')">Узнать стоимость</button>
           </div>
         </div>
       </div>
@@ -86,42 +89,42 @@
 
       <div class="portfolio-grid" id="portfolioGrid">
         <a href="javascript:void(0)" class="portfolio-item glow-shadow" onclick="scrollToSection('contact')">
-          <img src="assets/images/craftum1.jpg" alt="Craftum проект 1">
+          <img src="assets/images/craftum1.jpg" alt="Проект 1">
           <div class="overlay">
             <h4>Лендинг для стартапа</h4>
             <p>Конверсия +80%</p>
           </div>
         </a>
         <a href="javascript:void(0)" class="portfolio-item glow-shadow" onclick="scrollToSection('contact')">
-          <img src="assets/images/craftum2.jpg" alt="Craftum проект 2">
+          <img src="assets/images/craftum2.jpg" alt="Проект 2">
           <div class="overlay">
             <h4>Интернет-магазин</h4>
             <p>1000+ заказов в месяц</p>
           </div>
         </a>
         <a href="javascript:void(0)" class="portfolio-item glow-shadow" onclick="scrollToSection('contact')">
-          <img src="assets/images/craftum3.jpg" alt="Craftum проект 3">
+          <img src="assets/images/craftum3.jpg" alt="Проект 3">
           <div class="overlay">
             <h4>Корпоративный сайт</h4>
             <p>SEO в топ-10</p>
           </div>
         </a>
         <a href="javascript:void(0)" class="portfolio-item glow-shadow" onclick="scrollToSection('contact')">
-          <img src="assets/images/craftum4.jpg" alt="Craftum проект 4">
+          <img src="assets/images/craftum4.jpg" alt="Проект 4">
           <div class="overlay">
             <h4>CRM-система</h4>
             <p>Интеграция с API</p>
           </div>
         </a>
         <a href="javascript:void(0)" class="portfolio-item glow-shadow" onclick="scrollToSection('contact')">
-          <img src="assets/images/craftum5.jpg" alt="Craftum проект 5">
+          <img src="assets/images/craftum5.jpg" alt="Проект 5">
           <div class="overlay">
             <h4>Сервис бронирования</h4>
             <p>500+ броней в месяц</p>
           </div>
         </a>
         <a href="javascript:void(0)" class="portfolio-item glow-shadow" onclick="scrollToSection('contact')">
-          <img src="assets/images/craftum6.jpg" alt="Craftum проект 6">
+          <img src="assets/images/craftum6.jpg" alt="Проект 6">
           <div class="overlay">
             <h4>Агрегатор услуг</h4>
             <p>Скорость <1s</p>
@@ -131,8 +134,8 @@
 
       <div class="portfolio-cta">
         <h3>Хотите такой же результат?</h3>
-        <button class="btn-glow" onclick="scrollToSection('contact')">Заказать сайт за 72 часа</button>
-        <button class="btn-outline small" onclick="scrollToSection('contact')">Получить кейс по проекту</button>
+        <button class="btn-glow" onclick="scrollToSection('contact')">Заказать за 72 часа</button>
+        <button class="btn-outline small" onclick="scrollToSection('contact')">Получить кейс</button>
       </div>
     </div>
   </section>
@@ -154,7 +157,7 @@
         </div>
         <div class="service-card" id="service3">
           <h3>Поддержка сайтов</h3>
-          <p>Обновления, баги, доработки — я всегда на связи.</p>
+          <p>Обновления, баги, доработки — мы всегда на связи.</p>
           <button class="btn-glow-sm" onclick="scrollToSection('contact')">Подключиться</button>
         </div>
         <div class="service-card" id="service4">
@@ -179,7 +182,7 @@
           <p><i class="fas fa-envelope"></i> <a href="mailto:rosanov.danila2016@yandex.ru">rosanov.danila2016@yandex.ru</a></p>
           <p><i class="fab fa-telegram"></i> <a href="https://t.me/overgrand" target="_blank">@overgrand</a></p>
           <div class="response-time">
-            <small>Отвечаю в течение 2 часов</small>
+            <small>Отвечаем в течение 2 часов</small>
           </div>
         </div>
         <form class="contact-form" id="contactForm">
@@ -190,7 +193,7 @@
         </form>
       </div>
       <div id="successMessage" class="success hidden">
-        ✅ Сообщение отправлено! Я свяжусь с вами в ближайшее время.
+        ✅ Сообщение отправлено! Мы свяжемся с вами в ближайшее время.
       </div>
     </div>
   </section>
@@ -200,10 +203,23 @@
     <div class="container">
       <p>⚡ thunder-web — <span class="neon-footer">сайты, как молния</span></p>
       <div class="footer-links">
-        <a href="#privacy">Политика конфиденциальности</a>
+        <a href="javascript:void(0)" onclick="openModal()">Политика конфиденциальности</a>
       </div>
     </div>
   </footer>
+
+  <!-- Модальное окно политики -->
+  <div id="privacyModal" class="modal">
+    <div class="modal-content">
+      <h3>Политика конфиденциальности</h3>
+      <p>Мы уважаем вашу приватность. Никаких спам-рассылок. Ваши данные используются исключительно для связи по проекту.</p>
+      <p>Обработка данных происходит в соответствии с GDPR. Мы не передаём данные третьим лицам.</p>
+      <div class="modal-buttons">
+        <button class="btn-outline" onclick="closeModal()">Отклонить</button>
+        <button class="btn-glow" onclick="acceptPolicy()">Принять и продолжить</button>
+      </div>
+    </div>
+  </div>
 
   <!-- EmailJS -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
