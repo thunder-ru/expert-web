@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>web-thunder — Сайт за 7 дней. Гарантия. Без задержек.</title>
+  <title>web-thunder — Сайт за 7 дней. Без задержек.</title>
   <meta name="description" content="Создаю сайты, которые работают на бизнес. Адаптивные, быстрые, с SEO." />
 
   <!-- Google Fonts -->
@@ -38,7 +38,7 @@
     <!-- Главная -->
     <section id="home" class="section hero">
       <div class="container">
-        <h1>Сайт за <span class="colorful-text">7 дней</span>. Гарантия. Без задержек.</h1>
+        <h1>Сайт за <span class="colorful-text">7 дней</span>. Без задержек. Только результат.</h1>
         <p>Я — Данил. Создаю сайты, которые <strong>работают на ваш бизнес</strong>, а не просто висят.</p>
         <div class="services">
           <div class="service-item"><i class="fas fa-bolt"></i> За 5–7 дней</div>
@@ -217,10 +217,10 @@
       <span class="close-btn" onclick="closeOrderModal()">&times;</span>
       <h3>Оставить заявку</h3>
       <p style="margin-bottom: 1.5rem; color: #aaa;">Я свяжусь с вами в течение 15 минут</p>
-      <form onsubmit="alert('Заявка отправлена! Я свяжусь с вами в течение 15 минут.'); closeOrderModal(); return false;">
-        <input type="text" placeholder="Имя" required />
-        <input type="tel" placeholder="Телефон или Telegram" required />
-        <textarea placeholder="Опишите ваш проект" rows="4" required></textarea>
+      <form onsubmit="sendToTelegram(event)">
+        <input type="text" placeholder="Имя" name="name" required />
+        <input type="tel" placeholder="Телефон или Telegram" name="contact" required />
+        <textarea placeholder="Опишите ваш проект" name="project" rows="4" required></textarea>
         <button type="submit" class="btn primary">Отправить заявку</button>
       </form>
     </div>
