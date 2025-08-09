@@ -3,249 +3,147 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>web-thunder — Сайт за 7 дней. Без задержек.</title>
-  <meta name="description" content="Создаю сайты, которые работают на бизнес. Адаптивные, быстрые, с SEO." />
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-
-  <!-- Styles -->
+  <title>thunder-web — DanilDev</title>
+  <meta name="description" content="Портфолио веб-разработчика Данила. Создаю быстрые и красивые сайты под ключ."/>
   <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://kit.fontawesome.com/3b9a5e3f6b.js" crossorigin="anonymous"></script>
 </head>
-<body class="dark-theme">
-  <div id="stars"></div>
+<body>
 
-  <header class="header">
+  <!-- Шапка -->
+  <header class="header" id="home">
     <div class="container">
-      <a href="#home" class="logo">web<span>thunder</span></a>
+      <div class="logo">thunder-web</div>
       <nav class="nav">
-        <a href="#home" class="nav-link active">Главная</a>
-        <a href="#about" class="nav-link">О себе</a>
-        <a href="#portfolio" class="nav-link">Портфолио</a>
-        <a href="#reviews" class="nav-link">Отзывы</a>
-        <a href="#contact" class="nav-link">Контакты</a>
+        <a href="#about">Обо мне</a>
+        <a href="#portfolio">Портфолио</a>
+        <a href="#services">Услуги</a>
+        <a href="#contact">Контакты</a>
       </nav>
-      <button id="theme-toggle" class="theme-toggle">
-        <i class="fas fa-moon"></i>
-      </button>
+      <button class="btn-primary" onclick="scrollToSection('contact')">Заказать консультацию</button>
+      <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
     </div>
   </header>
 
-  <main>
-    <!-- Главная -->
-    <section id="home" class="section hero">
-      <div class="container">
-        <h1>Сайт за <span class="colorful-text">7 дней</span>. Без задержек. Только результат.</h1>
-        <p>Я — Данил. Создаю сайты, которые <strong>работают на ваш бизнес</strong>, а не просто висят.</p>
-        <div class="services">
-          <div class="service-item"><i class="fas fa-bolt"></i> За 5–7 дней</div>
-          <div class="service-item"><i class="fas fa-shield-alt"></i> 100% результат</div>
-          <div class="service-item"><i class="fas fa-clock"></i> Без задержек</div>
+  <!-- Главный экран -->
+  <section class="hero">
+    <div class="container">
+      <h1>Превращаю идеи в <span class="highlight">мощные сайты</span></h1>
+      <p>Веб-разработчик с 2+ годами опыта. Создаю сайты, которые работают на ваш бизнес.</p>
+      <button class="btn-primary" onclick="scrollToSection('contact')">Начать проект</button>
+    </div>
+  </section>
+
+  <!-- Обо мне -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-title">Обо мне</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            Я — <strong>Данил</strong>, веб-разработчик, который превращает идеи в мощные цифровые решения.
+            Моя миссия — создавать <strong>быстрые, красивые и функциональные сайты</strong>, которые не просто выглядят круто,
+            но и приносят реальные результаты.
+          </p>
+          <p>
+            Работаю как с нуля, так и с доработкой существующих проектов. Всегда ориентируюсь на UX, производительность и SEO.
+          </p>
+          <button class="btn-outline" onclick="scrollToSection('contact')">Получить консультацию</button>
         </div>
-        <div class="cta-buttons">
-          <button class="btn primary glow" onclick="openOrderModal()">Заказать сайт →</button>
-          <button class="btn secondary" onclick="openChat()">Получить консультацию</button>
+        <div class="skills">
+          <h3>Навыки</h3>
+          <ul>
+            <li>HTML5 / CSS3 / SCSS</li>
+            <li>JavaScript (ES6+)</li>
+            <li>Responsive Design</li>
+            <li>Cross-browser compatibility</li>
+            <li>Конструктор сайтов (Tilda, Webflow, Wix)</li>
+          </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- О себе -->
-    <section id="about" class="section about">
-      <div class="container">
-        <div class="about-content">
-          <div>
-            <h2>Почему я берусь за проекты, которые другие боятся?</h2>
-            <p>
-              Потому что я не просто «сверстаю и уйду».  
-              Я создаю <strong>инструменты роста</strong>.  
-              Сайт, который <strong>привлекает клиентов</strong>, вызывает доверие и <strong>работает 24/7</strong>.
-            </p>
-            <p>
-              За 2 года сделал более 30 проектов — от лендингов до интернет-магазинов.  
-              И знаешь, в чём мой секрет?
-            </p>
-            <p>
-              <strong>Я работаю только с теми, кто готов к результату.</strong>  
-              Ты платишь — только когда сайт готов и тебе нравится.  
-              Никакого риска. Только результат.
-            </p>
-            <p>
-              Работаю с HTML, CSS, JavaScript, Git.  
-              Все сайты — <strong>адаптивные, быстрые, с SEO-фундаментом</strong>.
-            </p>
-            <div class="skills">
-              <span>HTML5</span>
-              <span>CSS3</span>
-              <span>JavaScript</span>
-              <span>Git</span>
-              <span>Конструктор</span>
-            </div>
-            <button class="btn primary" onclick="openOrderModal()">Забронировать место в очереди</button>
-          </div>
+  <!-- Портфолио -->
+  <section class="section" id="portfolio">
+    <div class="container">
+      <h2 class="section-title">Портфолио</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item"><img src="assets/images/project1.jpg" alt="Проект 1"></div>
+        <div class="portfolio-item"><img src="assets/images/project2.jpg" alt="Проект 2"></div>
+        <div class="portfolio-item"><img src="assets/images/project3.jpg" alt="Проект 3"></div>
+        <div class="portfolio-item"><img src="assets/images/project4.jpg" alt="Проект 4"></div>
+        <div class="portfolio-item"><img src="assets/images/project5.jpg" alt="Проект 5"></div>
+        <div class="portfolio-item"><img src="assets/images/project6.jpg" alt="Проект 6"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Услуги -->
+  <section class="section" id="services">
+    <div class="container">
+      <h2 class="section-title">Услуги</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Разработка веб-сайтов под ключ</h3>
+          <p>Создание сайта от идеи до запуска — с учётом UX, SEO и адаптивности.</p>
+          <button class="btn-primary" onclick="scrollToSection('contact')">Заказать сайт</button>
+        </div>
+        <div class="service-card">
+          <h3>Верстка макетов</h3>
+          <p>Точная, быстрая и чистая верстка с поддержкой всех устройств.</p>
+          <button class="btn-primary" onclick="scrollToSection('contact')">Заказать верстку</button>
+        </div>
+        <div class="service-card">
+          <h3>Поддержка и доработка</h3>
+          <p>Исправление багов, добавление функций, оптимизация.</p>
+          <button class="btn-primary" onclick="scrollToSection('contact')">Узнать цену</button>
+        </div>
+        <div class="service-card">
+          <h3>SEO-оптимизация и ускорение</h3>
+          <p>Повышение скорости загрузки и позиций в поиске.</p>
+          <button class="btn-primary" onclick="scrollToSection('contact')">Проверить сайт</button>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Портфолио -->
-    <section id="portfolio" class="section portfolio">
-      <div class="container">
-        <h2>Последние проекты</h2>
-        <p style="text-align: center; margin: 1rem 0; color: #aaa;">Клики — рост. Дизайн — доверие. Скорость — конверсия.</p>
-        <div class="filters">
-          <button class="filter-btn active" data-filter="all">Все</button>
-          <button class="filter-btn" data-filter="landing">Лендинги</button>
-          <button class="filter-btn" data-filter="shop">Магазины</button>
-          <button class="filter-btn" data-filter="corporate">Корпоративные</button>
-        </div>
-        <div class="portfolio-grid">
-          <div class="portfolio-item" data-type="landing">
-            <img src="https://picsum.photos/id/237/400/250" alt="Лендинг для клиники" />
-            <h3>Лендинг для клиники</h3>
-            <p>Рост заявок на 40% за счёт UX и скорости</p>
-            <span class="tech">HTML, CSS, JS</span>
-            <button class="btn small" onclick="openOrderModal()">Хочу такой же</button>
-          </div>
-          <div class="portfolio-item" data-type="shop">
-            <img src="https://picsum.photos/id/42/400/250" alt="Интернет-магазин косметики" />
-            <h3>Интернет-магазин косметики</h3>
-            <p>Первые продажи — на 3-й день после запуска</p>
-            <span class="tech">React, Firebase</span>
-            <button class="btn small" onclick="openOrderModal()">Рассчитать стоимость</button>
-          </div>
-          <div class="portfolio-item" data-type="corporate">
-            <img src="https://picsum.photos/id/1/400/250" alt="Сайт IT-компании" />
-            <h3>Сайт IT-компании</h3>
-            <p>Повысили доверие клиентов через дизайн</p>
-            <span class="tech">Next.js, Tailwind</span>
-            <button class="btn small" onclick="openOrderModal()">Обсудить проект</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Отзывы -->
-    <section id="reviews" class="section reviews">
-      <div class="container">
-        <h2>Что говорят клиенты</h2>
-        <div id="reviews-carousel" class="reviews-carousel">
-          <div class="review-item">
-            <div class="stars">★★★★★</div>
-            <p>
-              «Данил создал сайт за 6 дней. Ни одной задержки. 
-              Уже на 4-й день пришли первые заказы. 
-              Данил — не просто разработчик, а <strong>партнёр по бизнесу</strong>»
-            </p>
-            <strong>— Анна, beauty-lux.ru</strong>
-          </div>
-          <div class="review-item">
-            <div class="stars">★★★★★</div>
-            <p>
-              «Не верил, что можно сделать сайт без задержек. 
-              Данил сделал. И сайт, и доверие. 
-              Рекомендую — <strong>работает честно и быстро</strong>»
-            </p>
-            <strong>— Иван, startup.tech</strong>
-          </div>
-          <div class="review-item">
-            <div class="stars">★★★★★</div>
-            <p>
-              «Сайт выглядит дорого. Клиенты говорят: "Вы — серьёзная компания". 
-              Это того стоило. <strong>Рекомендую всем</strong>»
-            </p>
-            <strong>— Сергей, legal-help.online</strong>
-          </div>
-          <div class="review-item">
-            <div class="stars">★★★★★</div>
-            <p>
-              «Думал, всё будет через задержки. 
-              Ошибся. Данил сделал всё в срок, без нервов. 
-              И да — <strong>никаких задержек</strong>. Просто: <strong>сделал — заплатил — получил результат</strong>»
-            </p>
-            <strong>— Артём, gear-up.shop</strong>
-          </div>
-          <div class="review-item">
-            <div class="stars">★★★★★</div>
-            <p>
-              «Сайт за 7 дней, как и обещал. 
-              Ни одного срыва. Первые заявки — через 2 дня. 
-              Если нужен сайт — <strong>только к Данилу</strong>»
-            </p>
-            <strong>— Марина, fitness-life.pro</strong>
-          </div>
-          <div class="review-item">
-            <div class="stars">★★★★★</div>
-            <p>
-              «Запустили сайт за 6 дней. Ни одной задержки. 
-              Уже на 4-й день пришли первые заказы. 
-              Данил — не просто разработчик, а <strong>партнёр по бизнесу</strong>»
-            </p>
-            <strong>— Ольга, eco-store.ru</strong>
-          </div>
-        </div>
-        <div class="carousel-controls">
-          <button id="prev-review" class="control-btn">←</button>
-          <button id="next-review" class="control-btn">→</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Контакты -->
-    <section id="contact" class="section contact">
-      <div class="container">
-        <h2>Готов начать?</h2>
-        <p style="text-align: center; margin-bottom: 2rem;">Оставьте заявку — и я свяжусь с вами в течение 15 минут.</p>
-        <form class="contact-form" onsubmit="alert('Спасибо! Я свяжусь с вами в течение 15 минут.'); return false;">
-          <input type="text" placeholder="Имя" required />
-          <input type="email" placeholder="Email" required />
-          <textarea placeholder="Опишите ваш проект" rows="5" required></textarea>
-          <button type="submit" class="btn primary">Отправить заявку →</button>
-        </form>
+  <!-- Контакты -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="section-title">Контакты</h2>
+      <div class="contact-content">
         <div class="contact-info">
-          <p><i class="fas fa-envelope"></i> daniil@web-thunder.ru</p>
-          <p><i class="fab fa-telegram"></i> <a href="https://t.me/daniil_dev" target="_blank">@daniil_dev</a></p>
+          <p><i class="fas fa-envelope"></i> <a href="mailto:rosanov.danila2016@yandex.ru">rosanov.danila2016@yandex.ru</a></p>
+          <p><i class="fab fa-telegram"></i> <a href="https://t.me/overgrand" target="_blank">@overgrand</a></p>
         </div>
+        <form class="contact-form" id="contactForm">
+          <input type="text" name="name" placeholder="Ваше имя" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <textarea name="message" placeholder="Сообщение" rows="5" required></textarea>
+          <button type="submit" class="btn-primary">Отправить сообщение</button>
+        </form>
       </div>
-    </section>
-  </main>
-
-  <!-- Модальное окно "Заказать сайт" -->
-  <div id="order-modal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeOrderModal()">&times;</span>
-      <h3>Оставить заявку</h3>
-      <p style="margin-bottom: 1.5rem; color: #aaa;">Я свяжусь с вами в течение 15 минут</p>
-      <form onsubmit="sendToTelegram(event)">
-        <input type="text" placeholder="Имя" name="name" required />
-        <input type="tel" placeholder="Телефон или Telegram" name="contact" required />
-        <textarea placeholder="Опишите ваш проект" name="project" rows="4" required></textarea>
-        <button type="submit" class="btn primary">Отправить заявку</button>
-      </form>
+      <div id="successMessage" class="success hidden">
+        Сообщение отправлено! Я свяжусь с вами в ближайшее время.
+      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Чат -->
-  <button id="chat-toggle" class="chat-toggle">
-    <i class="fas fa-bolt"></i>
-  </button>
+  <!-- Подвал -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 thunder-web. Все права защищены.</p>
+      <div class="footer-links">
+        <a href="#privacy">Политика конфиденциальности</a>
+        <a href="#tos">Пользовательское соглашение</a>
+      </div>
+    </div>
+  </footer>
 
-  <div id="chat-modal" class="chat-modal">
-    <div class="chat-header">
-      <h3>💬 Чат с помощником</h3>
-      <button onclick="closeChat()">&times;</button>
-    </div>
-    <div id="chat-body" class="chat-body">
-      <div class="message bot">Привет! Я помогу с сайтом. Сколько бюджет? Сроки? Расскажи идею — подскажу решение.</div>
-    </div>
-    <div class="chat-input">
-      <input type="text" id="user-input" placeholder="Напишите..." onkeypress="handleKeyPress(event)">
-      <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
-    </div>
-  </div>
-
-  <!-- Подключение JS -->
+  <!-- Подключение EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script src="code.js"></script>
 </body>
 </html>
