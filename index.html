@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>thunder-web — Веб-решения, которые работают</title>
+  <title>web-thunder — Веб-решения, которые работают</title>
   <meta name="description" content="Сайты под ключ. Быстро. Качественно. С гарантией результата.">
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
   <script src="https://kit.fontawesome.com/3b9a5e3f6b.js" crossorigin="anonymous"></script>
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
 <body>
 
@@ -24,7 +27,7 @@
   <!-- Шапка -->
   <header class="header" id="home">
     <div class="container">
-      <div class="logo">⚡ thunder-web</div>
+      <div class="logo">⚡ web-thunder</div>
       <nav class="nav">
         <a href="#about">Обо мне</a>
         <a href="#portfolio">Портфолио</a>
@@ -49,7 +52,7 @@
     <div class="container">
       <div class="hero-content" id="heroText">
         <h1><span class="gradient-text">Сайт, который работает на вас<br>с первого дня</span></h1>
-        <p>Я — веб-разработчик. Создаю сайты, которые <strong>продают, конвертируют и масштабируются</strong>. От идеи до запуска — за 3–7 дней.</p>
+        <p>Я — веб-разработчик. Создаю <strong>высококонверсионные сайты</strong>, которые продают 24/7, масштабируются и растут вместе с вашим бизнесом.</p>
         <div class="hero-buttons">
           <button class="btn-primary" onclick="scrollToSection('portfolio')">Смотреть проекты</button>
           <button class="btn-outline" onclick="scrollToSection('contact')">Получить предложение</button>
@@ -95,66 +98,82 @@
     </div>
   </section>
 
-  <!-- Портфолио -->
+  <!-- Портфолио (Swiper) -->
   <section class="section" id="portfolio">
     <div class="container">
       <h2 class="section-title">Портфолио</h2>
       <p class="portfolio-subtitle">Проекты, которые <strong>запускали бизнес</strong></p>
 
-      <div class="portfolio-grid">
-        <!-- Проект 1: Велодрайв -->
-        <a href="https://example.com/velodrayv" target="_blank" class="portfolio-item glow-shadow">
-          <img src="assets/images/velodrayv.jpg" alt="Велодрайв — интернет-магазин велосипедов">
-          <div class="overlay">
-            <h4>Интернет-магазин велосипедов</h4>
-            <p>Конверсия +75%</p>
-          </div>
-        </a>
+      <!-- Swiper -->
+      <div class="swiper-container">
+        <div class="swiper-wrapper" id="portfolioSwiper">
+          <!-- Проект 1: Велодрайв -->
+          <a href="https://example.com/velodrayv" target="_blank" class="swiper-slide portfolio-slide glow-shadow">
+            <img src="assets/images/velodrayv.jpg" alt="Велодрайв — интернет-магазин велосипедов">
+            <div class="overlay">
+              <h4>Интернет-магазин велосипедов</h4>
+              <p>Конверсия +75%</p>
+            </div>
+            <div class="click-hint">👉 Нажмите, чтобы открыть проект</div>
+          </a>
 
-        <!-- Проект 2 -->
-        <a href="https://example.com/project2" target="_blank" class="portfolio-item glow-shadow">
-          <img src="assets/images/project2.jpg" alt="Лендинг для стартапа">
-          <div class="overlay">
-            <h4>Лендинг для стартапа</h4>
-            <p>Конверсия +80%</p>
-          </div>
-        </a>
+          <!-- Проект 2 -->
+          <a href="https://t.me/overgrand" target="_blank" class="swiper-slide portfolio-slide glow-shadow">
+            <img src="assets/images/project2.jpg" alt="Лендинг для стартапа">
+            <div class="overlay">
+              <h4>Лендинг для стартапа</h4>
+              <p>Конверсия +80%</p>
+            </div>
+            <div class="click-hint">👉 Нажмите, чтобы открыть проект</div>
+          </a>
 
-        <!-- Проект 3 -->
-        <a href="https://example.com/project3" target="_blank" class="portfolio-item glow-shadow">
-          <img src="assets/images/project3.jpg" alt="Корпоративный сайт">
-          <div class="overlay">
-            <h4>Корпоративный сайт</h4>
-            <p>SEO в топ-10</p>
-          </div>
-        </a>
+          <!-- Проект 3 -->
+          <a href="https://t.me/overgrand" target="_blank" class="swiper-slide portfolio-slide glow-shadow">
+            <img src="assets/images/project3.jpg" alt="Корпоративный сайт">
+            <div class="overlay">
+              <h4>Корпоративный сайт</h4>
+              <p>SEO в топ-10</p>
+            </div>
+            <div class="click-hint">👉 Нажмите, чтобы открыть проект</div>
+          </a>
 
-        <!-- Проект 4 -->
-        <a href="https://example.com/project4" target="_blank" class="portfolio-item glow-shadow">
-          <img src="assets/images/project4.jpg" alt="CRM-система">
-          <div class="overlay">
-            <h4>CRM-система</h4>
-            <p>Интеграция с API</p>
-          </div>
-        </a>
+          <!-- Проект 4 -->
+          <a href="https://t.me/overgrand" target="_blank" class="swiper-slide portfolio-slide glow-shadow">
+            <img src="assets/images/project4.jpg" alt="CRM-система">
+            <div class="overlay">
+              <h4>CRM-система</h4>
+              <p>Интеграция с API</p>
+            </div>
+            <div class="click-hint">👉 Нажмите, чтобы открыть проект</div>
+          </a>
 
-        <!-- Проект 5 -->
-        <a href="https://example.com/project5" target="_blank" class="portfolio-item glow-shadow">
-          <img src="assets/images/project5.jpg" alt="Сервис бронирования">
-          <div class="overlay">
-            <h4>Сервис бронирования</h4>
-            <p>500+ броней в месяц</p>
-          </div>
-        </a>
+          <!-- Проект 5 -->
+          <a href="https://t.me/overgrand" target="_blank" class="swiper-slide portfolio-slide glow-shadow">
+            <img src="assets/images/project5.jpg" alt="Сервис бронирования">
+            <div class="overlay">
+              <h4>Сервис бронирования</h4>
+              <p>500+ броней в месяц</p>
+            </div>
+            <div class="click-hint">👉 Нажмите, чтобы открыть проект</div>
+          </a>
 
-        <!-- Проект 6 -->
-        <a href="https://example.com/project6" target="_blank" class="portfolio-item glow-shadow">
-          <img src="assets/images/project6.jpg" alt="Агрегатор услуг">
-          <div class="overlay">
-            <h4>Агрегатор услуг</h4>
-            <p>Скорость <1s</p>
-          </div>
-        </a>
+          <!-- Проект 6 -->
+          <a href="https://t.me/overgrand" target="_blank" class="swiper-slide portfolio-slide glow-shadow">
+            <img src="assets/images/project6.jpg" alt="Агрегатор услуг">
+            <div class="overlay">
+              <h4>Агрегатор услуг</h4>
+              <p>Скорость <1s</p>
+            </div>
+            <div class="click-hint">👉 Нажмите, чтобы открыть проект</div>
+          </a>
+        </div>
+
+        <!-- Навигация -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- Индикаторы -->
+        <div class="swiper-pagination"></div>
       </div>
 
       <div class="portfolio-cta">
@@ -210,11 +229,11 @@
       <h2 class="section-title">Что говорят клиенты</h2>
       <div class="testimonials-grid">
         <div class="testimonial-card">
-          <p class="quote">"Запустили сайт за 5 дней. Уже через неделю — 120 заявок. thunder-web — это не просто разработка, это рост бизнеса."</p>
+          <p class="quote">"Запустили сайт за 5 дней. Уже через неделю — 120 заявок. web-thunder — это не просто разработка, это рост бизнеса."</p>
           <p class="author">— Алексей, стартап</p>
         </div>
         <div class="testimonial-card">
-          <p class="quote">"Работал с 3 разработчиками. Только thunder-web сделал всё без косяков и в срок."</p>
+          <p class="quote">"Работал с 3 разработчиками. Только web-thunder сделал всё без косяков и в срок."</p>
           <p class="author">— Марина, магазин</p>
         </div>
         <div class="testimonial-card">
@@ -257,7 +276,7 @@
   <!-- Подвал -->
   <footer class="footer">
     <div class="container">
-      <p>⚡ thunder-web — <span class="neon-footer">сайты, как молния</span></p>
+      <p>⚡ web-thunder — <span class="neon-footer">сайты, как молния</span></p>
       <div class="footer-links">
         <a href="javascript:void(0)" onclick="openModal()">Политика конфиденциальности</a>
       </div>
@@ -277,8 +296,11 @@
     </div>
   </div>
 
+  <!-- Подключаем Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <!-- EmailJS -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <!-- Основной скрипт -->
   <script src="code.js"></script>
 </body>
 </html>
