@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(el);
   });
 
-  // Инициализация Swiper
-  initSwiper();
+  // Инициализация Swiper (портфолио)
+  initPortfolioSwiper();
 
   // Показываем модальное окно при первом заходе
   if (!getCookie('privacy_accepted')) {
@@ -48,55 +48,139 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// === Swiper Инициализация ===
-function initSwiper() {
-  if (document.getElementById('portfolioSwiper')) {
-    new Swiper('.swiper-container', {
-      loop: true,
-      slidesPerView: 1,
-      spaceBetween: 30,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      breakpoints: {
-        640: {
-          slidesPerView: 1.2,
-        },
-        768: {
-          slidesPerView: 2,
-        },
-        1024: {
-          slidesPerView: 3,
-        },
-      },
-      on: {
-        init: function () {
-          const swiper = this;
-          const container = swiper.el;
-
-          container.addEventListener('mouseenter', () => {
-            swiper.autoplay.stop();
-          });
-
-          container.addEventListener('mouseleave', () => {
-            swiper.autoplay.start();
-          });
-        }
+// === Swiper для портфолио ===
+let portfolioSwiper;
+function initPortfolioSwiper() {
+  portfolioSwiper = new Swiper('.swiper-container', {
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 30,
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+      640: { slidesPerView: 1.2 },
+      768: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 },
+    },
+    on: {
+      init: function () {
+        const swiper = this;
+        const container = swiper.el;
+        container.addEventListener('mouseenter', () => swiper.autoplay.stop());
+        container.addEventListener('mouseleave', () => swiper.autoplay.start());
       }
-    });
+    }
+  });
+}
+
+// === Модальное окно проекта ===
+let gallerySwiper;
+
+const projectData = {
+  velodrayv: {
+    title: "Интернет-магазин велосипедов",
+    images: [
+      "https://example.com/velodrayv1.jpg",
+      "https://example.com/velodrayv2.jpg",
+      "https://example.com/velodrayv3.jpg"
+    ]
+  },
+  project2: {
+    title: "Лендинг для стартапа",
+    images: [
+      "https://example.com/project2-1.jpg",
+      "https://example.com/project2-2.jpg"
+    ]
+  },
+  project3: {
+    title: "Корпоративный сайт",
+    images: [
+      "https://example.com/project3-1.jpg",
+      "https://example.com/project3-2.jpg",
+      "https://example.com/project3-3.jpg"
+    ]
+  },
+  project4: {
+    title: "CRM-система",
+    images: [
+      "https://example.com/project4-1.jpg",
+      "https://example.com/project4-2.jpg"
+    ]
+  },
+  project5: {
+    title: "Сервис бронирования",
+    images: [
+      "https://example.com/project5-1.jpg",
+      "https://example.com/project5-2.jpg"
+    ]
+  },
+  project6: {
+    title: "Агрегатор услуг",
+    images: [
+      "https://example.com/project6-1.jpg",
+      "https://example.com/project6-2.jpg",
+      "https://example.com/project6-3.jpg"
+    ]
+  }
+};
+
+function openProjectModal(projectKey) {
+  const project = projectData[projectKey];
+  if (!project) return;
+
+  document.getElementById('projectTitle').textContent = project.title;
+  const container = document.getElementById('gallerySlides');
+  container.innerHTML = '';
+
+  project.images.forEach(src => {
+    const slide = document.createElement('div');
+    slide.className = 'swiper-slide';
+    slide.innerHTML = `<img src="${src}" alt="Фото проекта" class="gallery-img" loading="lazy">`;
+    container.appendChild(slide);
+  });
+
+  document.getElementById('projectModal').style.display = 'flex';
+
+  // Инициализация галереи
+  if (gallerySwiper) gallerySwiper.destroy();
+  gallerySwiper = new Swiper('.swiper-gallery-container', {
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 20,
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    effect: 'fade',
+    fadeEffect: {
+      crossFade: true
+    }
+  });
+}
+
+function closeProjectModal() {
+  document.getElementById('projectModal').style.display = 'none';
+  if (gallerySwiper) {
+    gallerySwiper.destroy();
+    gallerySwiper = null;
   }
 }
 
-// Модальное окно
+// Модальное окно политики
 function openModal() {
   document.getElementById('privacyModal').style.display = 'flex';
 }
@@ -131,7 +215,7 @@ function getCookie(name) {
 
 // EmailJS
 (function() {
-  emailjs.init("YOUR_PUBLIC_KEY"); // ← Замените на ваш ключ
+  emailjs.init("YOUR_PUBLIC_KEY");
 
   const form = document.getElementById('contactForm');
   if (form) {
