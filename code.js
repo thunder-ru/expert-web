@@ -90,46 +90,37 @@ const projectData = {
   velodrayv: {
     title: "Интернет-магазин велосипедов",
     images: [
-      "https://example.com/velodrayv1.jpg",
-      "https://example.com/velodrayv2.jpg",
-      "https://example.com/velodrayv3.jpg"
+      "https://t.me/overgrand"
     ]
   },
   project2: {
     title: "Лендинг для стартапа",
     images: [
-      "https://example.com/project2-1.jpg",
-      "https://example.com/project2-2.jpg"
+      "https://t.me/overgrand"
     ]
   },
   project3: {
     title: "Корпоративный сайт",
     images: [
-      "https://example.com/project3-1.jpg",
-      "https://example.com/project3-2.jpg",
-      "https://example.com/project3-3.jpg"
+      "https://t.me/overgrand"
     ]
   },
   project4: {
     title: "CRM-система",
     images: [
-      "https://example.com/project4-1.jpg",
-      "https://example.com/project4-2.jpg"
+      "https://t.me/overgrand"
     ]
   },
   project5: {
     title: "Сервис бронирования",
     images: [
-      "https://example.com/project5-1.jpg",
-      "https://example.com/project5-2.jpg"
+      "https://t.me/overgrand"
     ]
   },
   project6: {
     title: "Агрегатор услуг",
     images: [
-      "https://example.com/project6-1.jpg",
-      "https://example.com/project6-2.jpg",
-      "https://example.com/project6-3.jpg"
+      "https://t.me/overgrand"
     ]
   }
 };
