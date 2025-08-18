@@ -32,18 +32,69 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
 
-  document.querySelectorAll('.service-card, .about-text, .portfolio-item, #contactForm').forEach(el => {
+  document.querySelectorAll('.service-card, .about-text, #contactForm, .testimonial-card, .portfolio-slide').forEach(el => {
     el.style.opacity = 0;
     el.style.transform = 'translateY(30px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
   });
 
+  // Инициализация Swiper
+  initSwiper();
+
   // Показываем модальное окно при первом заходе
   if (!getCookie('privacy_accepted')) {
     openModal();
   }
 });
+
+// === Swiper Инициализация ===
+function initSwiper() {
+  if (document.getElementById('portfolioSwiper')) {
+    new Swiper('.swiper-container', {
+      loop: true,
+      slidesPerView: 1,
+      spaceBetween: 30,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 1.2,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 3,
+        },
+      },
+      on: {
+        init: function () {
+          const swiper = this;
+          const container = swiper.el;
+
+          container.addEventListener('mouseenter', () => {
+            swiper.autoplay.stop();
+          });
+
+          container.addEventListener('mouseleave', () => {
+            swiper.autoplay.start();
+          });
+        }
+      }
+    });
+  }
+}
 
 // Модальное окно
 function openModal() {
