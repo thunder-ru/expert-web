@@ -52,7 +52,9 @@
     <div class="container">
       <div class="hero-content" id="heroText">
         <h1><span class="gradient-text">Сайт, который работает на вас<br>с первого дня</span></h1>
-        <p>Я — веб-разработчик. Создаю <strong>высококонверсионные сайты</strong>, которые продают 24/7, масштабируются и растут вместе с вашим бизнесом.</p>
+        <p>
+          Я — <strong>веб-архитектор бизнеса</strong>. Собираю сайты как конструктор: быстро, надёжно, с фокусом на прибыль, а не на красивый код.
+        </p>
         <div class="hero-buttons">
           <button class="btn-primary" onclick="scrollToSection('portfolio')">Смотреть проекты</button>
           <button class="btn-outline" onclick="scrollToSection('contact')">Получить предложение</button>
@@ -98,74 +100,76 @@
     </div>
   </section>
 
-  <!-- Портфолио (Swiper) -->
+  <!-- Портфолио (с модальной галереей) -->
   <section class="section" id="portfolio">
     <div class="container">
       <h2 class="section-title">Портфолио</h2>
       <p class="portfolio-subtitle">Проекты, которые <strong>запускали бизнес</strong></p>
 
-      <!-- Swiper -->
+      <!-- Слайдер проектов -->
       <div class="swiper-container">
         <div class="swiper-wrapper" id="portfolioSwiper">
+
           <!-- Проект 1: Велодрайв -->
-          <a href="https://example.com/velodrayv" target="_blank" class="swiper-slide portfolio-slide glow-shadow">
+          <div class="swiper-slide portfolio-slide glow-shadow" onclick="openProjectModal('velodrayv')">
             <img src="assets/images/velodrayv.jpg" alt="Велодрайв — интернет-магазин велосипедов">
             <div class="overlay">
               <h4>Интернет-магазин велосипедов</h4>
               <p>Конверсия +75%</p>
             </div>
-            <div class="click-hint">👉 Нажмите, чтобы открыть проект</div>
-          </a>
+            <div class="click-hint">👁️ Посмотреть кейс</div>
+          </div>
 
           <!-- Проект 2 -->
-          <a href="https://t.me/overgrand" target="_blank" class="swiper-slide portfolio-slide glow-shadow">
+          <div class="swiper-slide portfolio-slide glow-shadow" onclick="openProjectModal('project2')">
             <img src="assets/images/project2.jpg" alt="Лендинг для стартапа">
             <div class="overlay">
               <h4>Лендинг для стартапа</h4>
               <p>Конверсия +80%</p>
             </div>
-            <div class="click-hint">👉 Нажмите, чтобы открыть проект</div>
-          </a>
+            <div class="click-hint">👁️ Посмотреть кейс</div>
+          </div>
 
           <!-- Проект 3 -->
-          <a href="https://t.me/overgrand" target="_blank" class="swiper-slide portfolio-slide glow-shadow">
+          <div class="swiper-slide portfolio-slide glow-shadow" onclick="openProjectModal('project3')">
             <img src="assets/images/project3.jpg" alt="Корпоративный сайт">
             <div class="overlay">
               <h4>Корпоративный сайт</h4>
               <p>SEO в топ-10</p>
             </div>
-            <div class="click-hint">👉 Нажмите, чтобы открыть проект</div>
-          </a>
+            <div class="click-hint">👁️ Посмотреть кейс</div>
+          </div>
 
           <!-- Проект 4 -->
-          <a href="https://t.me/overgrand" target="_blank" class="swiper-slide portfolio-slide glow-shadow">
+          <div class="swiper-slide portfolio-slide glow-shadow" onclick="openProjectModal('project4')">
             <img src="assets/images/project4.jpg" alt="CRM-система">
             <div class="overlay">
               <h4>CRM-система</h4>
               <p>Интеграция с API</p>
             </div>
-            <div class="click-hint">👉 Нажмите, чтобы открыть проект</div>
-          </a>
+            <div class="click-hint">👁️ Посмотреть кейс</div>
+          </div>
 
           <!-- Проект 5 -->
-          <a href="https://t.me/overgrand" target="_blank" class="swiper-slide portfolio-slide glow-shadow">
+          <div class="swiper-slide portfolio-slide glow-shadow" onclick="openProjectModal('project5')">
             <img src="assets/images/project5.jpg" alt="Сервис бронирования">
             <div class="overlay">
               <h4>Сервис бронирования</h4>
               <p>500+ броней в месяц</p>
             </div>
-            <div class="click-hint">👉 Нажмите, чтобы открыть проект</div>
-          </a>
+            <div class="click-hint">👁️ Посмотреть кейс</div>
+          </div>
 
           <!-- Проект 6 -->
-          <a href="https://t.me/overgrand" target="_blank" class="swiper-slide portfolio-slide glow-shadow">
+          <div class="swiper-slide portfolio-slide glow-shadow" onclick="openProjectModal('project6')">
             <img src="assets/images/project6.jpg" alt="Агрегатор услуг">
             <div class="overlay">
               <h4>Агрегатор услуг</h4>
               <p>Скорость <1s</p>
             </div>
-            <div class="click-hint">👉 Нажмите, чтобы открыть проект</div>
-          </a>
+            <div class="click-hint">👁️ Посмотреть кейс</div>
+          </div>
+
         </div>
 
         <!-- Навигация -->
@@ -292,6 +296,20 @@
       <div class="modal-buttons">
         <button class="btn-outline" onclick="closeModal()">Отклонить</button>
         <button class="btn-glow" onclick="acceptPolicy()">Принять и продолжить</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно проекта -->
+  <div id="projectModal" class="modal" style="display: none;">
+    <div class="project-modal-content">
+      <span class="close-btn" onclick="closeProjectModal()">&times;</span>
+      <h3 id="projectTitle">Проект</h3>
+      <div class="swiper-gallery-container">
+        <div class="swiper-wrapper" id="gallerySlides"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
       </div>
     </div>
   </div>
