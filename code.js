@@ -45,17 +45,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Данные о проектах (вы можете добавлять свои фото по ссылкам)
+// === Данные о проектах (вы можете добавлять любое количество фото по ссылкам) ===
 const projectData = {
   car_rental: {
     title: "Аренда автомобилей",
     images: [
-      "https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg"
+      "https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg",
+      "https://i.postimg.cc/PrmQ0R29/Black3.jpg",
+      "https://i.postimg.cc/0yndyJgC/Black4.jpg",
+      "https://i.postimg.cc/HnbbDr4X/Black-5.jpg"
     ]
   },
   dentistry: {
     title: "Стоматология",
     images: [
+      "https://t.me/overgrand",
+      "https://t.me/overgrand",
       "https://t.me/overgrand"
     ]
   },
@@ -68,6 +73,7 @@ const projectData = {
   bike_rental: {
     title: "Прокат велосипедов",
     images: [
+      "https://t.me/overgrand",
       "https://t.me/overgrand"
     ]
   },
@@ -78,8 +84,11 @@ const projectData = {
     ]
   },
   travel: {
-    title: "Тур-агенство",
+    title: "Тур-агентство",
     images: [
+      "https://t.me/overgrand",
+      "https://t.me/overgrand",
+      "https://t.me/overgrand",
       "https://t.me/overgrand"
     ]
   }
