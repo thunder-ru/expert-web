@@ -32,15 +32,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
 
-  document.querySelectorAll('.service-card, .about-text, #contactForm, .testimonial-card, .portfolio-slide').forEach(el => {
+  document.querySelectorAll('.service-card, .about-text, #contactForm, .testimonial-card, .portfolio-card').forEach(el => {
     el.style.opacity = 0;
     el.style.transform = 'translateY(30px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
   });
-
-  // Инициализация Swiper (портфолио)
-  initPortfolioSwiper();
 
   // Показываем модальное окно при первом заходе
   if (!getCookie('privacy_accepted')) {
@@ -48,83 +45,47 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// === Swiper для портфолио ===
-let portfolioSwiper;
-function initPortfolioSwiper() {
-  portfolioSwiper = new Swiper('.swiper-container', {
-    loop: true,
-    slidesPerView: 1,
-    spaceBetween: 30,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    breakpoints: {
-      640: { slidesPerView: 1.2 },
-      768: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 },
-    },
-    on: {
-      init: function () {
-        const swiper = this;
-        const container = swiper.el;
-        container.addEventListener('mouseenter', () => swiper.autoplay.stop());
-        container.addEventListener('mouseleave', () => swiper.autoplay.start());
-      }
-    }
-  });
-}
-
-// === Модальное окно проекта ===
-let gallerySwiper;
-
+// Данные о проектах (вы можете добавлять свои фото по ссылкам)
 const projectData = {
-  velodrayv: {
-    title: "Интернет-аренда автомобилей",
-    images: [
-      "https://i.postimg.cc/26k82Pbm/Black1.jpg"
-    ]
-  },
-  project2: {
-    title: "Лендинг для стартапа",
+  car_rental: {
+    title: "Аренда автомобилей",
     images: [
       "https://t.me/overgrand"
     ]
   },
-  project3: {
-    title: "Корпоративный сайт",
+  dentistry: {
+    title: "Стоматология",
     images: [
       "https://t.me/overgrand"
     ]
   },
-  project4: {
-    title: "CRM-система",
+  tea_coffee: {
+    title: "Чайные и кофейные ритуалы",
     images: [
       "https://t.me/overgrand"
     ]
   },
-  project5: {
-    title: "Сервис бронирования",
+  bike_rental: {
+    title: "Прокат велосипедов",
     images: [
       "https://t.me/overgrand"
     ]
   },
-  project6: {
-    title: "Агрегатор услуг",
+  fitness: {
+    title: "Фитнес-тренер",
+    images: [
+      "https://t.me/overgrand"
+    ]
+  },
+  travel: {
+    title: "Тур-агенство",
     images: [
       "https://t.me/overgrand"
     ]
   }
 };
 
+// Открытие модального окна с галереей
 function openProjectModal(projectKey) {
   const project = projectData[projectKey];
   if (!project) return;
@@ -134,41 +95,20 @@ function openProjectModal(projectKey) {
   container.innerHTML = '';
 
   project.images.forEach(src => {
-    const slide = document.createElement('div');
-    slide.className = 'swiper-slide';
-    slide.innerHTML = `<img src="${src}" alt="Фото проекта" class="gallery-img" loading="lazy">`;
-    container.appendChild(slide);
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = project.title;
+    img.className = 'gallery-img';
+    img.loading = 'lazy';
+    container.appendChild(img);
   });
 
   document.getElementById('projectModal').style.display = 'flex';
-
-  // Инициализация галереи
-  if (gallerySwiper) gallerySwiper.destroy();
-  gallerySwiper = new Swiper('.swiper-gallery-container', {
-    loop: true,
-    slidesPerView: 1,
-    spaceBetween: 20,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    effect: 'fade',
-    fadeEffect: {
-      crossFade: true
-    }
-  });
 }
 
+// Закрытие модального окна
 function closeProjectModal() {
   document.getElementById('projectModal').style.display = 'none';
-  if (gallerySwiper) {
-    gallerySwiper.destroy();
-    gallerySwiper = null;
-  }
 }
 
 // Модальное окно политики
