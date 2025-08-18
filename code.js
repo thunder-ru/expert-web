@@ -88,9 +88,9 @@ let gallerySwiper;
 
 const projectData = {
   velodrayv: {
-    title: "Интернет-магазин велосипедов",
+    title: "Интернет-аренда автомобилей",
     images: [
-      "https://t.me/overgrand"
+      "https://i.postimg.cc/26k82Pbm/Black1.jpg"
     ]
   },
   project2: {
