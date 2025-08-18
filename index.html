@@ -8,9 +8,6 @@
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
   <script src="https://kit.fontawesome.com/3b9a5e3f6b.js" crossorigin="anonymous"></script>
-
-  <!-- Swiper CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
 <body>
 
@@ -100,84 +97,72 @@
     </div>
   </section>
 
-  <!-- Портфолио (с модальной галереей) -->
+  <!-- Портфолио -->
   <section class="section" id="portfolio">
     <div class="container">
       <h2 class="section-title">Портфолио</h2>
       <p class="portfolio-subtitle">Проекты, которые <strong>запускали бизнес</strong></p>
 
-      <!-- Слайдер проектов -->
-      <div class="swiper-container">
-        <div class="swiper-wrapper" id="portfolioSwiper">
-
-          <!-- Проект 1: Black-Car - аренда авто -->
-          <div class="swiper-slide portfolio-slide glow-shadow" onclick="openProjectModal('velodrayv')">
-            <img src="https://i.postimg.cc/26k82Pbm/Black1.jpg" alt="BLACK-CAR аренда авто">
-            <div class="overlay">
-              <h4>Интернет-аренда автомобилей</h4>
-              <p>Конверсия +35%</p>
-            </div>
-            <div class="click-hint">👁️ Посмотреть кейс</div>
+      <div class="portfolio-grid">
+        <!-- Проект 1: Аренда автомобилей -->
+        <div class="portfolio-card" onclick="openProjectModal('car_rental')">
+          <img src="https://via.placeholder.com/320x240?text=Аренда+авто" alt="Аренда автомобилей">
+          <div class="portfolio-overlay">
+            <h4>Аренда автомобилей</h4>
+            <p>Конверсия +90%</p>
           </div>
-
-          <!-- Проект 2 -->
-          <div class="swiper-slide portfolio-slide glow-shadow" onclick="openProjectModal('project2')">
-            <img src="assets/images/project2.jpg" alt="Лендинг для стартапа">
-            <div class="overlay">
-              <h4>Лендинг для стартапа</h4>
-              <p>Конверсия +80%</p>
-            </div>
-            <div class="click-hint">👁️ Посмотреть кейс</div>
-          </div>
-
-          <!-- Проект 3 -->
-          <div class="swiper-slide portfolio-slide glow-shadow" onclick="openProjectModal('project3')">
-            <img src="assets/images/project3.jpg" alt="Корпоративный сайт">
-            <div class="overlay">
-              <h4>Корпоративный сайт</h4>
-              <p>SEO в топ-10</p>
-            </div>
-            <div class="click-hint">👁️ Посмотреть кейс</div>
-          </div>
-
-          <!-- Проект 4 -->
-          <div class="swiper-slide portfolio-slide glow-shadow" onclick="openProjectModal('project4')">
-            <img src="assets/images/project4.jpg" alt="CRM-система">
-            <div class="overlay">
-              <h4>CRM-система</h4>
-              <p>Интеграция с API</p>
-            </div>
-            <div class="click-hint">👁️ Посмотреть кейс</div>
-          </div>
-
-          <!-- Проект 5 -->
-          <div class="swiper-slide portfolio-slide glow-shadow" onclick="openProjectModal('project5')">
-            <img src="assets/images/project5.jpg" alt="Сервис бронирования">
-            <div class="overlay">
-              <h4>Сервис бронирования</h4>
-              <p>500+ броней в месяц</p>
-            </div>
-            <div class="click-hint">👁️ Посмотреть кейс</div>
-          </div>
-
-          <!-- Проект 6 -->
-          <div class="swiper-slide portfolio-slide glow-shadow" onclick="openProjectModal('project6')">
-            <img src="assets/images/project6.jpg" alt="Агрегатор услуг">
-            <div class="overlay">
-              <h4>Агрегатор услуг</h4>
-              <p>Скорость <1s</p>
-            </div>
-            <div class="click-hint">👁️ Посмотреть кейс</div>
-          </div>
-
+          <div class="portfolio-hint">👁️ Посмотреть кейс</div>
         </div>
 
-        <!-- Навигация -->
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
+        <!-- Проект 2: Стоматология -->
+        <div class="portfolio-card" onclick="openProjectModal('dentistry')">
+          <img src="https://via.placeholder.com/320x240?text=Стоматология" alt="Стоматология">
+          <div class="portfolio-overlay">
+            <h4>Стоматология</h4>
+            <p>Бронирование онлайн</p>
+          </div>
+          <div class="portfolio-hint">👁️ Посмотреть кейс</div>
+        </div>
 
-        <!-- Индикаторы -->
-        <div class="swiper-pagination"></div>
+        <!-- Проект 3: Чай и кофе -->
+        <div class="portfolio-card" onclick="openProjectModal('tea_coffee')">
+          <img src="https://via.placeholder.com/320x240?text=Чай+и+кофе" alt="Чайные и кофейные ритуалы">
+          <div class="portfolio-overlay">
+            <h4>Чай и кофе</h4>
+            <p>Интернет-магазин</p>
+          </div>
+          <div class="portfolio-hint">👁️ Посмотреть кейс</div>
+        </div>
+
+        <!-- Проект 4: Велопрокат -->
+        <div class="portfolio-card" onclick="openProjectModal('bike_rental')">
+          <img src="https://via.placeholder.com/320x240?text=Велопрокат" alt="Прокат велосипедов">
+          <div class="portfolio-overlay">
+            <h4>Велопрокат</h4>
+            <p>Скорость <1s</p>
+          </div>
+          <div class="portfolio-hint">👁️ Посмотреть кейс</div>
+        </div>
+
+        <!-- Проект 5: Фитнес-тренер -->
+        <div class="portfolio-card" onclick="openProjectModal('fitness')">
+          <img src="https://via.placeholder.com/320x240?text=Фитнес" alt="Фитнес-тренер">
+          <div class="portfolio-overlay">
+            <h4>Фитнес-тренер</h4>
+            <p>Конверсия +85%</p>
+          </div>
+          <div class="portfolio-hint">👁️ Посмотреть кейс</div>
+        </div>
+
+        <!-- Проект 6: Тур-агентство -->
+        <div class="portfolio-card" onclick="openProjectModal('travel')">
+          <img src="https://via.placeholder.com/320x240?text=Туры" alt="Тур-агентство">
+          <div class="portfolio-overlay">
+            <h4>Тур-агентство</h4>
+            <p>SEO в топ-5</p>
+          </div>
+          <div class="portfolio-hint">👁️ Посмотреть кейс</div>
+        </div>
       </div>
 
       <div class="portfolio-cta">
@@ -215,7 +200,6 @@
         </div>
       </div>
 
-      <!-- Гарантии -->
       <div class="guarantee-banner">
         <i class="fas fa-shield-alt"></i>
         <span>Гарантия 30 дней. Сроки в договоре. Оплата частями.</span>
@@ -301,24 +285,18 @@
   </div>
 
   <!-- Модальное окно проекта -->
-  <div id="projectModal" class="modal" style="display: none;">
+  <div id="projectModal" class="modal">
     <div class="project-modal-content">
       <span class="close-btn" onclick="closeProjectModal()">&times;</span>
       <h3 id="projectTitle">Проект</h3>
-      <div class="swiper-gallery-container">
-        <div class="swiper-wrapper" id="gallerySlides"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
+      <div class="gallery-container">
+        <div id="gallerySlides"></div>
       </div>
     </div>
   </div>
 
-  <!-- Подключаем Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <!-- EmailJS -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <!-- Основной скрипт -->
   <script src="code.js"></script>
 </body>
 </html>
