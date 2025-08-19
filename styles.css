@@ -353,21 +353,26 @@ body {
   margin-bottom: 10px;
 }
 
+/* Галерея */
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
+  margin-bottom: 20px;
 }
 
 .gallery-grid img {
   width: 100%;
+  max-width: 600px; /* Ограничим ширину на больших экранах */
   height: auto;
   border-radius: 8px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
 }
 
-.gallery-footer {
-  text-align: center;
+.gallery-grid img:hover {
+  transform: scale(1.02);
 }
 
 /* Услуги */
