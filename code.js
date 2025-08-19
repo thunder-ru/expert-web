@@ -119,12 +119,12 @@ const projectData = {
   car_rental: {
     title: "Аренда автомобилей",
     images: [
-      "https://i.postimg.cc/pdkWMT84/Black1.jpg",
-      "https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg",
-      "https://i.postimg.cc/PrmQ0R29/Black3.jpg",
-      "https://i.postimg.cc/0yndyJgC/Black4.jpg",
-      "https://i.postimg.cc/HnbbDr4X/Black-5.jpg"
-    ]
+  "https://i.postimg.cc/pdkWMT84/Black1.jpg",
+  "https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg",
+  "https://i.postimg.cc/PrmQ0R29/Black3.jpg",
+  "https://i.postimg.cc/0yndyJgC/Black4.jpg",
+  "https://i.postimg.cc/HnbbDr4X/Black-5.jpg"
+]
   },
   dentistry: {
     title: "Стоматология",
