@@ -49,130 +49,96 @@ document.addEventListener('DOMContentLoaded', () => {
 let sliderIndex = 0;
 const track = document.getElementById('sliderTrack');
 const container = document.getElementById('sliderContainer');
-const items = document.querySelectorAll('.slider-item');
-const totalItems = items.length;
 
-// Перемещение слайдера
-function moveSlider(direction) {
-  sliderIndex += direction;
+if (track && container) {
+  const items = document.querySelectorAll('.slider-item');
+  const totalItems = items.length;
 
-  // Зацикливание
-  if (sliderIndex < 0) {
-    sliderIndex = totalItems - 1;
-  } else if (sliderIndex >= totalItems) {
-    sliderIndex = 0;
+  // Перемещение слайдера
+  function moveSlider(direction) {
+    sliderIndex += direction;
+
+    if (sliderIndex < 0) sliderIndex = totalItems - 1;
+    if (sliderIndex >= totalItems) sliderIndex = 0;
+
+    track.style.transform = `translateX(${-sliderIndex * 100}%)`;
   }
 
-  updateSlider();
-}
+  // Автопрокрутка
+  let autoSlide = setInterval(() => moveSlider(1), 7000);
 
-// Обновление позиции слайдера
-function updateSlider() {
-  const itemWidth = 100; // 100% ширина слайда
-  track.style.transform = `translateX(${-sliderIndex * itemWidth}%)`;
-}
+  // Остановка при наведении
+  container.addEventListener('mouseenter', () => clearInterval(autoSlide));
+  container.addEventListener('mouseleave', () => {
+    autoSlide = setInterval(() => moveSlider(1), 7000);
+  });
 
-// Автопрокрутка каждые 7 секунд
-let autoSlide = setInterval(() => {
-  moveSlider(1);
-}, 7000);
+  // Листание мышкой
+  let isDragging = false, startX, startTranslate;
+  container.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startX = e.pageX;
+    startTranslate = -sliderIndex * 100;
+    track.style.transition = 'none';
+  });
 
-// Остановка автопрокрутки при наведении
-container.addEventListener('mouseenter', () => {
-  clearInterval(autoSlide);
-});
-container.addEventListener('mouseleave', () => {
-  autoSlide = setInterval(() => {
-    moveSlider(1);
-  }, 7000);
-});
+  container.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const diff = (e.pageX - startX) / window.innerWidth * 100;
+    track.style.transform = `translateX(${startTranslate + diff}%)`;
+  });
 
-// Листание мышкой (drag & drop)
-let isDragging = false;
-let startX, startTranslate;
-
-container.addEventListener('mousedown', (e) => {
-  isDragging = true;
-  startX = e.pageX;
-  startTranslate = -sliderIndex * 100;
-  track.style.transition = 'none';
-});
-
-container.addEventListener('mousemove', (e) => {
-  if (!isDragging) return;
-  e.preventDefault();
-  const currentX = e.pageX;
-  const diff = (currentX - startX) / window.innerWidth * 100;
-  const move = startTranslate + diff;
-  track.style.transform = `translateX(${move}%)`;
-});
-
-container.addEventListener('mouseup', (e) => {
-  if (!isDragging) return;
-  isDragging = false;
-  const currentX = e.pageX;
-  const diff = currentX - startX;
-
-  if (Math.abs(diff) > 50) {
-    moveSlider(diff > 0 ? -1 : 1);
-  } else {
-    updateSlider();
-  }
-
-  track.style.transition = 'transform 0.6s ease';
-});
-
-container.addEventListener('mouseleave', () => {
-  if (isDragging) {
+  container.addEventListener('mouseup', (e) => {
+    if (!isDragging) return;
     isDragging = false;
-    updateSlider();
+    const diff = e.pageX - startX;
+    if (Math.abs(diff) > 50) moveSlider(diff > 0 ? -1 : 1);
+    else moveSlider(0);
     track.style.transition = 'transform 0.6s ease';
-  }
-});
+  });
 
-// Инициализация при загрузке
-document.addEventListener('DOMContentLoaded', () => {
-  track.style.transition = 'transform 0.6s ease';
-  updateSlider();
-});
+  container.addEventListener('mouseleave', () => {
+    if (isDragging) {
+      isDragging = false;
+      moveSlider(0);
+      track.style.transition = 'transform 0.6s ease';
+    }
+  });
+
+  // Инициализация
+  document.addEventListener('DOMContentLoaded', () => {
+    track.style.transition = 'transform 0.6s ease';
+    moveSlider(0);
+  });
+} else {
+  console.error('Элементы слайдера не найдены');
+}
 
 // === Данные о проектах (галерея) ===
 const projectData = {
   car_rental: {
     title: "Аренда автомобилей",
-    images: [
-      "https://i.postimg.cc/pdkWMT84/Black1.jpg"
-    ]
+    images: ["https://via.placeholder.com/800x600/6a5acd/ffffff?text=Кейс+1"]
   },
   dentistry: {
     title: "Стоматология",
-    images: [
-      "https://i.postimg.cc/GmFkPfSL/1.jpg"
-    ]
+    images: ["https://via.placeholder.com/800x600/8a7dff/ffffff?text=Кейс+2"]
   },
   tea_coffee: {
-    title: "Чайные и кофейные ритуалы",
-    images: [
-      "https://t.me/overgrand"
-    ]
+    title: "Чай и кофе",
+    images: ["https://via.placeholder.com/800x600/ff6b35/ffffff?text=Кейс+3"]
   },
   bike_rental: {
     title: "Прокат велосипедов",
-    images: [
-      "https://t.me/overgrand"
-    ]
+    images: ["https://via.placeholder.com/800x600/0a0a14/ccccff?text=Кейс+4"]
   },
   fitness: {
     title: "Фитнес-тренер",
-    images: [
-      "https://t.me/overgrand"
-    ]
+    images: ["https://via.placeholder.com/800x600/4CAF50/ffffff?text=Кейс+5"]
   },
   travel: {
     title: "Тур-агентство",
-    images: [
-      "https://t.me/overgrand"
-    ]
+    images: ["https://via.placeholder.com/800x600/ff6b35/ffffff?text=Кейс+6"]
   }
 };
 
