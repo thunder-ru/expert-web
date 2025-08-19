@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
 
-  document.querySelectorAll('.service-card, .about-text, #contactForm, .testimonial-card, .portfolio-card').forEach(el => {
+  document.querySelectorAll('.service-card, .about-text, #contactForm, .testimonial-card, .carousel-item').forEach(el => {
     el.style.opacity = 0;
     el.style.transform = 'translateY(30px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -45,20 +45,54 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// === Карусель портфолио ===
+let carouselIndex = 0;
+const track = document.getElementById('carouselTrack');
+const items = document.querySelectorAll('.carousel-item');
+const itemWidth = 320 + 30; // ширина слайда + gap
+const totalItems = items.length / 2;
+
+function moveCarousel(direction) {
+  carouselIndex += direction;
+
+  if (carouselIndex < 0) {
+    track.style.transition = 'none';
+    carouselIndex = totalItems - 1;
+    track.style.transform = `translateX(${-carouselIndex * itemWidth}px)`;
+    setTimeout(() => {
+      track.style.transition = 'transform 0.5s ease';
+    }, 50);
+  } else if (carouselIndex >= totalItems) {
+    track.style.transition = 'none';
+    track.style.transform = `translateX(${-totalItems * itemWidth}px)`;
+    carouselIndex = 0;
+    setTimeout(() => {
+      track.style.transition = 'transform 0.5s ease';
+      track.style.transform = `translateX(0)`;
+    }, 50);
+  } else {
+    track.style.transform = `translateX(${-carouselIndex * itemWidth}px)`;
+  }
+}
+
+// Инициализация
+document.addEventListener('DOMContentLoaded', () => {
+  track.style.transition = 'transform 0.5s ease';
+  // Автопрокрутка (опционально)
+  setInterval(() => moveCarousel(1), 5000);
+});
+
 // === Данные о проектах (добавляйте любое количество фото по ссылкам) ===
 const projectData = {
   car_rental: {
     title: "Аренда автомобилей",
     images: [
-      "https://t.me/overgrand",
       "https://t.me/overgrand"
     ]
   },
   dentistry: {
     title: "Стоматология",
     images: [
-      "https://t.me/overgrand",
-      "https://t.me/overgrand",
       "https://t.me/overgrand"
     ]
   },
@@ -71,7 +105,6 @@ const projectData = {
   bike_rental: {
     title: "Прокат велосипедов",
     images: [
-      "https://t.me/overgrand",
       "https://t.me/overgrand"
     ]
   },
@@ -84,9 +117,6 @@ const projectData = {
   travel: {
     title: "Тур-агентство",
     images: [
-      "https://t.me/overgrand",
-      "https://t.me/overgrand",
-      "https://t.me/overgrand",
       "https://t.me/overgrand"
     ]
   }
