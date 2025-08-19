@@ -118,7 +118,7 @@ if (track && container) {
 const projectData = {
   car_rental: {
     title: "Аренда автомобилей",
-    images: []
+    images: ["https://i.postimg.cc/pdkWMT84/Black1.jpg"]
   },
   dentistry: {
     title: "Стоматология",
