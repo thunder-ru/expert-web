@@ -159,17 +159,17 @@ function goToSlide(n) { currentSlide = n; showSlide(currentSlide); }
 // Галерея
 const galleryData = {
   auto: {
-    title: "Аренда автомобилей",
-    desc: "Сайт для аренды автомобилей с онлайн-бронированием.",
-    result: "+110% заявок за 2 месяца",
-    images: [
-      "https://i.postimg.cc/pdkWMT84/Black1.jpg",
-      "https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg",
-      "https://i.postimg.cc/PrmQ0R29/Black3.jpg",
-      "https://i.postimg.cc/0yndyJgC/Black4.jpg",
-      "https://i.postimg.cc/HnbbDr4X/Black-5.jpg"
-    ]
-  },
+  title: "Аренда автомобилей",
+  desc: "Сайт для аренды автомобилей с онлайн-бронированием.",
+  result: "+110% заявок за 2 месяца",
+  images: [
+    "https://i.postimg.cc/pdkWMT84/Black1.jpg",
+    "https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg",
+    "https://i.postimg.cc/PrmQ0R29/Black3.jpg",
+    "https://i.postimg.cc/0yndyJgC/Black4.jpg",
+    "https://i.postimg.cc/HnbbDr4X/Black-5.jpg"
+  ]
+},
   dentist: {
     title: "Стоматология",
     desc: "Сайт-визитка с записью на приём и отзывами.",
