@@ -95,7 +95,7 @@ function closeModal() {
 }
 
 function acceptPolicy() {
-  alert('Спасибо за доверие! Политика принята.');
+  alert('Спасибо за доверие!');
   closeModal();
 }
 
