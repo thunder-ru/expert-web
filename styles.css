@@ -18,6 +18,7 @@ body {
   margin: 0 auto;
   padding: 0 20px;
 }
+
 /* Прогресс-бар */
 .progress-bar {
   position: fixed;
@@ -30,77 +31,7 @@ body {
   transition: width 0.1s ease;
   box-shadow: 0 0 10px rgba(255, 107, 53, 0.4);
 }
-/* Фоновая сетка */
-.body-bg {
-  background: 
-    radial-gradient(circle at 20% 35%, rgba(106, 90, 205, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 75%, rgba(255, 107, 53, 0.05) 0%, transparent 50%),
-    linear-gradient(90deg, rgba(138, 125, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(138, 125, 255, 0.03) 1px, transparent 1px);
-  background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  pointer-events: none;
-  opacity: 0.3;
-  animation: pulse-bg 8s infinite alternate;
-}
-@keyframes pulse-bg {
-  0% { opacity: 0.2; }
-  100% { opacity: 0.4; }
-}
-/* Светлячки */
-.particle {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  pointer-events: none;
-  box-shadow: 0 0 10px rgba(138, 125, 255, 0.6);
-  animation: float 8s infinite ease-in-out;
-  opacity: 0.6;
-  z-index: -1;
-}
-.particle:nth-child(7)  { background: #ff6b35; box-shadow: 0 0 15px rgba(255,107,53,0.8); animation-delay: 0s;  }
-.particle:nth-child(8)  { background: #6a5acd; box-shadow: 0 0 15px rgba(106,90,205,0.8); animation-delay: 1s; }
-.particle:nth-child(9)  { background: #8a7dff; box-shadow: 0 0 15px rgba(138,125,255,0.8); animation-delay: 2s; }
-.particle:nth-child(10) { background: #ff6b35; box-shadow: 0 0 12px rgba(255,107,53,0.6); animation-delay: 3s; }
-.particle:nth-child(11) { background: #6a5acd; box-shadow: 0 0 12px rgba(106,90,205,0.6); animation-delay: 4s; }
-.particle:nth-child(12) { background: #8a7dff; box-shadow: 0 0 10px rgba(138,125,255,0.6); animation-delay: 5s; }
-.particle:nth-child(13) { background: #ff6b35; box-shadow: 0 0 14px rgba(255,107,53,0.7); animation-delay: 6s; }
-.particle:nth-child(14) { background: #6a5acd; box-shadow: 0 0 13px rgba(106,90,205,0.7); animation-delay: 7s; }
-.particle:nth-child(15) { background: #8a7dff; box-shadow: 0 0 12px rgba(138,125,255,0.7); animation-delay: 0.5s; }
-.particle:nth-child(16) { background: #ff6b35; box-shadow: 0 0 11px rgba(255,107,53,0.5); animation-delay: 1.5s; }
-.particle:nth-child(17) { background: #6a5acd; box-shadow: 0 0 10px rgba(106,90,205,0.5); animation-delay: 2.5s; }
-.particle:nth-child(18) { background: #8a7dff; box-shadow: 0 0 9px rgba(138,125,255,0.5); animation-delay: 3.5s; }
-@keyframes float {
-  0% { transform: translateY(0) translateX(0); opacity: 0.6; }
-  50% { transform: translateY(-100vh) translateX(100vw); opacity: 0.2; }
-  100% { transform: translateY(-200vh) translateX(-50vw); opacity: 0; }
-}
-/* Переливающийся текст */
-.gradient-text {
-  background: linear-gradient(90deg, #ffffff, #8a7dff, #ff6b35, #8a7dff, #ffffff);
-  background-size: 400% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradientShift 6s ease infinite;
-  font-size: 3.5rem;
-  line-height: 1.2;
-  font-family: 'Space Grotesk', sans-serif;
-  text-align: center;
-}
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+
 /* Шапка */
 .header {
   position: fixed;
@@ -140,6 +71,7 @@ body {
   color: #8a7dff;
   cursor: pointer;
 }
+
 /* Статистика */
 .stats-bar {
   display: flex;
@@ -154,6 +86,7 @@ body {
 .mobile-hide {
   display: none;
 }
+
 /* Кнопки */
 .btn-primary {
   background: linear-gradient(45deg, #6a5acd, #8a7dff);
@@ -222,21 +155,7 @@ body {
   transform: translateY(-3px);
   box-shadow: 0 10px 30px rgba(255, 107, 53, 0.6);
 }
-.btn-glow-sm {
-  background: linear-gradient(45deg, #6a5acd, #8a7dff);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 10px;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(106, 90, 205, 0.3);
-}
-.btn-glow-sm:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(106, 90, 205, 0.4);
-}
+
 /* Главный экран */
 .hero {
   height: 100vh;
@@ -281,12 +200,7 @@ body {
   justify-content: center;
   flex-wrap: wrap;
 }
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+
 /* Секции */
 .section {
   padding: 100px 0;
@@ -305,6 +219,7 @@ body {
   font-size: 1.1rem;
   margin-bottom: 50px;
 }
+
 /* Обо мне */
 .about-wrapper {
   display: flex;
@@ -354,12 +269,7 @@ body {
   top: 0;
   color: #ff6b35;
 }
-.cta-group {
-  margin-top: 30px;
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-}
+
 /* Портфолио (слайдер) */
 .slider-container {
   position: relative;
@@ -401,7 +311,7 @@ body {
   transition: transform 0.5s ease;
   background: #0a0a14;
 }
-.overlay {
+overlay {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -418,11 +328,11 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
-.overlay h4 {
+overlay h4 {
   margin: 0 0 5px 0;
   font-size: 1.2rem;
 }
-.overlay p {
+overlay p {
   margin: 0;
   font-size: 0.9rem;
   opacity: 0.9;
@@ -486,6 +396,7 @@ body {
 .slider-dot.active {
   background: #8a7dff;
 }
+
 /* Адаптив для слайдера */
 @media (max-width: 768px) {
   .slider-btn {
@@ -525,20 +436,7 @@ body {
     height: 160px;
   }
 }
-/* CTA после портфолио */
-.portfolio-cta {
-  text-align: center;
-  padding: 40px 20px;
-  background: rgba(30, 30, 50, 0.5);
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(138, 125, 255, 0.2);
-}
-.portfolio-cta h3 {
-  font-size: 1.6rem;
-  margin-bottom: 20px;
-  color: white;
-}
+
 /* Услуги */
 .services-grid {
   display: grid;
@@ -571,29 +469,37 @@ body {
   margin-bottom: 20px;
   font-size: 0.95rem;
 }
-/* Гарантии */
-.guarantee-banner {
-  grid-column: 1 / -1;
-  background: rgba(106, 90, 205, 0.15);
-  padding: 16px;
-  border-radius: 12px;
-  text-align: center;
-  color: #ccccff;
-  font-size: 0.95rem;
-  border: 1px solid rgba(106, 90, 205, 0.3);
+
+/* Калькулятор */
+.calculator-steps {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+  margin: 0 auto;
 }
-.guarantee-banner i {
-  color: #8a7dff;
-  font-size: 1.2rem;
+.calc-step label {
+  display: block;
+  color: #ccc;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
 }
-.text-center {
-  text-align: center;
-  margin-top: 40px;
+.calc-select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #3a3a5a;
+  border-radius: 10px;
+  background: rgba(30, 30, 50, 0.7);
+  color: white;
+  font-size: 1rem;
+  transition: border 0.3s ease;
 }
+.calc-select:focus {
+  outline: none;
+  border-color: #8a7dff;
+  box-shadow: 0 0 10px rgba(138, 125, 255, 0.3);
+}
+
 /* Отзывы */
 .testimonials-grid {
   display: grid;
@@ -625,6 +531,7 @@ body {
   font-weight: 600;
   font-size: 0.95rem;
 }
+
 /* Контакты */
 .contact-content {
   display: flex;
@@ -650,10 +557,6 @@ body {
   margin-top: 15px;
   color: #8a7dff;
   font-style: italic;
-}
-.contact-form {
-  flex: 2;
-  min-width: 300px;
 }
 .contact-form input,
 .contact-form textarea {
@@ -687,6 +590,7 @@ body {
 .hidden {
   display: none;
 }
+
 /* Подвал */
 .footer {
   background: #080810;
@@ -707,6 +611,7 @@ body {
 .footer-links a:hover {
   text-decoration: underline;
 }
+
 /* Модальное окно политики */
 .modal {
   display: none;
@@ -746,10 +651,7 @@ body {
   gap: 15px;
   justify-content: center;
 }
-@keyframes modalFadeIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to { opacity: 1; transform: scale(1); }
-}
+
 /* Модальное окно проекта */
 #projectModal {
   display: none;
@@ -825,6 +727,7 @@ body {
 .gallery-img:hover {
   transform: scale(1.02);
 }
+
 /* Адаптив */
 @media (max-width: 768px) {
   .nav {
@@ -860,9 +763,6 @@ body {
     text-align: center;
     font-size: 0.9rem;
   }
-  .mobile-hide {
-    display: none;
-  }
 }
 @media (max-width: 480px) {
   .hero-content h1 {
@@ -874,20 +774,5 @@ body {
   .btn-glow {
     padding: 14px 24px;
     font-size: 1rem;
-  }
-  .portfolio-cta h3 {
-    font-size: 1.4rem;
-  }
-}
-@media (max-width: 375px) {
-  .container {
-    padding: 0 15px;
-  }
-  .hero-content h1 {
-    font-size: 1.8rem;
-  }
-  .btn-glow {
-    padding: 12px 20px;
-    font-size: 0.95rem;
   }
 }
