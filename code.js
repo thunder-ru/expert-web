@@ -49,70 +49,71 @@ document.addEventListener('DOMContentLoaded', () => {
 let sliderIndex = 0;
 const track = document.getElementById('sliderTrack');
 const container = document.getElementById('sliderContainer');
+const items = document.querySelectorAll('.slider-item');
+const totalItems = items.length;
 
-if (track && container) {
-  const items = document.querySelectorAll('.slider-item');
-  const totalItems = items.length;
+// Перемещение слайдера
+function moveSlider(direction) {
+  sliderIndex += direction;
 
-  // Перемещение слайдера
-  function moveSlider(direction) {
-    sliderIndex += direction;
+  if (sliderIndex < 0) sliderIndex = totalItems - 1;
+  if (sliderIndex >= totalItems) sliderIndex = 0;
 
-    if (sliderIndex < 0) sliderIndex = totalItems - 1;
-    if (sliderIndex >= totalItems) sliderIndex = 0;
-
-    track.style.transform = `translateX(${-sliderIndex * 100}%)`;
-  }
-
-  // Автопрокрутка
-  let autoSlide = setInterval(() => moveSlider(1), 7000);
-
-  // Остановка при наведении
-  container.addEventListener('mouseenter', () => clearInterval(autoSlide));
-  container.addEventListener('mouseleave', () => {
-    autoSlide = setInterval(() => moveSlider(1), 7000);
-  });
-
-  // Листание мышкой
-  let isDragging = false, startX, startTranslate;
-  container.addEventListener('mousedown', (e) => {
-    isDragging = true;
-    startX = e.pageX;
-    startTranslate = -sliderIndex * 100;
-    track.style.transition = 'none';
-  });
-
-  container.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    const diff = (e.pageX - startX) / window.innerWidth * 100;
-    track.style.transform = `translateX(${startTranslate + diff}%)`;
-  });
-
-  container.addEventListener('mouseup', (e) => {
-    if (!isDragging) return;
-    isDragging = false;
-    const diff = e.pageX - startX;
-    if (Math.abs(diff) > 50) moveSlider(diff > 0 ? -1 : 1);
-    else moveSlider(0);
-    track.style.transition = 'transform 0.6s ease';
-  });
-
-  container.addEventListener('mouseleave', () => {
-    if (isDragging) {
-      isDragging = false;
-      moveSlider(0);
-      track.style.transition = 'transform 0.6s ease';
-    }
-  });
-
-  // Инициализация
-  document.addEventListener('DOMContentLoaded', () => {
-    track.style.transition = 'transform 0.6s ease';
-    moveSlider(0);
-  });
-} else {
-  console.error('Элементы слайдера не найдены');
+  track.style.transform = `translateX(${-sliderIndex * 100}%)`;
 }
+
+// Автопрокрутка
+let autoSlide = setInterval(() => moveSlider(1), 7000);
+
+// Остановка при наведении
+container.addEventListener('mouseenter', () => clearInterval(autoSlide));
+container.addEventListener('mouseleave', () => {
+  autoSlide = setInterval(() => moveSlider(1), 7000);
+});
+
+// Листание мышкой (drag & drop)
+let isDragging = false;
+let startX, startTranslate;
+
+container.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  startX = e.pageX;
+  startTranslate = -sliderIndex * 100;
+  track.style.transition = 'none';
+});
+
+container.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  e.preventDefault();
+  const diff = (e.pageX - startX) / window.innerWidth * 100;
+  track.style.transform = `translateX(${startTranslate + diff}%)`;
+});
+
+container.addEventListener('mouseup', (e) => {
+  if (!isDragging) return;
+  isDragging = false;
+  const diff = e.pageX - startX;
+  if (Math.abs(diff) > 50) {
+    moveSlider(diff > 0 ? -1 : 1);
+  } else {
+    moveSlider(0);
+  }
+  track.style.transition = 'transform 0.6s ease';
+});
+
+container.addEventListener('mouseleave', () => {
+  if (isDragging) {
+    isDragging = false;
+    moveSlider(0);
+    track.style.transition = 'transform 0.6s ease';
+  }
+});
+
+// Инициализация
+document.addEventListener('DOMContentLoaded', () => {
+  track.style.transition = 'transform 0.6s ease';
+  moveSlider(0);
+});
 
 // === Данные о проектах (галерея) ===
 const projectData = {
