@@ -119,38 +119,38 @@ const projectData = {
   car_rental: {
     title: "Аренда автомобилей",
     images: [
-  "https://i.postimg.cc/pdkWMT84/Black1.jpg",
-  "https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg",
-  "https://i.postimg.cc/PrmQ0R29/Black3.jpg",
-  "https://i.postimg.cc/0yndyJgC/Black4.jpg",
-  "https://i.postimg.cc/HnbbDr4X/Black-5.jpg"
-]
+      "https://i.postimg.cc/pdkWMT84/Black1.jpg",
+      "https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg",
+      "https://i.postimg.cc/PrmQ0R29/Black3.jpg",
+      "https://i.postimg.cc/0yndyJgC/Black4.jpg",
+      "https://i.postimg.cc/HnbbDr4X/Black-5.jpg"
+    ]
   },
   dentistry: {
-  title: "Стоматология",
-  images: [
-    "https://i.postimg.cc/GmFkPfSL/1.jpg",
-    "https://i.postimg.cc/5tgJdxjX/2.jpg",
-    "https://i.postimg.cc/D0J3XL6G/3.jpg",
-    "https://i.postimg.cc/8k9SVXkm/4.jpg",
-    "https://i.postimg.cc/zf0s20PW/6.jpg",
-    "https://i.postimg.cc/g2dcft4B/7.jpg",
-    "https://i.postimg.cc/vm2QxYyp/8.jpg",
-    "https://i.postimg.cc/DfX2m3MM/9.jpg"
-  ]
-},
+    title: "Стоматология",
+    images: [
+      "https://i.postimg.cc/GmFkPfSL/1.jpg",
+      "https://i.postimg.cc/5tgJdxjX/2.jpg",
+      "https://i.postimg.cc/D0J3XL6G/3.jpg",
+      "https://i.postimg.cc/8k9SVXkm/4.jpg",
+      "https://i.postimg.cc/zf0s20PW/6.jpg",
+      "https://i.postimg.cc/g2dcft4B/7.jpg",
+      "https://i.postimg.cc/vm2QxYyp/8.jpg",
+      "https://i.postimg.cc/DfX2m3MM/9.jpg"
+    ]
+  },
   tea_coffee: {
-  title: "Чай и кофе",
-  images: [
-    "https://i.postimg.cc/xC4HTVqR/1.jpg",
-    "https://i.postimg.cc/GmSbdtS8/2.jpg",
-    "https://i.postimg.cc/tCTfyk0k/3.jpg",
-    "https://i.postimg.cc/MpfFfGpj/4.jpg",
-    "https://i.postimg.cc/d08NnSds/5.jpg",
-    "https://i.postimg.cc/nz2Rfj0N/6.jpg",
-    "https://i.postimg.cc/zf10LSQ9/7.jpg"
-  ]
-},
+    title: "Чай и кофе",
+    images: [
+      "https://i.postimg.cc/xC4HTVqR/1.jpg",
+      "https://i.postimg.cc/GmSbdtS8/2.jpg",
+      "https://i.postimg.cc/tCTfyk0k/3.jpg",
+      "https://i.postimg.cc/MpfFfGpj/4.jpg",
+      "https://i.postimg.cc/d08NnSds/5.jpg",
+      "https://i.postimg.cc/nz2Rfj0N/6.jpg",
+      "https://i.postimg.cc/zf10LSQ9/7.jpg"
+    ]
+  },
   bike_rental: {
     title: "Прокат велосипедов",
     images: ["https://via.placeholder.com/800x600/0a0a14/ccccff?text=Кейс+4"]
