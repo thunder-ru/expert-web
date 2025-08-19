@@ -319,9 +319,12 @@
           </label>
         </div>
 
-        <div class="result" id="result">Итого: 0 ₽</div>
-        <button type="button" onclick="sendCalcResult()" class="btn primary large">Получить точную смету</button>
-        <button type="button" onclick="prevStep()" class="btn secondary">Назад</button>
+        <div class="result" id="result">Примерная стоимость: 0 ₽</div>
+<p style="color: #94a3b8; font-size: 0.9rem; text-align: center; margin: 10px 0;">
+  Это ориентировочная цена. Финальная сумма может незначительно отличаться после уточнения деталей.
+</p>
+<button type="button" onclick="requestQuote()" class="btn primary large">Получить точную смету</button>
+<button type="button" onclick="goBack()" class="btn secondary">Назад</button>
       </div>
     </div>
   </div>
