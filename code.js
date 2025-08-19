@@ -163,3 +163,57 @@ function toggleMenu() {
 document.addEventListener("DOMContentLoaded", function () {
   showSlide(0); // Запускаем слайдер
 });
+
+// Переход к следующему шагу
+function nextStep(n) {
+  document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+  document.getElementById(`step${n}`).classList.add('active');
+  updateTotal(); // Пересчёт
+}
+
+// Возврат на предыдущий шаг
+function prevStep() {
+  const steps = [1, 2, 3, 4];
+  for (let i = 1; i <= 4; i++) {
+    if (document.getElementById(`step${i}`).classList.contains('active') && i > 1) {
+      nextStep(i - 1);
+      return;
+    }
+  }
+}
+
+// Обновление итоговой стоимости
+function updateTotal() {
+  let total = 0;
+
+  // Тип сайта
+  const siteType = document.querySelector('input[name="siteType"]:checked');
+  if (siteType) total += parseFloat(siteType.value);
+
+  // Дизайн
+  const design = document.querySelector('input[name="design"]:checked');
+  if (design) total += parseFloat(design.value);
+
+  // Функционал
+  document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+    total += parseFloat(cb.value);
+  });
+
+  // SEO
+  const seo = document.querySelector('input[name="seo"]:checked');
+  if (seo) total += parseFloat(seo.value);
+
+  // Поддержка
+  const support = document.querySelector('input[name="support"]:checked');
+  if (support) total += parseFloat(support.value);
+
+  document.getElementById('result').innerText = `Итого: ${total.toLocaleString()} ₽`;
+}
+
+// Отправка результата
+function sendCalcResult() {
+  const result = document.getElementById('result').innerText;
+  const msg = `Новая заявка!\n${result}\nПожалуйста, свяжитесь со мной.`;
+  const url = `https://t.me/overgrand?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+}
