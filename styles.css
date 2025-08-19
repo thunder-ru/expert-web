@@ -444,10 +444,16 @@ body {
   border-radius: 16px;
   overflow: hidden;
   height: 300px;
-  flex-shrink: 0;
+  cursor: pointer;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  flex-shrink: 0;
   background: #0a0a14;
+}
+
+.slider-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(138, 125, 255, 0.3);
 }
 
 .slider-item img {
@@ -544,51 +550,6 @@ overlay p {
 
 .next {
   right: 15px;
-}
-
-/* Адаптив */
-@media (max-width: 768px) {
-  .slider-container {
-    height: 240px;
-  }
-  .slider-item {
-    height: 240px;
-  }
-  .slider-item img {
-    object-fit: contain;
-  }
-  .overlay h4 {
-    font-size: 1.1rem;
-  }
-  .overlay p {
-    font-size: 0.85rem;
-  }
-  .slider-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1.3rem;
-  }
-  .prev {
-    left: 10px;
-  }
-  .next {
-    right: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .slider-container {
-    height: 200px;
-  }
-  .slider-item {
-    height: 200px;
-  }
-  .overlay h4 {
-    font-size: 1.05rem;
-  }
-  .overlay p {
-    font-size: 0.8rem;
-  }
 }
 
 /* CTA после портфолио */
