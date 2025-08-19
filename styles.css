@@ -425,10 +425,6 @@ body {
   height: 300px;
 }
 
-.slider-container:active {
-  cursor: grabbing;
-}
-
 .slider-track {
   display: flex;
   transition: transform 0.6s ease;
@@ -469,7 +465,7 @@ body {
   transform: scale(1.05);
 }
 
-.overlay {
+overlay {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -488,12 +484,12 @@ body {
   transform: translateY(0);
 }
 
-.overlay h4 {
+overlay h4 {
   margin: 0 0 5px 0;
   font-size: 1.2rem;
 }
 
-.overlay p {
+overlay p {
   margin: 0;
   font-size: 0.9rem;
   opacity: 0.9;
@@ -550,6 +546,62 @@ body {
 
 .next {
   right: 15px;
+}
+
+/* Пагинация */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(138, 125, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.slider-dot.active {
+  background: #8a7dff;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+  .slider-container {
+    height: 240px;
+  }
+
+  .slider-item {
+    height: 240px;
+  }
+
+  .prev {
+    left: 10px;
+  }
+
+  .next {
+    right: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slider-container {
+    height: 200px;
+  }
+
+  .slider-item {
+    height: 200px;
+  }
+
+  .slider-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.3rem;
+  }
 }
 
 /* CTA после портфолио */
