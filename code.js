@@ -92,11 +92,99 @@ function prevSlide() { currentSlide--; showSlide(currentSlide); }
 function goToSlide(n) { currentSlide = n; showSlide(currentSlide); }
 
 // Галерея
-function openGallery(images) {
+const galleryData = {
+  auto: {
+    title: "Аренда автомобилей",
+    desc: "Сайт для аренды автомобилей с онлайн-бронированием.",
+    result: "+110% заявок за 2 месяца",
+    images: [
+      "https://i.postimg.cc/pdkWMT84/Black1.jpg",
+      "https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg",
+      "https://i.postimg.cc/PrmQ0R29/Black3.jpg",
+      "https://i.postimg.cc/0yndyJgC/Black4.jpg",
+      "https://i.postimg.cc/HnbbDr4X/Black-5.jpg"
+    ]
+  },
+  dentist: {
+    title: "Стоматология",
+    desc: "Сайт-визитка с записью на приём и отзывами.",
+    result: "ТОП-3 в Яндекс по ключевым запросам",
+    images: [
+      "https://i.postimg.cc/GmFkPfSL/1.jpg",
+      "https://i.postimg.cc/5tgJdxjX/2.jpg",
+      "https://i.postimg.cc/D0J3XL6G/3.jpg",
+      "https://i.postimg.cc/8k9SVXkm/4.jpg",
+      "https://i.postimg.cc/zf0s20PW/6.jpg",
+      "https://i.postimg.cc/g2dcft4B/7.jpg",
+      "https://i.postimg.cc/vm2QxYyp/8.jpg",
+      "https://i.postimg.cc/DfX2m3MM/9.jpg"
+    ]
+  },
+  tea: {
+    title: "Онлайн магазин чая и кофе",
+    desc: "Интернет-магазин с каталогом и корзиной.",
+    result: "Окупился за 6 недель",
+    images: [
+      "https://i.postimg.cc/xC4HTVqR/1.jpg",
+      "https://i.postimg.cc/GmSbdtS8/2.jpg",
+      "https://i.postimg.cc/tCTfyk0k/3.jpg",
+      "https://i.postimg.cc/MpfFfGpj/4.jpg",
+      "https://i.postimg.cc/d08NnSds/5.jpg",
+      "https://i.postimg.cc/nz2Rfj0N/6.jpg",
+      "https://i.postimg.cc/zf10LSQ9/7.jpg"
+    ]
+  },
+  bike: {
+    title: "Магазин велосипедов",
+    desc: "Сайт с каталогом, фильтрами и оплатой.",
+    result: "+90% трафика и 200+ заказов в месяц",
+    images: [
+      "https://i.postimg.cc/J7S6P9KZ/image.jpg",
+      "https://i.postimg.cc/MG02XYWL/2.jpg",
+      "https://i.postimg.cc/zfr4mRnF/3.jpg",
+      "https://i.postimg.cc/dQxXsf21/4.jpg",
+      "https://i.postimg.cc/rFRHK9j9/5.jpg",
+      "https://i.postimg.cc/wjKGJsbY/6.jpg",
+      "https://i.postimg.cc/DwqYcytJ/7.jpg"
+    ]
+  },
+  fitness: {
+    title: "Персональный тренер",
+    desc: "Лендинг с формой записи и видео.",
+    result: "30+ новых клиентов за месяц",
+    images: [
+      "https://i.postimg.cc/Z5xwY0mx/1.jpg",
+      "https://i.postimg.cc/907v5PN1/2.jpg",
+      "https://i.postimg.cc/vH5p0znZ/3.jpg",
+      "https://i.postimg.cc/bwT4hw3X/image.jpg",
+      "https://i.postimg.cc/26PKwb8W/5.jpg"
+    ]
+  },
+  travel: {
+    title: "Турагентство",
+    desc: "Сайт с удобным бронированием туров.",
+    result: "Удобное бронирование туров онлайн",
+    images: [
+      "https://i.postimg.cc/8kvBPsBf/1.jpg",
+      "https://i.postimg.cc/zG02QPG8/2.jpg",
+      "https://i.postimg.cc/xdB5DrDD/3.jpg",
+      "https://i.postimg.cc/9FcpjtSM/4.jpg",
+      "https://i.postimg.cc/bwBHkXvD/5.jpg",
+      "https://i.postimg.cc/MGf0Yscs/6.jpg"
+    ]
+  }
+};
+
+function openGallery(projectId) {
+  const data = galleryData[projectId];
+  document.getElementById('projectTitle').innerText = data.title;
+  document.getElementById('projectDesc').innerText = data.desc;
+  document.getElementById('projectResult').innerText = data.result;
+
   const galleryGrid = document.getElementById('galleryGrid');
   galleryGrid.innerHTML = ''; // Очистка
 
-  images.forEach(imgUrl => {
+  data.images.forEach(imgUrl => {
     const img = document.createElement('img');
     img.src = imageUrl;
     img.alt = 'Проект';
@@ -106,11 +194,6 @@ function openGallery(images) {
     img.style.boxShadow = '0 8px 20px rgba(0,0,0,0.1)';
     galleryGrid.appendChild(img);
   });
-
-  // Заголовок и описание (пример)
-  document.getElementById('projectTitle').innerText = "Проект";
-  document.getElementById('projectDesc').innerText = "Описание проекта.";
-  document.getElementById('projectResult').innerText = "Результат: +100% трафик";
 
   document.getElementById('galleryModal').style.display = 'flex';
 }
