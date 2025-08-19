@@ -1,191 +1,103 @@
-// Инициализация EmailJS
-(function () {
-  emailjs.init("YOUR_PUBLIC_KEY"); // ← Вставьте ваш Public Key
-})();
+// Открытие Telegram
+function openTelegram() {
+  window.open("https://t.me/overgrand", '_blank');
+}
 
-// Прогресс-бар
-window.addEventListener('scroll', () => {
-  const scrollTop = document.documentElement.scrollTop;
-  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = (scrollTop / scrollHeight) * 100;
-  document.getElementById('progressBar').style.width = progress + '%';
+// Прокрутка к форме
+function scrollToForm() {
+  document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+}
+
+// Калькулятор
+function calculate() {
+  let total = 0;
+
+  // Тип сайта
+  total += parseFloat(document.getElementById("siteType").value) || 0;
+
+  // Дизайн
+  total += parseFloat(document.getElementById("design").value) || 0;
+
+  // Страницы (кроме лендинга)
+  const siteType = parseFloat(document.getElementById("siteType").value);
+  if (siteType !== 20000) {
+    const pages = parseInt(document.getElementById("pages").value) || 1;
+    total += pages * 1500;
+  }
+
+  // Функционал
+  document.querySelectorAll('#calcForm input[type="checkbox"]:checked').forEach(cb => {
+    total += parseFloat(cb.value);
+  });
+
+  // SEO
+  total += parseFloat(document.getElementById("seo").value) || 0;
+
+  // Поддержка
+  total += parseFloat(document.getElementById("support").value) || 0;
+
+  // Вывод
+  document.getElementById("result").innerText = `Примерная стоимость: ${total.toLocaleString()} ₽`;
+}
+
+// Отправка сметы
+function sendCalcResult() {
+  const result = document.getElementById("result").innerText;
+  const msg = `Новая заявка!\n${result}\nПожалуйста, свяжитесь со мной.`;
+  const url = `https://t.me/overgrand?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+}
+
+// Форма обратной связи
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const phone = document.getElementById('phone').value;
+  const email = document.getElementById('email').value;
+
+  const text = `Новая заявка!\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}`;
+  const url = `https://t.me/overgrand?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+  alert('Заявка отправлена! Свяжемся в ближайшее время.');
 });
 
-// Анимация при загрузке
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('heroText').style.animation = 'fadeInUp 1s ease forwards';
-  document.getElementById('aboutText').style.animation = 'fadeInUp 1s ease 0.3s forwards';
-  initSlider();
-  updateTotal();
+// Портфолио слайдер
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const dotsContainer = document.getElementById('sliderDots');
+
+// Создаём точки
+slides.forEach((_, index) => {
+  const dot = document.createElement('div');
+  dot.classList.add('dot');
+  if (index === 0) dot.classList.add('active');
+  dot.onclick = () => goToSlide(index);
+  dotsContainer.appendChild(dot);
 });
+
+function showSlide(n) {
+  slides.forEach(slide => slide.classList.remove('active'));
+  const dots = document.querySelectorAll('.dot');
+  dots.forEach(dot => dot.classList.remove('active'));
+
+  if (n >= slides.length) currentSlide = 0;
+  if (n < 0) currentSlide = slides.length - 1;
+
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() { currentSlide++; showSlide(currentSlide); }
+function prevSlide() { currentSlide--; showSlide(currentSlide); }
+function goToSlide(n) { currentSlide = n; showSlide(currentSlide); }
 
 // Мобильное меню
 function toggleMenu() {
-  const nav = document.querySelector('.nav');
-  nav.classList.toggle('active');
+  document.getElementById("mainNav").classList.toggle("active");
 }
 
-// Плавный скролл
-function scrollToSection(id) {
-  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-  if (document.querySelector('.nav').classList.contains('active')) {
-    document.querySelector('.nav').classList.remove('active');
-  }
-}
-
-// === КАЛЬКУЛЯТОР СТОИМОСТИ ===
-function updateTotal() {
-  const siteType = parseFloat(document.getElementById('siteType').value) || 0;
-  const needSEO = parseFloat(document.getElementById('needSEO').value) || 0;
-  const urgency = parseFloat(document.getElementById('urgency').value) || 0;
-  const total = siteType + needSEO + urgency;
-  document.getElementById('totalPrice').textContent = total.toLocaleString('ru-RU') + ' ₽';
-}
-
-document.getElementById('siteType').addEventListener('change', updateTotal);
-document.getElementById('needSEO').addEventListener('change', updateTotal);
-document.getElementById('urgency').addEventListener('change', updateTotal);
-
-// === СЛАЙДЕР ПОРТФОЛИО ===
-let currentSlide = 0;
-const sliderTrack = document.getElementById('sliderTrack');
-const sliderItems = document.querySelectorAll('.slider-item');
-const dotsContainer = document.getElementById('sliderDots');
-const totalSlides = sliderItems.length;
-
-// Создание точек
-for (let i = 0; i < totalSlides; i++) {
-  const dot = document.createElement('div');
-  dot.classList.add('slider-dot');
-  if (i === 0) dot.classList.add('active');
-  dot.addEventListener('click', () => goToSlide(i));
-  dotsContainer.appendChild(dot);
-}
-
-function updateSlider() {
-  const itemWidth = 280;
-  const gap = 20;
-  sliderTrack.style.transform = `translateX(-${currentSlide * (itemWidth + gap)}px)`;
-  document.querySelectorAll('.slider-dot').forEach((dot, i) => {
-    dot.classList.toggle('active', i === currentSlide);
-  });
-}
-
-function moveSlider(direction) {
-  currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-  updateSlider();
-}
-
-function goToSlide(index) {
-  currentSlide = index;
-  updateSlider();
-}
-
-function initSlider() {
-  updateSlider();
-}
-
-// === МОДАЛЬНЫЕ ОКНА ===
-function openModal() {
-  document.getElementById('privacyModal').style.display = 'flex';
-}
-
-function closeModal() {
-  document.getElementById('privacyModal').style.display = 'none';
-}
-
-function acceptPolicy() {
-  alert('Спасибо за доверие!');
-  closeModal();
-}
-
-// Данные для проектов
-const projectData = {
-  car_rental: {
-    title: "Автомойка",
-    images: [
-      "https://i.postimg.cc/pdkWMT84/Black1.jpg",
-      "https://via.placeholder.com/800x600/1a1a2e/ffffff?text=Скрин+2"
-    ]
-  },
-  dentistry: {
-    title: "Стоматология",
-    images: [
-      "https://i.postimg.cc/GmFkPfSL/1.jpg",
-      "https://via.placeholder.com/800x600/1a1a2e/ffffff?text=Скрин+2"
-    ]
-  },
-  tea_coffee: {
-    title: "Чай и кофе",
-    images: [
-      "https://i.postimg.cc/xC4HTVqR/1.jpg",
-      "https://via.placeholder.com/800x600/1a1a2e/ffffff?text=Скрин+2"
-    ]
-  },
-  bike_rental: {
-    title: "Прокат велосипедов",
-    images: [
-      "https://i.postimg.cc/J7S6P9KZ/image.jpg",
-      "https://via.placeholder.com/800x600/1a1a2e/ffffff?text=Скрин+2"
-    ]
-  },
-  fitness: {
-    title: "Фитнес-клуб",
-    images: [
-      "https://i.postimg.cc/Z5xwY0mx/1.jpg",
-      "https://via.placeholder.com/800x600/1a1a2e/ffffff?text=Скрин+2"
-    ]
-  },
-  travel: {
-    title: "Турагентство",
-    images: [
-      "https://i.postimg.cc/8kvBPsBf/1.jpg",
-      "https://via.placeholder.com/800x600/1a1a2e/ffffff?text=Скрин+2"
-    ]
-  }
-};
-
-function openProjectModal(projectId) {
-  const data = projectData[projectId];
-  if (!data) return;
-
-  document.getElementById('projectTitle').textContent = data.title;
-  const gallery = document.getElementById('gallerySlides');
-  gallery.innerHTML = '';
-  data.images.forEach(imgSrc => {
-    const img = document.createElement('img');
-    img.src = imgSrc;
-    img.classList.add('gallery-img');
-    gallery.appendChild(img);
-  });
-
-  document.getElementById('projectModal').style.display = 'flex';
-}
-
-function closeProjectModal() {
-  document.getElementById('projectModal').style.display = 'none';
-}
-
-// === ФОРМА ===
-document.getElementById('contactForm').addEventListener('submit', function (e) {
-  e.preventDefault();
-
-  const formData = new FormData(this);
-  const templateParams = {
-    name: formData.get('name'),
-    email: formData.get('email'),
-    message: formData.get('message')
-  };
-
-  emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
-    .then(() => {
-      document.getElementById('successMessage').classList.remove('hidden');
-      this.reset();
-      setTimeout(() => {
-        document.getElementById('successMessage').classList.add('hidden');
-      }, 5000);
-    })
-    .catch((error) => {
-      alert('Ошибка отправки: ' + JSON.stringify(error));
-    });
+// Инициализация
+document.addEventListener("DOMContentLoaded", function () {
+  calculate(); // Первый расчёт
+  showSlide(0); // Первый слайд
 });
