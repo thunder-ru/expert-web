@@ -163,9 +163,11 @@ const galleryData = {
     desc: "Сайт для аренды автомобилей с онлайн-бронированием.",
     result: "+110% заявок за 2 месяца",
     images: [
-      "https://via.placeholder.com/600x400/8b5cf6/ffffff?text=Auto1",
-      "https://via.placeholder.com/600x400/8b5cf6/ffffff?text=Auto2",
-      "https://via.placeholder.com/600x400/8b5cf6/ffffff?text=Auto3"
+      "https://i.postimg.cc/pdkWMT84/Black1.jpg",
+      "https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg",
+      "https://i.postimg.cc/PrmQ0R29/Black3.jpg",
+      "https://i.postimg.cc/0yndyJgC/Black4.jpg",
+      "https://i.postimg.cc/HnbbDr4X/Black-5.jpg"
     ]
   },
   dentist: {
