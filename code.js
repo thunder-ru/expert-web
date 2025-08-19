@@ -150,7 +150,7 @@ const projectData = {
     "https://i.postimg.cc/nz2Rfj0N/6.jpg",
     "https://i.postimg.cc/zf10LSQ9/7.jpg"
   ]
-}
+},
   bike_rental: {
     title: "Прокат велосипедов",
     images: ["https://via.placeholder.com/800x600/0a0a14/ccccff?text=Кейс+4"]
