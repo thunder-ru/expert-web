@@ -141,7 +141,15 @@ const projectData = {
 },
   tea_coffee: {
     title: "Чай и кофе",
-    images: ["https://via.placeholder.com/800x600/ff6b35/ffffff?text=Кейс+3"]
+    images: [
+      "https://i.postimg.cc/xC4HTVqR/1.jpg",
+      "https://i.postimg.cc/GmSbdtS8/2.jpg",
+      "https://i.postimg.cc/tCTfyk0k/3.jpg",
+      "https://i.postimg.cc/MpfFfGpj/4.jpg",
+      "https://i.postimg.cc/d08NnSds/5.jpg",
+      "https://i.postimg.cc/nz2Rfj0N/6.jpg",
+      "https://i.postimg.cc/zf10LSQ9/7.jpg"
+    ]
   },
   bike_rental: {
     title: "Прокат велосипедов",
