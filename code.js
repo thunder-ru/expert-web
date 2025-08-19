@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
 
-  document.querySelectorAll('.service-card, .about-text, #contactForm, .testimonial-card, .carousel-item').forEach(el => {
+  document.querySelectorAll('.service-card, .about-text, #contactForm, .testimonial-card, .slider-item').forEach(el => {
     el.style.opacity = 0;
     el.style.transform = 'translateY(30px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -45,41 +45,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// === Карусель портфолио ===
-let carouselIndex = 0;
-const track = document.getElementById('carouselTrack');
-const items = document.querySelectorAll('.carousel-item');
-const itemWidth = 320 + 30; // ширина слайда + gap
-const totalItems = items.length / 2;
+// === Слайдер портфолио ===
+let sliderIndex = 0;
+const track = document.getElementById('sliderTrack');
+const items = document.querySelectorAll('.slider-item');
+const itemWidth = 100; // ширина слайда (100%)
+const totalItems = items.length;
 
-function moveCarousel(direction) {
-  carouselIndex += direction;
+function moveSlider(direction) {
+  sliderIndex += direction;
 
-  if (carouselIndex < 0) {
-    track.style.transition = 'none';
-    carouselIndex = totalItems - 1;
-    track.style.transform = `translateX(${-carouselIndex * itemWidth}px)`;
-    setTimeout(() => {
-      track.style.transition = 'transform 0.5s ease';
-    }, 50);
-  } else if (carouselIndex >= totalItems) {
-    track.style.transition = 'none';
-    track.style.transform = `translateX(${-totalItems * itemWidth}px)`;
-    carouselIndex = 0;
-    setTimeout(() => {
-      track.style.transition = 'transform 0.5s ease';
-      track.style.transform = `translateX(0)`;
-    }, 50);
-  } else {
-    track.style.transform = `translateX(${-carouselIndex * itemWidth}px)`;
+  if (sliderIndex < 0) {
+    sliderIndex = totalItems - 1;
+  } else if (sliderIndex >= totalItems) {
+    sliderIndex = 0;
   }
+
+  track.style.transform = `translateX(${-sliderIndex * itemWidth}%)`;
 }
+
+// Автопрокрутка
+setInterval(() => moveSlider(1), 5000);
 
 // Инициализация
 document.addEventListener('DOMContentLoaded', () => {
   track.style.transition = 'transform 0.5s ease';
-  // Автопрокрутка (опционально)
-  setInterval(() => moveCarousel(1), 5000);
 });
 
 // === Данные о проектах (добавляйте любое количество фото по ссылкам) ===
