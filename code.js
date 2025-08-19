@@ -12,18 +12,12 @@ function scrollToSection(id) {
 function calculate() {
   let total = 0;
 
-  // Тип сайта
-  total += parseFloat(document.getElementById("siteType").value) || 0;
+  // Базовая цена
+  const basePrice = parseFloat(document.getElementById("siteType").value) || 0;
+  total += basePrice;
 
   // Дизайн
   total += parseFloat(document.getElementById("design").value) || 0;
-
-  // Страницы (кроме лендинга)
-  const siteType = parseFloat(document.getElementById("siteType").value);
-  if (siteType !== 20000) {
-    const pages = parseInt(document.getElementById("pages").value) || 1;
-    total += pages * 1500;
-  }
 
   // Функционал
   document.querySelectorAll('#calcForm input[type="checkbox"]:checked').forEach(cb => {
@@ -38,6 +32,77 @@ function calculate() {
 
   // Вывод
   document.getElementById("result").innerText = `Примерная стоимость: ${total.toLocaleString()} ₽`;
+}
+
+// Динамические опции в калькуляторе
+function updateCalculator() {
+  const type = document.getElementById("siteType").value;
+  const optionsDiv = document.getElementById("dynamicOptions");
+  optionsDiv.innerHTML = '';
+
+  const options = {
+    landing: {
+      title: "Лендинг",
+      base: 20000,
+      features: [
+        { text: "Одна страница", price: 0 },
+        { text: "Форма заявки", price: 2000 },
+        { text: "Онлайн-чат", price: 3000 },
+        { text: "Анимации", price: 5000 },
+        { text: "Интеграция с CRM", price: 15000 }
+      ]
+    },
+    visiting: {
+      title: "Сайт-визитка",
+      base: 15000,
+      features: [
+        { text: "3–5 страниц", price: 0 },
+        { text: "Форма", price: 2000 },
+        { text: "Чат", price: 3000 },
+        { text: "SEO", price: 5000 },
+        { text: "Фотогалерея", price: 8000 }
+      ]
+    },
+    corporate: {
+      title: "Корпоративный сайт",
+      base: 30000,
+      features: [
+        { text: "5–10 страниц", price: 0 },
+        { text: "Блог", price: 5000 },
+        { text: "Чат", price: 3000 },
+        { text: "SEO", price: 15000 },
+        { text: "CRM", price: 15000 }
+      ]
+    },
+    shop: {
+      title: "Интернет-магазин",
+      base: 45000,
+      features: [
+        { text: "Каталог", price: 0 },
+        { text: "Корзина", price: 10000 },
+        { text: "Оплата", price: 10000 },
+        { text: "Личный кабинет", price: 12000 },
+        { text: "CRM", price: 15000 }
+      ]
+    }
+  };
+
+  if (type && options[type]) {
+    const data = options[type];
+    optionsDiv.innerHTML = `
+      <p><strong>Что входит:</strong></p>
+      <div class="checkbox-group">
+        ${data.features.map(f => `
+          <label>
+            <input type="checkbox" value="${f.price}" onchange="calculate()">
+            ${f.text} ${f.price > 0 ? `(+${f.price.toLocaleString()} ₽)` : ''}
+          </label>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  calculate();
 }
 
 // Отправка сметы
@@ -186,7 +251,7 @@ function openGallery(projectId) {
 
   data.images.forEach(imgUrl => {
     const img = document.createElement('img');
-    img.src = imageUrl;
+    img.src = imgUrl;
     img.alt = 'Проект';
     img.style.maxWidth = '100%';
     img.style.height = 'auto';
@@ -209,6 +274,6 @@ function toggleMenu() {
 
 // Инициализация
 document.addEventListener("DOMContentLoaded", function () {
-  calculate(); // Первый расчёт
+  updateCalculator(); // Инициализация калькулятора
   showSlide(0); // Первый слайд
 });
