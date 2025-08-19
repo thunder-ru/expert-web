@@ -272,7 +272,7 @@ body {
 /* Главный экран */
 .hero {
   height: 100vh;
-  background: url('assets/images/hero-bg.jpg') no-repeat center center;
+  background: url('https://via.placeholder.com/1920x1080/0a0a14/ccccff?text=web-thunder') no-repeat center center;
   background-size: cover;
   position: relative;
   display: flex;
@@ -462,8 +462,8 @@ body {
   height: 100%;
   object-fit: contain;
   object-position: center;
-  transition: transform 0.5s ease;
   background: #0a0a14;
+  transition: transform 0.5s ease;
 }
 
 .slider-item:hover img {
@@ -965,4 +965,11 @@ body {
   }
 
   .hero-content h1 {
-    font
+    font-size: 1.8rem;
+  }
+
+  .btn-glow {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+  }
+}
