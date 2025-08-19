@@ -174,4 +174,18 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
   const templateParams = {
     name: formData.get('name'),
     email: formData.get('email'),
-    message: formData
+    message: formData.get('message')
+  };
+
+  emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams)
+    .then(() => {
+      document.getElementById('successMessage').classList.remove('hidden');
+      this.reset();
+      setTimeout(() => {
+        document.getElementById('successMessage').classList.add('hidden');
+      }, 5000);
+    })
+    .catch((error) => {
+      alert('Ошибка отправки: ' + JSON.stringify(error));
+    });
+});
