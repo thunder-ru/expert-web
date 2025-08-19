@@ -97,72 +97,99 @@
     </div>
   </section>
 
-  <!-- Портфолио -->
+  <!-- Портфолио (карусель) -->
   <section class="section" id="portfolio">
     <div class="container">
       <h2 class="section-title">Портфолио</h2>
       <p class="portfolio-subtitle">Проекты, которые <strong>запускали бизнес</strong></p>
 
-      <div class="portfolio-grid">
-        <!-- Проект 1: Аренда автомобилей -->
-        <div class="portfolio-card" onclick="openProjectModal('car_rental')">
-          <img src="https://via.placeholder.com/320x240?text=Аренда+авто" alt="Аренда автомобилей">
-          <div class="portfolio-overlay">
-            <h4>Аренда автомобилей</h4>
-            <p>Конверсия +90%</p>
+      <!-- Карусель проектов -->
+      <div class="carousel-container">
+        <div class="carousel-track" id="carouselTrack">
+
+          <!-- Проект 1: Аренда автомобилей -->
+          <div class="carousel-item" onclick="openProjectModal('car_rental')">
+            <img src="assets/images/velodrayv.jpg" alt="Аренда автомобилей">
+            <div class="overlay">
+              <h4>Аренда автомобилей</h4>
+              <p>Конверсия +90%</p>
+            </div>
+            <div class="carousel-hint">👁️ Посмотреть кейс</div>
           </div>
-          <div class="portfolio-hint">👁️ Посмотреть кейс</div>
+
+          <!-- Проект 2: Стоматология -->
+          <div class="carousel-item" onclick="openProjectModal('dentistry')">
+            <img src="assets/images/project2.jpg" alt="Стоматология">
+            <div class="overlay">
+              <h4>Стоматология</h4>
+              <p>Бронирование онлайн</p>
+            </div>
+            <div class="carousel-hint">👁️ Посмотреть кейс</div>
+          </div>
+
+          <!-- Проект 3: Чай и кофе -->
+          <div class="carousel-item" onclick="openProjectModal('tea_coffee')">
+            <img src="assets/images/project3.jpg" alt="Чайные и кофейные ритуалы">
+            <div class="overlay">
+              <h4>Чай и кофе</h4>
+              <p>Интернет-магазин</p>
+            </div>
+            <div class="carousel-hint">👁️ Посмотреть кейс</div>
+          </div>
+
+          <!-- Проект 4: Велопрокат -->
+          <div class="carousel-item" onclick="openProjectModal('bike_rental')">
+            <img src="assets/images/project4.jpg" alt="Прокат велосипедов">
+            <div class="overlay">
+              <h4>Велопрокат</h4>
+              <p>Скорость <1s</p>
+            </div>
+            <div class="carousel-hint">👁️ Посмотреть кейс</div>
+          </div>
+
+          <!-- Проект 5: Фитнес-тренер -->
+          <div class="carousel-item" onclick="openProjectModal('fitness')">
+            <img src="assets/images/project5.jpg" alt="Фитнес-тренер">
+            <div class="overlay">
+              <h4>Фитнес-тренер</h4>
+              <p>Конверсия +85%</p>
+            </div>
+            <div class="carousel-hint">👁️ Посмотреть кейс</div>
+          </div>
+
+          <!-- Проект 6: Тур-агентство -->
+          <div class="carousel-item" onclick="openProjectModal('travel')">
+            <img src="assets/images/project6.jpg" alt="Тур-агентство">
+            <div class="overlay">
+              <h4>Тур-агентство</h4>
+              <p>SEO в топ-5</p>
+            </div>
+            <div class="carousel-hint">👁️ Посмотреть кейс</div>
+          </div>
+
+          <!-- Дубли для бесконечной прокрутки -->
+          <div class="carousel-item" onclick="openProjectModal('car_rental')">
+            <img src="assets/images/velodrayv.jpg" alt="Аренда автомобилей">
+            <div class="overlay">
+              <h4>Аренда автомобилей</h4>
+              <p>Конверсия +90%</p>
+            </div>
+            <div class="carousel-hint">👁️ Посмотреть кейс</div>
+          </div>
+          <div class="carousel-item" onclick="openProjectModal('dentistry')">
+            <img src="assets/images/project2.jpg" alt="Стоматология">
+            <div class="overlay">
+              <h4>Стоматология</h4>
+              <p>Бронирование онлайн</p>
+            </div>
+            <div class="carousel-hint">👁️ Посмотреть кейс</div>
+          </div>
+
         </div>
 
-        <!-- Проект 2: Стоматология -->
-        <div class="portfolio-card" onclick="openProjectModal('dentistry')">
-          <img src="https://via.placeholder.com/320x240?text=Стоматология" alt="Стоматология">
-          <div class="portfolio-overlay">
-            <h4>Стоматология</h4>
-            <p>Бронирование онлайн</p>
-          </div>
-          <div class="portfolio-hint">👁️ Посмотреть кейс</div>
-        </div>
-
-        <!-- Проект 3: Чай и кофе -->
-        <div class="portfolio-card" onclick="openProjectModal('tea_coffee')">
-          <img src="https://via.placeholder.com/320x240?text=Чай+и+кофе" alt="Чайные и кофейные ритуалы">
-          <div class="portfolio-overlay">
-            <h4>Чай и кофе</h4>
-            <p>Интернет-магазин</p>
-          </div>
-          <div class="portfolio-hint">👁️ Посмотреть кейс</div>
-        </div>
-
-        <!-- Проект 4: Велопрокат -->
-        <div class="portfolio-card" onclick="openProjectModal('bike_rental')">
-          <img src="https://via.placeholder.com/320x240?text=Велопрокат" alt="Прокат велосипедов">
-          <div class="portfolio-overlay">
-            <h4>Велопрокат</h4>
-            <p>Скорость <1s</p>
-          </div>
-          <div class="portfolio-hint">👁️ Посмотреть кейс</div>
-        </div>
-
-        <!-- Проект 5: Фитнес-тренер -->
-        <div class="portfolio-card" onclick="openProjectModal('fitness')">
-          <img src="https://via.placeholder.com/320x240?text=Фитнес" alt="Фитнес-тренер">
-          <div class="portfolio-overlay">
-            <h4>Фитнес-тренер</h4>
-            <p>Конверсия +85%</p>
-          </div>
-          <div class="portfolio-hint">👁️ Посмотреть кейс</div>
-        </div>
-
-        <!-- Проект 6: Тур-агентство -->
-        <div class="portfolio-card" onclick="openProjectModal('travel')">
-          <img src="https://via.placeholder.com/320x240?text=Туры" alt="Тур-агентство">
-          <div class="portfolio-overlay">
-            <h4>Тур-агентство</h4>
-            <p>SEO в топ-5</p>
-          </div>
-          <div class="portfolio-hint">👁️ Посмотреть кейс</div>
-        </div>
+        <!-- Кнопки навигации -->
+        <button class="carousel-btn prev" onclick="moveCarousel(-1)">&#10094;</button>
+        <button class="carousel-btn next" onclick="moveCarousel(1)">&#10095;</button>
       </div>
 
       <div class="portfolio-cta">
