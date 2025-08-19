@@ -353,7 +353,6 @@ body {
   margin-bottom: 10px;
 }
 
-/* Галерея */
 .gallery-grid {
   display: flex;
   flex-direction: column;
@@ -364,7 +363,7 @@ body {
 
 .gallery-grid img {
   width: 100%;
-  max-width: 600px; /* Ограничим ширину на больших экранах */
+  max-width: 600px;
   height: auto;
   border-radius: 8px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
@@ -373,6 +372,10 @@ body {
 
 .gallery-grid img:hover {
   transform: scale(1.02);
+}
+
+.gallery-footer {
+  text-align: center;
 }
 
 /* Услуги */
@@ -494,10 +497,17 @@ body {
 
 .step {
   display: none;
+  margin-bottom: 40px;
 }
 
 .step.active {
   display: block;
+}
+
+.step h3 {
+  color: #e2e8f0;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
 }
 
 .options {
@@ -529,6 +539,23 @@ body {
   border-color: #8b5cf6;
   background: rgba(139, 92, 246, 0.1);
   transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.2);
+}
+
+.card h4 {
+  color: #e2e8f0;
+  margin-bottom: 10px;
+}
+
+.card p {
+  color: #94a3b8;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+.price {
+  font-weight: 700;
+  color: #8b5cf6;
 }
 
 .checkbox-group {
@@ -536,6 +563,12 @@ body {
   flex-direction: column;
   gap: 15px;
   margin: 20px 0 30px;
+}
+
+.checkbox-group label {
+  color: #e2e8f0;
+  cursor: pointer;
+  font-size: 1.1rem;
 }
 
 .result {
