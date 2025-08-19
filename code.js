@@ -207,7 +207,11 @@ function updateTotal() {
   const support = document.querySelector('input[name="support"]:checked');
   if (support) total += parseFloat(support.value);
 
-  document.getElementById('result').innerText = `Итого: ${total.toLocaleString()} ₽`;
+  // Показываем примерную стоимость
+  document.getElementById('result').innerHTML = `
+    <strong>Примерная стоимость: ${total.toLocaleString()} ₽</strong><br>
+    <small style="color: #94a3b8;">Точная цена будет после анализа вашего бизнеса</small>
+  `;
 }
 
 // Отправка результата
