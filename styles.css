@@ -413,22 +413,22 @@ body {
   flex-wrap: wrap;
 }
 
-/* Портфолио (карусель) */
-.carousel-container {
+/* Портфолио (слайдер) */
+.slider-container {
   position: relative;
   overflow: hidden;
   margin-bottom: 60px;
 }
 
-.carousel-track {
+.slider-track {
   display: flex;
   transition: transform 0.5s ease;
   gap: 30px;
   padding: 10px 0;
 }
 
-.carousel-item {
-  min-width: 320px;
+.slider-item {
+  min-width: 100%;
   position: relative;
   border-radius: 16px;
   overflow: hidden;
@@ -438,19 +438,19 @@ body {
   transition: transform 0.3s ease;
 }
 
-.carousel-item:hover {
+.slider-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 40px rgba(138, 125, 255, 0.3);
 }
 
-.carousel-item img {
+.slider-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
 }
 
-.carousel-item:hover img {
+.slider-item:hover img {
   transform: scale(1.1);
 }
 
@@ -468,7 +468,7 @@ body {
   border-radius: 16px;
 }
 
-.carousel-item:hover .overlay {
+.slider-item:hover .overlay {
   opacity: 1;
   transform: translateY(0);
 }
@@ -484,7 +484,7 @@ body {
   opacity: 0.9;
 }
 
-.carousel-hint {
+.slider-hint {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -501,12 +501,12 @@ body {
   white-space: nowrap;
 }
 
-.carousel-item:hover .carousel-hint {
+.slider-item:hover .slider-hint {
   opacity: 1;
 }
 
-/* Кнопки карусели */
-.carousel-btn {
+/* Кнопки слайдера */
+.slider-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -524,7 +524,7 @@ body {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.carousel-btn:hover {
+.slider-btn:hover {
   background: #8a7dff;
   transform: scale(1.1);
 }
