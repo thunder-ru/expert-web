@@ -413,41 +413,48 @@ body {
   flex-wrap: wrap;
 }
 
-/* Портфолио */
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
+/* Портфолио (карусель) */
+.carousel-container {
+  position: relative;
+  overflow: hidden;
   margin-bottom: 60px;
 }
 
-.portfolio-card {
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+  gap: 30px;
+  padding: 10px 0;
+}
+
+.carousel-item {
+  min-width: 320px;
   position: relative;
   border-radius: 16px;
   overflow: hidden;
   height: 240px;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
-.portfolio-card:hover {
+.carousel-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 40px rgba(138, 125, 255, 0.3);
 }
 
-.portfolio-card img {
+.carousel-item img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
 }
 
-.portfolio-card:hover img {
+.carousel-item:hover img {
   transform: scale(1.1);
 }
 
-.portfolio-overlay {
+.overlay {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -461,23 +468,23 @@ body {
   border-radius: 16px;
 }
 
-.portfolio-card:hover .portfolio-overlay {
+.carousel-item:hover .overlay {
   opacity: 1;
   transform: translateY(0);
 }
 
-.portfolio-overlay h4 {
+.overlay h4 {
   margin: 0 0 5px 0;
   font-size: 1.2rem;
 }
 
-.portfolio-overlay p {
+.overlay p {
   margin: 0;
   font-size: 0.9rem;
   opacity: 0.9;
 }
 
-.portfolio-hint {
+.carousel-hint {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -494,8 +501,40 @@ body {
   white-space: nowrap;
 }
 
-.portfolio-card:hover .portfolio-hint {
+.carousel-item:hover .carousel-hint {
   opacity: 1;
+}
+
+/* Кнопки карусели */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(138, 125, 255, 0.9);
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  padding: 15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-btn:hover {
+  background: #8a7dff;
+  transform: scale(1.1);
+}
+
+.prev {
+  left: 15px;
+}
+
+.next {
+  right: 15px;
 }
 
 /* CTA после портфолио */
