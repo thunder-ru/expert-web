@@ -1,6 +1,3 @@
-// Глобальная переменная для хранения итога
-let totalCost = 0;
-
 // Прокрутка к секции
 function scrollToSection(id) {
   document.getElementById(id).scrollIntoView({ behavior: "smooth" });
@@ -17,7 +14,7 @@ function showStep(n) {
   document.getElementById(`step${n}`).classList.add('active');
 }
 
-// Кнопка "Далее" — только после выбора
+// Проверка выбора и переход
 function validateAndNext(currentStep, nextStepNum) {
   let selected = false;
 
@@ -26,7 +23,7 @@ function validateAndNext(currentStep, nextStepNum) {
   } else if (currentStep === 2) {
     selected = document.querySelector('input[name="design"]:checked');
   } else if (currentStep === 3) {
-    selected = true; // Функционал — можно не выбирать
+    selected = true;
   } else if (currentStep === 4) {
     selected = document.querySelector('input[name="seo"]:checked') && 
                document.querySelector('input[name="support"]:checked');
@@ -50,77 +47,47 @@ function goBack() {
       return;
     }
   }
+  showStep(1);
 }
 
 // Обновление итога
 function updateTotal() {
-  totalCost = 0;
+  let total = 0;
 
   const siteType = document.querySelector('input[name="siteType"]:checked');
-  if (siteType) totalCost += parseFloat(siteType.value);
+  if (siteType) total += parseFloat(siteType.value);
 
   const design = document.querySelector('input[name="design"]:checked');
-  if (design) totalCost += parseFloat(design.value);
+  if (design) total += parseFloat(design.value);
 
   document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
-    totalCost += parseFloat(cb.value);
+    total += parseFloat(cb.value);
   });
 
   const seo = document.querySelector('input[name="seo"]:checked');
-  if (seo) totalCost += parseFloat(seo.value);
+  if (seo) total += parseFloat(seo.value);
 
   const support = document.querySelector('input[name="support"]:checked');
-  if (support) totalCost += parseFloat(support.value);
+  if (support) total += parseFloat(support.value);
+
+  document.getElementById('result').innerHTML = `
+    <strong>Примерная стоимость: ${total.toLocaleString()} ₽</strong><br>
+    <small style="color: #94a3b8;">Точная цена будет после анализа вашего бизнеса</small>
+  `;
 }
 
-// Получить смету → перекидывает на форму
+// Получить точную смету → форма
 function requestQuote() {
-  localStorage.setItem('calculatedCost', totalCost.toLocaleString() + ' ₽');
   alert("Отлично! Оставьте заявку — и мы отправим вам точную смету.");
   scrollToSection('contact');
 }
-
-// При загрузке — показываем первый шаг
-document.addEventListener("DOMContentLoaded", function () {
-  showStep(1);
-});
-
-// Портфолио слайдер
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-const dotsContainer = document.getElementById('sliderDots');
-
-// Создаём точки
-slides.forEach((_, index) => {
-  const dot = document.createElement('div');
-  dot.classList.add('dot');
-  if (index === 0) dot.classList.add('active');
-  dot.onclick = () => goToSlide(index);
-  dotsContainer.appendChild(dot);
-});
-
-function showSlide(n) {
-  slides.forEach(slide => slide.classList.remove('active'));
-  const dots = document.querySelectorAll('.dot');
-  dots.forEach(dot => dot.classList.remove('active'));
-
-  if (n >= slides.length) currentSlide = 0;
-  if (n < 0) currentSlide = slides.length - 1;
-
-  slides[currentSlide].classList.add('active');
-  dots[currentSlide].classList.add('active');
-}
-
-function nextSlide() { currentSlide++; showSlide(currentSlide); }
-function prevSlide() { currentSlide--; showSlide(currentSlide); }
-function goToSlide(n) { currentSlide = n; showSlide(currentSlide); }
 
 // Галерея
 const galleryData = {
   auto: {
     title: "Аренда автомобилей",
     desc: "Сайт для аренды автомобилей с онлайн-бронированием.",
-    result: "+30% заявок за 1 месяц",
+    result: "+30% заявок за 2 месяца",
     images: [
       "https://i.postimg.cc/pdkWMT84/Black1.jpg",
       "https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg",
@@ -147,7 +114,7 @@ const galleryData = {
   tea: {
     title: "Онлайн магазин чая и кофе",
     desc: "Интернет-магазин с каталогом и корзиной.",
-    result: "Окупился за 1 неделю",
+    result: "Окупился за 1.5 недели",
     images: [
       "https://i.postimg.cc/xC4HTVqR/1.jpg",
       "https://i.postimg.cc/GmSbdtS8/2.jpg",
@@ -161,7 +128,7 @@ const galleryData = {
   bike: {
     title: "Магазин велосипедов",
     desc: "Сайт с каталогом, фильтрами и оплатой.",
-    result: "+40% трафика и 20+ заказов в месяц",
+    result: "+30% трафика и 20+ заказов в месяц",
     images: [
       "https://i.postimg.cc/J7S6P9KZ/image.jpg",
       "https://i.postimg.cc/MG02XYWL/2.jpg",
@@ -236,65 +203,22 @@ function toggleMenu() {
   document.getElementById("mainNav").classList.toggle("active");
 }
 
-// Инициализация
-document.addEventListener("DOMContentLoaded", function () {
-  showSlide(0); // Запускаем слайдер
+// Форма
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const phone = document.getElementById('phone').value;
+  const email = document.getElementById('email').value;
+  const message = document.getElementById('message').value;
+
+  const text = `Новая заявка!\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}\nСообщение: ${message || 'нет'}`;
+  const url = `https://t.me/overgrand?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+  alert('Заявка отправлена! Свяжемся в ближайшее время.');
 });
 
-// Переход к следующему шагу
-function nextStep(n) {
-  document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
-  document.getElementById(`step${n}`).classList.add('active');
-  updateTotal(); // Пересчёт
-}
-
-// Возврат на предыдущий шаг
-function prevStep() {
-  const steps = [1, 2, 3, 4];
-  for (let i = 1; i <= 4; i++) {
-    if (document.getElementById(`step${i}`).classList.contains('active') && i > 1) {
-      nextStep(i - 1);
-      return;
-    }
-  }
-}
-
-// Обновление итоговой стоимости
-function updateTotal() {
-  let total = 0;
-
-  // Тип сайта
-  const siteType = document.querySelector('input[name="siteType"]:checked');
-  if (siteType) total += parseFloat(siteType.value);
-
-  // Дизайн
-  const design = document.querySelector('input[name="design"]:checked');
-  if (design) total += parseFloat(design.value);
-
-  // Функционал
-  document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
-    total += parseFloat(cb.value);
-  });
-
-  // SEO
-  const seo = document.querySelector('input[name="seo"]:checked');
-  if (seo) total += parseFloat(seo.value);
-
-  // Поддержка
-  const support = document.querySelector('input[name="support"]:checked');
-  if (support) total += parseFloat(support.value);
-
-  // Показываем примерную стоимость
-  document.getElementById('result').innerHTML = `
-    <strong>Примерная стоимость: ${total.toLocaleString()} ₽</strong><br>
-    <small style="color: #94a3b8;">Точная цена будет после анализа вашего бизнеса</small>
-  `;
-}
-
-// Отправка результата
-function sendCalcResult() {
-  const result = document.getElementById('result').innerText;
-  const msg = `Новая заявка!\n${result}\nПожалуйста, свяжитесь со мной.`;
-  const url = `https://t.me/overgrand?text=${encodeURIComponent(msg)}`;
-  window.open(url, '_blank');
-}
+// Инициализация
+document.addEventListener("DOMContentLoaded", function () {
+  showStep(1);
+  updateTotal();
+});
