@@ -1,84 +1,311 @@
-<!-- Портфолио (слайдер) -->
-<section class="section" id="portfolio">
-  <div class="container">
-    <h2 class="section-title">Портфолио</h2>
-    <p class="portfolio-subtitle">Проекты, которые <strong>запускали бизнес</strong></p>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>web-thunder — Веб-решения, которые работают</title>
+  <meta name="description" content="Сайты под ключ. Быстро. Качественно. С гарантией результата.">
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <script src="https://kit.fontawesome.com/3b9a5e3f6b.js" crossorigin="anonymous"></script>
+</head>
+<body>
 
-    <!-- Слайдер проектов -->
-    <div class="slider-container">
-      <div class="slider-track" id="sliderTrack">
+  <!-- Прогресс-бар -->
+  <div class="progress-bar" id="progressBar"></div>
 
-        <!-- Проект 1: Аренда автомобилей -->
-        <div class="slider-item" onclick="openProjectModal('car_rental')">
-          <img src="assets/images/velodrayv.jpg" alt="Аренда автомобилей">
-          <div class="overlay">
-            <h4>Аренда автомобилей</h4>
-            <p>Конверсия +90%</p>
+  <!-- Фоновая сетка и светлячки -->
+  <div class="body-bg"></div>
+  <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+  <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+  <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+  <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+
+  <!-- Шапка -->
+  <header class="header" id="home">
+    <div class="container">
+      <div class="logo">⚡ web-thunder</div>
+      <nav class="nav">
+        <a href="#about">Обо мне</a>
+        <a href="#portfolio">Портфолио</a>
+        <a href="#services">Услуги</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+      <button class="btn-glow header-btn" onclick="scrollToSection('contact')">Заказать сайт</button>
+      <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+    </div>
+  </header>
+
+  <!-- Статистика -->
+  <div class="stats-bar">
+    <div class="stat"><strong>15+</strong> проектов</div>
+    <div class="stat"><strong>98%</strong> довольных клиентов</div>
+    <div class="stat"><strong>72ч</strong> — срок запуска</div>
+  </div>
+
+  <!-- Главный экран -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content" id="heroText">
+        <h1><span class="gradient-text">Сайт, который работает на вас<br>с первого дня</span></h1>
+        <p>
+          Я — <strong>веб-архитектор бизнеса</strong>. Собираю сайты как конструктор: быстро, надёжно, с фокусом на прибыль, а не на красивый код.
+        </p>
+        <div class="hero-buttons">
+          <button class="btn-primary" onclick="scrollToSection('portfolio')">Смотреть проекты</button>
+          <button class="btn-outline" onclick="scrollToSection('contact')">Получить предложение</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Обо мне -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-wrapper">
+        <div class="about-text" id="aboutText">
+          <h2>Я не пишу код.<br>Я <span class="neon">создаю прибыль</span></h2>
+          <p>
+            За последние 2 года я реализовал <strong>15+ проектов</strong> — от лендингов до интернет-магазинов.
+            Мой подход: <strong>максимум пользы, минимум шума</strong>.
+          </p>
+          <p>
+            Я не гонюсь за сложностью. Я создаю сайты, которые:
+          </p>
+          <ul class="feature-list">
+            <li>⚡ Быстро загружаются</li>
+            <li>📱 Адаптированы под все устройства</li>
+            <li>🔍 SEO-оптимизированы</li>
+            <li>📈 Приносят заявки и продажи</li>
+          </ul>
+          <div class="skills">
+            <h3>Навыки</h3>
+            <ul>
+              <li>HTML5 / CSS3 / SCSS</li>
+              <li>JavaScript (ES6+)</li>
+              <li>Responsive & Cross-browser</li>
+              <li>Работа с конструкторами</li>
+            </ul>
           </div>
-          <div class="slider-hint">👁️ Посмотреть кейс</div>
+          <div class="cta-group">
+            <button class="btn-glow" onclick="scrollToSection('contact')">Начать проект сегодня</button>
+            <button class="btn-outline small" onclick="scrollToSection('services')">Узнать стоимость</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Портфолио (слайдер) -->
+  <section class="section" id="portfolio">
+    <div class="container">
+      <h2 class="section-title">Портфолио</h2>
+      <p class="portfolio-subtitle">Проекты, которые <strong>запускали бизнес</strong></p>
+
+      <!-- Слайдер проектов -->
+      <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+
+          <!-- Проект 1: Аренда автомобилей -->
+          <div class="slider-item" onclick="openProjectModal('car_rental')">
+            <img src="assets/images/velodrayv.jpg" alt="Аренда автомобилей">
+            <div class="overlay">
+              <h4>Аренда автомобилей</h4>
+              <p>Конверсия +30%</p>
+            </div>
+            <div class="slider-hint">👁️ Посмотреть кейс</div>
+          </div>
+
+          <!-- Проект 2: Стоматология -->
+          <div class="slider-item" onclick="openProjectModal('dentistry')">
+            <img src="assets/images/project2.jpg" alt="Стоматология">
+            <div class="overlay">
+              <h4>Стоматология</h4>
+              <p>Запись онлайн</p>
+            </div>
+            <div class="slider-hint">👁️ Посмотреть кейс</div>
+          </div>
+
+          <!-- Проект 3: Чай и кофе -->
+          <div class="slider-item" onclick="openProjectModal('tea_coffee')">
+            <img src="assets/images/project3.jpg" alt="Чайные и кофейные ритуалы">
+            <div class="overlay">
+              <h4>Чай и кофе</h4>
+              <p>Интернет-магазин</p>
+            </div>
+            <div class="slider-hint">👁️ Посмотреть кейс</div>
+          </div>
+
+          <!-- Проект 4: Велопрокат -->
+          <div class="slider-item" onclick="openProjectModal('bike_rental')">
+            <img src="assets/images/project4.jpg" alt="Прокат велосипедов">
+            <div class="overlay">
+              <h4>Велопрокат</h4>
+              <p>Скорость <1s</p>
+            </div>
+            <div class="slider-hint">👁️ Посмотреть кейс</div>
+          </div>
+
+          <!-- Проект 5: Фитнес-тренер -->
+          <div class="slider-item" onclick="openProjectModal('fitness')">
+            <img src="assets/images/project5.jpg" alt="Фитнес-тренер">
+            <div class="overlay">
+              <h4>Фитнес-тренер</h4>
+              <p>Конверсия +20%</p>
+            </div>
+            <div class="slider-hint">👁️ Посмотреть кейс</div>
+          </div>
+
+          <!-- Проект 6: Тур-агентство -->
+          <div class="slider-item" onclick="openProjectModal('travel')">
+            <img src="assets/images/project6.jpg" alt="Тур-агентство">
+            <div class="overlay">
+              <h4>Тур-агентство</h4>
+              <p>SEO в топ-5</p>
+            </div>
+            <div class="slider-hint">👁️ Посмотреть кейс</div>
+          </div>
+
         </div>
 
-        <!-- Проект 2: Стоматология -->
-        <div class="slider-item" onclick="openProjectModal('dentistry')">
-          <img src="assets/images/project2.jpg" alt="Стоматология">
-          <div class="overlay">
-            <h4>Стоматология</h4>
-            <p>Бронирование онлайн</p>
-          </div>
-          <div class="slider-hint">👁️ Посмотреть кейс</div>
-        </div>
-
-        <!-- Проект 3: Чай и кофе -->
-        <div class="slider-item" onclick="openProjectModal('tea_coffee')">
-          <img src="assets/images/project3.jpg" alt="Чайные и кофейные ритуалы">
-          <div class="overlay">
-            <h4>Чай и кофе</h4>
-            <p>Интернет-магазин</p>
-          </div>
-          <div class="slider-hint">👁️ Посмотреть кейс</div>
-        </div>
-
-        <!-- Проект 4: Велопрокат -->
-        <div class="slider-item" onclick="openProjectModal('bike_rental')">
-          <img src="assets/images/project4.jpg" alt="Прокат велосипедов">
-          <div class="overlay">
-            <h4>Велопрокат</h4>
-            <p>Скорость <1s</p>
-          </div>
-          <div class="slider-hint">👁️ Посмотреть кейс</div>
-        </div>
-
-        <!-- Проект 5: Фитнес-тренер -->
-        <div class="slider-item" onclick="openProjectModal('fitness')">
-          <img src="assets/images/project5.jpg" alt="Фитнес-тренер">
-          <div class="overlay">
-            <h4>Фитнес-тренер</h4>
-            <p>Конверсия +85%</p>
-          </div>
-          <div class="slider-hint">👁️ Посмотреть кейс</div>
-        </div>
-
-        <!-- Проект 6: Тур-агентство -->
-        <div class="slider-item" onclick="openProjectModal('travel')">
-          <img src="assets/images/project6.jpg" alt="Тур-агентство">
-          <div class="overlay">
-            <h4>Тур-агентство</h4>
-            <p>SEO в топ-5</p>
-          </div>
-          <div class="slider-hint">👁️ Посмотреть кейс</div>
-        </div>
-
+        <!-- Кнопки навигации -->
+        <button class="slider-btn prev" onclick="moveSlider(-1)" title="Предыдущий проект">&#10094;</button>
+        <button class="slider-btn next" onclick="moveSlider(1)" title="Следующий проект">&#10095;</button>
       </div>
 
-      <!-- Кнопки навигации -->
-      <button class="slider-btn prev" onclick="moveSlider(-1)" title="Предыдущий проект">&#10094;</button>
-      <button class="slider-btn next" onclick="moveSlider(1)" title="Следующий проект">&#10095;</button>
+      <div class="portfolio-cta">
+        <h3>Хотите такой же результат?</h3>
+        <button class="btn-glow" onclick="scrollToSection('contact')">Заказать за 72 часа</button>
+        <button class="btn-outline small" onclick="scrollToSection('contact')">Получить кейс</button>
+      </div>
     </div>
+  </section>
 
-    <div class="portfolio-cta">
-      <h3>Хотите такой же результат?</h3>
-      <button class="btn-glow" onclick="scrollToSection('contact')">Заказать за 72 часа</button>
-      <button class="btn-outline small" onclick="scrollToSection('contact')">Получить кейс</button>
+  <!-- Услуги -->
+  <section class="section" id="services">
+    <div class="container">
+      <h2 class="section-title">Услуги</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Сайт под ключ</h3>
+          <p>От дизайна до запуска. Готовый сайт за 5–7 дней.</p>
+          <button class="btn-glow-sm" onclick="scrollToSection('contact')">Заказать</button>
+        </div>
+        <div class="service-card">
+          <h3>Верстка макетов</h3>
+          <p>Pixel perfect, адаптив, кроссбраузерность.</p>
+          <button class="btn-glow-sm" onclick="scrollToSection('contact')">Заказать</button>
+        </div>
+        <div class="service-card">
+          <h3>Поддержка сайтов</h3>
+          <p>Обновления, баги, доработки — я всегда на связи.</p>
+          <button class="btn-glow-sm" onclick="scrollToSection('contact')">Подключиться</button>
+        </div>
+        <div class="service-card">
+          <h3>Оптимизация и SEO</h3>
+          <p>Ускорение, индексация, повышение позиций.</p>
+          <button class="btn-glow-sm" onclick="scrollToSection('contact')">Проверить сайт</button>
+        </div>
+      </div>
+
+      <div class="guarantee-banner">
+        <i class="fas fa-shield-alt"></i>
+        <span>Гарантия 30 дней. Сроки в договоре. Оплата частями.</span>
+      </div>
+
+      <div class="text-center" style="margin-top: 40px;">
+        <button class="btn-primary" onclick="scrollToSection('contact')">Обсудить проект</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Отзывы -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <h2 class="section-title">Что говорят клиенты</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="quote">"Запустили сайт за 5 дней. Уже через неделю — 120 заявок. web-thunder — это не просто разработка, это рост бизнеса."</p>
+          <p class="author">— Алексей, стартап</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="quote">"Работал с 3 разработчиками. Только web-thunder сделал всё без косяков и в срок."</p>
+          <p class="author">— Марина, магазин</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="quote">"Сайт загружается за 0.8 сек. SEO в топе. Конверсия выросла на 70%."</p>
+          <p class="author">— Дмитрий, клиника</p>
+        </div>
+      </div>
+      <div class="text-center">
+        <button class="btn-outline" onclick="scrollToSection('contact')">Хочу такой же результат</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Контакты -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="section-title">Готовы к запуску?</h2>
+      <p class="contact-subtitle">Напишите — и через 24 часа у вас будет <strong>прототип сайта</strong> или <strong>коммерческое предложение</strong>.</p>
+      <div class="contact-content">
+        <div class="contact-info">
+          <p><i class="fas fa-envelope"></i> <a href="mailto:rosanov.danila2016@yandex.ru">rosanov.danila2016@yandex.ru</a></p>
+          <p><i class="fab fa-telegram"></i> <a href="https://t.me/overgrand" target="_blank">@overgrand</a></p>
+          <div class="response-time">
+            <small>Отвечаю в течение 2 часов</small>
+          </div>
+        </div>
+        <form class="contact-form" id="contactForm">
+          <input type="text" name="name" placeholder="Ваше имя" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <textarea name="message" placeholder="Опишите ваш проект (минимум 20 символов)" rows="5" minlength="20" required></textarea>
+          <button type="submit" class="btn-glow">Отправить запрос — получить предложение</button>
+        </form>
+      </div>
+      <div id="successMessage" class="success hidden">
+        ✅ Сообщение отправлено! Я свяжусь с вами в ближайшее время.
+      </div>
+    </div>
+  </section>
+
+  <!-- Подвал -->
+  <footer class="footer">
+    <div class="container">
+      <p>⚡ web-thunder — <span class="neon-footer">сайты, как молния</span></p>
+      <div class="footer-links">
+        <a href="javascript:void(0)" onclick="openModal()">Политика конфиденциальности</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Модальное окно политики -->
+  <div id="privacyModal" class="modal">
+    <div class="modal-content">
+      <h3>Политика конфиденциальности</h3>
+      <p>Я уважаю вашу приватность. Никакого спама. Данные используются только для связи по проекту.</p>
+      <p>Обработка в соответствии с GDPR. Не передаю третьим лицам.</p>
+      <div class="modal-buttons">
+        <button class="btn-outline" onclick="closeModal()">Отклонить</button>
+        <button class="btn-glow" onclick="acceptPolicy()">Принять и продолжить</button>
+      </div>
     </div>
   </div>
-</section>
+
+  <!-- Модальное окно проекта -->
+  <div id="projectModal" class="modal">
+    <div class="project-modal-content">
+      <span class="close-btn" onclick="closeProjectModal()">&times;</span>
+      <h3 id="projectTitle">Проект</h3>
+      <div class="gallery-container">
+        <div id="gallerySlides"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script src="code.js"></script>
+</body>
+</html>
