@@ -70,7 +70,7 @@ const galleryData = {
   tea: {
     title: "Онлайн магазин чая и кофе",
     desc: "Интернет-магазин с каталогом и корзиной.",
-    result: "Окупился за 4 недели",
+    result: "Окупился за 1 неделю",
     images: [
       "https://i.postimg.cc/xC4HTVqR/1.jpg",
       "https://i.postimg.cc/GmSbdtS8/2.jpg",
