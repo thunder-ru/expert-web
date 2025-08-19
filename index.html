@@ -15,9 +15,9 @@
     <div class="container">
       <div class="logo">⚡ Web-Thunder</div>
       <nav class="nav" id="mainNav">
-        <a href="#portfolio" onclick="scrollToForm()">Портфолио</a>
-        <a href="#calculator" onclick="scrollToForm()">Калькулятор</a>
-        <a href="#contact" onclick="scrollToForm()">Контакты</a>
+        <a href="#portfolio" onclick="scrollToSection('portfolio')">Портфолио</a>
+        <a href="#calculator" onclick="scrollToSection('calculator')">Калькулятор</a>
+        <a href="#contact" onclick="scrollToSection('contact')">Контакты</a>
         <a href="https://t.me/overgrand" target="_blank" class="nav-telegram">💬 Telegram</a>
       </nav>
       <div class="menu-toggle" onclick="toggleMenu()">
@@ -39,7 +39,7 @@
           <div class="stat"><strong>от 5</strong> дней на запуск</div>
         </div>
         <div class="cta">
-          <button onclick="scrollToForm()" class="btn primary glow">Рассчитать стоимость</button>
+          <button onclick="scrollToSection('contact')" class="btn primary glow">Рассчитать стоимость</button>
           <a href="https://t.me/overgrand" target="_blank" class="btn secondary">Написать в Telegram</a>
         </div>
       </div>
@@ -55,37 +55,37 @@
       <div class="portfolio-slider" id="portfolioSlider">
         <!-- 1. Автопрокат -->
         <div class="slide active">
-          <img src="https://via.placeholder.com/400x250/8b5cf6/ffffff?text=Автопрокат" alt="Аренда автомобилей">
+          <img src="https://via.placeholder.com/400x250/8b5cf6/ffffff?text=Автопрокат" alt="Аренда автомобилей" onclick="openGallery(['https://via.placeholder.com/600x400/8b5cf6/ffffff?text=Auto1', 'https://via.placeholder.com/600x400/8b5cf6/ffffff?text=Auto2', 'https://via.placeholder.com/600x400/8b5cf6/ffffff?text=Auto3'])">
           <h4>Аренда автомобилей</h4>
           <p>+110% заявок за 2 месяца</p>
         </div>
         <!-- 2. Стоматология -->
         <div class="slide">
-          <img src="https://via.placeholder.com/400x250/06b6d4/ffffff?text=Стоматология" alt="Стоматология">
+          <img src="https://via.placeholder.com/400x250/06b6d4/ffffff?text=Стоматология" alt="Стоматология" onclick="openGallery(['https://via.placeholder.com/600x400/06b6d4/ffffff?text=Dentist1', 'https://via.placeholder.com/600x400/06b6d4/ffffff?text=Dentist2'])">
           <h4>Стоматология</h4>
           <p>ТОП-3 в Яндекс по ключевым запросам</p>
         </div>
         <!-- 3. Чайный магазин -->
         <div class="slide">
-          <img src="https://via.placeholder.com/400x250/10b981/ffffff?text=Чайный+магазин" alt="Чай и кофе">
+          <img src="https://via.placeholder.com/400x250/10b981/ffffff?text=Чайный+магазин" alt="Чай и кофе" onclick="openGallery(['https://via.placeholder.com/600x400/10b981/ffffff?text=Tea1', 'https://via.placeholder.com/600x400/10b981/ffffff?text=Tea2', 'https://via.placeholder.com/600x400/10b981/ffffff?text=Tea3'])">
           <h4>Онлайн магазин чая и кофе</h4>
           <p>Окупился за 6 недель</p>
         </div>
         <!-- 4. Веломагазин -->
         <div class="slide">
-          <img src="https://via.placeholder.com/400x250/f59e0b/ffffff?text=Веломагазин" alt="Велосипеды">
+          <img src="https://via.placeholder.com/400x250/f59e0b/ffffff?text=Веломагазин" alt="Велосипеды" onclick="openGallery(['https://via.placeholder.com/600x400/f59e0b/ffffff?text=Bike1', 'https://via.placeholder.com/600x400/f59e0b/ffffff?text=Bike2'])">
           <h4>Магазин велосипедов</h4>
           <p>+90% трафика и 200+ заказов в месяц</p>
         </div>
         <!-- 5. Фитнес-тренер -->
         <div class="slide">
-          <img src="https://via.placeholder.com/400x250/ef4444/ffffff?text=Фитнес" alt="Фитнес">
+          <img src="https://via.placeholder.com/400x250/ef4444/ffffff?text=Фитнес" alt="Фитнес" onclick="openGallery(['https://via.placeholder.com/600x400/ef4444/ffffff?text=Fitness1', 'https://via.placeholder.com/600x400/ef4444/ffffff?text=Fitness2'])">
           <h4>Персональный фитнес-тренер</h4>
           <p>30+ новых клиентов за месяц</p>
         </div>
         <!-- 6. Турагенство -->
         <div class="slide">
-          <img src="https://via.placeholder.com/400x250/8b5cf6/ffffff?text=Туры" alt="Турагентство">
+          <img src="https://via.placeholder.com/400x250/8b5cf6/ffffff?text=Туры" alt="Турагентство" onclick="openGallery(['https://via.placeholder.com/600x400/8b5cf6/ffffff?text=Travel1', 'https://via.placeholder.com/600x400/8b5cf6/ffffff?text=Travel2'])">
           <h4>Турагенство</h4>
           <p>Удобное бронирование туров онлайн</p>
         </div>
@@ -98,10 +98,26 @@
       </div>
 
       <div class="cta-center">
-        <button onclick="scrollToForm()" class="btn primary">Хочу такой же результат</button>
+        <button onclick="scrollToSection('contact')" class="btn primary">Хочу такой же результат</button>
       </div>
     </div>
   </section>
+
+  <!-- Gallery Modal -->
+  <div id="galleryModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeGallery()">&times;</span>
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Фото будут добавлены динамически -->
+      </div>
+      <div class="gallery-info">
+        <h3 id="projectTitle"></h3>
+        <p id="projectDesc"></p>
+        <p><strong>Результат:</strong> <span id="projectResult"></span></p>
+        <button class="btn primary" onclick="scrollToSection('contact')">Обсудить проект</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Calculator -->
   <section id="calculator" class="calculator">
