@@ -49,53 +49,64 @@ document.addEventListener('DOMContentLoaded', () => {
 let sliderIndex = 0;
 const track = document.getElementById('sliderTrack');
 const items = document.querySelectorAll('.slider-item');
-const itemWidth = 100; // ширина слайда (100%)
 const totalItems = items.length;
 
+// Перемещение слайдера
 function moveSlider(direction) {
   sliderIndex += direction;
 
+  // Зацикливание
   if (sliderIndex < 0) {
     sliderIndex = totalItems - 1;
   } else if (sliderIndex >= totalItems) {
     sliderIndex = 0;
   }
 
+  updateSlider();
+}
+
+// Обновление позиции слайдера
+function updateSlider() {
+  const itemWidth = 100; // 100% ширина слайда
   track.style.transform = `translateX(${-sliderIndex * itemWidth}%)`;
 }
 
-// Автопрокрутка
-setInterval(() => moveSlider(1), 5000);
+// Автопрокрутка каждые 7 секунд
+let autoSlide = setInterval(() => {
+  moveSlider(1);
+}, 7000);
 
-// Инициализация
+// Остановка автопрокрутки при наведении
+const sliderContainer = document.querySelector('.slider-container');
+if (sliderContainer) {
+  sliderContainer.addEventListener('mouseenter', () => {
+    clearInterval(autoSlide);
+  });
+  sliderContainer.addEventListener('mouseleave', () => {
+    autoSlide = setInterval(() => {
+      moveSlider(1);
+    }, 7000);
+  });
+}
+
+// Инициализация при загрузке
 document.addEventListener('DOMContentLoaded', () => {
-  track.style.transition = 'transform 0.5s ease';
+  track.style.transition = 'transform 0.6s ease';
+  updateSlider();
 });
 
-// === Данные о проектах (добавляйте любое количество фото по ссылкам) ===
+// === Данные о проектах (галерея) ===
 const projectData = {
   car_rental: {
     title: "Аренда автомобилей",
     images: [
-      "https://t.me/overgrand",
-      "https://t.me/overgrand",
-      "https://t.me/overgrand",
-      "https://t.me/overgrand",
-      "https://t.me/overgrand",
       "https://t.me/overgrand"
     ]
   },
   dentistry: {
     title: "Стоматология",
     images: [
-      "https://i.postimg.cc/GmFkPfSL/1.jpg",
-      "https://i.postimg.cc/5tgJdxjX/2.jpg",
-      "https://i.postimg.cc/D0J3XL6G/3.jpg,
-      "https://i.postimg.cc/8k9SVXkm/4.jpg",
-      "https://i.postimg.cc/zf0s20PW/6.jpg",
-      "https://i.postimg.cc/g2dcft4B/7.jpg",
-      "https://i.postimg.cc/vm2QxYyp/8.jpg",
-      "https://i.postimg.cc/DfX2m3MM/9.jpg"
+      "https://t.me/overgrand"
     ]
   },
   tea_coffee: {
