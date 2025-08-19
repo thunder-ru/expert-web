@@ -3,9 +3,9 @@ function openTelegram() {
   window.open("https://t.me/overgrand", '_blank');
 }
 
-// Прокрутка к форме
-function scrollToForm() {
-  document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+// Прокрутка к секции
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
 }
 
 // Калькулятор
@@ -90,6 +90,34 @@ function showSlide(n) {
 function nextSlide() { currentSlide++; showSlide(currentSlide); }
 function prevSlide() { currentSlide--; showSlide(currentSlide); }
 function goToSlide(n) { currentSlide = n; showSlide(currentSlide); }
+
+// Галерея
+function openGallery(images) {
+  const galleryGrid = document.getElementById('galleryGrid');
+  galleryGrid.innerHTML = ''; // Очистка
+
+  images.forEach(imgUrl => {
+    const img = document.createElement('img');
+    img.src = imageUrl;
+    img.alt = 'Проект';
+    img.style.maxWidth = '100%';
+    img.style.height = 'auto';
+    img.style.borderRadius = '8px';
+    img.style.boxShadow = '0 8px 20px rgba(0,0,0,0.1)';
+    galleryGrid.appendChild(img);
+  });
+
+  // Заголовок и описание (пример)
+  document.getElementById('projectTitle').innerText = "Проект";
+  document.getElementById('projectDesc').innerText = "Описание проекта.";
+  document.getElementById('projectResult').innerText = "Результат: +100% трафик";
+
+  document.getElementById('galleryModal').style.display = 'flex';
+}
+
+function closeGallery() {
+  document.getElementById('galleryModal').style.display = 'none';
+}
 
 // Мобильное меню
 function toggleMenu() {
