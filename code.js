@@ -62,7 +62,7 @@ const galleryData = {
     ]
   },
   tea: {
-    title: "Чайный магазин",
+    title: "Онлайн магазин чая и кофе",
     desc: "Интернет-магазин с каталогом и корзиной.",
     result: "Окупился за 6 недель",
     images: [
@@ -71,12 +71,31 @@ const galleryData = {
     ]
   },
   bike: {
-    title: "Веломагазин",
+    title: "Магазин велосипедов",
     desc: "Сайт с каталогом, фильтрами и оплатой.",
     result: "+90% трафика и 200+ заказов в месяц",
     images: [
       "https://i.postimg.cc/0yndyJgC/Black4.jpg",
       "https://i.postimg.cc/HnbbDr4X/Black-5.jpg"
+    ]
+  },
+  fitness: {
+    title: "Фитнес-тренер",
+    desc: "Сайт для персонального тренера с записью на тренировки.",
+    result: "30+ новых клиентов за месяц",
+    images: [
+      "https://i.postimg.cc/HnbbDr4X/Black-5.jpg",
+      "https://i.postimg.cc/pdkWMT84/Black1.jpg"
+    ]
+  },
+  travel: {
+    title: "Турагентство \"Горизонт\"",
+    desc: "Сайт для бронирования туров с фильтрами и онлайн-оплатой.",
+    result: "Удобное бронирование туров онлайн",
+    images: [
+      "https://i.postimg.cc/pdkWMT84/Black1.jpg",
+      "https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg",
+      "https://i.postimg.cc/PrmQ0R29/Black3.jpg"
     ]
   }
 };
