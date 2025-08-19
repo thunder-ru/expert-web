@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Web-Thunder — Сайты, которые работают с первого дня</title>
+  <meta name="description" content="Web-Thunder — создаем сайты, которые приносят клиентов. Лендинги, магазины, SEO. Рассчитайте стоимость онлайн!" />
+  <title>Web-Thunder — Сайты, которые бьют точно в цель</title>
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -16,7 +17,9 @@
       <nav class="nav" id="mainNav">
         <a href="#portfolio" onclick="scrollToSection('portfolio')">Портфолио</a>
         <a href="#services" onclick="scrollToSection('services')">Услуги</a>
-        <a href="#contact" onclick="scrollToSection('contact')">Контакты</a>
+        <a href="#reviews" onclick="scrollToSection('reviews')">Отзывы</a>
+        <a href="#contact" onclick="scrollToSection('contact')">Связаться</a>
+        <a href="#calculator" onclick="scrollToSection('calculator')">Калькулятор</a>
         <a href="https://t.me/overgrand" target="_blank" class="nav-telegram">💬 Telegram</a>
       </nav>
       <div class="menu-toggle" onclick="toggleMenu()">
@@ -30,60 +33,72 @@
   <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <h1>Сайт, который работает на вас<br><span class="highlight">с первого дня</span></h1>
+      <h1 class="neon-text">Сайт, который работает на вас<br>с первого дня</h1>
       <p class="lead">Я — <strong>веб-архитектор бизнеса</strong>. Собираю сайты как конструктор: быстро, надёжно, с фокусом на прибыль, а не на красивый код.</p>
       <p class="sub">Я не пишу код. Я создаю прибыль.</p>
       <div class="cta">
-        <button onclick="scrollToSection('contact')" class="btn primary large">Получить прототип за 24 часа</button>
+        <button onclick="scrollToSection('contact')" class="btn primary large glow">Получить прототип за 24 часа</button>
         <a href="https://t.me/overgrand" target="_blank" class="btn secondary large">Написать в Telegram</a>
       </div>
     </div>
   </section>
 
   <!-- Portfolio -->
-  <section id="portfolio" class="section dark">
-    <div class="container">
-      <h2>Портфолио</h2>
-      <p class="text-center">Проекты, которые <strong>запускали бизнес</strong></p>
+<section id="portfolio" class="section dark">
+  <div class="container">
+    <h2>Портфолио</h2>
+    <p class="text-center">Проекты, которые <strong>запускали бизнес</strong></p>
 
-      <div class="portfolio-slider" id="portfolioSlider">
-        <!-- 1. Автопрокат -->
-        <div class="slide active">
-          <img src="https://i.postimg.cc/pdkWMT84/Black1.jpg" alt="Аренда автомобилей" onclick="openGallery('auto')">
-          <h4>Аренда автомобилей</h4>
-          <p>+110% заявок за 2 месяца</p>
-        </div>
-        <!-- 2. Стоматология -->
-        <div class="slide">
-          <img src="https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg" alt="Стоматология" onclick="openGallery('dentist')">
-          <h4>Стоматология</h4>
-          <p>ТОП-3 в Яндекс по ключевым запросам</p>
-        </div>
-        <!-- 3. Чайный магазин -->
-        <div class="slide">
-          <img src="https://i.postimg.cc/PrmQ0R29/Black3.jpg" alt="Чайный магазин" onclick="openGallery('tea')">
-          <h4>Чайный магазин</h4>
-          <p>Окупился за 6 недель</p>
-        </div>
-        <!-- 4. Веломагазин -->
-        <div class="slide">
-          <img src="https://i.postimg.cc/0yndyJgC/Black4.jpg" alt="Веломагазин" onclick="openGallery('bike')">
-          <h4>Веломагазин</h4>
-          <p>+90% трафика и 200+ заказов в месяц</p>
-        </div>
+    <div class="portfolio-slider" id="portfolioSlider">
+      <!-- 1. Автопрокат -->
+      <div class="slide active">
+        <img src="https://i.postimg.cc/pdkWMT84/Black1.jpg" alt="Аренда автомобилей" onclick="openGallery('auto')">
+        <h4>Аренда автомобилей</h4>
+        <p>+110% заявок за 2 месяца</p>
       </div>
-
-      <div class="slider-controls">
-        <button onclick="prevSlide()" class="nav-btn">←</button>
-        <div class="dots" id="sliderDots"></div>
-        <button onclick="nextSlide()" class="nav-btn">→</button>
+      <!-- 2. Стоматология -->
+      <div class="slide">
+        <img src="https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg" alt="Стоматология" onclick="openGallery('dentist')">
+        <h4>Стоматология</h4>
+        <p>ТОП-3 в Яндекс по ключевым запросам</p>
       </div>
-
-      <div class="cta-center">
-        <button onclick="scrollToSection('contact')" class="btn primary">Хочу такой же результат</button>
+      <!-- 3. Чайный магазин -->
+      <div class="slide">
+        <img src="https://i.postimg.cc/PrmQ0R29/Black3.jpg" alt="Чайный магазин" onclick="openGallery('tea')">
+        <h4>Чайный магазин</h4>
+        <p>Окупился за 6 недель</p>
+      </div>
+      <!-- 4. Веломагазин -->
+      <div class="slide">
+        <img src="https://i.postimg.cc/0yndyJgC/Black4.jpg" alt="Веломагазин" onclick="openGallery('bike')">
+        <h4>Веломагазин</h4>
+        <p>+90% трафика и 200+ заказов в месяц</p>
+      </div>
+      <!-- 5. Фитнес-тренер -->
+      <div class="slide">
+        <img src="https://i.postimg.cc/HnbbDr4X/Black-5.jpg" alt="Фитнес-тренер" onclick="openGallery('fitness')">
+        <h4>Фитнес-тренер</h4>
+        <p>30+ новых клиентов за месяц</p>
+      </div>
+      <!-- 6. Турагентство -->
+      <div class="slide">
+        <img src="https://i.postimg.cc/pdkWMT84/Black1.jpg" alt="Турагентство" onclick="openGallery('travel')">
+        <h4>Турагентство "Горизонт"</h4>
+        <p>Удобное бронирование туров онлайн</p>
       </div>
     </div>
-  </section>
+
+    <div class="slider-controls">
+      <button onclick="prevSlide()" class="nav-btn">←</button>
+      <div class="dots" id="sliderDots"></div>
+      <button onclick="nextSlide()" class="nav-btn">→</button>
+    </div>
+
+    <div class="cta-center">
+      <button onclick="scrollToSection('contact')" class="btn primary">Хочу такой же результат</button>
+    </div>
+  </div>
+</section>
 
   <!-- Gallery Modal -->
   <div id="galleryModal" class="modal">
@@ -102,7 +117,7 @@
   </div>
 
   <!-- Services -->
-  <section id="services" class="section light">
+  <section id="services" class="section dark">
     <div class="container">
       <h2>Услуги</h2>
       <div class="cards">
@@ -127,30 +142,184 @@
   </section>
 
   <!-- Reviews -->
-  <section class="section dark">
+  <section id="reviews" class="section dark">
     <div class="container">
       <h2>Что говорят клиенты</h2>
       <div class="reviews">
-        <blockquote>
-          "Запустили сайт за 5 дней. Уже через неделю — 120 заявок. web-thunder — это не просто разработка, это рост бизнеса."
-        </blockquote>
-        <blockquote>
-          "Работал с 3 разработчиками. Только web-thunder сделал всё без косяков и в срок."
-        </blockquote>
-        <blockquote>
-          "Сайт загружается за 0.8 сек. SEO в топе. Конверсия выросла на 70%."
-        </blockquote>
+        <!-- Отзыв 1 -->
+        <div class="review-card">
+          <h4>Анна Петрова</h4>
+          <p class="position">Основатель стоматологии "Улыбка"</p>
+          <p class="text">"Запустили сайт за 5 дней. Уже через неделю — 120 заявок. Web-Thunder — это не просто разработка, это рост бизнеса. Теперь у нас нет свободных слотов на неделю вперёд."</p>
+        </div>
+        <!-- Отзыв 2 -->
+        <div class="review-card">
+          <h4>Дмитрий Соколов</h4>
+          <p class="position">Владелец веломагазина "CyclePro"</p>
+          <p class="text">"Работал с 3 разработчиками. Только Web-Thunder сделал всё без косяков и в срок. Сайт окупился за 6 недель. Рекомендую всем, кто хочет продавать онлайн."</p>
+        </div>
+        <!-- Отзыв 3 -->
+        <div class="review-card">
+          <h4>Елена Козлова</h4>
+          <p class="position">Директор турагентства "Горизонт"</p>
+          <p class="text">"Команда поняла бизнес с полуслова. Работают как свои. Сделали всё быстро, чётко, без лишних вопросов. SEO в топе, конверсия выросла на 70%."</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact" class="section light">
+  <section id="contact" class="section dark">
     <div class="container">
       <h2>Готовы к запуску?</h2>
-      <p class="text-center">Напишите — и через 24 часа у вас будет <strong>прототип сайта</strong> или <strong>коммерческое предложение</strong>.</p>
-      <div class="cta-center">
-        <a href="https://t.me/overgrand" target="_blank" class="btn primary large">Написать в Telegram</a>
+      <p class="text-center">Оставьте заявку — и через 24 часа вы получите <strong>прототип сайта</strong> или <strong>точную смету</strong>.</p>
+      
+      <form id="contactForm" class="contact-form">
+        <input type="text" id="name" placeholder="Ваше имя" required>
+        <input type="tel" id="phone" placeholder="Телефон" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <textarea id="message" placeholder="Опишите ваш проект (по желанию)" rows="4"></textarea>
+        <button type="submit" class="btn primary large">Отправить заявку</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Calculator -->
+  <section id="calculator" class="calculator">
+    <div class="container">
+      <div class="calc-wrapper">
+        <h2 class="calc-title">Рассчитайте стоимость сайта</h2>
+        <p class="text-center">Выберите тип сайта — и мы покажем, что в него входит.</p>
+
+        <!-- Пошаговый калькулятор -->
+        <div id="step1" class="step active">
+          <h3>1. Тип сайта</h3>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="siteType" value="20000" onchange="nextStep(2)">
+              <div class="card">
+                <h4>Лендинг</h4>
+                <p>Одна страница, максимум конверсий</p>
+                <div class="price">от 20 000 ₽</div>
+              </div>
+            </label>
+            <label class="option">
+              <input type="radio" name="siteType" value="15000" onchange="nextStep(2)">
+              <div class="card">
+                <h4>Сайт-визитка</h4>
+                <p>3–5 страниц, про вас и ваши услуги</p>
+                <div class="price">от 15 000 ₽</div>
+              </div>
+            </label>
+            <label class="option">
+              <input type="radio" name="siteType" value="30000" onchange="nextStep(2)">
+              <div class="card">
+                <h4>Корпоративный сайт</h4>
+                <p>Много страниц, блог, новости</p>
+                <div class="price">от 30 000 ₽</div>
+              </div>
+            </label>
+            <label class="option">
+              <input type="radio" name="siteType" value="45000" onchange="nextStep(2)">
+              <div class="card">
+                <h4>Интернет-магазин</h4>
+                <p>Каталог, корзина, оплата</p>
+                <div class="price">от 45 000 ₽</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div id="step2" class="step">
+          <h3>2. Дизайн</h3>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="design" value="0" onchange="nextStep(3)">
+              <div class="card">
+                <h4>Типовой (шаблон)</h4>
+                <p>Готовое решение, быстрый запуск</p>
+                <div class="price">+0 ₽</div>
+              </div>
+            </label>
+            <label class="option">
+              <input type="radio" name="design" value="15000" onchange="nextStep(3)">
+              <div class="card">
+                <h4>Индивидуальный</h4>
+                <p>Уникальный дизайн под ваш бренд</p>
+                <div class="price">+15 000 ₽</div>
+              </div>
+            </label>
+          </div>
+          <button onclick="prevStep()" class="btn secondary">Назад</button>
+        </div>
+
+        <div id="step3" class="step">
+          <h3>3. Функционал</h3>
+          <div class="checkbox-group">
+            <label><input type="checkbox" value="2000" onchange="updateTotal()"> Форма обратной связи (+2 000 ₽)</label>
+            <label><input type="checkbox" value="3000" onchange="updateTotal()"> Онлайн-чат (+3 000 ₽)</label>
+            <label><input type="checkbox" value="5000" onchange="updateTotal()"> Блог (+5 000 ₽)</label>
+            <label><input type="checkbox" value="8000" onchange="updateTotal()"> Фотогалерея (+8 000 ₽)</label>
+            <label><input type="checkbox" value="10000" onchange="updateTotal()"> Корзина и оплата (+10 000 ₽)</label>
+            <label><input type="checkbox" value="12000" onchange="updateTotal()"> Личный кабинет (+12 000 ₽)</label>
+            <label><input type="checkbox" value="15000" onchange="updateTotal()"> Интеграция с CRM (+15 000 ₽)</label>
+          </div>
+          <button onclick="nextStep(4)" class="btn primary large">Далее</button>
+          <button onclick="prevStep()" class="btn secondary">Назад</button>
+        </div>
+
+        <div id="step4" class="step">
+          <h3>4. SEO и поддержка</h3>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="seo" value="0" onchange="updateTotal()">
+              <div class="card">
+                <h4>Нет</h4>
+                <p>Без SEO-оптимизации</p>
+                <div class="price">+0 ₽</div>
+              </div>
+            </label>
+            <label class="option">
+              <input type="radio" name="seo" value="15000" onchange="updateTotal()">
+              <div class="card">
+                <h4>SEO (+15 000 ₽)</h4>
+                <p>Оптимизация под поисковики</p>
+                <div class="price">+15 000 ₽</div>
+              </div>
+            </label>
+          </div>
+
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="support" value="0" onchange="updateTotal()">
+              <div class="card">
+                <h4>Нет</h4>
+                <p>Без техподдержки</p>
+                <div class="price">+0 ₽</div>
+              </div>
+            </label>
+            <label class="option">
+              <input type="radio" name="support" value="5000" onchange="updateTotal()">
+              <div class="card">
+                <h4>Базовый (1 мес)</h4>
+                <p>Мелкие правки, баги</p>
+                <div class="price">+5 000 ₽</div>
+              </div>
+            </label>
+            <label class="option">
+              <input type="radio" name="support" value="12000" onchange="updateTotal()">
+              <div class="card">
+                <h4>Расширенный (3 мес)</h4>
+                <p>Доработки, обновления</p>
+                <div class="price">+12 000 ₽</div>
+              </div>
+            </label>
+          </div>
+
+          <div class="result" id="result">Итого: 0 ₽</div>
+          <button type="button" onclick="sendCalcResult()" class="btn primary large">Получить точную смету</button>
+          <button type="button" onclick="prevStep()" class="btn secondary">Назад</button>
+        </div>
       </div>
     </div>
   </section>
@@ -159,6 +328,8 @@
   <footer class="footer">
     <div class="container">
       <p>© 2025 Web-Thunder. Ваш сайт — наша стихия.</p>
+      <p>📧 <a href="mailto:rosanov.danila2016@yandex.ru">rosanov.danila2016@yandex.ru</a></p>
+      <p>📱 <a href="https://t.me/overgrand" target="_blank">@overgrand</a></p>
     </div>
   </footer>
 
