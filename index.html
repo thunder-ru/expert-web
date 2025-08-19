@@ -55,37 +55,37 @@
       <div class="portfolio-slider" id="portfolioSlider">
         <!-- 1. Автопрокат -->
         <div class="slide active">
-          <img src="https://via.placeholder.com/400x250/8b5cf6/ffffff?text=Автопрокат" alt="Аренда автомобилей" onclick="openGallery(['https://via.placeholder.com/600x400/8b5cf6/ffffff?text=Auto1', 'https://via.placeholder.com/600x400/8b5cf6/ffffff?text=Auto2', 'https://via.placeholder.com/600x400/8b5cf6/ffffff?text=Auto3'])">
+          <img src="https://i.postimg.cc/pdkWMT84/Black1.jpg" alt="Аренда автомобилей" onclick="openGallery('auto')">
           <h4>Аренда автомобилей</h4>
           <p>+110% заявок за 2 месяца</p>
         </div>
         <!-- 2. Стоматология -->
         <div class="slide">
-          <img src="https://via.placeholder.com/400x250/06b6d4/ffffff?text=Стоматология" alt="Стоматология" onclick="openGallery(['https://via.placeholder.com/600x400/06b6d4/ffffff?text=Dentist1', 'https://via.placeholder.com/600x400/06b6d4/ffffff?text=Dentist2'])">
+          <img src="https://i.postimg.cc/GmFkPfSL/1.jpg" alt="Стоматология" onclick="openGallery('dentist')">
           <h4>Стоматология</h4>
           <p>ТОП-3 в Яндекс по ключевым запросам</p>
         </div>
         <!-- 3. Чайный магазин -->
         <div class="slide">
-          <img src="https://via.placeholder.com/400x250/10b981/ffffff?text=Чайный+магазин" alt="Чай и кофе" onclick="openGallery(['https://via.placeholder.com/600x400/10b981/ffffff?text=Tea1', 'https://via.placeholder.com/600x400/10b981/ffffff?text=Tea2', 'https://via.placeholder.com/600x400/10b981/ffffff?text=Tea3'])">
+          <img src="https://i.postimg.cc/xC4HTVqR/1.jpg" alt="Чай и кофе" onclick="openGallery('tea')">
           <h4>Онлайн магазин чая и кофе</h4>
           <p>Окупился за 6 недель</p>
         </div>
         <!-- 4. Веломагазин -->
         <div class="slide">
-          <img src="https://via.placeholder.com/400x250/f59e0b/ffffff?text=Веломагазин" alt="Велосипеды" onclick="openGallery(['https://via.placeholder.com/600x400/f59e0b/ffffff?text=Bike1', 'https://via.placeholder.com/600x400/f59e0b/ffffff?text=Bike2'])">
+          <img src="https://i.postimg.cc/J7S6P9KZ/image.jpg" alt="Велосипеды" onclick="openGallery('bike')">
           <h4>Магазин велосипедов</h4>
           <p>+90% трафика и 200+ заказов в месяц</p>
         </div>
         <!-- 5. Фитнес-тренер -->
         <div class="slide">
-          <img src="https://via.placeholder.com/400x250/ef4444/ffffff?text=Фитнес" alt="Фитнес" onclick="openGallery(['https://via.placeholder.com/600x400/ef4444/ffffff?text=Fitness1', 'https://via.placeholder.com/600x400/ef4444/ffffff?text=Fitness2'])">
+          <img src="https://i.postimg.cc/Z5xwY0mx/1.jpg" alt="Фитнес" onclick="openGallery('fitness')">
           <h4>Персональный фитнес-тренер</h4>
           <p>30+ новых клиентов за месяц</p>
         </div>
         <!-- 6. Турагенство -->
         <div class="slide">
-          <img src="https://via.placeholder.com/400x250/8b5cf6/ffffff?text=Туры" alt="Турагентство" onclick="openGallery(['https://via.placeholder.com/600x400/8b5cf6/ffffff?text=Travel1', 'https://via.placeholder.com/600x400/8b5cf6/ffffff?text=Travel2'])">
+          <img src="https://i.postimg.cc/8kvBPsBf/1.jpg" alt="Турагентство" onclick="openGallery('travel')">
           <h4>Турагенство</h4>
           <p>Удобное бронирование туров онлайн</p>
         </div>
@@ -107,13 +107,15 @@
   <div id="galleryModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeGallery()">&times;</span>
-      <div class="gallery-grid" id="galleryGrid">
-        <!-- Фото будут добавлены динамически -->
-      </div>
-      <div class="gallery-info">
+      <div class="gallery-header">
         <h3 id="projectTitle"></h3>
         <p id="projectDesc"></p>
         <p><strong>Результат:</strong> <span id="projectResult"></span></p>
+      </div>
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Фото будут добавлены динамически -->
+      </div>
+      <div class="gallery-footer">
         <button class="btn primary" onclick="scrollToSection('contact')">Обсудить проект</button>
       </div>
     </div>
