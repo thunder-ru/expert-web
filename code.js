@@ -1,230 +1,91 @@
-// Плавная прокрутка
-function scrollToSection(id) {
-  const element = document.getElementById(id);
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' });
-  }
-}
+// Инициализация EmailJS
+(function () {
+  emailjs.init("YOUR_PUBLIC_KEY"); // ← Вставьте ваш Public Key
+})();
+
+// Прогресс-бар
+window.addEventListener('scroll', () => {
+  const scrollTop = document.documentElement.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / scrollHeight) * 100;
+  document.getElementById('progressBar').style.width = progress + '%';
+});
+
+// Анимация при загрузке
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('heroText').style.animation = 'fadeInUp 1s ease forwards';
+  document.getElementById('aboutText').style.animation = 'fadeInUp 1s ease 0.3s forwards';
+  initSlider();
+  updateTotal();
+});
 
 // Мобильное меню
 function toggleMenu() {
   const nav = document.querySelector('.nav');
-  if (nav) nav.classList.toggle('active');
+  nav.classList.toggle('active');
 }
 
-// Прогресс-бар
-window.onscroll = function() {
-  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  const scrolled = (winScroll / height) * 100;
-  document.getElementById("progressBar").style.width = scrolled + "%";
-};
-
-// Анимации при прокрутке
-document.addEventListener('DOMContentLoaded', () => {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = 1;
-        entry.target.style.transform = 'translateY(0)';
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
-
-  document.querySelectorAll('.service-card, .about-text, #contactForm, .testimonial-card, .slider-item').forEach(el => {
-    el.style.opacity = 0;
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-  });
-
-  // Показываем модальное окно при первом заходе
-  if (!getCookie('privacy_accepted')) {
-    openModal();
+// Плавный скролл
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  if (document.querySelector('.nav').classList.contains('active')) {
+    document.querySelector('.nav').classList.remove('active');
   }
-});
+}
 
-// === Слайдер портфолио ===
-let sliderIndex = 0;
-const track = document.getElementById('sliderTrack');
-const container = document.getElementById('sliderContainer');
+// === КАЛЬКУЛЯТОР СТОИМОСТИ ===
+function updateTotal() {
+  const siteType = parseFloat(document.getElementById('siteType').value) || 0;
+  const needSEO = parseFloat(document.getElementById('needSEO').value) || 0;
+  const urgency = parseFloat(document.getElementById('urgency').value) || 0;
+  const total = siteType + needSEO + urgency;
+  document.getElementById('totalPrice').textContent = total.toLocaleString('ru-RU') + ' ₽';
+}
+
+document.getElementById('siteType').addEventListener('change', updateTotal);
+document.getElementById('needSEO').addEventListener('change', updateTotal);
+document.getElementById('urgency').addEventListener('change', updateTotal);
+
+// === СЛАЙДЕР ПОРТФОЛИО ===
+let currentSlide = 0;
+const sliderTrack = document.getElementById('sliderTrack');
+const sliderItems = document.querySelectorAll('.slider-item');
 const dotsContainer = document.getElementById('sliderDots');
+const totalSlides = sliderItems.length;
 
-if (track && container) {
-  const items = document.querySelectorAll('.slider-item');
-  const totalItems = items.length;
+// Создание точек
+for (let i = 0; i < totalSlides; i++) {
+  const dot = document.createElement('div');
+  dot.classList.add('slider-dot');
+  if (i === 0) dot.classList.add('active');
+  dot.addEventListener('click', () => goToSlide(i));
+  dotsContainer.appendChild(dot);
+}
 
-  // Создаем точки пагинации
-  for (let i = 0; i < totalItems; i++) {
-    const dot = document.createElement('span');
-    dot.classList.add('slider-dot');
-    dot.dataset.index = i;
-    dot.addEventListener('click', () => moveSlider(i - sliderIndex));
-    dotsContainer.appendChild(dot);
-  }
-
-  function moveSlider(direction) {
-    sliderIndex += direction;
-    if (sliderIndex < 0) sliderIndex = totalItems - 1;
-    if (sliderIndex >= totalItems) sliderIndex = 0;
-
-    // Обновляем позицию
-    track.style.transform = `translateX(${-sliderIndex * 100}%)`;
-
-    // Обновляем точки
-    document.querySelectorAll('.slider-dot').forEach((dot, index) => {
-      dot.classList.toggle('active', index === sliderIndex);
-    });
-  }
-
-  // Автопрокрутка
-  let autoSlide = setInterval(() => moveSlider(1), 7000);
-
-  // Остановка при наведении
-  container.addEventListener('mouseenter', () => clearInterval(autoSlide));
-  container.addEventListener('mouseleave', () => {
-    autoSlide = setInterval(() => moveSlider(1), 7000);
-  });
-
-  // Листание мышкой
-  let isDragging = false, startX, startTranslate;
-  container.addEventListener('mousedown', (e) => {
-    isDragging = true;
-    startX = e.pageX;
-    startTranslate = -sliderIndex * 100;
-    track.style.transition = 'none';
-  });
-
-  container.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    const diff = (e.pageX - startX) / window.innerWidth * 100;
-    track.style.transform = `translateX(${startTranslate + diff}%)`;
-  });
-
-  container.addEventListener('mouseup', (e) => {
-    if (!isDragging) return;
-    isDragging = false;
-    const diff = e.pageX - startX;
-    if (Math.abs(diff) > 50) moveSlider(diff > 0 ? -1 : 1);
-    else moveSlider(0);
-    track.style.transition = 'transform 0.6s ease';
-  });
-
-  container.addEventListener('mouseleave', () => {
-    if (isDragging) {
-      isDragging = false;
-      moveSlider(0);
-      track.style.transition = 'transform 0.6s ease';
-    }
-  });
-
-  // Инициализация
-  document.addEventListener('DOMContentLoaded', () => {
-    track.style.transition = 'transform 0.6s ease';
-    moveSlider(0);
+function updateSlider() {
+  const itemWidth = 280;
+  const gap = 20;
+  sliderTrack.style.transform = `translateX(-${currentSlide * (itemWidth + gap)}px)`;
+  document.querySelectorAll('.slider-dot').forEach((dot, i) => {
+    dot.classList.toggle('active', i === currentSlide);
   });
 }
 
-// === Данные о проектах (галерея) ===
-const projectData = {
-  car_rental: {
-    title: "Аренда автомобилей",
-    images: [
-      "https://i.postimg.cc/pdkWMT84/Black1.jpg",
-      "https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg",
-      "https://i.postimg.cc/PrmQ0R29/Black3.jpg",
-      "https://i.postimg.cc/0yndyJgC/Black4.jpg",
-      "https://i.postimg.cc/HnbbDr4X/Black-5.jpg"
-    ]
-  },
-  dentistry: {
-    title: "Стоматология",
-    images: [
-      "https://i.postimg.cc/GmFkPfSL/1.jpg",
-      "https://i.postimg.cc/5tgJdxjX/2.jpg",
-      "https://i.postimg.cc/D0J3XL6G/3.jpg",
-      "https://i.postimg.cc/8k9SVXkm/4.jpg",
-      "https://i.postimg.cc/zf0s20PW/6.jpg",
-      "https://i.postimg.cc/g2dcft4B/7.jpg",
-      "https://i.postimg.cc/vm2QxYyp/8.jpg",
-      "https://i.postimg.cc/DfX2m3MM/9.jpg"
-    ]
-  },
-  tea_coffee: {
-    title: "Чай и кофе",
-    images: [
-      "https://i.postimg.cc/xC4HTVqR/1.jpg",
-      "https://i.postimg.cc/GmSbdtS8/2.jpg",
-      "https://i.postimg.cc/tCTfyk0k/3.jpg",
-      "https://i.postimg.cc/MpfFfGpj/4.jpg",
-      "https://i.postimg.cc/d08NnSds/5.jpg",
-      "https://i.postimg.cc/nz2Rfj0N/6.jpg",
-      "https://i.postimg.cc/zf10LSQ9/7.jpg"
-    ]
-  },
-  bike_rental: {
-    title: "Прокат велосипедов",
-    images: [
-      "https://i.postimg.cc/J7S6P9KZ/image.jpg",
-      "https://i.postimg.cc/MG02XYWL/2.jpg",
-      "https://i.postimg.cc/zfr4mRnF/3.jpg",
-      "https://i.postimg.cc/dQxXsf21/4.jpg",
-      "https://i.postimg.cc/rFRHK9j9/5.jpg",
-      "https://i.postimg.cc/wjKGJsbY/6.jpg",
-      "https://i.postimg.cc/DwqYcytJ/7.jpg"
-    ]
-  },
-  fitness: {
-    title: "Фитнес-тренер",
-    images: [
-      "https://i.postimg.cc/Z5xwY0mx/1.jpg",
-      "https://i.postimg.cc/907v5PN1/2.jpg",
-      "https://i.postimg.cc/vH5p0znZ/3.jpg",
-      "https://i.postimg.cc/bwT4hw3X/image.jpg",
-      "https://i.postimg.cc/26PKwb8W/5.jpg"
-    ]
-  },
-  travel: {
-    title: "Тур-агентство",
-    images: [
-      "https://i.postimg.cc/8kvBPsBf/1.jpg",
-      "https://i.postimg.cc/zG02QPG8/2.jpg",
-      "https://i.postimg.cc/xdB5DrDD/3.jpg",
-      "https://i.postimg.cc/9FcpjtSM/4.jpg",
-      "https://i.postimg.cc/bwBHkXvD/5.jpg",
-      "https://i.postimg.cc/MGf0Yscs/6.jpg"
-    ]
-  }
-};
-
-// Открытие модального окна с галереей
-function openProjectModal(projectKey) {
-  const project = projectData[projectKey];
-  if (!project) return;
-
-  document.getElementById('projectTitle').textContent = project.title;
-  const container = document.getElementById('gallerySlides');
-  container.innerHTML = '';
-
-  project.images.forEach(src => {
-    const img = document.createElement('img');
-    img.src = src;
-    img.alt = project.title;
-    img.className = 'gallery-img';
-    img.loading = 'lazy';
-    container.appendChild(img);
-  });
-
-  document.getElementById('projectModal').style.display = 'flex';
+function moveSlider(direction) {
+  currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+  updateSlider();
 }
 
-// Закрытие модального окна
-function closeProjectModal() {
-  document.getElementById('projectModal').style.display = 'none';
+function goToSlide(index) {
+  currentSlide = index;
+  updateSlider();
 }
 
-// Модальное окно политики
+function initSlider() {
+  updateSlider();
+}
+
+// === МОДАЛЬНЫЕ ОКНА ===
 function openModal() {
   document.getElementById('privacyModal').style.display = 'flex';
 }
@@ -234,47 +95,83 @@ function closeModal() {
 }
 
 function acceptPolicy() {
-  setCookie('privacy_accepted', 'true', 365);
+  alert('Спасибо за доверие! Политика принята.');
   closeModal();
 }
 
-// Cookie-функции
-function setCookie(name, value, days) {
-  const d = new Date();
-  d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-  document.cookie = name + "=" + value + ";expires=" + d.toUTCString() + ";path=/";
+// Данные для проектов
+const projectData = {
+  car_rental: {
+    title: "Автомойка",
+    images: [
+      "https://i.postimg.cc/pdkWMT84/Black1.jpg",
+      "https://via.placeholder.com/800x600/1a1a2e/ffffff?text=Скрин+2"
+    ]
+  },
+  dentistry: {
+    title: "Стоматология",
+    images: [
+      "https://i.postimg.cc/GmFkPfSL/1.jpg",
+      "https://via.placeholder.com/800x600/1a1a2e/ffffff?text=Скрин+2"
+    ]
+  },
+  tea_coffee: {
+    title: "Чай и кофе",
+    images: [
+      "https://i.postimg.cc/xC4HTVqR/1.jpg",
+      "https://via.placeholder.com/800x600/1a1a2e/ffffff?text=Скрин+2"
+    ]
+  },
+  bike_rental: {
+    title: "Прокат велосипедов",
+    images: [
+      "https://i.postimg.cc/J7S6P9KZ/image.jpg",
+      "https://via.placeholder.com/800x600/1a1a2e/ffffff?text=Скрин+2"
+    ]
+  },
+  fitness: {
+    title: "Фитнес-клуб",
+    images: [
+      "https://i.postimg.cc/Z5xwY0mx/1.jpg",
+      "https://via.placeholder.com/800x600/1a1a2e/ffffff?text=Скрин+2"
+    ]
+  },
+  travel: {
+    title: "Турагентство",
+    images: [
+      "https://i.postimg.cc/8kvBPsBf/1.jpg",
+      "https://via.placeholder.com/800x600/1a1a2e/ffffff?text=Скрин+2"
+    ]
+  }
+};
+
+function openProjectModal(projectId) {
+  const data = projectData[projectId];
+  if (!data) return;
+
+  document.getElementById('projectTitle').textContent = data.title;
+  const gallery = document.getElementById('gallerySlides');
+  gallery.innerHTML = '';
+  data.images.forEach(imgSrc => {
+    const img = document.createElement('img');
+    img.src = imgSrc;
+    img.classList.add('gallery-img');
+    gallery.appendChild(img);
+  });
+
+  document.getElementById('projectModal').style.display = 'flex';
 }
 
-function getCookie(name) {
-  const cname = name + "=";
-  const decoded = decodeURIComponent(document.cookie);
-  const ca = decoded.split(';');
-  for (let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) === ' ') c = c.substring(1);
-    if (c.indexOf(cname) === 0) return c.substring(cname.length, c.length);
-  }
-  return "";
+function closeProjectModal() {
+  document.getElementById('projectModal').style.display = 'none';
 }
 
-// EmailJS
-(function() {
-  emailjs.init("YOUR_PUBLIC_KEY");
+// === ФОРМА ===
+document.getElementById('contactForm').addEventListener('submit', function (e) {
+  e.preventDefault();
 
-  const form = document.getElementById('contactForm');
-  if (form) {
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      emailjs.sendForm('default_service', 'template_contact', this)
-        .then(() => {
-          form.reset();
-          const success = document.getElementById('successMessage');
-          success.classList.remove('hidden');
-          setTimeout(() => success.classList.add('hidden'), 5000);
-        }, (err) => {
-          alert('Ошибка отправки: ' + JSON.stringify(err));
-        });
-    });
-  }
-})();
+  const formData = new FormData(this);
+  const templateParams = {
+    name: formData.get('name'),
+    email: formData.get('email'),
+    message: formData
