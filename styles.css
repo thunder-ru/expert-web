@@ -423,6 +423,7 @@ body {
   padding: 10px;
   cursor: grab;
   touch-action: none;
+  height: 300px;
 }
 
 .slider-container:active {
@@ -432,9 +433,10 @@ body {
 .slider-track {
   display: flex;
   transition: transform 0.6s ease;
-  gap: 30px;
-  padding: 10px 0;
-  scroll-snap-type: x mandatory;
+  gap: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .slider-item {
@@ -446,7 +448,7 @@ body {
   cursor: pointer;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
-  scroll-snap-align: start;
+  flex-shrink: 0;
 }
 
 .slider-item:hover {
@@ -457,7 +459,7 @@ body {
 .slider-item img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   transition: transform 0.5s ease;
 }
 
