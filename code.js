@@ -49,16 +49,33 @@ document.addEventListener('DOMContentLoaded', () => {
 let sliderIndex = 0;
 const track = document.getElementById('sliderTrack');
 const container = document.getElementById('sliderContainer');
+const dotsContainer = document.getElementById('sliderDots');
 
 if (track && container) {
   const items = document.querySelectorAll('.slider-item');
   const totalItems = items.length;
 
+  // Создаем точки пагинации
+  for (let i = 0; i < totalItems; i++) {
+    const dot = document.createElement('span');
+    dot.classList.add('slider-dot');
+    dot.dataset.index = i;
+    dot.addEventListener('click', () => moveSlider(i - sliderIndex));
+    dotsContainer.appendChild(dot);
+  }
+
   function moveSlider(direction) {
     sliderIndex += direction;
     if (sliderIndex < 0) sliderIndex = totalItems - 1;
     if (sliderIndex >= totalItems) sliderIndex = 0;
+
+    // Обновляем позицию
     track.style.transform = `translateX(${-sliderIndex * 100}%)`;
+
+    // Обновляем точки
+    document.querySelectorAll('.slider-dot').forEach((dot, index) => {
+      dot.classList.toggle('active', index === sliderIndex);
+    });
   }
 
   // Автопрокрутка
