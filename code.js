@@ -1,3 +1,6 @@
+// Глобальная переменная для хранения итога
+let totalCost = 0;
+
 // Прокрутка к секции
 function scrollToSection(id) {
   document.getElementById(id).scrollIntoView({ behavior: "smooth" });
@@ -7,6 +10,80 @@ function scrollToSection(id) {
 function openTelegram() {
   window.open("https://t.me/overgrand", '_blank');
 }
+
+// Показать шаг
+function showStep(n) {
+  document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+  document.getElementById(`step${n}`).classList.add('active');
+}
+
+// Кнопка "Далее" — только после выбора
+function validateAndNext(currentStep, nextStepNum) {
+  let selected = false;
+
+  if (currentStep === 1) {
+    selected = document.querySelector('input[name="siteType"]:checked');
+  } else if (currentStep === 2) {
+    selected = document.querySelector('input[name="design"]:checked');
+  } else if (currentStep === 3) {
+    selected = true; // Функционал — можно не выбирать
+  } else if (currentStep === 4) {
+    selected = document.querySelector('input[name="seo"]:checked') && 
+               document.querySelector('input[name="support"]:checked');
+  }
+
+  if (!selected && currentStep !== 3) {
+    alert("Пожалуйста, выберите вариант.");
+    return;
+  }
+
+  showStep(nextStepNum);
+  updateTotal();
+}
+
+// Назад
+function goBack() {
+  const steps = ['step1', 'step2', 'step3', 'step4'];
+  for (let i = 1; i < 4; i++) {
+    if (document.getElementById(`step${i}`).classList.contains('active')) {
+      showStep(i - 1);
+      return;
+    }
+  }
+}
+
+// Обновление итога
+function updateTotal() {
+  totalCost = 0;
+
+  const siteType = document.querySelector('input[name="siteType"]:checked');
+  if (siteType) totalCost += parseFloat(siteType.value);
+
+  const design = document.querySelector('input[name="design"]:checked');
+  if (design) totalCost += parseFloat(design.value);
+
+  document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+    totalCost += parseFloat(cb.value);
+  });
+
+  const seo = document.querySelector('input[name="seo"]:checked');
+  if (seo) totalCost += parseFloat(seo.value);
+
+  const support = document.querySelector('input[name="support"]:checked');
+  if (support) totalCost += parseFloat(support.value);
+}
+
+// Получить смету → перекидывает на форму
+function requestQuote() {
+  localStorage.setItem('calculatedCost', totalCost.toLocaleString() + ' ₽');
+  alert("Отлично! Оставьте заявку — и мы отправим вам точную смету.");
+  scrollToSection('contact');
+}
+
+// При загрузке — показываем первый шаг
+document.addEventListener("DOMContentLoaded", function () {
+  showStep(1);
+});
 
 // Портфолио слайдер
 let currentSlide = 0;
