@@ -170,7 +170,7 @@ body {
   border-bottom: 1px solid rgba(138, 125, 255, 0.1);
 }
 
-.stats-bar.mobile-hide {
+.mobile-hide {
   display: none;
 }
 
@@ -938,7 +938,7 @@ body {
     font-size: 0.9rem;
   }
 
-  .stats-bar.mobile-hide {
+  .mobile-hide {
     display: none;
   }
 
