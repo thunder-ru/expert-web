@@ -70,7 +70,7 @@ if (track && container) {
     autoSlide = setInterval(() => moveSlider(1), 7000);
   });
 
-  // Листание мышкой (drag & drop)
+  // Листание мышкой
   let isDragging = false, startX, startTranslate;
   container.addEventListener('mousedown', (e) => {
     isDragging = true;
@@ -89,11 +89,8 @@ if (track && container) {
     if (!isDragging) return;
     isDragging = false;
     const diff = e.pageX - startX;
-    if (Math.abs(diff) > 50) {
-      moveSlider(diff > 0 ? -1 : 1);
-    } else {
-      moveSlider(0);
-    }
+    if (Math.abs(diff) > 50) moveSlider(diff > 0 ? -1 : 1);
+    else moveSlider(0);
     track.style.transition = 'transform 0.6s ease';
   });
 
@@ -110,8 +107,6 @@ if (track && container) {
     track.style.transition = 'transform 0.6s ease';
     moveSlider(0);
   });
-} else {
-  console.error('Элементы слайдера не найдены');
 }
 
 // === Данные о проектах (галерея) ===
