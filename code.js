@@ -153,15 +153,36 @@ const projectData = {
   },
   bike_rental: {
     title: "Прокат велосипедов",
-    images: ["https://via.placeholder.com/800x600/0a0a14/ccccff?text=Кейс+4"]
+    images: [
+      "https://i.postimg.cc/J7S6P9KZ/image.jpg",
+      "https://i.postimg.cc/MG02XYWL/2.jpg",
+      "https://i.postimg.cc/zfr4mRnF/3.jpg",
+      "https://i.postimg.cc/dQxXsf21/4.jpg",
+      "https://i.postimg.cc/rFRHK9j9/5.jpg",
+      "https://i.postimg.cc/wjKGJsbY/6.jpg",
+      "https://i.postimg.cc/DwqYcytJ/7.jpg"
+    ]
   },
   fitness: {
     title: "Фитнес-тренер",
-    images: ["https://via.placeholder.com/800x600/4CAF50/ffffff?text=Кейс+5"]
+    images: [
+      "https://i.postimg.cc/Z5xwY0mx/1.jpg",
+      "https://i.postimg.cc/907v5PN1/2.jpg",
+      "https://i.postimg.cc/vH5p0znZ/3.jpg",
+      "https://i.postimg.cc/bwT4hw3X/image.jpg",
+      "https://i.postimg.cc/26PKwb8W/5.jpg"
+    ]
   },
   travel: {
     title: "Тур-агентство",
-    images: ["https://via.placeholder.com/800x600/ff6b35/ffffff?text=Кейс+6"]
+    images: [
+      "https://i.postimg.cc/8kvBPsBf/1.jpg",
+      "https://i.postimg.cc/zG02QPG8/2.jpg",
+      "https://i.postimg.cc/xdB5DrDD/3.jpg",
+      "https://i.postimg.cc/9FcpjtSM/4.jpg",
+      "https://i.postimg.cc/bwBHkXvD/5.jpg",
+      "https://i.postimg.cc/MGf0Yscs/6.jpg"
+    ]
   }
 };
 
