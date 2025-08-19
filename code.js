@@ -127,18 +127,18 @@ const projectData = {
 ]
   },
   dentistry: {
-    title: "Стоматология",
-    images: [
-  "https://i.postimg.cc/GmFkPfSL/1.jpg",
-  "https://i.postimg.cc/5tgJdxjX/2.jpg",
-  "https://i.postimg.cc/D0J3XL6G/3.jpg",
-  "https://i.postimg.cc/8k9SVXkm/4.jpg",
-  "https://i.postimg.cc/zf0s20PW/6.jpg",
-  "https://i.postimg.cc/g2dcft4B/7.jpg",
-  "https://i.postimg.cc/vm2QxYyp/8.jpg",
-  "https://i.postimg.cc/DfX2m3MM/9.jpg"
-]
-  },
+  title: "Стоматология",
+  images: [
+    "https://i.postimg.cc/GmFkPfSL/1.jpg",
+    "https://i.postimg.cc/5tgJdxjX/2.jpg",
+    "https://i.postimg.cc/D0J3XL6G/3.jpg",
+    "https://i.postimg.cc/8k9SVXkm/4.jpg",
+    "https://i.postimg.cc/zf0s20PW/6.jpg",
+    "https://i.postimg.cc/g2dcft4B/7.jpg",
+    "https://i.postimg.cc/vm2QxYyp/8.jpg",
+    "https://i.postimg.cc/DfX2m3MM/9.jpg"
+  ]
+},
   tea_coffee: {
     title: "Чай и кофе",
     images: ["https://via.placeholder.com/800x600/ff6b35/ffffff?text=Кейс+3"]
