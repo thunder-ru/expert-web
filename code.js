@@ -293,9 +293,9 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   this.reset();
 });
 
-// Отправка в Google Таблицу
+// Отправка в Google Apps Script → Telegram Bot
 function sendToGoogleSheets(payload, successMessage) {
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbze8jyKgNTdpA_isUgb1yGBg8t2xLit91PlQ-2v7e19Y2GkHizuyUtzlnZoH93Z4HUb/exec'; // ← Замените на свой!
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw0FuDhU7zV2Ylmk-OiGewOP5fNp4X1-NxJHfAe6tPnhjft6-XeHJp3Ho1Ji_DUhoOpTQ/exec'; // ← Ваш URL
 
   fetch(GOOGLE_SCRIPT_URL, {
     method: 'POST',
@@ -305,18 +305,57 @@ function sendToGoogleSheets(payload, successMessage) {
     },
     body: JSON.stringify(payload)
   })
-  .then(response => {
-    if (response.ok) {
-      alert(successMessage);
-    } else {
-      alert('Ошибка отправки. Проверьте консоль (F12).');
-    }
-  })
+  .then(() => alert(successMessage))
   .catch(err => {
     console.error('Ошибка:', err);
-    alert('Ошибка сети. Напишите в Telegram.');
+    alert('Ошибка отправки. Напишите в Telegram.');
   });
 }
+
+// Калькулятор → Telegram
+function requestQuote() {
+  const siteTypeLabel = document.querySelector('input[name="siteType"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
+  const seoLabel = document.querySelector('input[name="seo"]:checked')?.value > 0 ? 'Да' : 'Нет';
+  const supportLabel = document.querySelector('input[name="support"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
+  const totalEl = document.getElementById('result').querySelector('strong');
+  const total = totalEl ? totalEl.innerText.match(/\d+/)?.[0] : '0';
+
+  const payload = {
+    source: 'калькулятор',
+    total: total,
+    siteType: siteTypeLabel,
+    seo: seoLabel,
+    support: supportLabel
+  };
+
+  sendToGoogleSheets(payload, '✅ Заявка отправлена! Свяжемся в ближайшее время.');
+}
+
+// Форма → Telegram
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+
+  if (!name || !phone || !email) {
+    alert('Заполните все обязательные поля.');
+    return;
+  }
+
+  const payload = {
+    source: 'форма',
+    name: name,
+    phone: phone,
+    email: email,
+    message: message
+  };
+
+  sendToGoogleSheets(payload, '✅ Заявка отправлена! Свяжемся в ближайшее время.');
+  this.reset();
+});
 
 // Инициализация
 document.addEventListener("DOMContentLoaded", function () {
