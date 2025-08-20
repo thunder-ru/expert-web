@@ -28,8 +28,9 @@ function validateAndNext(currentStep, nextStepNum) {
     const support = document.querySelector('input[name="support"]:checked');
     if (!seo || !support) {
       alert("Выберите SEO и техническую поддержку.");
-      valid = false;
+      return;
     }
+    valid = true;
   }
 
   if (!valid) {
@@ -295,7 +296,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 
 // Отправка в Telegram через Google Apps Script
 function sendToTelegramBot(payload, successMessage) {
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw0FuDhU7zV2Ylmk-OiGewOP5fNp4X1-NxJHfAe6tPnhjft6-XeHJp3Ho1Ji_DUhoOpTQ/exec';
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwnfGy1_DFquIKib6n-oVnHVWhzBhHv2yMY0C4u2UDXcDijPvsVkWE1P_1iRfXA2a2aQQ/exec';
 
   fetch(GOOGLE_SCRIPT_URL, {
     method: 'POST',
@@ -314,8 +315,8 @@ function sendToTelegramBot(payload, successMessage) {
     }
   })
   .catch(err => {
-    console.error('Ошибка сети:', err);
-    alert('Ошибка отправки. Проверьте интернет.');
+    console.error('Ошибка:', err);
+    alert('Ошибка сети. Проверьте интернет и попробуйте позже.');
   });
 }
 
