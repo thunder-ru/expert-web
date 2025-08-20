@@ -3,9 +3,10 @@ function scrollToSection(id) {
   document.getElementById(id).scrollIntoView({ behavior: "smooth" });
 }
 
-// Открытие Telegram
-function openTelegram() {
-  window.open("https://t.me/overgrand", '_blank');
+// Открытие Telegram с текстом
+function openTelegram(message = "Здравствуйте, хочу обсудить сайт.") {
+  const encoded = encodeURIComponent(message);
+  window.open(`https://t.me/overgrand?text=${encoded}`, '_blank');
 }
 
 // Открытие почты
@@ -13,13 +14,13 @@ function openEmail() {
   window.open("mailto:rosanov.danila2016@yandex.ru", '_blank');
 }
 
-// Показать шаг
+// Показать шаг калькулятора
 function showStep(n) {
   document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
   document.getElementById(`step${n}`).classList.add('active');
 }
 
-// Проверка выбора и переход
+// Проверка и переход
 function validateAndNext(currentStep, nextStepNum) {
   let selected = false;
 
@@ -37,7 +38,7 @@ function validateAndNext(currentStep, nextStepNum) {
     selected = true;
   }
 
-  if (!selected) {
+  if (!selected && currentStep !== 3) {
     alert("Пожалуйста, выберите вариант.");
     return;
   }
@@ -76,12 +77,6 @@ function updateTotal() {
       <small style="color: #94a3b8; margin-left: 8px;">Точная цена будет после анализа вашего бизнеса</small>
     `;
   }
-}
-
-// Получить точную смету — предлагает связаться
-function requestQuote() {
-  alert("Спасибо за расчёт! Чтобы узнать точную стоимость — напишите мне в Telegram или на почту. Я отвечу в течение 1 часа.");
-  scrollToSection('contact');
 }
 
 // Галерея
@@ -248,32 +243,11 @@ function updateDots() {
   });
 }
 
-// Форма — открывает Telegram или почту
+// Форма — предлагает связаться
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
-
-  const name = document.getElementById('name').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const message = document.getElementById('message').value.trim();
-
-  if (!name || !phone || !email) {
-    alert('Заполните все обязательные поля.');
-    return;
-  }
-
-  const text = `📩 *НОВАЯ ЗАЯВКА*\n\n`;
-  text += `👤 Имя: ${name}\n`;
-  text += `📞 Телефон: ${phone}\n`;
-  text += `📧 Email: ${email}\n`;
-  if (message) text += `💬 Сообщение: ${message}\n\n`;
-  text += `—\nГотов к диалогу!`;
-
-  const encoded = encodeURIComponent(text);
-  const url = `https://t.me/overgrand?text=${encoded}`;
-  window.open(url, '_blank');
-  alert('✅ Отлично! Открою Telegram — можете отправить сообщение.');
-  this.reset();
+  alert("Спасибо за заявку! Выберите, как хотите связаться — через Telegram или почту.");
+  scrollToSection('contact');
 });
 
 // Инициализация
