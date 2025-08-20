@@ -4,14 +4,8 @@ function scrollToSection(id) {
 }
 
 // Открытие Telegram
-function openTelegram(message = "Здравствуйте, хочу заказать сайт.") {
-  const encoded = encodeURIComponent(message);
-  window.open(`https://t.me/overgrand?text=${encoded}`, '_blank');
-}
-
-// Открытие почты
-function openEmail() {
-  window.open("mailto:rosanov.danila2016@yandex.ru", '_blank');
+function openTelegram() {
+  window.open("https://t.me/overgrand", '_blank');
 }
 
 // Показать шаг калькулятора
@@ -173,7 +167,7 @@ function openGallery(projectId) {
   galleryGrid.innerHTML = '';
   data.images.forEach(imgUrl => {
     const img = document.createElement('img');
-    img.src = imageUrl.trim();
+    img.src = imgUrl.trim();
     img.alt = data.title;
     img.style.maxWidth = '100%';
     img.style.height = 'auto';
@@ -243,7 +237,7 @@ function updateDots() {
   });
 }
 
-// Форма — после отправки показываем кнопки
+// Форма
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
@@ -257,45 +251,52 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     return;
   }
 
-  // Сбрасываем форму
+  const text = `📩 *НОВАЯ ЗАЯВКА*\n\n`;
+  text += `👤 Имя: ${name}\n`;
+  text += `📞 Телефон: ${phone}\n`;
+  text += `📧 Email: ${email}\n`;
+  if (message) text += `💬 Сообщение: ${message}\n\n`;
+  text += `—\nГотов к диалогу!`;
+
+  const encoded = encodeURIComponent(text);
+  const url = `https://t.me/overgrand?text=${encoded}`;
+  window.open(url, '_blank');
+  alert('✅ Заявка отправлена! Свяжемся в ближайшее время.');
   this.reset();
-
-  // Скрываем форму
-  const form = document.getElementById('contactForm');
-  form.style.display = 'none';
-
-  // Создаем блок с кнопками
-  const buttonsDiv = document.createElement('div');
-  buttonsDiv.id = 'contact-buttons';
-  buttonsDiv.innerHTML = `
-    <p style="color: #94a3b8; font-size: 0.9rem; text-align: center; margin: 20px 0;">
-      Выберите, как хотите связаться:
-    </p>
-    <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-      <button onclick="openTelegram('Здравствуйте, хочу заказать сайт. Имя: ${name}, Телефон: ${phone}, Email: ${email}')" class="btn primary large">💬 Написать в Telegram</button>
-      <button onclick="openEmail()" class="btn secondary large">📧 Написать на почту</button>
-    </div>
-    <div style="text-align: center; margin-top: 20px;">
-      <button onclick="resetContactForm()" class="btn secondary">Назад</button>
-    </div>
-  `;
-
-  // Вставляем после формы
-  form.parentNode.insertBefore(buttonsDiv, form.nextSibling);
 });
 
-// Сброс формы
-function resetContactForm() {
-  const form = document.getElementById('contactForm');
-  const buttons = document.getElementById('contact-buttons');
-  if (buttons) buttons.remove();
-  form.style.display = 'block';
-  form.reset();
+// Модальное окно калькулятора
+function openCalculatorModal() {
+  document.getElementById('calculatorModal').style.display = 'flex';
+  showStep(1);
+  updateTotal();
+}
+
+function closeCalculatorModal() {
+  document.getElementById('calculatorModal').style.display = 'none';
+}
+
+function sendToTelegram() {
+  const siteTypeLabel = document.querySelector('input[name="siteType"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
+  const seoLabel = document.querySelector('input[name="seo"]:checked') ? 'Да' : 'Нет';
+  const supportLabel = document.querySelector('input[name="support"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
+  const totalEl = document.getElementById('result').querySelector('strong');
+  const total = totalEl ? totalEl.innerText.match(/\d+/)?.[0] : '0';
+
+  const message = `🎯 *ЗАЯВКА НА СМЕТУ*\n\n`;
+  message += `🔹 Тип сайта: ${siteTypeLabel}\n`;
+  message += `🔍 SEO: ${seoLabel}\n`;
+  message += `🛠 Поддержка: ${supportLabel}\n`;
+  message += `💰 Итого: ${total} ₽\n\n`;
+  message += `—\nГотов обсудить детали!`;
+
+  const encoded = encodeURIComponent(message);
+  const url = `https://t.me/overgrand?text=${encoded}`;
+  window.open(url, '_blank');
+  closeCalculatorModal();
 }
 
 // Инициализация
 document.addEventListener("DOMContentLoaded", function () {
-  showStep(1);
-  updateTotal();
   initSlider();
 });
