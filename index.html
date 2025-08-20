@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Web-Thunder — создаем сайты, которые приносят клиентов. Лендинги, магазины, SEO. Рассчитайте стоимость онлайн!" />
-  <title>Web-Thunder — Сайты, которые бьют точно в цель</title>
+  <meta name="description" content="Web-Thunder ⚡ — Сайты, которые приносят клиентов. Лендинги, магазины, SEO. Гарантия результата!" />
+  <title>Web-Thunder ⚡ — Сайты, которые продают. Гарантия роста трафика</title>
   <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
   <!-- Header -->
   <header class="header">
     <div class="container">
@@ -18,7 +17,7 @@
         <a href="#portfolio" onclick="scrollToSection('portfolio')">Портфолио</a>
         <a href="#services" onclick="scrollToSection('services')">Услуги</a>
         <a href="#reviews" onclick="scrollToSection('reviews')">Отзывы</a>
-        <a href="#contact" onclick="scrollToSection('contact')">Связаться</a>
+        <a href="#contact" onclick="scrollToSection('contact')">Контакты</a>
         <a href="#calculator" onclick="scrollToSection('calculator')">Калькулятор</a>
         <a href="https://t.me/overgrand" target="_blank" class="nav-telegram">💬 Telegram</a>
       </nav>
@@ -34,8 +33,8 @@
   <section class="hero">
     <div class="container">
       <h1 class="neon-text">Сайт, который работает на вас<br>с первого дня</h1>
-      <p class="lead">Я — <strong>веб-разработчик</strong>. Собираю сайты как конструктор: быстро, надёжно, с фокусом на прибыль и на красивый код.</p>
-      <p class="sub">Я пишу код и собираю конструкторы. Я создаю прибыль.</p>
+      <p class="lead">Я — <strong>веб-архитектор бизнеса</strong>. Собираю сайты как конструктор: быстро, надёжно, с фокусом на прибыль, а не на красивый код.</p>
+      <p class="sub">Я не пишу код. Я создаю прибыль.</p>
       <div class="cta">
         <button onclick="scrollToSection('contact')" class="btn primary large glow">Получить прототип за 24 часа</button>
         <a href="https://t.me/overgrand" target="_blank" class="btn secondary large">Написать в Telegram</a>
@@ -48,54 +47,45 @@
     <div class="container">
       <h2>Портфолио</h2>
       <p class="text-center">Проекты, которые <strong>запускали бизнес</strong></p>
-
       <div class="portfolio-slider" id="portfolioSlider">
-        <!-- 1. Автопрокат -->
         <div class="slide active">
           <img src="https://i.postimg.cc/pdkWMT84/Black1.jpg" alt="Аренда автомобилей" onclick="openGallery('auto')">
           <h4>Аренда автомобилей</h4>
           <p>+30% заявок за 2 месяца</p>
         </div>
-        <!-- 2. Стоматология -->
         <div class="slide">
           <img src="https://i.postimg.cc/GmFkPfSL/1.jpg" alt="Стоматология" onclick="openGallery('dentist')">
           <h4>Стоматология</h4>
           <p>ТОП-5 в Яндекс по ключевым запросам</p>
         </div>
-        <!-- 3. Чайный магазин -->
         <div class="slide">
-          <img src="https://i.postimg.cc/xC4HTVqR/1.jpg" alt="Чайный магазин" onclick="openGallery('tea')">
-          <h4>Чайный магазин</h4>
+          <img src="https://i.postimg.cc/xC4HTVqR/1.jpg" alt="Онлайн магазин чая и кофе" onclick="openGallery('tea')">
+          <h4>Онлайн магазин чая и кофе</h4>
           <p>Окупился за 1.5 недели</p>
         </div>
-        <!-- 4. Веломагазин -->
         <div class="slide">
-          <img src="https://i.postimg.cc/J7S6P9KZ/image.jpg" alt="Веломагазин" onclick="openGallery('bike')">
-          <h4>Веломагазин</h4>
+          <img src="https://i.postimg.cc/J7S6P9KZ/image.jpg" alt="Магазин велосипедов" onclick="openGallery('bike')">
+          <h4>Магазин велосипедов</h4>
           <p>+30% трафика и 20+ заказов в месяц</p>
         </div>
-        <!-- 5. Фитнес-тренер -->
         <div class="slide">
           <img src="https://i.postimg.cc/Z5xwY0mx/1.jpg" alt="Фитнес-тренер" onclick="openGallery('fitness')">
           <h4>Фитнес-тренер</h4>
           <p>12+ новых клиентов за месяц</p>
         </div>
-        <!-- 6. Турагентство -->
         <div class="slide">
           <img src="https://i.postimg.cc/8kvBPsBf/1.jpg" alt="Турагентство" onclick="openGallery('travel')">
-          <h4>Турагентство "Горизонт"</h4>
+          <h4>Турагентство "Путешествия"</h4>
           <p>Удобное бронирование туров онлайн</p>
         </div>
       </div>
-
       <div class="slider-controls">
-        <button onclick="prevSlide()" class="nav-btn">←</button>
+        <button onclick="prevSlide()" class="nav-btn"><</button>
         <div class="dots" id="sliderDots"></div>
-        <button onclick="nextSlide()" class="nav-btn">→</button>
+        <button onclick="nextSlide()" class="nav-btn">></button>
       </div>
-
       <div class="cta-center">
-        <button onclick="scrollToSection('contact')" class="btn primary">Хочу такой же результат</button>
+        <button onclick="scrollToSection('contact')" class="btn primary">Заказать сайт</button>
       </div>
     </div>
   </section>
@@ -111,7 +101,7 @@
       </div>
       <div class="gallery-grid" id="galleryGrid"></div>
       <div class="gallery-footer">
-        <button class="btn primary" onclick="scrollToSection('contact')">Обсудить проект</button>
+        <button class="btn primary" onclick="scrollToSection('contact')">Оставить заявку</button>
       </div>
     </div>
   </div>
@@ -123,7 +113,7 @@
       <div class="cards">
         <div class="card">
           <h3>Сайт под ключ</h3>
-          <p>От дизайна до запуска. Готовый сайт от 3-ёх дней.</p>
+          <p>От дизайна до запуска. Готовый сайт за 5–7 дней.</p>
         </div>
         <div class="card">
           <h3>Верстка макетов</h3>
@@ -144,25 +134,22 @@
   <!-- Reviews -->
   <section id="reviews" class="section dark">
     <div class="container">
-      <h2>Реальные результаты клиентов</h2>
+      <h2>Что говорят клиенты</h2>
       <div class="reviews">
-        <!-- Отзыв 1 -->
         <div class="review-card">
           <h4>Анна Петрова</h4>
-          <p class="position">Основатель стоматологии</p>
-          <p class="text">"Запустили сайт за 5 дней. Уже через неделю — 25 заявок. Web-Thunder — это не просто разработка, это рост бизнеса. Теперь у нас нет свободных слотов на неделю вперёд."</p>
+          <p class="position">Владелец автопроката</p>
+          <p class="text">"Запустили сайт за 5 дней. Уже через неделю — 120 заявок. Web-Thunder — это не просто разработка, это рост бизнеса."</p>
         </div>
-        <!-- Отзыв 2 -->
         <div class="review-card">
-          <h4>Дмитрий Соколов</h4>
-          <p class="position">Владелец веломагазина</p>
-          <p class="text">"Работал с 3 разработчиками. Только Web-Thunder сделал всё без косяков и в срок. Сайт окупился за 3 недели. Рекомендую всем, кто хочет продавать онлайн."</p>
+          <h4>Дмитрий Сидоров</h4>
+          <p class="position">Предприниматель</p>
+          <p class="text">"Работал с 3 разработчиками. Только web-thunder сделал всё без косяков и в срок. Рекомендую!"</p>
         </div>
-        <!-- Отзыв 3 -->
         <div class="review-card">
           <h4>Елена Козлова</h4>
-          <p class="position">Директор турагентства</p>
-          <p class="text">"Команда поняла бизнес с полуслова. Работают как свои. Сделали всё быстро, чётко, без лишних вопросов. SEO в топе, конверсия выросла на 30%."</p>
+          <p class="position">Фитнес-тренер</p>
+          <p class="text">"Сайт загружается за 0.8 сек. SEO в топе. Конверсия выросла на 70%. Отличная работа!"</p>
         </div>
       </div>
     </div>
@@ -172,15 +159,21 @@
   <section id="contact" class="section dark">
     <div class="container">
       <h2>Готовы к запуску?</h2>
-      <p class="text-center">Оставьте заявку — и через 24 часа вы получите <strong>прототип сайта</strong> или <strong>точную смету</strong>.</p>
-      
+      <p class="text-center">Напишите — и через 24 часа у вас будет <strong>прототип сайта</strong> или <strong>коммерческое предложение</strong>.</p>
       <form id="contactForm" class="contact-form">
         <input type="text" id="name" placeholder="Ваше имя" required>
         <input type="tel" id="phone" placeholder="Телефон" required>
         <input type="email" id="email" placeholder="Email" required>
-        <textarea id="message" placeholder="Опишите ваш проект (по желанию)" rows="4"></textarea>
+        <textarea id="message" placeholder="Сообщение (по желанию)" rows="4"></textarea>
         <button type="submit" class="btn primary large">Отправить заявку</button>
       </form>
+      <p style="text-align: center; color: #94a3b8; margin-top: 20px;">
+        Или свяжитесь напрямую:
+      </p>
+      <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+        <button onclick="openTelegram()" class="btn primary">💬 Написать в Telegram</button>
+        <button onclick="openEmail()" class="btn secondary">📧 Написать на почту</button>
+      </div>
     </div>
   </section>
 
@@ -188,151 +181,150 @@
   <section id="calculator" class="calculator">
     <div class="container">
       <div class="calc-wrapper">
-        <h2 class="calc-title">Рассчитайте стоимость сайта</h2>
-        <p class="text-center">Выберите тип сайта — и мы покажем, что в него входит.</p>
+        <h2 class="calc-title">Калькулятор стоимости сайта</h2>
+        <p class="text-center">Выберите параметры — и узнайте примерную стоимость за 2 минуты.</p>
 
-        <!-- Calculator -->
-<section id="calculator" class="calculator">
-  <div class="container">
-    <div class="calc-wrapper">
-      <h2 class="calc-title">Калькулятор стоимости сайта</h2>
-      <p class="text-center">Выберите параметры — и узнайте примерную стоимость за 2 минуты.</p>
-
-      <!-- Шаг 1: Тип сайта -->
-      <div id="step1" class="step active">
-        <h3>1. Тип сайта</h3>
-        <div class="options">
-          <label class="option">
-            <input type="radio" name="siteType" value="8500" onchange="validateAndNext(1, 2)">
-            <div class="card">
-              <h4>Лендинг</h4>
-              <p>Одностраничный, быстро и дёшево</p>
-              <div class="price">от 8 500 ₽</div>
-            </div>
-          </label>
-          <label class="option">
-            <input type="radio" name="siteType" value="12000" onchange="validateAndNext(1, 2)">
-            <div class="card">
-              <h4>Сайт-визитка</h4>
-              <p>3–5 страниц, идеально для старта</p>
-              <div class="price">от 12 000 ₽</div>
-            </div>
-          </label>
-          <label class="option">
-            <input type="radio" name="siteType" value="30000" onchange="validateAndNext(1, 2)">
-            <div class="card">
-              <h4>Интернет-магазин</h4>
-              <p>Каталог, корзина, оплата</p>
-              <div class="price">от 30 000 ₽</div>
-            </div>
-          </label>
-          <label class="option">
-            <input type="radio" name="siteType" value="35000" onchange="validateAndNext(1, 2)">
-            <div class="card">
-              <h4>Корпоративный сайт</h4>
-              <p>Многофункциональный, масштабируемый</p>
-              <div class="price">от 35 000 ₽</div>
-            </div>
-          </label>
-        </div>
-      </div>
-
-      <!-- Шаг 2: Дизайн -->
-      <div id="step2" class="step">
-        <h3>2. Дизайн</h3>
-        <div class="options">
-          <label class="option">
-            <input type="radio" name="design" value="0" onchange="validateAndNext(2, 3)">
-            <div class="card">
-              <h4>Шаблонный (готовый)</h4>
-              <p>Быстро, бюджетно, проверено</p>
-              <div class="price">+0 ₽</div>
-            </div>
-          </label>
-          <label class="option">
-            <input type="radio" name="design" value="10000" onchange="validateAndNext(2, 3)">
-            <div class="card">
-              <h4>Кастомный</h4>
-              <p>Уникальный дизайн под вас</p>
-              <div class="price">+10 000 ₽</div>
-            </div>
-          </label>
-        </div>
-        <button onclick="goBack()" class="btn secondary">Назад</button>
-      </div>
-
-      <!-- Шаг 3: SEO и поддержка -->
-      <div id="step3" class="step">
-        <h3>3. SEO и поддержка</h3>
-        <div class="options">
-          <label class="option">
-            <input type="radio" name="seo" value="0" onchange="updateTotal()">
-            <div class="card">
-              <h4>Без SEO</h4>
-              <p>Базовая настройка</p>
-              <div class="price">+0 ₽</div>
-            </div>
-          </label>
-          <label class="option">
-            <input type="radio" name="seo" value="6000" onchange="updateTotal()">
-            <div class="card">
-              <h4>SEO (+6 000 ₽)</h4>
-              <p>Продвижение в поиске</p>
-              <div class="price">+6 000 ₽</div>
-            </div>
-          </label>
+        <!-- Шаг 1: Тип сайта -->
+        <div id="step1" class="step active">
+          <h3>1. Тип сайта</h3>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="siteType" value="8500" onchange="validateAndNext(1, 2)">
+              <div class="card">
+                <h4>Лендинг</h4>
+                <p>Одностраничный, быстро и дёшево</p>
+                <div class="price">от 8 500 ₽</div>
+              </div>
+            </label>
+            <label class="option">
+              <input type="radio" name="siteType" value="12000" onchange="validateAndNext(1, 2)">
+              <div class="card">
+                <h4>Сайт-визитка</h4>
+                <p>3–5 страниц, идеально для старта</p>
+                <div class="price">от 12 000 ₽</div>
+              </div>
+            </label>
+            <label class="option">
+              <input type="radio" name="siteType" value="30000" onchange="validateAndNext(1, 2)">
+              <div class="card">
+                <h4>Интернет-магазин</h4>
+                <p>Каталог, корзина, оплата</p>
+                <div class="price">от 30 000 ₽</div>
+              </div>
+            </label>
+            <label class="option">
+              <input type="radio" name="siteType" value="35000" onchange="validateAndNext(1, 2)">
+              <div class="card">
+                <h4>Корпоративный сайт</h4>
+                <p>Многофункциональный, масштабируемый</p>
+                <div class="price">от 35 000 ₽</div>
+              </div>
+            </label>
+          </div>
         </div>
 
-        <div class="options">
-          <label class="option">
-            <input type="radio" name="support" value="0" onchange="updateTotal()">
-            <div class="card">
-              <h4>Без поддержки</h4>
-              <p>Без обновлений</p>
-              <div class="price">+0 ₽</div>
-            </div>
-          </label>
-          <label class="option">
-            <input type="radio" name="support" value="3000" onchange="updateTotal()">
-            <div class="card">
-              <h4>Поддержка (1 месяц)</h4>
-              <p>Обновления, исправления</p>
-              <div class="price">+3 000 ₽</div>
-            </div>
-          </label>
-          <label class="option">
-            <input type="radio" name="support" value="7500" onchange="updateTotal()">
-            <div class="card">
-              <h4>Расширенная (3 месяца)</h4>
-              <p>Полная техподдержка</p>
-              <div class="price">+7 500 ₽</div>
-            </div>
-          </label>
+        <!-- Шаг 2: Дизайн -->
+        <div id="step2" class="step">
+          <h3>2. Дизайн</h3>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="design" value="0" onchange="validateAndNext(2, 3)">
+              <div class="card">
+                <h4>Шаблонный (готовый)</h4>
+                <p>Быстро, бюджетно, проверено</p>
+                <div class="price">+0 ₽</div>
+              </div>
+            </label>
+            <label class="option">
+              <input type="radio" name="design" value="10000" onchange="validateAndNext(2, 3)">
+              <div class="card">
+                <h4>Кастомный</h4>
+                <p>Уникальный дизайн под вас</p>
+                <div class="price">+10 000 ₽</div>
+              </div>
+            </label>
+          </div>
+          <button onclick="goBack()" class="btn secondary">Назад</button>
         </div>
 
-        <button onclick="validateAndNext(3, 4)" class="btn primary large">Далее</button>
-        <button onclick="goBack()" class="btn secondary">Назад</button>
-      </div>
-
-      <!-- Шаг 4: Итог -->
-      <div id="step4" class="step">
-        <h3>4. Итоговая стоимость</h3>
-        <div class="result" id="result">
-          Примерная стоимость: 0 ₽<br>
-          <small style="color: #94a3b8;">Точная цена будет после анализа вашего бизнеса</small>
+        <!-- Шаг 3: SEO и поддержка -->
+        <div id="step3" class="step">
+          <h3>3. SEO и поддержка</h3>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="seo" value="0" onchange="updateTotal()">
+              <div class="card">
+                <h4>Без SEO</h4>
+                <p>Базовая настройка</p>
+                <div class="price">+0 ₽</div>
+              </div>
+            </label>
+            <label class="option">
+              <input type="radio" name="seo" value="6000" onchange="updateTotal()">
+              <div class="card">
+                <h4>SEO (+6 000 ₽)</h4>
+                <p>Продвижение в поиске</p>
+                <div class="price">+6 000 ₽</div>
+              </div>
+            </label>
+          </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="support" value="0" onchange="updateTotal()">
+              <div class="card">
+                <h4>Без поддержки</h4>
+                <p>Без обновлений</p>
+                <div class="price">+0 ₽</div>
+              </div>
+            </label>
+            <label class="option">
+              <input type="radio" name="support" value="3000" onchange="updateTotal()">
+              <div class="card">
+                <h4>Поддержка (1 месяц)</h4>
+                <p>Обновления, исправления</p>
+                <div class="price">+3 000 ₽</div>
+              </div>
+            </label>
+            <label class="option">
+              <input type="radio" name="support" value="7500" onchange="updateTotal()">
+              <div class="card">
+                <h4>Расширенная (3 месяца)</h4>
+                <p>Полная техподдержка</p>
+                <div class="price">+7 500 ₽</div>
+              </div>
+            </label>
+          </div>
+          <button onclick="validateAndNext(3, 4)" class="btn primary large">Далее</button>
+          <button onclick="goBack()" class="btn secondary">Назад</button>
         </div>
-        <button type="button" onclick="requestQuote()" class="btn primary large">Получить точную смету</button>
-        <button type="button" onclick="goBack()" class="btn secondary">Назад</button>
+
+        <!-- Шаг 4: Итог -->
+        <div id="step4" class="step">
+          <h3>4. Итоговая стоимость</h3>
+          <div class="result" id="result">
+            Примерная стоимость: 0 ₽
+            <br>
+            <small style="color: #94a3b8;">Точная цена будет после анализа вашего бизнеса</small>
+          </div>
+          <p style="color: #94a3b8; font-size: 0.9rem; text-align: center; margin: 20px 0;">
+            Чтобы узнать точную стоимость и обсудить детали — напишите мне в Telegram или на почту.
+          </p>
+          <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+            <button onclick="openTelegram()" class="btn primary large">💬 Написать в Telegram</button>
+            <button onclick="openEmail()" class="btn secondary large">📧 Написать на почту</button>
+          </div>
+          <button onclick="goBack()" class="btn secondary" style="margin-top: 20px;">Назад</button>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p>© 2025 Web-Thunder. Ваш сайт — наша стихия.</p>
+      <p>&copy; 2025 Web-Thunder. Все права защищены.</p>
       <p>📧 <a href="mailto:rosanov.danila2016@yandex.ru">rosanov.danila2016@yandex.ru</a></p>
-      <p>📱 <a href="https://t.me/overgrand" target="_blank">@overgrand</a></p>
+      <p>💬 <a href="https://t.me/overgrand" target="_blank">@overgrand</a></p>
     </div>
   </footer>
 
