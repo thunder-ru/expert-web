@@ -3,7 +3,7 @@ function scrollToSection(id) {
   document.getElementById(id).scrollIntoView({ behavior: "smooth" });
 }
 
-// Открытие Telegram с текстом
+// Открытие Telegram
 function openTelegram(message = "Здравствуйте, хочу обсудить сайт.") {
   const encoded = encodeURIComponent(message);
   window.open(`https://t.me/overgrand?text=${encoded}`, '_blank');
@@ -243,12 +243,55 @@ function updateDots() {
   });
 }
 
-// Форма — предлагает связаться
+// Форма — после отправки показываем кнопки
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  alert("Спасибо за заявку! Выберите, как хотите связаться — через Telegram или почту.");
-  scrollToSection('contact');
+
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+
+  if (!name || !phone || !email) {
+    alert('Заполните все обязательные поля.');
+    return;
+  }
+
+  // Сбрасываем форму
+  this.reset();
+
+  // Скрываем форму
+  const form = document.getElementById('contactForm');
+  form.style.display = 'none';
+
+  // Создаем блок с кнопками
+  const buttonsDiv = document.createElement('div');
+  buttonsDiv.id = 'contact-buttons';
+  buttonsDiv.innerHTML = `
+    <p style="color: #94a3b8; font-size: 0.9rem; text-align: center; margin: 20px 0;">
+      Спасибо за заявку! Выберите, как хотите связаться:
+    </p>
+    <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+      <button onclick="openTelegram('Здравствуйте, хочу заказать сайт. Имя: ${name}, Телефон: ${phone}, Email: ${email}')" class="btn primary large">💬 Написать в Telegram</button>
+      <button onclick="openEmail()" class="btn secondary large">📧 Написать на почту</button>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+      <button onclick="resetContactForm()" class="btn secondary">Назад</button>
+    </div>
+  `;
+
+  // Вставляем после формы
+  form.parentNode.insertBefore(buttonsDiv, form.nextSibling);
 });
+
+// Сброс формы
+function resetContactForm() {
+  const form = document.getElementById('contactForm');
+  const buttons = document.getElementById('contact-buttons');
+  if (buttons) buttons.remove();
+  form.style.display = 'block';
+  form.reset();
+}
 
 // Инициализация
 document.addEventListener("DOMContentLoaded", function () {
