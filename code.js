@@ -93,16 +93,22 @@ function requestQuote() {
 
 // Отправка в Google Таблицу
 function sendToGoogleSheets(payload, successMessage) {
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnMYq8l1QgXQtXUfctEmqdsd6W_4Hr3zOP6S2NV6cm5n9Buo6-uaaEwTABlwhHKB-C/exec'; // ← Замени!
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnMYq8l1QgXQtXUfctEmqdsd6W_4Hr3zOP6S2NV6cm5n9Buo6-uaaEwTABlwhHKB-C/exec'; // ← Ваш URL
 
   fetch(GOOGLE_SCRIPT_URL, {
     method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    },
     body: JSON.stringify(payload)
   })
   .then(() => alert(successMessage))
-  .catch(() => alert('Ошибка отправки. Напишите в Telegram.'));
+  .catch(err => {
+    console.error('Ошибка:', err);
+    alert('Ошибка отправки. Напишите в Telegram.');
+  });
 }
 
 // Галерея
