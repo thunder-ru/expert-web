@@ -8,17 +8,20 @@ function openTelegram() {
   window.open("https://t.me/overgrand", '_blank');
 }
 
-// Показать шаг
+// Показать шаг и обновить прогресс
 function showStep(n) {
   document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
   const step = document.getElementById(`step${n}`);
   if (step) step.classList.add('active');
+
+  // Обновляем прогресс-бар
+  const progress = [25, 50, 75, 100][n - 1];
+  document.getElementById('progressFill').style.width = progress + '%';
 }
 
 // Проверка выбора и переход
 function validateAndNext(currentStep, nextStepNum) {
   let valid = true;
-
   if (currentStep === 1) {
     if (!document.querySelector('input[name="siteType"]:checked')) valid = false;
   } else if (currentStep === 2) {
@@ -33,12 +36,10 @@ function validateAndNext(currentStep, nextStepNum) {
       valid = false;
     }
   }
-
   if (!valid) {
     alert("Пожалуйста, выберите вариант.");
     return;
   }
-
   showStep(nextStepNum);
   updateTotal();
 }
@@ -89,17 +90,25 @@ function requestQuote() {
   const totalEl = document.getElementById('result').querySelector('strong');
   const total = totalEl ? totalEl.innerText.match(/\d+/)?.[0] : '0';
 
-  const message = `🎯 *ЗАЯВКА НА СМЕТУ*\n\n`;
+  let message = `🚀 *ЗАЯВКА НА СМЕТУ*\n\n`;
   message += `🔹 Тип сайта: ${siteTypeLabel}\n`;
-  message += `🎨 Дизайн: ${designLabel}\n`;
-  message += `🔍 SEO: ${seoLabel}\n`;
-  message += `🛠 Поддержка: ${supportLabel}\n`;
+  message += `🔹 Дизайн: ${designLabel}\n`;
+  message += `🔹 SEO: ${seoLabel}\n`;
+  message += `🔹 Поддержка: ${supportLabel}\n\n`;
   message += `💰 Итого: ${total} ₽\n\n`;
   message += `—\nГотов обсудить детали!`;
 
   const encoded = encodeURIComponent(message);
   const url = `https://t.me/overgrand?text=${encoded}`;
   window.open(url, '_blank');
+
+  // Показываем модал
+  document.getElementById('confirmModal').style.display = 'flex';
+}
+
+// Закрыть модал
+function closeConfirmModal() {
+  document.getElementById('confirmModal').style.display = 'none';
 }
 
 // Галерея
@@ -222,7 +231,6 @@ function toggleMenu() {
 // Форма — отправка в Telegram
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
-
   const name = document.getElementById('name').value.trim();
   const phone = document.getElementById('phone').value.trim();
   const email = document.getElementById('email').value.trim();
@@ -233,16 +241,17 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     return;
   }
 
-  const text = `📩 *НОВАЯ ЗАЯВКА*\n\n`;
+  let text = `📩 *НОВАЯ ЗАЯВКА*\n\n`;
   text += `👤 Имя: ${name}\n`;
   text += `📞 Телефон: ${phone}\n`;
-  text += `📧 Email: ${email}\n`;
+  text += `✉️ Email: ${email}\n`;
   if (message) text += `💬 Сообщение: ${message}\n\n`;
   text += `—\nГотов к диалогу!`;
 
   const encoded = encodeURIComponent(text);
   const url = `https://t.me/overgrand?text=${encoded}`;
   window.open(url, '_blank');
+
   alert('✅ Заявка отправлена! Свяжемся в ближайшее время.');
   this.reset();
 });
