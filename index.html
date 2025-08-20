@@ -180,7 +180,7 @@
         <div id="progressFill" style="width: 25%; height: 100%; background: #8b5cf6; transition: width 0.4s ease;"></div>
       </div>
 
-      <!-- Шаги -->
+      <!-- Шаг 1: Тип сайта -->
       <div id="step1" class="step active">
         <h3>1. Выберите тип сайта</h3>
         <div class="options">
@@ -201,6 +201,14 @@
             </div>
           </label>
           <label class="option">
+            <input type="radio" name="siteType" value="65000" onchange="updateTotal(); validateAndNext(1,2)">
+            <div class="card">
+              <h4>Корпоративный сайт</h4>
+              <p>Многостраничный сайт с функционалом</p>
+              <div class="price">от 65 000 ₽</div>
+            </div>
+          </label>
+          <label class="option">
             <input type="radio" name="siteType" value="80000" onchange="updateTotal(); validateAndNext(1,2)">
             <div class="card">
               <h4>Интернет-магазин</h4>
@@ -212,6 +220,7 @@
         <button onclick="validateAndNext(1,2)" class="btn primary">Далее →</button>
       </div>
 
+      <!-- Шаг 2: Дизайн -->
       <div id="step2" class="step">
         <h3>2. Выберите дизайн</h3>
         <div class="options">
@@ -236,19 +245,9 @@
         <button onclick="validateAndNext(2,3)" class="btn primary">Далее →</button>
       </div>
 
+      <!-- Шаг 3: SEO -->
       <div id="step3" class="step">
-        <h3>3. Дополнительные функции</h3>
-        <div class="checkbox-group">
-          <label><input type="checkbox" value="10000" onchange="updateTotal()"> Адаптация под мобильные устройства</label>
-          <label><input type="checkbox" value="15000" onchange="updateTotal()"> Интеграция с CRM</label>
-          <label><input type="checkbox" value="8000" onchange="updateTotal()"> Онлайн-чат</label>
-        </div>
-        <button onclick="goBack()" class="btn secondary" style="margin-right: 10px;">← Назад</button>
-        <button onclick="validateAndNext(3,4)" class="btn primary">Далее →</button>
-      </div>
-
-      <div id="step4" class="step">
-        <h3>4. SEO и поддержка</h3>
+        <h3>3. SEO-оптимизация</h3>
         <div class="options">
           <label class="option">
             <input type="radio" name="seo" value="0" onchange="updateTotal()">
@@ -267,6 +266,13 @@
             </div>
           </label>
         </div>
+        <button onclick="goBack()" class="btn secondary" style="margin-right: 10px;">← Назад</button>
+        <button onclick="validateAndNext(3,4)" class="btn primary">Далее →</button>
+      </div>
+
+      <!-- Шаг 4: Поддержка -->
+      <div id="step4" class="step">
+        <h3>4. Техническая поддержка</h3>
         <div class="options">
           <label class="option">
             <input type="radio" name="support" value="0" onchange="updateTotal()">
@@ -277,29 +283,55 @@
             </div>
           </label>
           <label class="option">
+            <input type="radio" name="support" value="6000" onchange="updateTotal()">
+            <div class="card">
+              <h4>3 месяца</h4>
+              <p>Обновления, бэкапы, помощь</p>
+              <div class="price">+6 000 ₽</div>
+            </div>
+          </label>
+          <label class="option">
             <input type="radio" name="support" value="12000" onchange="updateTotal()">
             <div class="card">
-              <h4>Техподдержка 6 мес</h4>
-              <p>Обновления, бэкапы, помощь</p>
+              <h4>6 месяцев</h4>
+              <p>Полная техподдержка</p>
               <div class="price">+12 000 ₽</div>
             </div>
           </label>
         </div>
         <div id="result" class="result">Примерная стоимость: 0 ₽</div>
         <button onclick="goBack()" class="btn secondary" style="margin-right: 10px;">← Назад</button>
-        <button onclick="requestQuote()" class="btn primary glow">📩 Отправить заявку в Telegram</button>
+        <button onclick="showSendOptions()" class="btn primary glow">📩 Отправить заявку</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Модал подтверждения -->
-<div id="confirmModal" class="modal" style="display: none;">
+<!-- Модал выбора отправки -->
+<div id="sendModal" class="modal" style="display: none; align-items: center;">
   <div class="modal-content" style="background: #1e293b; color: white; text-align: center; padding: 40px; border-radius: 16px; max-width: 500px;">
-    <h3>✅ Заявка отправлена!</h3>
-    <p style="color: #cbd5e1; margin: 20px 0;">Спасибо! Я уже получил вашу заявку и свяжусь с вами в ближайшее время в Telegram.</p>
-    <p style="color: #94a3b8;">Ожидайте ответа — обычно отвечаю в течение 30 минут.</p>
-    <button onclick="closeConfirmModal()" style="margin-top: 20px;" class="btn primary">Закрыть</button>
+    <h3>📤 Куда отправить смету?</h3>
+    <p style="color: #cbd5e1;">Выберите удобный способ связи:</p>
+    <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 15px;">
+      <button onclick="sendToTelegram()" class="btn primary" style="justify-content: center;">
+        💬 В Telegram (@overgrand)
+      </button>
+      <button onclick="sendToEmail()" class="btn secondary" style="justify-content: center; border: 2px solid #3b82f6;">
+        ✉️ На почту (rosanov.danila2016@yandex.ru)
+      </button>
+    </div>
+    <button onclick="closeSendModal()" style="margin-top: 15px; color: #94a3b8; background: none; border: none; cursor: pointer;">
+      Отмена
+    </button>
+  </div>
+</div>
+
+<!-- Модал подтверждения -->
+<div id="confirmModal" class="modal" style="display: none; align-items: center;">
+  <div class="modal-content" style="background: #1e293b; color: white; text-align: center; padding: 40px; border-radius: 16px; max-width: 500px;">
+    <h3>✅ Отправлено!</h3>
+    <p style="color: #cbd5e1; margin: 20px 0;">Ваша заявка успешно отправлена. Свяжусь с вами в ближайшее время.</p>
+    <button onclick="closeConfirmModal()" class="btn primary">Закрыть</button>
   </div>
 </div>
 
