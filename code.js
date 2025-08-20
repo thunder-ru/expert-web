@@ -66,7 +66,7 @@ function updateTotal() {
   const resultEl = document.getElementById('result');
   if (resultEl) {
     resultEl.innerHTML = `
-      <strong>Примерная стоимость: ${total.toLocaleString()} ₽</strong>
+      <strong>Примерная стоимость: ${total.toLocaleString()}&nbsp;₽</strong>
       <small style="color: #94a3b8; margin-left: 8px;">Точная цена будет после анализа вашего бизнеса</small>
     `;
   }
