@@ -4,7 +4,7 @@ function scrollToSection(id) {
 }
 
 // Открытие Telegram
-function openTelegram(message = "Здравствуйте, хочу обсудить сайт.") {
+function openTelegram(message = "Здравствуйте, хочу заказать сайт.") {
   const encoded = encodeURIComponent(message);
   window.open(`https://t.me/overgrand?text=${encoded}`, '_blank');
 }
@@ -173,7 +173,7 @@ function openGallery(projectId) {
   galleryGrid.innerHTML = '';
   data.images.forEach(imgUrl => {
     const img = document.createElement('img');
-    img.src = imgUrl.trim();
+    img.src = imageUrl.trim();
     img.alt = data.title;
     img.style.maxWidth = '100%';
     img.style.height = 'auto';
