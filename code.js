@@ -23,12 +23,13 @@ function validateAndNext(currentStep, nextStepNum) {
   } else if (currentStep === 2) {
     selected = document.querySelector('input[name="design"]:checked');
   } else if (currentStep === 3) {
-    selected = true;
-  }
-
-  if (!selected && currentStep !== 3) {
-    alert("Пожалуйста, выберите вариант.");
-    return;
+    const seo = document.querySelector('input[name="seo"]:checked');
+    const support = document.querySelector('input[name="support"]:checked');
+    selected = seo && support;
+    if (!seo || !support) {
+      alert("Выберите SEO и техническую поддержку");
+      return;
+    }
   }
 
   showStep(nextStepNum);
@@ -69,12 +70,76 @@ function updateTotal() {
 
 // Получить точную смету
 function requestQuote() {
-  const resultEl = document.getElementById('result');
-  const total = resultEl ? resultEl.innerText : 'неизвестно';
+  const siteTypeLabel = document.querySelector('input[name="siteType"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
+  const designLabel = document.querySelector('input[name="design"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
+  const seoLabel = document.querySelector('input[name="seo"]:checked')?.value > 0 ? 'Да' : 'Нет';
+  const supportLabel = document.querySelector('input[name="support"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
 
-  const message = `🎯 *Заявка на смету*\n\nИтоговая сумма: *${total}*\n\nСвяжитесь со мной для уточнения деталей.`;
-  const url = `https://t.me/overgrand?text=${encodeURIComponent(message)}`;
-  window.open(url, '_blank');
+  const payload = {
+    source: 'калькулятор',
+    siteType: siteTypeLabel,
+    seo: seoLabel,
+    support: supportLabel
+  };
+
+  sendToGoogleSheets(payload, 'Смета отправлена!');
+}
+
+// Форма — отправка в Google Таблицу
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+
+  if (!name || !phone || !email) {
+    alert('Заполните все обязательные поля.');
+    return;
+  }
+
+  if (!/^\+?[\d\-\s\(\)]{10,}$/.test(phone)) {
+    alert('Введите корректный номер телефона.');
+    return;
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert('Введите корректный email.');
+    return;
+  }
+
+  const payload = {
+    source: 'форма',
+    name: name,
+    phone: phone,
+    email: email,
+    message: message
+  };
+
+  sendToGoogleSheets(payload, '✅ Заявка отправлена! Свяжемся в ближайшее время.');
+  this.reset();
+});
+
+// Отправка в Google Таблицу
+function sendToGoogleSheets(payload, successMessage) {
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec'; // ← Замени YOUR_SCRIPT_ID на свой!
+
+  fetch(GOOGLE_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(() => {
+    alert(successMessage);
+  })
+  .catch(err => {
+    console.error('Ошибка отправки:', err);
+    alert('Ошибка отправки. Напишите в Telegram.');
+  });
 }
 
 // Галерея
@@ -240,27 +305,6 @@ function updateDots() {
     dot.classList.toggle('active', index === currentSlideIndex);
   });
 }
-
-// Форма
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const name = document.getElementById('name').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const message = document.getElementById('message').value.trim();
-
-  if (!name || !phone || !email) {
-    alert('Заполните все обязательные поля.');
-    return;
-  }
-
-  const text = `📩 *Новая заявка*\n\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}\nСообщение: ${message || 'не указано'}`;
-  const url = `https://t.me/overgrand?text=${encodeURIComponent(text)}`;
-  window.open(url, '_blank');
-
-  alert('✅ Заявка отправлена! Свяжемся в ближайшее время.');
-  this.reset();
-});
 
 // Инициализация
 document.addEventListener("DOMContentLoaded", function () {
