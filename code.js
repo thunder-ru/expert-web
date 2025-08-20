@@ -11,7 +11,8 @@ function openTelegram() {
 // Показать шаг
 function showStep(n) {
   document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
-  document.getElementById(`step${n}`).classList.add('active');
+  const step = document.getElementById(`step${n}`);
+  if (step) step.classList.add('active');
 }
 
 // Проверка выбора и переход
@@ -43,7 +44,8 @@ function validateAndNext(currentStep, nextStepNum) {
 // Назад
 function goBack() {
   for (let i = 2; i <= 4; i++) {
-    if (document.getElementById(`step${i}`).classList.contains('active')) {
+    const step = document.getElementById(`step${i}`);
+    if (step && step.classList.contains('active')) {
       showStep(i - 1);
       return;
     }
@@ -91,34 +93,88 @@ function requestQuote() {
   sendToGoogleSheets(payload, '✅ Заявка отправлена! Свяжемся в ближайшее время.');
 }
 
-// Отправка в Google Таблицу
-function sendToGoogleSheets(payload, successMessage) {
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnMYq8l1QgXQtXUfctEmqdsd6W_4Hr3zOP6S2NV6cm5n9Buo6-uaaEwTABlwhHKB-C/exec'; // ← Ваш URL
-
-  fetch(GOOGLE_SCRIPT_URL, {
-    method: 'POST',
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
-    },
-    body: JSON.stringify(payload)
-  })
-  .then(() => alert(successMessage))
-  .catch(err => {
-    console.error('Ошибка:', err);
-    alert('Ошибка отправки. Напишите в Telegram.');
-  });
-}
-
 // Галерея
 const galleryData = {
-  auto: { title: "Аренда автомобилей", desc: "Сайт для аренды автомобилей с онлайн-бронированием.", result: "+30% заявок за 2 месяца", images: ["https://i.postimg.cc/pdkWMT84/Black1.jpg", "https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg", "https://i.postimg.cc/PrmQ0R29/Black3.jpg", "https://i.postimg.cc/0yndyJgC/Black4.jpg", "https://i.postimg.cc/HnbbDr4X/Black-5.jpg"] },
-  dentist: { title: "Стоматология", desc: "Сайт-визитка с записью на приём и отзывами.", result: "ТОП-5 в Яндекс по ключевым запросам", images: ["https://i.postimg.cc/GmFkPfSL/1.jpg", "https://i.postimg.cc/5tgJdxjX/2.jpg", "https://i.postimg.cc/D0J3XL6G/3.jpg", "https://i.postimg.cc/8k9SVXkm/4.jpg", "https://i.postimg.cc/zf0s20PW/6.jpg", "https://i.postimg.cc/g2dcft4B/7.jpg", "https://i.postimg.cc/vm2QxYyp/8.jpg", "https://i.postimg.cc/DfX2m3MM/9.jpg"] },
-  tea: { title: "Онлайн магазин чая и кофе", desc: "Интернет-магазин с каталогом и корзиной.", result: "Окупился за 1.5 недели", images: ["https://i.postimg.cc/xC4HTVqR/1.jpg", "https://i.postimg.cc/GmSbdtS8/2.jpg", "https://i.postimg.cc/tCTfyk0k/3.jpg", "https://i.postimg.cc/MpfFfGpj/4.jpg", "https://i.postimg.cc/d08NnSds/5.jpg", "https://i.postimg.cc/nz2Rfj0N/6.jpg", "https://i.postimg.cc/zf10LSQ9/7.jpg"] },
-  bike: { title: "Магазин велосипедов", desc: "Сайт с каталогом, фильтрами и оплатой.", result: "+30% трафика и 20+ заказов в месяц", images: ["https://i.postimg.cc/J7S6P9KZ/image.jpg", "https://i.postimg.cc/MG02XYWL/2.jpg", "https://i.postimg.cc/zfr4mRnF/3.jpg", "https://i.postimg.cc/dQxXsf21/4.jpg", "https://i.postimg.cc/rFRHK9j9/5.jpg", "https://i.postimg.cc/wjKGJsbY/6.jpg", "https://i.postimg.cc/DwqYcytJ/7.jpg"] },
-  fitness: { title: "Фитнес-тренер", desc: "Сайт для персонального тренера", result: "12+ новых клиентов за месяц", images: ["https://i.postimg.cc/Z5xwY0mx/1.jpg", "https://i.postimg.cc/907v5PN1/2.jpg", "https://i.postimg.cc/vH5p0znZ/3.jpg", "https://i.postimg.cc/bwT4hw3X/image.jpg", "https://i.postimg.cc/26PKwb8W/5.jpg"] },
-  travel: { title: "Турагентство", desc: "Сайт для бронирования туров с фильтрами и онлайн-оплатой.", result: "Удобное бронирование туров онлайн", images: ["https://i.postimg.cc/8kvBPsBf/1.jpg", "https://i.postimg.cc/zG02QPG8/2.jpg", "https://i.postimg.cc/xdB5DrDD/3.jpg", "https://i.postimg.cc/9FcpjtSM/4.jpg", "https://i.postimg.cc/bwBHkXvD/5.jpg", "https://i.postimg.cc/MGf0Yscs/6.jpg"] }
+  auto: {
+    title: "Аренда автомобилей",
+    desc: "Сайт для аренды автомобилей с онлайн-бронированием.",
+    result: "+30% заявок за 2 месяца",
+    images: [
+      "https://i.postimg.cc/pdkWMT84/Black1.jpg",
+      "https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg",
+      "https://i.postimg.cc/PrmQ0R29/Black3.jpg",
+      "https://i.postimg.cc/0yndyJgC/Black4.jpg",
+      "https://i.postimg.cc/HnbbDr4X/Black-5.jpg"
+    ]
+  },
+  dentist: {
+    title: "Стоматология",
+    desc: "Сайт-визитка с записью на приём и отзывами.",
+    result: "ТОП-5 в Яндекс по ключевым запросам",
+    images: [
+      "https://i.postimg.cc/GmFkPfSL/1.jpg",
+      "https://i.postimg.cc/5tgJdxjX/2.jpg",
+      "https://i.postimg.cc/D0J3XL6G/3.jpg",
+      "https://i.postimg.cc/8k9SVXkm/4.jpg",
+      "https://i.postimg.cc/zf0s20PW/6.jpg",
+      "https://i.postimg.cc/g2dcft4B/7.jpg",
+      "https://i.postimg.cc/vm2QxYyp/8.jpg",
+      "https://i.postimg.cc/DfX2m3MM/9.jpg"
+    ]
+  },
+  tea: {
+    title: "Онлайн магазин чая и кофе",
+    desc: "Интернет-магазин с каталогом и корзиной.",
+    result: "Окупился за 1.5 недели",
+    images: [
+      "https://i.postimg.cc/xC4HTVqR/1.jpg",
+      "https://i.postimg.cc/GmSbdtS8/2.jpg",
+      "https://i.postimg.cc/tCTfyk0k/3.jpg",
+      "https://i.postimg.cc/MpfFfGpj/4.jpg",
+      "https://i.postimg.cc/d08NnSds/5.jpg",
+      "https://i.postimg.cc/nz2Rfj0N/6.jpg",
+      "https://i.postimg.cc/zf10LSQ9/7.jpg"
+    ]
+  },
+  bike: {
+    title: "Магазин велосипедов",
+    desc: "Сайт с каталогом, фильтрами и оплатой.",
+    result: "+30% трафика и 20+ заказов в месяц",
+    images: [
+      "https://i.postimg.cc/J7S6P9KZ/image.jpg",
+      "https://i.postimg.cc/MG02XYWL/2.jpg",
+      "https://i.postimg.cc/zfr4mRnF/3.jpg",
+      "https://i.postimg.cc/dQxXsf21/4.jpg",
+      "https://i.postimg.cc/rFRHK9j9/5.jpg",
+      "https://i.postimg.cc/wjKGJsbY/6.jpg",
+      "https://i.postimg.cc/DwqYcytJ/7.jpg"
+    ]
+  },
+  fitness: {
+    title: "Фитнес-тренер",
+    desc: "Сайт для персонального тренера",
+    result: "12+ новых клиентов за месяц",
+    images: [
+      "https://i.postimg.cc/Z5xwY0mx/1.jpg",
+      "https://i.postimg.cc/907v5PN1/2.jpg",
+      "https://i.postimg.cc/vH5p0znZ/3.jpg",
+      "https://i.postimg.cc/bwT4hw3X/image.jpg",
+      "https://i.postimg.cc/26PKwb8W/5.jpg"
+    ]
+  },
+  travel: {
+    title: "Турагентство",
+    desc: "Сайт для бронирования туров с фильтрами и онлайн-оплатой.",
+    result: "Удобное бронирование туров онлайн",
+    images: [
+      "https://i.postimg.cc/8kvBPsBf/1.jpg",
+      "https://i.postimg.cc/zG02QPG8/2.jpg",
+      "https://i.postimg.cc/xdB5DrDD/3.jpg",
+      "https://i.postimg.cc/9FcpjtSM/4.jpg",
+      "https://i.postimg.cc/bwBHkXvD/5.jpg",
+      "https://i.postimg.cc/MGf0Yscs/6.jpg"
+    ]
+  }
 };
 
 function openGallery(projectId) {
@@ -137,7 +193,9 @@ function openGallery(projectId) {
     img.style.height = 'auto';
     img.style.borderRadius = '8px';
     img.style.boxShadow = '0 8px 20px rgba(0,0,0,0.1)';
-    img.onerror = () => img.src = "https://via.placeholder.com/300x200/ff0000/ffffff?text=Ошибка+загрузки";
+    img.onerror = () => {
+      img.src = "https://via.placeholder.com/300x200/ff0000/ffffff?text=Ошибка+загрузки";
+    };
     galleryGrid.appendChild(img);
   });
   document.getElementById('galleryModal').style.display = 'flex';
@@ -152,9 +210,57 @@ function toggleMenu() {
   document.getElementById("mainNav").classList.toggle("active");
 }
 
+// Слайдер портфолио
+let currentSlideIndex = 0;
+const slides = document.querySelectorAll('.portfolio-slider .slide');
+const dotsContainer = document.getElementById('sliderDots');
+
+function initSlider() {
+  if (!dotsContainer || slides.length === 0) return;
+  dotsContainer.innerHTML = '';
+  slides.forEach((_, index) => {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    if (index === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(index));
+    dotsContainer.appendChild(dot);
+  });
+}
+
+function nextSlide() {
+  if (slides.length === 0) return;
+  slides[currentSlideIndex].classList.remove('active');
+  currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+  slides[currentSlideIndex].classList.add('active');
+  updateDots();
+}
+
+function prevSlide() {
+  if (slides.length === 0) return;
+  slides[currentSlideIndex].classList.remove('active');
+  currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+  slides[currentSlideIndex].classList.add('active');
+  updateDots();
+}
+
+function goToSlide(index) {
+  if (slides.length === 0) return;
+  slides[currentSlideIndex].classList.remove('active');
+  currentSlideIndex = index;
+  slides[currentSlideIndex].classList.add('active');
+  updateDots();
+}
+
+function updateDots() {
+  document.querySelectorAll('.dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlideIndex);
+  });
+}
+
 // Форма
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
+
   const name = document.getElementById('name').value.trim();
   const phone = document.getElementById('phone').value.trim();
   const email = document.getElementById('email').value.trim();
@@ -162,6 +268,16 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 
   if (!name || !phone || !email) {
     alert('Заполните все обязательные поля.');
+    return;
+  }
+
+  if (!/^\+?[\d\-\s\(\)]{10,}$/.test(phone)) {
+    alert('Введите корректный номер телефона.');
+    return;
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert('Введите корректный email.');
     return;
   }
 
@@ -177,8 +293,34 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   this.reset();
 });
 
+// Отправка в Google Таблицу
+function sendToGoogleSheets(payload, successMessage) {
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnMYq8l1QgXQtXUfctEmqdsd6W_4Hr3zOP6S2NV6cm5n9Buo6-uaaEwTABlwhHKB-C/exec'; // ← Замените на свой!
+
+  fetch(GOOGLE_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(response => {
+    if (response.ok) {
+      alert(successMessage);
+    } else {
+      alert('Ошибка отправки. Проверьте консоль (F12).');
+    }
+  })
+  .catch(err => {
+    console.error('Ошибка:', err);
+    alert('Ошибка сети. Напишите в Telegram.');
+  });
+}
+
 // Инициализация
 document.addEventListener("DOMContentLoaded", function () {
   showStep(1);
   updateTotal();
+  initSlider();
 });
