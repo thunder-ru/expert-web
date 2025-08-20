@@ -295,7 +295,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 
 // Отправка в Google Таблицу
 function sendToGoogleSheets(payload, successMessage) {
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnMYq8l1QgXQtXUfctEmqdsd6W_4Hr3zOP6S2NV6cm5n9Buo6-uaaEwTABlwhHKB-C/exec'; // ← Замените на свой!
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbze8jyKgNTdpA_isUgb1yGBg8t2xLit91PlQ-2v7e19Y2GkHizuyUtzlnZoH93Z4HUb/exec'; // ← Замените на свой!
 
   fetch(GOOGLE_SCRIPT_URL, {
     method: 'POST',
