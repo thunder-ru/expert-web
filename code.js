@@ -8,13 +8,13 @@ function openTelegram() {
   window.open("https://t.me/overgrand", '_blank');
 }
 
-// Показать шаг
+// Показать шаг калькулятора
 function showStep(n) {
   document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
   document.getElementById(`step${n}`).classList.add('active');
 }
 
-// Проверка выбора и переход
+// Проверка выбора и переход к следующему шагу
 function validateAndNext(currentStep, nextStepNum) {
   let selected = false;
   if (currentStep === 1) {
@@ -35,19 +35,18 @@ function validateAndNext(currentStep, nextStepNum) {
   updateTotal();
 }
 
-// Назад
+// Возврат на предыдущий шаг
 function goBack() {
-  const steps = ['step1', 'step2', 'step3', 'step4'];
   for (let i = 1; i < 4; i++) {
     if (document.getElementById(`step${i}`).classList.contains('active')) {
-      showStep(i - 1);
+      showStep(i);
       return;
     }
   }
   showStep(1);
 }
 
-// Обновление итога
+// Обновление итоговой стоимости
 function updateTotal() {
   let total = 0;
   const siteType = document.querySelector('input[name="siteType"]:checked');
@@ -61,13 +60,17 @@ function updateTotal() {
   if (seo) total += parseFloat(seo.value);
   const support = document.querySelector('input[name="support"]:checked');
   if (support) total += parseFloat(support.value);
-  document.getElementById('result').innerHTML = `
-    <strong>Примерная стоимость: ${total.toLocaleString()} ₽</strong><br>
-    <small style="color: #94a3b8;">Точная цена будет после анализа вашего бизнеса</small>
-  `;
+
+  const resultElement = document.getElementById('result');
+  if (resultElement) {
+    resultElement.innerHTML = `
+      <strong>Примерная стоимость: ${total.toLocaleString()} ₽</strong><br>
+      <small style="color: #94a3b8;">Точная цена будет после анализа вашего бизнеса</small>
+    `;
+  }
 }
 
-// Получить точную смету — отправка в Telegram с деталями
+// Получить точную смету — отправка в Telegram
 function requestQuote() {
   const siteType = document.querySelector('input[name="siteType"]:checked');
   const design = document.querySelector('input[name="design"]:checked');
@@ -77,7 +80,7 @@ function requestQuote() {
 
   const siteTypeLabel = siteType ? siteType.nextElementSibling.querySelector('h4').innerText : 'Не выбрано';
   const designLabel = design ? design.nextElementSibling.querySelector('h4').innerText : 'Не выбрано';
-  const seoLabel = seo ? seo.value > 0 ? 'SEO (+6 000 ₽)' : 'Без SEO' : '—';
+  const seoLabel = seo ? (seo.value > 0 ? 'SEO (+6 000 ₽)' : 'Без SEO') : '—';
   const supportLabel = support ? support.nextElementSibling.querySelector('h4').innerText : '—';
 
   let extras = [];
@@ -101,7 +104,7 @@ function requestQuote() {
   window.open(telegramUrl, '_blank');
 }
 
-// Галерея
+// Галерея портфолио
 const galleryData = {
   auto: {
     title: "Аренда автомобилей",
@@ -213,13 +216,55 @@ function closeGallery() {
   document.getElementById('galleryModal').style.display = 'none';
 }
 
-// Мобильное меню — улучшенная версия
+// Мобильное меню
 function toggleMenu() {
-  const nav = document.getElementById("mainNav");
-  nav.classList.toggle("active");
+  document.getElementById("mainNav").classList.toggle("active");
 }
 
-// Форма — улучшенная версия с валидацией и состоянием
+// Слайдер портфолио
+let currentSlideIndex = 0;
+const slides = document.querySelectorAll('.portfolio-slider .slide');
+const dotsContainer = document.getElementById('sliderDots');
+
+// Инициализация точек
+function initSlider() {
+  slides.forEach((_, index) => {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    if (index === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(index));
+    dotsContainer.appendChild(dot);
+  });
+}
+
+function nextSlide() {
+  slides[currentSlideIndex].classList.remove('active');
+  currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+  slides[currentSlideIndex].classList.add('active');
+  updateDots();
+}
+
+function prevSlide() {
+  slides[currentSlideIndex].classList.remove('active');
+  currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+  slides[currentSlideIndex].classList.add('active');
+  updateDots();
+}
+
+function goToSlide(index) {
+  slides[currentSlideIndex].classList.remove('active');
+  currentSlideIndex = index;
+  slides[currentSlideIndex].classList.add('active');
+  updateDots();
+}
+
+function updateDots() {
+  document.querySelectorAll('.dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlideIndex);
+  });
+}
+
+// Форма — улучшенная версия с валидацией
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
@@ -270,17 +315,9 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   }, 1000);
 });
 
-// Инициализация
+// Инициализация при загрузке
 document.addEventListener("DOMContentLoaded", function () {
-  const nav = document.getElementById("mainNav");
-
-  // Закрытие меню при клике на ссылку
-  nav.addEventListener("click", function(e) {
-    if (e.target.tagName === "A" && nav.classList.contains("active")) {
-      nav.classList.remove("active");
-    }
-  });
-
   showStep(1);
   updateTotal();
+  initSlider();
 });
