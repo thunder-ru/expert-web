@@ -17,7 +17,6 @@ function showStep(n) {
 // Проверка выбора и переход
 function validateAndNext(currentStep, nextStepNum) {
   let selected = false;
-
   if (currentStep === 1) {
     selected = document.querySelector('input[name="siteType"]:checked');
   } else if (currentStep === 2) {
@@ -28,12 +27,10 @@ function validateAndNext(currentStep, nextStepNum) {
     selected = document.querySelector('input[name="seo"]:checked') && 
                document.querySelector('input[name="support"]:checked');
   }
-
   if (!selected && currentStep !== 3) {
     alert("Пожалуйста, выберите вариант.");
     return;
   }
-
   showStep(nextStepNum);
   updateTotal();
 }
@@ -53,33 +50,55 @@ function goBack() {
 // Обновление итога
 function updateTotal() {
   let total = 0;
-
   const siteType = document.querySelector('input[name="siteType"]:checked');
   if (siteType) total += parseFloat(siteType.value);
-
   const design = document.querySelector('input[name="design"]:checked');
   if (design) total += parseFloat(design.value);
-
   document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
     total += parseFloat(cb.value);
   });
-
   const seo = document.querySelector('input[name="seo"]:checked');
   if (seo) total += parseFloat(seo.value);
-
   const support = document.querySelector('input[name="support"]:checked');
   if (support) total += parseFloat(support.value);
-
   document.getElementById('result').innerHTML = `
     <strong>Примерная стоимость: ${total.toLocaleString()} ₽</strong><br>
     <small style="color: #94a3b8;">Точная цена будет после анализа вашего бизнеса</small>
   `;
 }
 
-// Получить точную смету → форма
+// Получить точную смету — отправка в Telegram с деталями
 function requestQuote() {
-  alert("Отлично! Оставьте заявку — и мы отправим вам точную смету.");
-  scrollToSection('contact');
+  const siteType = document.querySelector('input[name="siteType"]:checked');
+  const design = document.querySelector('input[name="design"]:checked');
+  const seo = document.querySelector('input[name="seo"]:checked');
+  const support = document.querySelector('input[name="support"]:checked');
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+
+  const siteTypeLabel = siteType ? siteType.nextElementSibling.querySelector('h4').innerText : 'Не выбрано';
+  const designLabel = design ? design.nextElementSibling.querySelector('h4').innerText : 'Не выбрано';
+  const seoLabel = seo ? seo.value > 0 ? 'SEO (+6 000 ₽)' : 'Без SEO' : '—';
+  const supportLabel = support ? support.nextElementSibling.querySelector('h4').innerText : '—';
+
+  let extras = [];
+  checkboxes.forEach(cb => {
+    extras.push(cb.nextElementSibling.textContent.trim());
+  });
+
+  const total = document.getElementById('result').innerText;
+
+  let message = `🎯 *Заявка на смету через калькулятор*\n\n`;
+  message += `🔹 Тип сайта: *${siteTypeLabel}*\n`;
+  message += `🎨 Дизайн: *${designLabel}*\n`;
+  message += `🔍 SEO: *${seoLabel}*\n`;
+  message += `🛠 Поддержка: *${supportLabel}*\n`;
+  if (extras.length > 0) message += `✨ Допы: ${extras.join(', ')}\n`;
+  message += `\n${total}\n`;
+  message += `—\nСвяжитесь со мной, чтобы обсудить детали!`;
+
+  const encodedMessage = encodeURIComponent(message);
+  const telegramUrl = `https://t.me/overgrand?text=${encodedMessage}`;
+  window.open(telegramUrl, '_blank');
 }
 
 // Галерея
@@ -169,14 +188,11 @@ const galleryData = {
 function openGallery(projectId) {
   const data = galleryData[projectId];
   if (!data) return;
-
   document.getElementById('projectTitle').innerText = data.title;
   document.getElementById('projectDesc').innerText = data.desc;
   document.getElementById('projectResult').innerText = data.result;
-
   const galleryGrid = document.getElementById('galleryGrid');
   galleryGrid.innerHTML = '';
-
   data.images.forEach(imgUrl => {
     const img = document.createElement('img');
     img.src = imgUrl.trim();
@@ -190,7 +206,6 @@ function openGallery(projectId) {
     };
     galleryGrid.appendChild(img);
   });
-
   document.getElementById('galleryModal').style.display = 'flex';
 }
 
@@ -198,27 +213,74 @@ function closeGallery() {
   document.getElementById('galleryModal').style.display = 'none';
 }
 
-// Мобильное меню
+// Мобильное меню — улучшенная версия
 function toggleMenu() {
-  document.getElementById("mainNav").classList.toggle("active");
+  const nav = document.getElementById("mainNav");
+  nav.classList.toggle("active");
 }
 
-// Форма
+// Форма — улучшенная версия с валидацией и состоянием
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
-  const name = document.getElementById('name').value;
-  const phone = document.getElementById('phone').value;
-  const email = document.getElementById('email').value;
-  const message = document.getElementById('message').value;
 
-  const text = `Новая заявка!\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}\nСообщение: ${message || 'нет'}`;
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+
+  const submitBtn = this.querySelector('button[type="submit"]');
+
+  // Валидация
+  if (!name || !phone || !email) {
+    alert('Пожалуйста, заполните все обязательные поля.');
+    return;
+  }
+
+  if (!/^\+?[\d\-\s\(\)]{10,}$/.test(phone)) {
+    alert('Введите корректный номер телефона (например, +7 999 123-45-67).');
+    return;
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert('Введите корректный email.');
+    return;
+  }
+
+  // Подготовка сообщения
+  const text = `📩 *Новая заявка с сайта*\n\n`;
+  text += `👤 Имя: ${name}\n`;
+  text += `📞 Телефон: ${phone}\n`;
+  text += `📧 Email: ${email}\n`;
+  text += `💬 Сообщение: ${message || 'не указано'}`;
+
   const url = `https://t.me/overgrand?text=${encodeURIComponent(text)}`;
-  window.open(url, '_blank');
-  alert('Заявка отправлена! Свяжемся в ближайшее время.');
+
+  // Меняем состояние кнопки
+  const originalText = submitBtn.innerHTML;
+  submitBtn.innerHTML = '✅ Отправлено!';
+  submitBtn.disabled = true;
+
+  setTimeout(() => {
+    window.open(url, '_blank');
+    setTimeout(() => {
+      document.getElementById('contactForm').reset();
+      submitBtn.innerHTML = originalText;
+      submitBtn.disabled = false;
+    }, 1000);
+  }, 1000);
 });
 
 // Инициализация
 document.addEventListener("DOMContentLoaded", function () {
+  const nav = document.getElementById("mainNav");
+
+  // Закрытие меню при клике на ссылку
+  nav.addEventListener("click", function(e) {
+    if (e.target.tagName === "A" && nav.classList.contains("active")) {
+      nav.classList.remove("active");
+    }
+  });
+
   showStep(1);
   updateTotal();
 });
