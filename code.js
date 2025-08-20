@@ -269,7 +269,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   buttonsDiv.id = 'contact-buttons';
   buttonsDiv.innerHTML = `
     <p style="color: #94a3b8; font-size: 0.9rem; text-align: center; margin: 20px 0;">
-      Спасибо за заявку! Выберите, как хотите связаться:
+      Выберите, как хотите связаться:
     </p>
     <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
       <button onclick="openTelegram('Здравствуйте, хочу заказать сайт. Имя: ${name}, Телефон: ${phone}, Email: ${email}')" class="btn primary large">💬 Написать в Telegram</button>
