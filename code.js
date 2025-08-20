@@ -74,25 +74,6 @@ function updateTotal() {
   }
 }
 
-// Калькулятор → Открытие модального окна
-function openCalculatorModal() {
-  const modal = document.getElementById('calculatorModal');
-  if (modal) {
-    modal.style.display = 'flex';
-    showStep(1);
-    updateTotal();
-  } else {
-    console.error('Модальное окно калькулятора не найдено');
-    alert('Ошибка: калькулятор временно недоступен. Напишите в Telegram.');
-  }
-}
-
-// Закрытие модального окна калькулятора
-function closeCalculatorModal() {
-  const modal = document.getElementById('calculatorModal');
-  if (modal) modal.style.display = 'none';
-}
-
 // Калькулятор → Отправка в Telegram
 function requestQuote() {
   const siteTypeLabel = document.querySelector('input[name="siteType"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
@@ -111,7 +92,6 @@ function requestQuote() {
   const encoded = encodeURIComponent(message);
   const url = `https://t.me/overgrand?text=${encoded}`;
   window.open(url, '_blank');
-  closeCalculatorModal();
 }
 
 // Галерея
@@ -278,7 +258,7 @@ function updateDots() {
   });
 }
 
-// Форма — отправка в Telegram
+// Форма — после отправки показываем кнопки
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
@@ -292,19 +272,59 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     return;
   }
 
-  const text = `📩 *НОВАЯ ЗАЯВКА*\n\n`;
-  text += `👤 Имя: ${name}\n`;
-  text += `📞 Телефон: ${phone}\n`;
-  text += `📧 Email: ${email}\n`;
-  if (message) text += `💬 Сообщение: ${message}\n\n`;
-  text += `—\nГотов к диалогу!`;
-
-  const encoded = encodeURIComponent(text);
-  const url = `https://t.me/overgrand?text=${encoded}`;
-  window.open(url, '_blank');
-  alert('✅ Заявка отправлена! Свяжемся в ближайшее время.');
+  // Сбрасываем форму
   this.reset();
+
+  // Скрываем форму
+  const form = document.getElementById('contactForm');
+  form.style.display = 'none';
+
+  // Создаем блок с кнопками
+  const buttonsDiv = document.createElement('div');
+  buttonsDiv.id = 'contact-buttons';
+  buttonsDiv.innerHTML = `
+    <p style="color: #94a3b8; font-size: 0.9rem; text-align: center; margin: 20px 0;">
+      Спасибо за заявку! Выберите, как хотите связаться:
+    </p>
+    <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
+      <button onclick="openTelegramWithMessage('${name}', '${phone}', '${email}')" class="btn primary large">💬 Написать в Telegram</button>
+      <button onclick="openEmail()" class="btn secondary large">📧 Написать на почту</button>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+      <button onclick="resetContactForm()" class="btn secondary">Назад</button>
+    </div>
+  `;
+
+  // Вставляем после формы
+  form.parentNode.insertBefore(buttonsDiv, form.nextSibling);
 });
+
+// Открытие Telegram с сообщением
+function openTelegramWithMessage(name, phone, email) {
+  const message = `📩 *НОВАЯ ЗАЯВКА*\n\n`;
+  message += `👤 Имя: ${name}\n`;
+  message += `📞 Телефон: ${phone}\n`;
+  message += `📧 Email: ${email}\n`;
+  if (message) message += `💬 Сообщение: ${message}\n\n`;
+  message += `—\nГотов к диалогу!`;
+
+  const encoded = encodeURIComponent(message);
+  window.open(`https://t.me/overgrand?text=${encoded}`, '_blank');
+}
+
+// Открытие почты
+function openEmail() {
+  window.open("mailto:rosanov.danila2016@yandex.ru", '_blank');
+}
+
+// Сброс формы
+function resetContactForm() {
+  const form = document.getElementById('contactForm');
+  const buttons = document.getElementById('contact-buttons');
+  if (buttons) buttons.remove();
+  form.style.display = 'block';
+  form.reset();
+}
 
 // Инициализация
 document.addEventListener("DOMContentLoaded", function () {
