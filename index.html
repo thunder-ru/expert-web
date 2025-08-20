@@ -18,7 +18,7 @@
         <a href="#services" onclick="scrollToSection('services')">Услуги</a>
         <a href="#reviews" onclick="scrollToSection('reviews')">Отзывы</a>
         <a href="#contact" onclick="scrollToSection('contact')">Контакты</a>
-        <a href="#calculator" onclick="openCalculatorModal()">Калькулятор</a>
+        <a href="#calculator" onclick="scrollToSection('calculator')">Калькулятор</a>
         <a href="https://t.me/overgrand" target="_blank" class="nav-telegram">💬 Telegram</a>
       </nav>
       <div class="menu-toggle" onclick="toggleMenu()">
@@ -170,10 +170,9 @@
     </div>
   </section>
 
-  <!-- Modal Calculator -->
-  <div id="calculatorModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeCalculatorModal()">&times;</span>
+  <!-- Calculator -->
+  <section id="calculator" class="calculator">
+    <div class="container">
       <div class="calc-wrapper">
         <h2 class="calc-title">Калькулятор стоимости сайта</h2>
         <p class="text-center">Выберите параметры — и узнайте примерную стоимость за 2 минуты.</p>
@@ -301,16 +300,17 @@
             <small style="color: #94a3b8;">Точная цена будет после анализа вашего бизнеса</small>
           </div>
           <p style="color: #94a3b8; font-size: 0.9rem; text-align: center; margin: 20px 0;">
-            Чтобы узнать точную стоимость — напишите мне.
+            Спасибо за расчёт! Чтобы узнать точную стоимость — напишите мне.
           </p>
           <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-            <button onclick="sendToTelegram()" class="btn primary large">💬 Написать в Telegram</button>
-            <button onclick="closeCalculatorModal()" class="btn secondary large">Закрыть</button>
+            <button onclick="openTelegram()" class="btn primary large">💬 Написать в Telegram</button>
+            <button onclick="openEmail()" class="btn secondary large">📧 Написать на почту</button>
           </div>
+          <button onclick="goBack()" class="btn secondary" style="margin-top: 20px;">Назад</button>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- Footer -->
   <footer class="footer">
