@@ -191,125 +191,142 @@
         <h2 class="calc-title">Рассчитайте стоимость сайта</h2>
         <p class="text-center">Выберите тип сайта — и мы покажем, что в него входит.</p>
 
-        <!-- Шаг 1: Тип сайта -->
-<div id="step1" class="step active">
-  <h3>1. Тип сайта</h3>
-  <div class="options">
-    <label class="option">
-      <input type="radio" name="siteType" value="8500" onchange="validateAndNext(1, 2)">
-      <div class="card">
-        <h4>Лендинг</h4>
-        <p>Одностраничный, быстро и дёшево</p>
-        <div class="price">от 8 500 ₽</div>
+        <!-- Calculator -->
+<section id="calculator" class="calculator">
+  <div class="container">
+    <div class="calc-wrapper">
+      <h2 class="calc-title">Калькулятор стоимости сайта</h2>
+      <p class="text-center">Выберите параметры — и узнайте примерную стоимость за 2 минуты.</p>
+
+      <!-- Шаг 1: Тип сайта -->
+      <div id="step1" class="step active">
+        <h3>1. Тип сайта</h3>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="siteType" value="8500" onchange="validateAndNext(1, 2)">
+            <div class="card">
+              <h4>Лендинг</h4>
+              <p>Одностраничный, быстро и дёшево</p>
+              <div class="price">от 8 500 ₽</div>
+            </div>
+          </label>
+          <label class="option">
+            <input type="radio" name="siteType" value="12000" onchange="validateAndNext(1, 2)">
+            <div class="card">
+              <h4>Сайт-визитка</h4>
+              <p>3–5 страниц, идеально для старта</p>
+              <div class="price">от 12 000 ₽</div>
+            </div>
+          </label>
+          <label class="option">
+            <input type="radio" name="siteType" value="30000" onchange="validateAndNext(1, 2)">
+            <div class="card">
+              <h4>Интернет-магазин</h4>
+              <p>Каталог, корзина, оплата</p>
+              <div class="price">от 30 000 ₽</div>
+            </div>
+          </label>
+          <label class="option">
+            <input type="radio" name="siteType" value="35000" onchange="validateAndNext(1, 2)">
+            <div class="card">
+              <h4>Корпоративный сайт</h4>
+              <p>Многофункциональный, масштабируемый</p>
+              <div class="price">от 35 000 ₽</div>
+            </div>
+          </label>
+        </div>
       </div>
-    </label>
-    <label class="option">
-      <input type="radio" name="siteType" value="12000" onchange="validateAndNext(1, 2)">
-      <div class="card">
-        <h4>Сайт-визитка</h4>
-        <p>3–5 страниц, идеально для старта</p>
-        <div class="price">от 12 000 ₽</div>
+
+      <!-- Шаг 2: Дизайн -->
+      <div id="step2" class="step">
+        <h3>2. Дизайн</h3>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="design" value="0" onchange="validateAndNext(2, 3)">
+            <div class="card">
+              <h4>Шаблонный (готовый)</h4>
+              <p>Быстро, бюджетно, проверено</p>
+              <div class="price">+0 ₽</div>
+            </div>
+          </label>
+          <label class="option">
+            <input type="radio" name="design" value="10000" onchange="validateAndNext(2, 3)">
+            <div class="card">
+              <h4>Кастомный</h4>
+              <p>Уникальный дизайн под вас</p>
+              <div class="price">+10 000 ₽</div>
+            </div>
+          </label>
+        </div>
+        <button onclick="goBack()" class="btn secondary">Назад</button>
       </div>
-    </label>
-    <label class="option">
-      <input type="radio" name="siteType" value="30000" onchange="validateAndNext(1, 2)">
-      <div class="card">
-        <h4>Интернет-магазин</h4>
-        <p>Каталог, корзина, оплата</p>
-        <div class="price">от 30 000 ₽</div>
+
+      <!-- Шаг 3: SEO и поддержка -->
+      <div id="step3" class="step">
+        <h3>3. SEO и поддержка</h3>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="seo" value="0" onchange="updateTotal()">
+            <div class="card">
+              <h4>Без SEO</h4>
+              <p>Базовая настройка</p>
+              <div class="price">+0 ₽</div>
+            </div>
+          </label>
+          <label class="option">
+            <input type="radio" name="seo" value="6000" onchange="updateTotal()">
+            <div class="card">
+              <h4>SEO (+6 000 ₽)</h4>
+              <p>Продвижение в поиске</p>
+              <div class="price">+6 000 ₽</div>
+            </div>
+          </label>
+        </div>
+
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="support" value="0" onchange="updateTotal()">
+            <div class="card">
+              <h4>Без поддержки</h4>
+              <p>Без обновлений</p>
+              <div class="price">+0 ₽</div>
+            </div>
+          </label>
+          <label class="option">
+            <input type="radio" name="support" value="3000" onchange="updateTotal()">
+            <div class="card">
+              <h4>Поддержка (1 месяц)</h4>
+              <p>Обновления, исправления</p>
+              <div class="price">+3 000 ₽</div>
+            </div>
+          </label>
+          <label class="option">
+            <input type="radio" name="support" value="7500" onchange="updateTotal()">
+            <div class="card">
+              <h4>Расширенная (3 месяца)</h4>
+              <p>Полная техподдержка</p>
+              <div class="price">+7 500 ₽</div>
+            </div>
+          </label>
+        </div>
+
+        <button onclick="validateAndNext(3, 4)" class="btn primary large">Далее</button>
+        <button onclick="goBack()" class="btn secondary">Назад</button>
       </div>
-    </label>
+
+      <!-- Шаг 4: Итог -->
+      <div id="step4" class="step">
+        <h3>4. Итоговая стоимость</h3>
+        <div class="result" id="result">
+          Примерная стоимость: 0 ₽<br>
+          <small style="color: #94a3b8;">Точная цена будет после анализа вашего бизнеса</small>
+        </div>
+        <button type="button" onclick="requestQuote()" class="btn primary large">Получить точную смету</button>
+        <button type="button" onclick="goBack()" class="btn secondary">Назад</button>
+      </div>
+    </div>
   </div>
-</div>
-
-<!-- Шаг 2: Дизайн -->
-<div id="step2" class="step">
-  <h3>2. Дизайн</h3>
-  <div class="options">
-    <label class="option">
-      <input type="radio" name="design" value="0" onchange="validateAndNext(2, 3)">
-      <div class="card">
-        <h4>Шаблонный (готовый)</h4>
-        <p>Быстро, бюджетно, проверено</p>
-        <div class="price">+0 ₽</div>
-      </div>
-    </label>
-    <label class="option">
-      <input type="radio" name="design" value="10000" onchange="validateAndNext(2, 3)">
-      <div class="card">
-        <h4>Кастомный</h4>
-        <p>Уникальный дизайн под вас</p>
-        <div class="price">+10 000 ₽</div>
-      </div>
-    </label>
-  </div>
-  <button onclick="goBack()" class="btn secondary">Назад</button>
-</div>
-
-<!-- Шаг 3: SEO и поддержка -->
-<div id="step3" class="step">
-  <h3>3. SEO и поддержка</h3>
-  <div class="options">
-    <label class="option">
-      <input type="radio" name="seo" value="0" onchange="updateTotal()">
-      <div class="card">
-        <h4>Без SEO</h4>
-        <p>Базовая настройка</p>
-        <div class="price">+0 ₽</div>
-      </div>
-    </label>
-    <label class="option">
-      <input type="radio" name="seo" value="6000" onchange="updateTotal()">
-      <div class="card">
-        <h4>SEO (+6 000 ₽)</h4>
-        <p>Продвижение в поиске</p>
-        <div class="price">+6 000 ₽</div>
-      </div>
-    </label>
-  </div>
-
-  <div class="options">
-    <label class="option">
-      <input type="radio" name="support" value="0" onchange="updateTotal()">
-      <div class="card">
-        <h4>Без поддержки</h4>
-        <p>Без обновлений</p>
-        <div class="price">+0 ₽</div>
-      </div>
-    </label>
-    <label class="option">
-      <input type="radio" name="support" value="3000" onchange="updateTotal()">
-      <div class="card">
-        <h4>Поддержка (1 месяц)</h4>
-        <p>Обновления, исправления</p>
-        <div class="price">+3 000 ₽</div>
-      </div>
-    </label>
-    <label class="option">
-      <input type="radio" name="support" value="7500" onchange="updateTotal()">
-      <div class="card">
-        <h4>Расширенная (3 месяца)</h4>
-        <p>Полная техподдержка</p>
-        <div class="price">+7 500 ₽</div>
-      </div>
-    </label>
-  </div>
-
-  <button onclick="validateAndNext(3, 4)" class="btn primary large">Далее</button>
-  <button onclick="goBack()" class="btn secondary">Назад</button>
-</div>
-
-<!-- Шаг 4: Итог -->
-<div id="step4" class="step">
-  <h3>4. Итоговая стоимость</h3>
-  <div class="result" id="result">
-    Примерная стоимость: 0 ₽<br>
-    <small style="color: #94a3b8;">Точная цена будет после анализа вашего бизнеса</small>
-  </div>
-  <button type="button" onclick="requestQuote()" class="btn primary large">Получить точную смету</button>
-  <button type="button" onclick="goBack()" class="btn secondary">Назад</button>
-</div>
-
+</section>
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
