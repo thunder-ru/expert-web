@@ -11,28 +11,28 @@ function openTelegram() {
 // Показать шаг
 function showStep(n) {
   document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
-  document.getElementById(`step${n}`).classList.add('active');
+  const step = document.getElementById(`step${n}`);
+  if (step) step.classList.add('active');
 }
 
 // Проверка выбора и переход
 function validateAndNext(currentStep, nextStepNum) {
-  let selected = false;
+  let valid = true;
 
   if (currentStep === 1) {
-    selected = document.querySelector('input[name="siteType"]:checked');
+    if (!document.querySelector('input[name="siteType"]:checked')) valid = false;
   } else if (currentStep === 2) {
-    selected = document.querySelector('input[name="design"]:checked');
+    if (!document.querySelector('input[name="design"]:checked')) valid = false;
   } else if (currentStep === 3) {
     const seo = document.querySelector('input[name="seo"]:checked');
     const support = document.querySelector('input[name="support"]:checked');
     if (!seo || !support) {
       alert("Выберите SEO и техническую поддержку.");
-      return;
+      valid = false;
     }
-    selected = true;
   }
 
-  if (!selected && currentStep !== 3) {
+  if (!valid) {
     alert("Пожалуйста, выберите вариант.");
     return;
   }
@@ -44,7 +44,8 @@ function validateAndNext(currentStep, nextStepNum) {
 // Назад
 function goBack() {
   for (let i = 2; i <= 4; i++) {
-    if (document.getElementById(`step${i}`).classList.contains('active')) {
+    const step = document.getElementById(`step${i}`);
+    if (step && step.classList.contains('active')) {
       showStep(i - 1);
       return;
     }
@@ -71,6 +72,26 @@ function updateTotal() {
       <small style="color: #94a3b8; margin-left: 8px;">Точная цена будет после анализа вашего бизнеса</small>
     `;
   }
+}
+
+// Калькулятор → Отправка в Telegram
+function requestQuote() {
+  const siteTypeLabel = document.querySelector('input[name="siteType"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
+  const seoLabel = document.querySelector('input[name="seo"]:checked')?.value > 0 ? 'Да' : 'Нет';
+  const supportLabel = document.querySelector('input[name="support"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
+  const totalEl = document.getElementById('result').querySelector('strong');
+  const total = totalEl ? totalEl.innerText.match(/\d+/)?.[0] : '0';
+
+  const message = `🎯 *ЗАЯВКА НА СМЕТУ*\n\n`;
+  message += `🔹 Тип сайта: ${siteTypeLabel}\n`;
+  message += `🔍 SEO: ${seoLabel}\n`;
+  message += `🛠 Поддержка: ${supportLabel}\n`;
+  message += `💰 Итого: ${total} ₽\n\n`;
+  message += `—\nГотов обсудить детали!`;
+
+  const encoded = encodeURIComponent(message);
+  const url = `https://t.me/overgrand?text=${encoded}`;
+  window.open(url, '_blank');
 }
 
 // Галерея
@@ -283,7 +304,8 @@ function openTelegramWithMessage(name, phone, email) {
   const message = `📩 *НОВАЯ ЗАЯВКА*\n\n`;
   message += `👤 Имя: ${name}\n`;
   message += `📞 Телефон: ${phone}\n`;
-  message += `📧 Email: ${email}\n\n`;
+  message += `📧 Email: ${email}\n`;
+  if (message) message += `💬 Сообщение: ${message}\n\n`;
   message += `—\nГотов к диалогу!`;
 
   const encoded = encodeURIComponent(message);
@@ -302,25 +324,6 @@ function resetContactForm() {
   if (buttons) buttons.remove();
   form.style.display = 'block';
   form.reset();
-}
-
-// Калькулятор — отправка в Telegram
-function requestQuote() {
-  const siteTypeLabel = document.querySelector('input[name="siteType"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
-  const seoLabel = document.querySelector('input[name="seo"]:checked')?.value > 0 ? 'Да' : 'Нет';
-  const supportLabel = document.querySelector('input[name="support"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
-  const totalEl = document.getElementById('result').querySelector('strong');
-  const total = totalEl ? totalEl.innerText.match(/\d+/)?.[0] : '0';
-
-  const message = `🎯 *ЗАЯВКА НА СМЕТУ*\n\n`;
-  message += `🔹 Тип сайта: ${siteTypeLabel}\n`;
-  message += `🔍 SEO: ${seoLabel}\n`;
-  message += `🛠 Поддержка: ${supportLabel}\n`;
-  message += `💰 Итого: ${total} ₽\n\n`;
-  message += `—\nГотов обсудить детали!`;
-
-  const encoded = encodeURIComponent(message);
-  window.open(`https://t.me/overgrand?text=${encoded}`, '_blank');
 }
 
 // Инициализация
