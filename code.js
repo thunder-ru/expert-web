@@ -24,6 +24,8 @@ function validateAndNext(currentStep, nextStepNum) {
   } else if (currentStep === 2) {
     if (!document.querySelector('input[name="design"]:checked')) valid = false;
   } else if (currentStep === 3) {
+    // Шаг 3 — чекбоксы, всегда можно пройти
+  } else if (currentStep === 4) {
     const seo = document.querySelector('input[name="seo"]:checked');
     const support = document.querySelector('input[name="support"]:checked');
     if (!seo || !support) {
@@ -60,6 +62,9 @@ function updateTotal() {
   if (siteType) total += parseFloat(siteType.value) || 0;
   const design = document.querySelector('input[name="design"]:checked');
   if (design) total += parseFloat(design.value) || 0;
+  document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+    total += parseFloat(cb.value);
+  });
   const seo = document.querySelector('input[name="seo"]:checked');
   if (seo) total += parseFloat(seo.value) || 0;
   const support = document.querySelector('input[name="support"]:checked');
@@ -69,7 +74,8 @@ function updateTotal() {
   if (resultEl) {
     resultEl.innerHTML = `
       <strong>Примерная стоимость: ${total.toLocaleString()}&nbsp;₽</strong>
-      <small style="color: #94a3b8; margin-left: 8px;">Точная цена будет после анализа вашего бизнеса</small>
+      <br>
+      <small style="color: #94a3b8;">Точная цена будет после анализа вашего бизнеса</small>
     `;
   }
 }
@@ -77,6 +83,7 @@ function updateTotal() {
 // Калькулятор → Отправка в Telegram
 function requestQuote() {
   const siteTypeLabel = document.querySelector('input[name="siteType"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
+  const designLabel = document.querySelector('input[name="design"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
   const seoLabel = document.querySelector('input[name="seo"]:checked')?.value > 0 ? 'Да' : 'Нет';
   const supportLabel = document.querySelector('input[name="support"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
   const totalEl = document.getElementById('result').querySelector('strong');
@@ -84,6 +91,7 @@ function requestQuote() {
 
   const message = `🎯 *ЗАЯВКА НА СМЕТУ*\n\n`;
   message += `🔹 Тип сайта: ${siteTypeLabel}\n`;
+  message += `🎨 Дизайн: ${designLabel}\n`;
   message += `🔍 SEO: ${seoLabel}\n`;
   message += `🛠 Поддержка: ${supportLabel}\n`;
   message += `💰 Итого: ${total} ₽\n\n`;
@@ -211,54 +219,7 @@ function toggleMenu() {
   document.getElementById("mainNav").classList.toggle("active");
 }
 
-// Слайдер портфолио
-let currentSlideIndex = 0;
-const slides = document.querySelectorAll('.portfolio-slider .slide');
-const dotsContainer = document.getElementById('sliderDots');
-
-function initSlider() {
-  if (!dotsContainer || slides.length === 0) return;
-  dotsContainer.innerHTML = '';
-  slides.forEach((_, index) => {
-    const dot = document.createElement('div');
-    dot.classList.add('dot');
-    if (index === 0) dot.classList.add('active');
-    dot.addEventListener('click', () => goToSlide(index));
-    dotsContainer.appendChild(dot);
-  });
-}
-
-function nextSlide() {
-  if (slides.length === 0) return;
-  slides[currentSlideIndex].classList.remove('active');
-  currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-  slides[currentSlideIndex].classList.add('active');
-  updateDots();
-}
-
-function prevSlide() {
-  if (slides.length === 0) return;
-  slides[currentSlideIndex].classList.remove('active');
-  currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
-  slides[currentSlideIndex].classList.add('active');
-  updateDots();
-}
-
-function goToSlide(index) {
-  if (slides.length === 0) return;
-  slides[currentSlideIndex].classList.remove('active');
-  currentSlideIndex = index;
-  slides[currentSlideIndex].classList.add('active');
-  updateDots();
-}
-
-function updateDots() {
-  document.querySelectorAll('.dot').forEach((dot, index) => {
-    dot.classList.toggle('active', index === currentSlideIndex);
-  });
-}
-
-// Форма — после отправки показываем кнопки
+// Форма — отправка в Telegram
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
@@ -272,62 +233,22 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     return;
   }
 
-  // Сбрасываем форму
+  const text = `📩 *НОВАЯ ЗАЯВКА*\n\n`;
+  text += `👤 Имя: ${name}\n`;
+  text += `📞 Телефон: ${phone}\n`;
+  text += `📧 Email: ${email}\n`;
+  if (message) text += `💬 Сообщение: ${message}\n\n`;
+  text += `—\nГотов к диалогу!`;
+
+  const encoded = encodeURIComponent(text);
+  const url = `https://t.me/overgrand?text=${encoded}`;
+  window.open(url, '_blank');
+  alert('✅ Заявка отправлена! Свяжемся в ближайшее время.');
   this.reset();
-
-  // Скрываем форму
-  const form = document.getElementById('contactForm');
-  form.style.display = 'none';
-
-  // Создаем блок с кнопками
-  const buttonsDiv = document.createElement('div');
-  buttonsDiv.id = 'contact-buttons';
-  buttonsDiv.innerHTML = `
-    <p style="color: #94a3b8; font-size: 0.9rem; text-align: center; margin: 20px 0;">
-      Спасибо за заявку! Выберите, как хотите связаться:
-    </p>
-    <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
-      <button onclick="openTelegramWithMessage('${name}', '${phone}', '${email}')" class="btn primary large">💬 Написать в Telegram</button>
-      <button onclick="openEmail()" class="btn secondary large">📧 Написать на почту</button>
-    </div>
-    <div style="text-align: center; margin-top: 20px;">
-      <button onclick="resetContactForm()" class="btn secondary">Назад</button>
-    </div>
-  `;
-
-  // Вставляем после формы
-  form.parentNode.insertBefore(buttonsDiv, form.nextSibling);
 });
-
-// Открытие Telegram с сообщением
-function openTelegramWithMessage(name, phone, email) {
-  const message = `📩 *НОВАЯ ЗАЯВКА*\n\n`;
-  message += `👤 Имя: ${name}\n`;
-  message += `📞 Телефон: ${phone}\n`;
-  message += `📧 Email: ${email}\n`;
-  message += `—\nГотов к диалогу!`;
-
-  const encoded = encodeURIComponent(message);
-  window.open(`https://t.me/overgrand?text=${encoded}`, '_blank');
-}
-
-// Открытие почты
-function openEmail() {
-  window.open("mailto:rosanov.danila2016@yandex.ru", '_blank');
-}
-
-// Сброс формы
-function resetContactForm() {
-  const form = document.getElementById('contactForm');
-  const buttons = document.getElementById('contact-buttons');
-  if (buttons) buttons.remove();
-  form.style.display = 'block';
-  form.reset();
-}
 
 // Инициализация
 document.addEventListener("DOMContentLoaded", function () {
   showStep(1);
   updateTotal();
-  initSlider();
 });
