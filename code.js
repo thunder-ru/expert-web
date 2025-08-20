@@ -305,7 +305,6 @@ function openTelegramWithMessage(name, phone, email) {
   message += `👤 Имя: ${name}\n`;
   message += `📞 Телефон: ${phone}\n`;
   message += `📧 Email: ${email}\n`;
-  if (message) message += `💬 Сообщение: ${message}\n\n`;
   message += `—\nГотов к диалогу!`;
 
   const encoded = encodeURIComponent(message);
