@@ -1,7 +1,6 @@
 // Прокрутка к секции
 function scrollToSection(id) {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: "smooth" });
+  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
 }
 
 // Открытие Telegram
@@ -9,16 +8,13 @@ function openTelegram() {
   window.open("https://t.me/overgrand", '_blank');
 }
 
-// Показать шаг калькулятора
+// Показать шаг
 function showStep(n) {
-  const steps = document.querySelectorAll('.step');
-  if (steps.length === 0) return;
-  steps.forEach(step => step.classList.remove('active'));
-  const target = document.getElementById(`step${n}`);
-  if (target) target.classList.add('active');
+  document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+  document.getElementById(`step${n}`).classList.add('active');
 }
 
-// Проверка и переход
+// Проверка выбора и переход
 function validateAndNext(currentStep, nextStepNum) {
   let selected = false;
 
@@ -28,9 +24,6 @@ function validateAndNext(currentStep, nextStepNum) {
     selected = document.querySelector('input[name="design"]:checked');
   } else if (currentStep === 3) {
     selected = true;
-  } else if (currentStep === 4) {
-    selected = document.querySelector('input[name="seo"]:checked') && 
-               document.querySelector('input[name="support"]:checked');
   }
 
   if (!selected && currentStep !== 3) {
@@ -44,9 +37,8 @@ function validateAndNext(currentStep, nextStepNum) {
 
 // Назад
 function goBack() {
-  for (let i = 4; i >= 1; i--) {
-    const step = document.getElementById(`step${i}`);
-    if (step && step.classList.contains('active')) {
+  for (let i = 2; i <= 3; i++) {
+    if (document.getElementById(`step${i}`).classList.contains('active')) {
       showStep(i - 1);
       return;
     }
@@ -57,20 +49,12 @@ function goBack() {
 // Обновление итога
 function updateTotal() {
   let total = 0;
-
   const siteType = document.querySelector('input[name="siteType"]:checked');
   if (siteType) total += parseFloat(siteType.value) || 0;
-
   const design = document.querySelector('input[name="design"]:checked');
   if (design) total += parseFloat(design.value) || 0;
-
-  document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
-    total += parseFloat(cb.value) || 0;
-  });
-
   const seo = document.querySelector('input[name="seo"]:checked');
   if (seo) total += parseFloat(seo.value) || 0;
-
   const support = document.querySelector('input[name="support"]:checked');
   if (support) total += parseFloat(support.value) || 0;
 
@@ -180,14 +164,11 @@ const galleryData = {
 function openGallery(projectId) {
   const data = galleryData[projectId];
   if (!data) return;
-
   document.getElementById('projectTitle').innerText = data.title;
   document.getElementById('projectDesc').innerText = data.desc;
   document.getElementById('projectResult').innerText = data.result;
-
   const galleryGrid = document.getElementById('galleryGrid');
   galleryGrid.innerHTML = '';
-
   data.images.forEach(imgUrl => {
     const img = document.createElement('img');
     img.src = imgUrl.trim();
@@ -201,19 +182,16 @@ function openGallery(projectId) {
     };
     galleryGrid.appendChild(img);
   });
-
   document.getElementById('galleryModal').style.display = 'flex';
 }
 
 function closeGallery() {
-  const modal = document.getElementById('galleryModal');
-  if (modal) modal.style.display = 'none';
+  document.getElementById('galleryModal').style.display = 'none';
 }
 
 // Мобильное меню
 function toggleMenu() {
-  const nav = document.getElementById("mainNav");
-  if (nav) nav.classList.toggle("active");
+  document.getElementById("mainNav").classList.toggle("active");
 }
 
 // Слайдер портфолио
@@ -223,7 +201,7 @@ const dotsContainer = document.getElementById('sliderDots');
 
 function initSlider() {
   if (!dotsContainer || slides.length === 0) return;
-
+  dotsContainer.innerHTML = '';
   slides.forEach((_, index) => {
     const dot = document.createElement('div');
     dot.classList.add('dot');
@@ -263,52 +241,29 @@ function updateDots() {
   });
 }
 
-// Форма — улучшенная версия
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.getElementById('contactForm');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+// Форма
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
 
-      const name = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const email = document.getElementById('email').value.trim();
-
-      if (!name || !phone || !email) {
-        alert('Заполните все обязательные поля.');
-        return;
-      }
-
-      if (!/^\+?[\d\-\s\(\)]{10,}$/.test(phone)) {
-        alert('Введите корректный номер телефона.');
-        return;
-      }
-
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        alert('Введите корректный email.');
-        return;
-      }
-
-      const message = `📩 *Новая заявка*\n\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}`;
-      const url = `https://t.me/overgrand?text=${encodeURIComponent(message)}`;
-
-      const btn = this.querySelector('button[type="submit"]');
-      const originalText = btn.innerHTML;
-      btn.innerHTML = '✅ Отправлено!';
-      btn.disabled = true;
-
-      setTimeout(() => {
-        window.open(url, '_blank');
-        setTimeout(() => {
-          form.reset();
-          btn.innerHTML = originalText;
-          btn.disabled = false;
-        }, 1000);
-      }, 1000);
-    });
+  if (!name || !phone || !email) {
+    alert('Заполните все обязательные поля.');
+    return;
   }
 
-  // Инициализация
+  const text = `📩 *Новая заявка*\n\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}\nСообщение: ${message || 'не указано'}`;
+  const url = `https://t.me/overgrand?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+
+  alert('✅ Заявка отправлена! Свяжемся в ближайшее время.');
+  this.reset();
+});
+
+// Инициализация
+document.addEventListener("DOMContentLoaded", function () {
   showStep(1);
   updateTotal();
   initSlider();
