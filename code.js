@@ -1,6 +1,7 @@
 // Прокрутка к секции
 function scrollToSection(id) {
-  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth" });
 }
 
 // Открытие Telegram
@@ -10,13 +11,17 @@ function openTelegram() {
 
 // Показать шаг калькулятора
 function showStep(n) {
-  document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
-  document.getElementById(`step${n}`).classList.add('active');
+  const steps = document.querySelectorAll('.step');
+  if (steps.length === 0) return;
+  steps.forEach(step => step.classList.remove('active'));
+  const target = document.getElementById(`step${n}`);
+  if (target) target.classList.add('active');
 }
 
-// Проверка выбора и переход к следующему шагу
+// Проверка и переход
 function validateAndNext(currentStep, nextStepNum) {
   let selected = false;
+
   if (currentStep === 1) {
     selected = document.querySelector('input[name="siteType"]:checked');
   } else if (currentStep === 2) {
@@ -27,84 +32,68 @@ function validateAndNext(currentStep, nextStepNum) {
     selected = document.querySelector('input[name="seo"]:checked') && 
                document.querySelector('input[name="support"]:checked');
   }
+
   if (!selected && currentStep !== 3) {
     alert("Пожалуйста, выберите вариант.");
     return;
   }
+
   showStep(nextStepNum);
   updateTotal();
 }
 
-// Возврат на предыдущий шаг
+// Назад
 function goBack() {
-  for (let i = 1; i < 4; i++) {
-    if (document.getElementById(`step${i}`).classList.contains('active')) {
-      showStep(i);
+  for (let i = 4; i >= 1; i--) {
+    const step = document.getElementById(`step${i}`);
+    if (step && step.classList.contains('active')) {
+      showStep(i - 1);
       return;
     }
   }
   showStep(1);
 }
 
-// Обновление итоговой стоимости
+// Обновление итога
 function updateTotal() {
   let total = 0;
-  const siteType = document.querySelector('input[name="siteType"]:checked');
-  if (siteType) total += parseFloat(siteType.value);
-  const design = document.querySelector('input[name="design"]:checked');
-  if (design) total += parseFloat(design.value);
-  document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
-    total += parseFloat(cb.value);
-  });
-  const seo = document.querySelector('input[name="seo"]:checked');
-  if (seo) total += parseFloat(seo.value);
-  const support = document.querySelector('input[name="support"]:checked');
-  if (support) total += parseFloat(support.value);
 
-  const resultElement = document.getElementById('result');
-  if (resultElement) {
-    resultElement.innerHTML = `
+  const siteType = document.querySelector('input[name="siteType"]:checked');
+  if (siteType) total += parseFloat(siteType.value) || 0;
+
+  const design = document.querySelector('input[name="design"]:checked');
+  if (design) total += parseFloat(design.value) || 0;
+
+  document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+    total += parseFloat(cb.value) || 0;
+  });
+
+  const seo = document.querySelector('input[name="seo"]:checked');
+  if (seo) total += parseFloat(seo.value) || 0;
+
+  const support = document.querySelector('input[name="support"]:checked');
+  if (support) total += parseFloat(support.value) || 0;
+
+  const resultEl = document.getElementById('result');
+  if (resultEl) {
+    resultEl.innerHTML = `
       <strong>Примерная стоимость: ${total.toLocaleString()} ₽</strong><br>
       <small style="color: #94a3b8;">Точная цена будет после анализа вашего бизнеса</small>
     `;
   }
 }
 
-// Получить точную смету — отправка в Telegram
+// Получить точную смету
 function requestQuote() {
-  const siteType = document.querySelector('input[name="siteType"]:checked');
-  const design = document.querySelector('input[name="design"]:checked');
-  const seo = document.querySelector('input[name="seo"]:checked');
-  const support = document.querySelector('input[name="support"]:checked');
-  const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+  const resultEl = document.getElementById('result');
+  const total = resultEl ? resultEl.innerText : 'неизвестно';
 
-  const siteTypeLabel = siteType ? siteType.nextElementSibling.querySelector('h4').innerText : 'Не выбрано';
-  const designLabel = design ? design.nextElementSibling.querySelector('h4').innerText : 'Не выбрано';
-  const seoLabel = seo ? (seo.value > 0 ? 'SEO (+6 000 ₽)' : 'Без SEO') : '—';
-  const supportLabel = support ? support.nextElementSibling.querySelector('h4').innerText : '—';
-
-  let extras = [];
-  checkboxes.forEach(cb => {
-    extras.push(cb.nextElementSibling.textContent.trim());
-  });
-
-  const total = document.getElementById('result').innerText;
-
-  let message = `🎯 *Заявка на смету через калькулятор*\n\n`;
-  message += `🔹 Тип сайта: *${siteTypeLabel}*\n`;
-  message += `🎨 Дизайн: *${designLabel}*\n`;
-  message += `🔍 SEO: *${seoLabel}*\n`;
-  message += `🛠 Поддержка: *${supportLabel}*\n`;
-  if (extras.length > 0) message += `✨ Допы: ${extras.join(', ')}\n`;
-  message += `\n${total}\n`;
-  message += `—\nСвяжитесь со мной, чтобы обсудить детали!`;
-
-  const encodedMessage = encodeURIComponent(message);
-  const telegramUrl = `https://t.me/overgrand?text=${encodedMessage}`;
-  window.open(telegramUrl, '_blank');
+  const message = `🎯 *Заявка на смету*\n\nИтоговая сумма: *${total}*\n\nСвяжитесь со мной для уточнения деталей.`;
+  const url = `https://t.me/overgrand?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
 }
 
-// Галерея портфолио
+// Галерея
 const galleryData = {
   auto: {
     title: "Аренда автомобилей",
@@ -191,11 +180,14 @@ const galleryData = {
 function openGallery(projectId) {
   const data = galleryData[projectId];
   if (!data) return;
+
   document.getElementById('projectTitle').innerText = data.title;
   document.getElementById('projectDesc').innerText = data.desc;
   document.getElementById('projectResult').innerText = data.result;
+
   const galleryGrid = document.getElementById('galleryGrid');
   galleryGrid.innerHTML = '';
+
   data.images.forEach(imgUrl => {
     const img = document.createElement('img');
     img.src = imgUrl.trim();
@@ -209,16 +201,19 @@ function openGallery(projectId) {
     };
     galleryGrid.appendChild(img);
   });
+
   document.getElementById('galleryModal').style.display = 'flex';
 }
 
 function closeGallery() {
-  document.getElementById('galleryModal').style.display = 'none';
+  const modal = document.getElementById('galleryModal');
+  if (modal) modal.style.display = 'none';
 }
 
 // Мобильное меню
 function toggleMenu() {
-  document.getElementById("mainNav").classList.toggle("active");
+  const nav = document.getElementById("mainNav");
+  if (nav) nav.classList.toggle("active");
 }
 
 // Слайдер портфолио
@@ -226,8 +221,9 @@ let currentSlideIndex = 0;
 const slides = document.querySelectorAll('.portfolio-slider .slide');
 const dotsContainer = document.getElementById('sliderDots');
 
-// Инициализация точек
 function initSlider() {
+  if (!dotsContainer || slides.length === 0) return;
+
   slides.forEach((_, index) => {
     const dot = document.createElement('div');
     dot.classList.add('dot');
@@ -238,6 +234,7 @@ function initSlider() {
 }
 
 function nextSlide() {
+  if (slides.length === 0) return;
   slides[currentSlideIndex].classList.remove('active');
   currentSlideIndex = (currentSlideIndex + 1) % slides.length;
   slides[currentSlideIndex].classList.add('active');
@@ -245,6 +242,7 @@ function nextSlide() {
 }
 
 function prevSlide() {
+  if (slides.length === 0) return;
   slides[currentSlideIndex].classList.remove('active');
   currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
   slides[currentSlideIndex].classList.add('active');
@@ -252,6 +250,7 @@ function prevSlide() {
 }
 
 function goToSlide(index) {
+  if (slides.length === 0) return;
   slides[currentSlideIndex].classList.remove('active');
   currentSlideIndex = index;
   slides[currentSlideIndex].classList.add('active');
@@ -264,59 +263,52 @@ function updateDots() {
   });
 }
 
-// Форма — улучшенная версия с валидацией
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  const name = document.getElementById('name').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const message = document.getElementById('message').value.trim();
-
-  const submitBtn = this.querySelector('button[type="submit"]');
-
-  // Валидация
-  if (!name || !phone || !email) {
-    alert('Пожалуйста, заполните все обязательные поля.');
-    return;
-  }
-
-  if (!/^\+?[\d\-\s\(\)]{10,}$/.test(phone)) {
-    alert('Введите корректный номер телефона (например, +7 999 123-45-67).');
-    return;
-  }
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    alert('Введите корректный email.');
-    return;
-  }
-
-  // Подготовка сообщения
-  const text = `📩 *Новая заявка с сайта*\n\n`;
-  text += `👤 Имя: ${name}\n`;
-  text += `📞 Телефон: ${phone}\n`;
-  text += `📧 Email: ${email}\n`;
-  text += `💬 Сообщение: ${message || 'не указано'}`;
-
-  const url = `https://t.me/overgrand?text=${encodeURIComponent(text)}`;
-
-  // Меняем состояние кнопки
-  const originalText = submitBtn.innerHTML;
-  submitBtn.innerHTML = '✅ Отправлено!';
-  submitBtn.disabled = true;
-
-  setTimeout(() => {
-    window.open(url, '_blank');
-    setTimeout(() => {
-      document.getElementById('contactForm').reset();
-      submitBtn.innerHTML = originalText;
-      submitBtn.disabled = false;
-    }, 1000);
-  }, 1000);
-});
-
-// Инициализация при загрузке
+// Форма — улучшенная версия
 document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      if (!name || !phone || !email) {
+        alert('Заполните все обязательные поля.');
+        return;
+      }
+
+      if (!/^\+?[\d\-\s\(\)]{10,}$/.test(phone)) {
+        alert('Введите корректный номер телефона.');
+        return;
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert('Введите корректный email.');
+        return;
+      }
+
+      const message = `📩 *Новая заявка*\n\nИмя: ${name}\nТелефон: ${phone}\nEmail: ${email}`;
+      const url = `https://t.me/overgrand?text=${encodeURIComponent(message)}`;
+
+      const btn = this.querySelector('button[type="submit"]');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '✅ Отправлено!';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        window.open(url, '_blank');
+        setTimeout(() => {
+          form.reset();
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }, 1000);
+      }, 1000);
+    });
+  }
+
+  // Инициализация
   showStep(1);
   updateTotal();
   initSlider();
