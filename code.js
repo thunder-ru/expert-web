@@ -22,20 +22,11 @@ function showStep(n) {
 // Проверка выбора и переход
 function validateAndNext(currentStep, nextStepNum) {
   let valid = true;
-  if (currentStep === 1) {
-    if (!document.querySelector('input[name="siteType"]:checked')) valid = false;
-  } else if (currentStep === 2) {
-    if (!document.querySelector('input[name="design"]:checked')) valid = false;
-  } else if (currentStep === 3) {
-    // Шаг 3 — чекбоксы, всегда можно пройти
-  } else if (currentStep === 4) {
-    const seo = document.querySelector('input[name="seo"]:checked');
-    const support = document.querySelector('input[name="support"]:checked');
-    if (!seo || !support) {
-      alert("Выберите SEO и техническую поддержку.");
-      valid = false;
-    }
-  }
+  if (currentStep === 1 && !document.querySelector('input[name="siteType"]:checked')) valid = false;
+  else if (currentStep === 2 && !document.querySelector('input[name="design"]:checked')) valid = false;
+  else if (currentStep === 3 && !document.querySelector('input[name="seo"]:checked')) valid = false;
+  else if (currentStep === 4 && !document.querySelector('input[name="support"]:checked')) valid = false;
+
   if (!valid) {
     alert("Пожалуйста, выберите вариант.");
     return;
@@ -63,9 +54,6 @@ function updateTotal() {
   if (siteType) total += parseFloat(siteType.value) || 0;
   const design = document.querySelector('input[name="design"]:checked');
   if (design) total += parseFloat(design.value) || 0;
-  document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
-    total += parseFloat(cb.value);
-  });
   const seo = document.querySelector('input[name="seo"]:checked');
   if (seo) total += parseFloat(seo.value) || 0;
   const support = document.querySelector('input[name="support"]:checked');
@@ -81,8 +69,26 @@ function updateTotal() {
   }
 }
 
-// Калькулятор → Отправка в Telegram
-function requestQuote() {
+// Показать модал выбора
+function showSendOptions() {
+  if (!document.querySelector('input[name="support"]:checked')) {
+    alert("Выберите тип технической поддержки.");
+    return;
+  }
+  document.getElementById('sendModal').style.display = 'flex';
+}
+
+// Закрыть модал
+function closeSendModal() {
+  document.getElementById('sendModal').style.display = 'none';
+}
+
+function closeConfirmModal() {
+  document.getElementById('confirmModal').style.display = 'none';
+}
+
+// Отправка в Telegram
+function sendToTelegram() {
   const siteTypeLabel = document.querySelector('input[name="siteType"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
   const designLabel = document.querySelector('input[name="design"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
   const seoLabel = document.querySelector('input[name="seo"]:checked')?.value > 0 ? 'Да' : 'Нет';
@@ -101,14 +107,33 @@ function requestQuote() {
   const encoded = encodeURIComponent(message);
   const url = `https://t.me/overgrand?text=${encoded}`;
   window.open(url, '_blank');
-
-  // Показываем модал
+  closeSendModal();
   document.getElementById('confirmModal').style.display = 'flex';
 }
 
-// Закрыть модал
-function closeConfirmModal() {
-  document.getElementById('confirmModal').style.display = 'none';
+// Отправка на почту
+function sendToEmail() {
+  const siteTypeLabel = document.querySelector('input[name="siteType"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
+  const designLabel = document.querySelector('input[name="design"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
+  const seoLabel = document.querySelector('input[name="seo"]:checked')?.value > 0 ? 'Да' : 'Нет';
+  const supportLabel = document.querySelector('input[name="support"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
+  const totalEl = document.getElementById('result').querySelector('strong');
+  const total = totalEl ? totalEl.innerText.match(/\d+/)?.[0] : '0';
+
+  const subject = encodeURIComponent('Заявка на сайт — Смета');
+  const body = encodeURIComponent(
+    `Здравствуйте!\n\nЯ хочу заказать сайт:\n\n` +
+    `Тип сайта: ${siteTypeLabel}\n` +
+    `Дизайн: ${designLabel}\n` +
+    `SEO: ${seoLabel}\n` +
+    `Поддержка: ${supportLabel}\n` +
+    `Итого: ${total} ₽\n\n` +
+    `Готов обсудить детали!`
+  );
+  const mailto = `mailto:rosanov.danila2016@yandex.ru?subject=${subject}&body=${body}`;
+  window.open(mailto, '_blank');
+  closeSendModal();
+  document.getElementById('confirmModal').style.display = 'flex';
 }
 
 // Галерея
