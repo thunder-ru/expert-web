@@ -93,7 +93,7 @@ function requestQuote() {
 
 // Отправка в Google Таблицу
 function sendToGoogleSheets(payload, successMessage) {
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec'; // ← Замени!
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxnMYq8l1QgXQtXUfctEmqdsd6W_4Hr3zOP6S2NV6cm5n9Buo6-uaaEwTABlwhHKB-C/exec'; // ← Замени!
 
   fetch(GOOGLE_SCRIPT_URL, {
     method: 'POST',
