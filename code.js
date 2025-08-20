@@ -90,7 +90,7 @@ function requestQuote() {
     support: supportLabel
   };
 
-  sendToGoogleSheets(payload, '✅ Заявка отправлена! Свяжемся в ближайшее время.');
+  sendToTelegramBot(payload, '✅ Заявка отправлена! Свяжемся в ближайшее время.');
 }
 
 // Галерея
@@ -289,12 +289,12 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     message: message
   };
 
-  sendToGoogleSheets(payload, '✅ Заявка отправлена! Свяжемся в ближайшее время.');
+  sendToTelegramBot(payload, '✅ Заявка отправлена! Свяжемся в ближайшее время.');
   this.reset();
 });
 
-// Отправка в Google Таблицу
-function sendToGoogleSheets(payload, successMessage) {
+// Отправка в Telegram через Google Apps Script
+function sendToTelegramBot(payload, successMessage) {
   const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw0FuDhU7zV2Ylmk-OiGewOP5fNp4X1-NxJHfAe6tPnhjft6-XeHJp3Ho1Ji_DUhoOpTQ/exec';
 
   fetch(GOOGLE_SCRIPT_URL, {
@@ -310,12 +310,12 @@ function sendToGoogleSheets(payload, successMessage) {
       alert(successMessage);
     } else {
       response.text().then(text => console.error('Ошибка сервера:', text));
-      alert('Ошибка сервера. Проверьте консоль (F12).');
+      alert('Ошибка отправки. Проверьте консоль (F12).');
     }
   })
   .catch(err => {
-    console.error('Ошибка:', err);
-    alert('Ошибка отправки. Проверьте интернет и попробуйте позже.');
+    console.error('Ошибка сети:', err);
+    alert('Ошибка отправки. Проверьте интернет.');
   });
 }
 
