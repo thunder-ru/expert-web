@@ -8,21 +8,25 @@ function openTelegram() {
   window.open("https://t.me/overgrand", '_blank');
 }
 
+// Открытие почты
+function openEmail() {
+  window.open("mailto:rosanov.danila2016@yandex.ru", '_blank');
+}
+
 // Показать шаг
 function showStep(n) {
   document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
-  const step = document.getElementById(`step${n}`);
-  if (step) step.classList.add('active');
+  document.getElementById(`step${n}`).classList.add('active');
 }
 
 // Проверка выбора и переход
 function validateAndNext(currentStep, nextStepNum) {
-  let valid = true;
+  let selected = false;
 
   if (currentStep === 1) {
-    if (!document.querySelector('input[name="siteType"]:checked')) valid = false;
+    selected = document.querySelector('input[name="siteType"]:checked');
   } else if (currentStep === 2) {
-    if (!document.querySelector('input[name="design"]:checked')) valid = false;
+    selected = document.querySelector('input[name="design"]:checked');
   } else if (currentStep === 3) {
     const seo = document.querySelector('input[name="seo"]:checked');
     const support = document.querySelector('input[name="support"]:checked');
@@ -30,10 +34,10 @@ function validateAndNext(currentStep, nextStepNum) {
       alert("Выберите SEO и техническую поддержку.");
       return;
     }
-    valid = true;
+    selected = true;
   }
 
-  if (!valid) {
+  if (!selected) {
     alert("Пожалуйста, выберите вариант.");
     return;
   }
@@ -45,8 +49,7 @@ function validateAndNext(currentStep, nextStepNum) {
 // Назад
 function goBack() {
   for (let i = 2; i <= 4; i++) {
-    const step = document.getElementById(`step${i}`);
-    if (step && step.classList.contains('active')) {
+    if (document.getElementById(`step${i}`).classList.contains('active')) {
       showStep(i - 1);
       return;
     }
@@ -75,23 +78,10 @@ function updateTotal() {
   }
 }
 
-// Получить точную смету
+// Получить точную смету — предлагает связаться
 function requestQuote() {
-  const siteTypeLabel = document.querySelector('input[name="siteType"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
-  const seoLabel = document.querySelector('input[name="seo"]:checked')?.value > 0 ? 'Да' : 'Нет';
-  const supportLabel = document.querySelector('input[name="support"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
-  const totalEl = document.getElementById('result').querySelector('strong');
-  const total = totalEl ? totalEl.innerText.match(/\d+/)?.[0] : '0';
-
-  const payload = {
-    source: 'калькулятор',
-    total: total,
-    siteType: siteTypeLabel,
-    seo: seoLabel,
-    support: supportLabel
-  };
-
-  sendToTelegramBot(payload, '✅ Заявка отправлена! Свяжемся в ближайшее время.');
+  alert("Спасибо за расчёт! Чтобы узнать точную стоимость — напишите мне в Telegram или на почту. Я отвечу в течение 1 часа.");
+  scrollToSection('contact');
 }
 
 // Галерея
@@ -258,7 +248,7 @@ function updateDots() {
   });
 }
 
-// Форма
+// Форма — открывает Telegram или почту
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
 
@@ -272,53 +262,19 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     return;
   }
 
-  if (!/^\+?[\d\-\s\(\)]{10,}$/.test(phone)) {
-    alert('Введите корректный номер телефона.');
-    return;
-  }
+  const text = `📩 *НОВАЯ ЗАЯВКА*\n\n`;
+  text += `👤 Имя: ${name}\n`;
+  text += `📞 Телефон: ${phone}\n`;
+  text += `📧 Email: ${email}\n`;
+  if (message) text += `💬 Сообщение: ${message}\n\n`;
+  text += `—\nГотов к диалогу!`;
 
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    alert('Введите корректный email.');
-    return;
-  }
-
-  const payload = {
-    source: 'форма',
-    name: name,
-    phone: phone,
-    email: email,
-    message: message
-  };
-
-  sendToTelegramBot(payload, '✅ Заявка отправлена! Свяжемся в ближайшее время.');
+  const encoded = encodeURIComponent(text);
+  const url = `https://t.me/overgrand?text=${encoded}`;
+  window.open(url, '_blank');
+  alert('✅ Отлично! Открою Telegram — можете отправить сообщение.');
   this.reset();
 });
-
-// Отправка в Telegram через Google Apps Script
-function sendToTelegramBot(payload, successMessage) {
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwnfGy1_DFquIKib6n-oVnHVWhzBhHv2yMY0C4u2UDXcDijPvsVkWE1P_1iRfXA2a2aQQ/exec';
-
-  fetch(GOOGLE_SCRIPT_URL, {
-    method: 'POST',
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(payload)
-  })
-  .then(response => {
-    if (response.ok) {
-      alert(successMessage);
-    } else {
-      response.text().then(text => console.error('Ошибка сервера:', text));
-      alert('Ошибка отправки. Проверьте консоль (F12).');
-    }
-  })
-  .catch(err => {
-    console.error('Ошибка:', err);
-    alert('Ошибка сети. Проверьте интернет и попробуйте позже.');
-  });
-}
 
 // Инициализация
 document.addEventListener("DOMContentLoaded", function () {
