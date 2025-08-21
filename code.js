@@ -76,7 +76,7 @@ function updateTotal() {
   }
 }
 
-// Калькулятор ? Отправка в Telegram
+// Отправка в Telegram
 function requestQuote() {
   const siteTypeLabel = document.querySelector('input[name="siteType"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
   const designLabel = document.querySelector('input[name="design"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
@@ -84,20 +84,14 @@ function requestQuote() {
   const supportLabel = document.querySelector('input[name="support"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
   const totalEl = document.getElementById('result').querySelector('strong');
   const total = totalEl ? totalEl.innerText.match(/\d+/)?.[0] : '0';
-  const message = `🚀 *ЗАЯВКА НА СМЕТУ*
-`;
-  message += `🔹 Тип сайта: ${siteTypeLabel}
-`;
-  message += `🔹 Дизайн: ${designLabel}
-`;
-  message += `🔹 SEO: ${seoLabel}
-`;
-  message += `🔹 Поддержка: ${supportLabel}
-`;
-  message += `💰 Итого: ${total} ₽
-`;
-  message += `—
-Готов обсудить детали!`;
+  const message = `🚀 *ЗАЯВКА НА СМЕТУ*\n\n`;
+  message += `🔹 Тип сайта: ${siteTypeLabel}\n`;
+  message += `🔹 Дизайн: ${designLabel}\n`;
+  message += `🔹 SEO: ${seoLabel}\n`;
+  message += `🔹 Поддержка: ${supportLabel}\n\n`;
+  message += `💰 Итого: ${total} ₽\n\n`;
+  message += `—\nГотов обсудить детали!`;
+
   const encoded = encodeURIComponent(message);
   const url = `https://t.me/overgrand?text=${encoded}`;
   window.open(url, '_blank');
@@ -186,6 +180,7 @@ const galleryData = {
     ]
   }
 };
+
 function openGallery(projectId) {
   const data = galleryData[projectId];
   if (!data) return;
@@ -230,27 +225,76 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     alert('Заполните все обязательные поля.');
     return;
   }
-  const text = `📩 *НОВАЯ ЗАЯВКА*
-`;
-  text += `👤 Имя: ${name}
-`;
-  text += `📞 Телефон: ${phone}
-`;
-  text += `✉️ Email: ${email}
-`;
-  if (message) text += `💬 Сообщение: ${message}
-`;
-  text += `—
-Готов к диалогу!`;
+  const text = `📩 *НОВАЯ ЗАЯВКА*\n\n`;
+  text += `👤 Имя: ${name}\n`;
+  text += `📞 Телефон: ${phone}\n`;
+  text += `✉️ Email: ${email}\n`;
+  if (message) text += `💬 Сообщение: ${message}\n\n`;
+  text += `—\nГотов к диалогу!`;
   const encoded = encodeURIComponent(text);
   const url = `https://t.me/overgrand?text=${encoded}`;
   window.open(url, '_blank');
-  alert('? Заявка отправлена! Свяжемся в ближайшее время.');
+  alert('✅ Заявка отправлена! Свяжемся в ближайшее время.');
   this.reset();
+});
+
+// Портфолио слайдер
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+const nextBtn = document.getElementById('nextSlide');
+const prevBtn = document.getElementById('prevSlide');
+
+function showSlide(n) {
+  if (n >= slides.length) currentSlide = 0;
+  if (n < 0) currentSlide = slides.length - 1;
+  slides.forEach(s => s.classList.remove('active'));
+  dots.forEach(d => d.classList.remove('active'));
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() {
+  currentSlide++;
+  showSlide(currentSlide);
+}
+
+function prevSlide() {
+  currentSlide--;
+  showSlide(currentSlide);
+}
+
+function goToSlide(n) {
+  currentSlide = n;
+  showSlide(currentSlide);
+}
+
+// Автопрокрутка
+let slideInterval = setInterval(nextSlide, 5000);
+
+// Остановить при наведении
+document.querySelector('.portfolio-slider').addEventListener('mouseenter', () => {
+  clearInterval(slideInterval);
+});
+
+// Возобновить
+document.querySelector('.portfolio-slider').addEventListener('mouseleave', () => {
+  slideInterval = setInterval(nextSlide, 5000);
+});
+
+// Обработчики событий
+if (nextBtn) nextBtn.addEventListener('click', () => { clearInterval(slideInterval); nextSlide(); });
+if (prevBtn) prevBtn.addEventListener('click', () => { clearInterval(slideInterval); prevSlide(); });
+dots.forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    clearInterval(slideInterval);
+    goToSlide(i);
+  });
 });
 
 // Инициализация
 document.addEventListener("DOMContentLoaded", function () {
-  showStep(1);
-  updateTotal();
+  if (slides.length > 0) {
+    showSlide(0);
+  }
 });
