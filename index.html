@@ -296,5 +296,63 @@
           </div>
           <div id="result" class="result">Примерная стоимость: 0 ₽</div>
           <button onclick="goBack()" class="btn secondary">← Назад</button>
-          <button onclick="showSendOptions()" class="btn primary glow">📩 Отправить заявку</button>
-      
+          <button onclick="requestQuote()" class="btn primary glow">📩 Отправить заявку</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модал выбора отправки -->
+  <div id="sendModal" class="modal">
+    <div class="modal-content send-modal">
+      <h3>📤 Куда отправить смету?</h3>
+      <p style="color: #cbd5e1;">Выберите удобный способ связи:</p>
+      <div class="send-options">
+        <button onclick="sendToTelegram()" class="btn primary">💬 В Telegram (@overgrand)</button>
+        <button onclick="sendToEmail()" class="btn secondary">✉️ На почту (rosanov.danila2016@yandex.ru)</button>
+      </div>
+      <button onclick="closeSendModal()" class="cancel-btn">Отмена</button>
+    </div>
+  </div>
+
+  <!-- Модал подтверждения -->
+  <div id="confirmModal" class="modal">
+    <div class="modal-content confirm-modal">
+      <h3>✅ Отправлено!</h3>
+      <p style="color: #cbd5e1; margin: 20px 0;">Ваша заявка успешно отправлена. Свяжусь с вами в ближайшее время.</p>
+      <button onclick="closeConfirmModal()" class="btn primary">Закрыть</button>
+    </div>
+  </div>
+
+  <!-- Галерея проектов -->
+  <div id="galleryModal" class="modal">
+    <div class="modal-content gallery-modal">
+      <span class="close" onclick="closeGallery()">&times;</span>
+      <div class="gallery-header">
+        <h3 id="projectTitle">Проект</h3>
+        <p id="projectDesc">Описание</p>
+        <p id="projectResult">Результат</p>
+      </div>
+      <div id="galleryGrid" class="gallery-grid"></div>
+      <div class="gallery-footer">
+        <button onclick="closeGallery()" class="btn primary">Закрыть</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Футер -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Web-Thunder. Разработка сайтов под ключ.</p>
+      <p><a href="https://t.me/overgrand" target="_blank">Telegram</a> | <a href="mailto:rosanov.danila2016@yandex.ru">Email</a></p>
+    </div>
+  </footer>
+
+  <!-- Чат-виджет -->
+  <div class="chat-widget" onclick="openTelegram()">
+    <span>💬 Чат в Telegram</span>
+  </div>
+
+  <script src="code.js"></script>
+</body>
+</html>
