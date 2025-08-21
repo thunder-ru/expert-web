@@ -195,16 +195,6 @@ body {
   margin: 0 auto 30px;
   color: #94a3b8;
 }
-/* Анимация при прокрутке */
-.animated {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.animated.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
 /* Портфолио слайдер */
 .portfolio-slider {
   max-width: 800px;
@@ -327,7 +317,7 @@ body {
 }
 /* Калькулятор модал */
 .calc-modal {
-  max-width: 950px;
+  max-width: 90%;
   max-height: 90vh;
   overflow: hidden;
   background: #0f172a;
@@ -382,6 +372,54 @@ body {
   height: 100%;
   background: #8b5cf6;
   transition: width 0.4s ease;
+}
+/* Галерея проектов — увеличенное окно */
+.gallery-modal {
+  max-width: 95%;
+  max-height: 95vh;
+  overflow: hidden;
+  background: #0f172a;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+.gallery-header {
+  padding: 20px;
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+  text-align: center;
+}
+.gallery-header h3 {
+  color: #e2e8f0;
+  margin-bottom: 8px;
+}
+.gallery-header p {
+  color: #94a3b8;
+  margin: 5px 0;
+}
+.gallery-grid {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  overflow-y: auto;
+  max-height: 70vh;
+}
+.gallery-grid img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+.gallery-grid img:hover {
+  transform: scale(1.02);
+}
+.gallery-footer {
+  padding: 20px;
+  text-align: center;
 }
 /* Услуги */
 .cards {
@@ -584,7 +622,7 @@ body {
   100% { transform: scale(1); }
 }
 /* Модалы */
-.send-modal, .confirm-modal, .gallery-modal {
+.send-modal, .confirm-modal {
   max-width: 500px;
   background: #1e293b;
   color: white;
@@ -634,12 +672,6 @@ body {
     height: 180px;
     object-fit: cover;
   }
-  .slide h4 {
-    font-size: 1rem;
-  }
-  .slide p {
-    font-size: 0.85rem;
-  }
   .calc-wrapper {
     padding: 20px;
   }
@@ -652,5 +684,12 @@ body {
   }
   .calc-modal {
     max-width: 95%;
+  }
+  .gallery-modal {
+    max-width: 95%;
+    max-height: 95vh;
+  }
+  .gallery-grid {
+    max-height: 60vh;
   }
 }
