@@ -17,7 +17,6 @@ body {
   margin: 0 auto;
   padding: 20px;
 }
-
 /* Хедер */
 .header {
   background: rgba(15, 23, 42, 0.95);
@@ -62,7 +61,6 @@ body {
   color: white !important;
   font-weight: 600;
 }
-
 /* Бургер-меню */
 .menu-toggle {
   display: none;
@@ -96,7 +94,6 @@ body {
   margin: 10px 20px;
   text-align: center;
 }
-
 /* Hero */
 .hero {
   padding: 140px 20px 100px;
@@ -106,7 +103,6 @@ body {
 .hero .container {
   max-width: 1000px;
 }
-
 /* Переливающийся заголовок */
 .neon-text {
   font-size: 3.5rem;
@@ -171,7 +167,6 @@ body {
 .glow {
   box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
 }
-
 /* Секции */
 .section {
   padding: 80px 20px;
@@ -193,7 +188,6 @@ body {
   margin: 0 auto 30px;
   color: #94a3b8;
 }
-
 /* Портфолио слайдер */
 .portfolio-slider {
   max-width: 800px;
@@ -202,27 +196,40 @@ body {
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  height: 380px;
+  display: flex;
+  align-items: center;
 }
 .slide {
-  display: none;
-  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
   background: #1e293b;
   border: 1px solid #334155;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 .slide.active {
-  display: block;
+  opacity: 1;
+  position: relative;
 }
 .slide img {
   width: 100%;
-  height: 250px;
-  object-fit: contain;
+  height: 200px;
+  object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
   transition: transform 0.3s;
 }
 .slide img:hover {
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 .slide h4 {
   margin: 15px 0;
@@ -232,7 +239,6 @@ body {
   color: #8b5cf6;
   font-size: 0.9rem;
 }
-
 /* Управление слайдером */
 .slider-controls {
   display: flex;
@@ -263,11 +269,14 @@ body {
   background: #475569;
   border-radius: 50%;
   cursor: pointer;
+  transition: background 0.3s;
+}
+.dot:hover {
+  background: #8b5cf6;
 }
 .dot.active {
   background: #8b5cf6;
 }
-
 /* Галерея */
 .modal {
   display: none;
@@ -280,58 +289,80 @@ body {
   background: rgba(0,0,0,0.8);
   justify-content: center;
   align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.modal.show {
+  opacity: 1;
 }
 .modal-content {
   background: white;
-  padding: 30px;
   border-radius: 12px;
-  max-width: 900px;
-  max-height: 90vh;
-  overflow-y: auto;
   box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
 }
-.close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 2rem;
-  color: white;
-  cursor: pointer;
+.modal.show .modal-content {
+  transform: scale(1);
 }
-.gallery-header {
-  text-align: center;
-  margin-bottom: 20px;
-}
-.gallery-header h3 {
-  color: #1E3A8A;
-  margin-bottom: 10px;
-}
-.gallery-header p {
-  color: #6B7280;
-  margin-bottom: 10px;
-}
-.gallery-grid {
+/* Калькулятор модал */
+.calc-modal {
+  max-width: 800px;
+  max-height: 90vh;
+  overflow: hidden;
+  background: #0f172a;
+  color: #e2e8f0;
   display: flex;
   flex-direction: column;
+}
+.modal-header {
+  padding: 20px;
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 20px;
-  margin-bottom: 20px;
 }
-.gallery-grid img {
+.modal-header h3 {
+  color: #e2e8f0;
+  margin: 0;
+}
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.close-btn:hover {
+  color: #e2e8f0;
+}
+.calc-wrapper {
+  padding: 30px;
+  flex: 1;
+  overflow-y: auto;
+  max-height: 60vh;
+}
+/* Прогресс-бар */
+.progress-bar {
   width: 100%;
-  max-width: 600px;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
+  height: 6px;
+  background: #334155;
+  border-radius: 3px;
+  margin-bottom: 30px;
+  overflow: hidden;
 }
-.gallery-grid img:hover {
-  transform: scale(1.02);
+.progress-fill {
+  height: 100%;
+  background: #8b5cf6;
+  transition: width 0.4s ease;
 }
-.gallery-footer {
-  text-align: center;
-}
-
 /* Услуги */
 .cards {
   display: grid;
@@ -354,7 +385,6 @@ body {
 .card p {
   color: #94a3b8;
 }
-
 /* Отзывы */
 .reviews {
   display: grid;
@@ -389,7 +419,6 @@ body {
   font-style: italic;
   line-height: 1.6;
 }
-
 /* Контактная форма */
 .contact-form {
   max-width: 600px;
@@ -414,28 +443,13 @@ body {
 .contact-form textarea {
   resize: vertical;
 }
-
 /* Калькулятор */
-.calculator {
-  padding: 100px 20px;
-  background: #1e293b;
-}
 .calc-title {
   text-align: center;
   font-size: 2.2rem;
   color: #e2e8f0;
   margin-bottom: 20px;
   font-family: 'Space Grotesk', sans-serif;
-}
-.calc-wrapper {
-  max-width: 800px;
-  margin: 0 auto;
-  background: #0f172a;
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-  border: 1px solid #334155;
-  text-align: center;
 }
 .step {
   display: none;
@@ -511,7 +525,6 @@ body {
   border-radius: 8px;
   border: 1px solid rgba(6, 182, 212, 0.2);
 }
-
 /* Футер */
 .footer {
   background: #0f172a;
@@ -527,7 +540,6 @@ body {
 .footer a:hover {
   text-decoration: underline;
 }
-
 /* Чат */
 .chat-widget {
   position: fixed;
@@ -551,7 +563,29 @@ body {
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
 }
-
+/* Модалы */
+.send-modal, .confirm-modal, .gallery-modal {
+  max-width: 500px;
+  background: #1e293b;
+  color: white;
+  text-align: center;
+  padding: 40px;
+  border-radius: 16px;
+}
+.send-options {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.cancel-btn {
+  margin-top: 15px;
+  color: #94a3b8;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
 /* Адаптив */
 @media (max-width: 768px) {
   .menu-toggle {
@@ -563,20 +597,33 @@ body {
   .hero, .section {
     padding: 60px 20px;
   }
+  .neon-text {
+    font-size: 2.5rem;
+  }
   .btn {
     width: 100%;
     margin: 10px 0;
   }
-  .neon-text {
-    font-size: 2.5rem;
-  }
   .options {
     grid-template-columns: 1fr;
+  }
+  .portfolio-slider {
+    height: 350px;
+  }
+  .slide img {
+    height: 180px;
   }
   .calc-wrapper {
     padding: 20px;
   }
   .result {
     font-size: 1.5rem;
+  }
+  .modal-content {
+    width: 90%;
+    margin: 20px;
+  }
+  .send-modal, .confirm-modal, .gallery-modal {
+    padding: 30px;
   }
 }
