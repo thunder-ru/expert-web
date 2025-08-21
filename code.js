@@ -254,8 +254,8 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.dot');
-const nextBtn = document.getElementById('nextSlide');
-const prevBtn = document.getElementById('prevSlide');
+const nextBtn = document.getElementById('prevSlide');
+const prevBtn = document.getElementById('nextSlide');
 
 function showSlide(n) {
   if (n >= slides.length) currentSlide = 0;
