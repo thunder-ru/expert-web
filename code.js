@@ -31,10 +31,6 @@ function showStep(n) {
   document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
   const step = document.getElementById(`step${n}`);
   if (step) step.classList.add('active');
-
-  // Обновляем прогресс-бар
-  const progress = [25, 50, 75, 100][n - 1];
-  document.getElementById('progressFill').style.width = progress + '%';
 }
 
 // Проверка выбора и переход
