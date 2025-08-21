@@ -316,7 +316,7 @@ body {
 }
 /* Калькулятор модал — БОЛЬШЕ ДЛЯ ПК */
 .calc-modal {
-  max-width: 95%;
+  max-width: 98%;
   max-height: 90vh;
   overflow: hidden;
   background: #0f172a;
