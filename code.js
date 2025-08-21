@@ -8,7 +8,19 @@ function openTelegram() {
   window.open("https://t.me/overgrand", '_blank');
 }
 
-// Показать шаг и обновить прогресс
+// Показать модал калькулятора
+function openCalculator() {
+  document.getElementById('calculatorModal').style.display = 'flex';
+  showStep(1);
+  updateTotal();
+}
+
+// Закрыть калькулятор
+function closeCalculator() {
+  document.getElementById('calculatorModal').style.display = 'none';
+}
+
+// Показать шаг
 function showStep(n) {
   document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
   const step = document.getElementById(`step${n}`);
@@ -78,7 +90,7 @@ function showSendOptions() {
   document.getElementById('sendModal').style.display = 'flex';
 }
 
-// Закрыть модал
+// Закрыть модалы
 function closeSendModal() {
   document.getElementById('sendModal').style.display = 'none';
 }
@@ -108,6 +120,7 @@ function sendToTelegram() {
   const url = `https://t.me/overgrand?text=${encoded}`;
   window.open(url, '_blank');
   closeSendModal();
+  closeCalculator();
   document.getElementById('confirmModal').style.display = 'flex';
 }
 
@@ -120,20 +133,23 @@ function sendToEmail() {
   const totalEl = document.getElementById('result').querySelector('strong');
   const total = totalEl ? totalEl.innerText.match(/\d+/)?.[0] : '0';
 
-  const subject = encodeURIComponent('Заявка на сайт — Смета');
-  const body = encodeURIComponent(
-    `Здравствуйте!\n\nЯ хочу заказать сайт:\n\n` +
+  const subject = 'Заявка на сайт — Смета';
+  const body = `Здравствуйте!\n\nЯ хочу заказать сайт:\n\n` +
     `Тип сайта: ${siteTypeLabel}\n` +
     `Дизайн: ${designLabel}\n` +
     `SEO: ${seoLabel}\n` +
     `Поддержка: ${supportLabel}\n` +
     `Итого: ${total} ₽\n\n` +
-    `Готов обсудить детали!`
-  );
-  const mailto = `mailto:rosanov.danila2016@yandex.ru?subject=${subject}&body=${body}`;
-  window.open(mailto, '_blank');
-  closeSendModal();
-  document.getElementById('confirmModal').style.display = 'flex';
+    `Готов обсудить детали!`;
+
+  const mailto = `mailto:rosanov.danila2016@yandex.ru?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = mailto;
+
+  setTimeout(() => {
+    closeSendModal();
+    closeCalculator();
+    document.getElementById('confirmModal').style.display = 'flex';
+  }, 500);
 }
 
 // Галерея
@@ -281,8 +297,40 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   this.reset();
 });
 
+// Портфолио слайдер
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+const nextBtn = document.getElementById('nextSlide');
+const prevBtn = document.getElementById('prevSlide');
+
+function showSlide(n) {
+  if (n >= slides.length) currentSlide = 0;
+  if (n < 0) currentSlide = slides.length - 1;
+  slides.forEach(s => s.classList.remove('active'));
+  dots.forEach(d => d.classList.remove('active'));
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() {
+  currentSlide++;
+  showSlide(currentSlide);
+}
+
+function prevSlide() {
+  currentSlide--;
+  showSlide(currentSlide);
+}
+
+function goToSlide(n) {
+  currentSlide = n;
+  showSlide(currentSlide);
+}
+
 // Инициализация
 document.addEventListener("DOMContentLoaded", function () {
-  showStep(1);
-  updateTotal();
+  if (slides.length > 0) {
+    showSlide(0);
+  }
 });
