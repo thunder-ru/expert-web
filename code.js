@@ -328,6 +328,10 @@ function goToSlide(n) {
   showSlide(currentSlide);
 }
 
+// Обработчики событий
+if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+
 // Инициализация
 document.addEventListener("DOMContentLoaded", function () {
   if (slides.length > 0) {
