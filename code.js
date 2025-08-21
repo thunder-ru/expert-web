@@ -8,24 +8,6 @@ function openTelegram() {
   window.open("https://t.me/overgrand", '_blank');
 }
 
-// Показать модал калькулятора
-function openCalculator() {
-  const modal = document.getElementById('calculatorModal');
-  modal.style.display = 'flex';
-  setTimeout(() => modal.classList.add('show'), 10);
-  showStep(1);
-  updateTotal();
-}
-
-// Закрыть калькулятор
-function closeCalculator() {
-  const modal = document.getElementById('calculatorModal');
-  modal.classList.remove('show');
-  setTimeout(() => {
-    modal.style.display = 'none';
-  }, 300);
-}
-
 // Показать шаг
 function showStep(n) {
   document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
@@ -81,6 +63,24 @@ function updateTotal() {
       <small style="color: #94a3b8;">Точная цена будет после анализа вашего бизнеса</small>
     `;
   }
+}
+
+// Показать модал калькулятора
+function openCalculator() {
+  const modal = document.getElementById('calculatorModal');
+  modal.style.display = 'flex';
+  setTimeout(() => modal.classList.add('show'), 10);
+  showStep(1);
+  updateTotal();
+}
+
+// Закрыть калькулятор
+function closeCalculator() {
+  const modal = document.getElementById('calculatorModal');
+  modal.classList.remove('show');
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 300);
 }
 
 // Показать модал выбора
@@ -262,7 +262,7 @@ function openGallery(projectId) {
   galleryGrid.innerHTML = '';
   data.images.forEach(imgUrl => {
     const img = document.createElement('img');
-    img.src = imgUrl.trim();
+    img.src = imageUrl.trim();
     img.alt = data.title;
     img.style.maxWidth = '100%';
     img.style.height = 'auto';
