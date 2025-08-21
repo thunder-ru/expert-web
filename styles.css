@@ -197,13 +197,13 @@ body {
 }
 /* Портфолио слайдер */
 .portfolio-slider {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   position: relative;
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-  height: 420px;
+  height: 450px;
   display: flex;
   align-items: center;
 }
@@ -229,7 +229,7 @@ body {
 }
 .slide img {
   width: 100%;
-  height: 240px;
+  height: 260px;
   object-fit: cover;
   border-radius: 8px;
   cursor: pointer;
@@ -315,9 +315,81 @@ body {
 .modal.show .modal-content {
   transform: scale(1);
 }
+/* Галерея проектов — увеличенное окно */
+.gallery-modal {
+  max-width: 95%;
+  max-height: 95vh;
+  overflow: hidden;
+  background: #0f172a;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+.gallery-header {
+  padding: 25px;
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+  text-align: center;
+}
+.gallery-header h3 {
+  color: #e2e8f0;
+  margin-bottom: 8px;
+  font-size: 1.4rem;
+}
+.gallery-header p {
+  color: #94a3b8;
+  margin: 5px 0;
+}
+.gallery-grid {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  overflow-y: auto;
+  max-height: 70vh;
+}
+.gallery-grid img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+}
+.gallery-grid img:hover {
+  transform: scale(1.02);
+}
+.gallery-footer {
+  padding: 20px;
+  text-align: center;
+}
+/* Кнопка "Закрыть" в галерее — большая и видна */
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  background: rgba(0,0,0,0.5);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+.close:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.1);
+}
 /* Калькулятор модал */
 .calc-modal {
-  max-width: 90%;
+  max-width: 95%;
   max-height: 90vh;
   overflow: hidden;
   background: #0f172a;
@@ -372,54 +444,6 @@ body {
   height: 100%;
   background: #8b5cf6;
   transition: width 0.4s ease;
-}
-/* Галерея проектов — увеличенное окно */
-.gallery-modal {
-  max-width: 95%;
-  max-height: 95vh;
-  overflow: hidden;
-  background: #0f172a;
-  color: white;
-  display: flex;
-  flex-direction: column;
-}
-.gallery-header {
-  padding: 20px;
-  background: #1e293b;
-  border-bottom: 1px solid #334155;
-  text-align: center;
-}
-.gallery-header h3 {
-  color: #e2e8f0;
-  margin-bottom: 8px;
-}
-.gallery-header p {
-  color: #94a3b8;
-  margin: 5px 0;
-}
-.gallery-grid {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  overflow-y: auto;
-  max-height: 70vh;
-}
-.gallery-grid img {
-  width: 100%;
-  max-width: 800px;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
-}
-.gallery-grid img:hover {
-  transform: scale(1.02);
-}
-.gallery-footer {
-  padding: 20px;
-  text-align: center;
 }
 /* Услуги */
 .cards {
@@ -666,10 +690,11 @@ body {
     grid-template-columns: 1fr;
   }
   .portfolio-slider {
-    height: 360px;
+    max-width: 100%;
+    height: 400px;
   }
   .slide img {
-    height: 180px;
+    height: 300px;
     object-fit: cover;
   }
   .calc-wrapper {
@@ -691,5 +716,12 @@ body {
   }
   .gallery-grid {
     max-height: 60vh;
+  }
+  .close {
+    top: 15px;
+    right: 15px;
+    font-size: 2.2rem;
+    width: 45px;
+    height: 45px;
   }
 }
