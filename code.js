@@ -10,14 +10,20 @@ function openTelegram() {
 
 // Показать модал калькулятора
 function openCalculator() {
-  document.getElementById('calculatorModal').style.display = 'flex';
+  const modal = document.getElementById('calculatorModal');
+  modal.style.display = 'flex';
+  setTimeout(() => modal.classList.add('show'), 10);
   showStep(1);
   updateTotal();
 }
 
 // Закрыть калькулятор
 function closeCalculator() {
-  document.getElementById('calculatorModal').style.display = 'none';
+  const modal = document.getElementById('calculatorModal');
+  modal.classList.remove('show');
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 300);
 }
 
 // Показать шаг
@@ -87,16 +93,26 @@ function showSendOptions() {
     alert("Выберите тип технической поддержки.");
     return;
   }
-  document.getElementById('sendModal').style.display = 'flex';
+  const modal = document.getElementById('sendModal');
+  modal.style.display = 'flex';
+  setTimeout(() => modal.classList.add('show'), 10);
 }
 
 // Закрыть модалы
 function closeSendModal() {
-  document.getElementById('sendModal').style.display = 'none';
+  const modal = document.getElementById('sendModal');
+  modal.classList.remove('show');
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 300);
 }
 
 function closeConfirmModal() {
-  document.getElementById('confirmModal').style.display = 'none';
+  const modal = document.getElementById('confirmModal');
+  modal.classList.remove('show');
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 300);
 }
 
 // Отправка в Telegram
@@ -121,7 +137,9 @@ function sendToTelegram() {
   window.open(url, '_blank');
   closeSendModal();
   closeCalculator();
-  document.getElementById('confirmModal').style.display = 'flex';
+  const modal = document.getElementById('confirmModal');
+  modal.style.display = 'flex';
+  setTimeout(() => modal.classList.add('show'), 10);
 }
 
 // Отправка на почту
@@ -148,7 +166,9 @@ function sendToEmail() {
   setTimeout(() => {
     closeSendModal();
     closeCalculator();
-    document.getElementById('confirmModal').style.display = 'flex';
+    const modal = document.getElementById('confirmModal');
+    modal.style.display = 'flex';
+    setTimeout(() => modal.classList.add('show'), 10);
   }, 500);
 }
 
@@ -257,11 +277,17 @@ function openGallery(projectId) {
     };
     galleryGrid.appendChild(img);
   });
-  document.getElementById('galleryModal').style.display = 'flex';
+  const modal = document.getElementById('galleryModal');
+  modal.style.display = 'flex';
+  setTimeout(() => modal.classList.add('show'), 10);
 }
 
 function closeGallery() {
-  document.getElementById('galleryModal').style.display = 'none';
+  const modal = document.getElementById('galleryModal');
+  modal.classList.remove('show');
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 300);
 }
 
 // Мобильное меню
@@ -328,9 +354,28 @@ function goToSlide(n) {
   showSlide(currentSlide);
 }
 
+// Автопрокрутка
+let slideInterval = setInterval(nextSlide, 5000);
+
+// Остановить при наведении
+document.querySelector('.portfolio-slider').addEventListener('mouseenter', () => {
+  clearInterval(slideInterval);
+});
+
+// Возобновить
+document.querySelector('.portfolio-slider').addEventListener('mouseleave', () => {
+  slideInterval = setInterval(nextSlide, 5000);
+});
+
 // Обработчики событий
-if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+if (nextBtn) nextBtn.addEventListener('click', () => { clearInterval(slideInterval); nextSlide(); });
+if (prevBtn) prevBtn.addEventListener('click', () => { clearInterval(slideInterval); prevSlide(); });
+dots.forEach((dot, i) => {
+  dot.addEventListener('click', () => {
+    clearInterval(slideInterval);
+    goToSlide(i);
+  });
+});
 
 // Инициализация
 document.addEventListener("DOMContentLoaded", function () {
