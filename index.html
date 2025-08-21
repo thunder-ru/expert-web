@@ -170,17 +170,29 @@
     </div>
   </section>
 
-  <!-- Калькулятор -->
-<section class="calculator">
-  <div class="container">
-    <h2 class="calc-title">Калькулятор стоимости сайта</h2>
-    <div class="calc-wrapper">
+  <!-- Кнопка для открытия калькулятора -->
+<section class="section dark">
+  <div class="container text-center">
+    <h2>Рассчитайте стоимость сайта</h2>
+    <p>Ответьте на 4 простых вопроса — и получите примерную смету.</p>
+    <button onclick="openCalculator()" class="btn primary large glow">🧮 Рассчитать стоимость</button>
+  </div>
+</section>
+
+<!-- Модальное окно калькулятора -->
+<div id="calculatorModal" class="modal" style="display: none;">
+  <div class="modal-content" style="background: #0f172a; color: #e2e8f0; max-width: 800px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); border: 1px solid #334155; overflow: hidden;">
+    <div style="padding: 20px; text-align: center; background: #1e293b; border-bottom: 1px solid #334155;">
+      <h3 style="color: #e2e8f0; margin: 0;">Калькулятор стоимости сайта</h3>
+      <button onclick="closeCalculator()" style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer;">×</button>
+    </div>
+    <div class="calc-wrapper" style="padding: 30px; text-align: center;">
       <!-- Прогресс-бар -->
       <div class="progress-bar" style="width: 100%; height: 6px; background: #334155; border-radius: 3px; margin-bottom: 30px; overflow: hidden;">
         <div id="progressFill" style="width: 25%; height: 100%; background: #8b5cf6; transition: width 0.4s ease;"></div>
       </div>
 
-      <!-- Шаг 1: Тип сайта -->
+      <!-- Шаг 1 -->
       <div id="step1" class="step active">
         <h3>1. Выберите тип сайта</h3>
         <div class="options">
@@ -220,7 +232,7 @@
         <button onclick="validateAndNext(1,2)" class="btn primary">Далее →</button>
       </div>
 
-      <!-- Шаг 2: Дизайн -->
+      <!-- Шаг 2 -->
       <div id="step2" class="step">
         <h3>2. Выберите дизайн</h3>
         <div class="options">
@@ -245,7 +257,7 @@
         <button onclick="validateAndNext(2,3)" class="btn primary">Далее →</button>
       </div>
 
-      <!-- Шаг 3: SEO -->
+      <!-- Шаг 3 -->
       <div id="step3" class="step">
         <h3>3. SEO-оптимизация</h3>
         <div class="options">
@@ -270,7 +282,7 @@
         <button onclick="validateAndNext(3,4)" class="btn primary">Далее →</button>
       </div>
 
-      <!-- Шаг 4: Поддержка -->
+      <!-- Шаг 4 -->
       <div id="step4" class="step">
         <h3>4. Техническая поддержка</h3>
         <div class="options">
@@ -305,10 +317,10 @@
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- Модал выбора отправки -->
-<div id="sendModal" class="modal" style="display: none; align-items: center;">
+<div id="sendModal" class="modal" style="display: none;">
   <div class="modal-content" style="background: #1e293b; color: white; text-align: center; padding: 40px; border-radius: 16px; max-width: 500px;">
     <h3>📤 Куда отправить смету?</h3>
     <p style="color: #cbd5e1;">Выберите удобный способ связи:</p>
@@ -327,7 +339,7 @@
 </div>
 
 <!-- Модал подтверждения -->
-<div id="confirmModal" class="modal" style="display: none; align-items: center;">
+<div id="confirmModal" class="modal" style="display: none;">
   <div class="modal-content" style="background: #1e293b; color: white; text-align: center; padding: 40px; border-radius: 16px; max-width: 500px;">
     <h3>✅ Отправлено!</h3>
     <p style="color: #cbd5e1; margin: 20px 0;">Ваша заявка успешно отправлена. Свяжусь с вами в ближайшее время.</p>
