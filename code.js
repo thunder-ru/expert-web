@@ -377,6 +377,20 @@ dots.forEach((dot, i) => {
   });
 });
 
+// Анимация при прокрутке
+function animateOnScroll() {
+  const elements = document.querySelectorAll('.section h2, .card, .review-card, .slide');
+  elements.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.8) {
+      el.classList.add('visible');
+    }
+  });
+}
+
+window.addEventListener('scroll', animateOnScroll);
+window.addEventListener('load', animateOnScroll);
+
 // Инициализация
 document.addEventListener("DOMContentLoaded", function () {
   if (slides.length > 0) {
