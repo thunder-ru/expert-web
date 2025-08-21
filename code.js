@@ -18,20 +18,11 @@ function showStep(n) {
 // Проверка выбора и переход
 function validateAndNext(currentStep, nextStepNum) {
   let valid = true;
-  if (currentStep === 1) {
-    if (!document.querySelector('input[name="siteType"]:checked')) valid = false;
-  } else if (currentStep === 2) {
-    if (!document.querySelector('input[name="design"]:checked')) valid = false;
-  } else if (currentStep === 3) {
-    // Шаг 3 — чекбоксы, всегда можно пройти
-  } else if (currentStep === 4) {
-    const seo = document.querySelector('input[name="seo"]:checked');
-    const support = document.querySelector('input[name="support"]:checked');
-    if (!seo || !support) {
-      alert("Выберите SEO и техническую поддержку.");
-      valid = false;
-    }
-  }
+  if (currentStep === 1 && !document.querySelector('input[name="siteType"]:checked')) valid = false;
+  else if (currentStep === 2 && !document.querySelector('input[name="design"]:checked')) valid = false;
+  else if (currentStep === 3 && !document.querySelector('input[name="seo"]:checked')) valid = false;
+  else if (currentStep === 4 && !document.querySelector('input[name="support"]:checked')) valid = false;
+
   if (!valid) {
     alert("Пожалуйста, выберите вариант.");
     return;
@@ -59,13 +50,11 @@ function updateTotal() {
   if (siteType) total += parseFloat(siteType.value) || 0;
   const design = document.querySelector('input[name="design"]:checked');
   if (design) total += parseFloat(design.value) || 0;
-  document.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
-    total += parseFloat(cb.value);
-  });
   const seo = document.querySelector('input[name="seo"]:checked');
   if (seo) total += parseFloat(seo.value) || 0;
   const support = document.querySelector('input[name="support"]:checked');
   if (support) total += parseFloat(support.value) || 0;
+
   const resultEl = document.getElementById('result');
   if (resultEl) {
     resultEl.innerHTML = `
@@ -76,7 +65,25 @@ function updateTotal() {
   }
 }
 
-// Отправка в Telegram
+// Открытие калькулятора
+function openCalculator() {
+  const modal = document.getElementById('calculatorModal');
+  modal.style.display = 'flex';
+  setTimeout(() => modal.classList.add('show'), 10);
+  showStep(1);
+  updateTotal();
+}
+
+// Закрытие калькулятора
+function closeCalculator() {
+  const modal = document.getElementById('calculatorModal');
+  modal.classList.remove('show');
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 300);
+}
+
+// Отправка заявки
 function requestQuote() {
   const siteTypeLabel = document.querySelector('input[name="siteType"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
   const designLabel = document.querySelector('input[name="design"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
@@ -84,7 +91,8 @@ function requestQuote() {
   const supportLabel = document.querySelector('input[name="support"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
   const totalEl = document.getElementById('result').querySelector('strong');
   const total = totalEl ? totalEl.innerText.match(/\d+/)?.[0] : '0';
-  const message = `🚀 *ЗАЯВКА НА СМЕТУ*\n\n`;
+
+  let message = `🚀 *ЗАЯВКА НА СМЕТУ*\n\n`;
   message += `🔹 Тип сайта: ${siteTypeLabel}\n`;
   message += `🔹 Дизайн: ${designLabel}\n`;
   message += `🔹 SEO: ${seoLabel}\n`;
@@ -191,7 +199,7 @@ function openGallery(projectId) {
   galleryGrid.innerHTML = '';
   data.images.forEach(imgUrl => {
     const img = document.createElement('img');
-    img.src = imageUrl.trim();
+    img.src = imgUrl.trim();
     img.alt = data.title;
     img.style.maxWidth = '100%';
     img.style.height = 'auto';
@@ -202,7 +210,8 @@ function openGallery(projectId) {
     };
     galleryGrid.appendChild(img);
   });
-  document.getElementById('galleryModal').style.display = 'flex';
+  const modal = document.getElementById('galleryModal');
+  modal.style.display = 'flex';
 }
 
 function closeGallery() {
@@ -221,16 +230,19 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   const phone = document.getElementById('phone').value.trim();
   const email = document.getElementById('email').value.trim();
   const message = document.getElementById('message').value.trim();
+
   if (!name || !phone || !email) {
     alert('Заполните все обязательные поля.');
     return;
   }
-  const text = `📩 *НОВАЯ ЗАЯВКА*\n\n`;
+
+  let text = `📩 *НОВАЯ ЗАЯВКА*\n\n`;
   text += `👤 Имя: ${name}\n`;
   text += `📞 Телефон: ${phone}\n`;
   text += `✉️ Email: ${email}\n`;
   if (message) text += `💬 Сообщение: ${message}\n\n`;
   text += `—\nГотов к диалогу!`;
+
   const encoded = encodeURIComponent(text);
   const url = `https://t.me/overgrand?text=${encoded}`;
   window.open(url, '_blank');
