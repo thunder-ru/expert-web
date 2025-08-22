@@ -301,6 +301,7 @@ body {
 .projects {
   padding: 6rem 0;
   background: #121220;
+  overflow: hidden;
 }
 
 .projects-subtitle {
@@ -310,48 +311,21 @@ body {
   margin-bottom: 3rem;
 }
 
-.projects-carousel {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-.carousel-btn {
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  border: none;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  cursor: pointer;
-  z-index: 10;
-  opacity: 0.8;
-  transition: all 0.3s ease;
-}
-
-.carousel-btn:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-.carousel-btn.left { margin-right: 1rem; }
-.carousel-btn.right { margin-left: 1rem; }
-
-.carousel-track {
+.projects-slider {
   display: flex;
   gap: 2rem;
-  overflow-x: hidden;
+  overflow-x: auto;
   scroll-behavior: smooth;
-  width: 100%;
-  max-width: 800px;
+  padding: 1rem 0 2rem;
+  scrollbar-width: none;
+}
+
+.projects-slider::-webkit-scrollbar {
+  display: none;
 }
 
 .project-card {
-  min-width: 300px;
+  min-width: 320px;
   background: #1a1a2e;
   border-radius: 15px;
   overflow: hidden;
@@ -650,7 +624,7 @@ body {
   transform: translateY(0);
 }
 
-/* === ПЛАВАЮЩИЕ КНОПКИ (WhatsApp и Telegram) === */
+/* === ПЛАВАЮЩИЕ КНОПКИ С ПОДПИСЯМИ === */
 .floating-btn {
   position: fixed;
   bottom: 20px;
@@ -660,32 +634,38 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 1.4rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   z-index: 1000;
   transition: transform 0.3s ease;
   text-decoration: none;
+  color: white;
+  overflow: hidden;
 }
 
 .floating-btn:hover {
   transform: scale(1.1);
 }
 
-.floating-btn.whatsapp {
-  background: #25D366;
-  color: white;
-  right: 20px;
-}
-
 .floating-btn.telegram {
   background: #0088cc;
-  color: white;
   right: 90px;
 }
 
-/* === АДАПТИВ (ТОЛЬКО МОБИЛЬНЫЕ) === */
+.floating-btn.whatsapp {
+  background: #25D366;
+  right: 20px;
+}
+
+.floating-btn .btn-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* === АДАПТИВ === */
 @media (max-width: 768px) {
-  /* Hero */
   .hero {
     clip-path: none;
     min-height: 100vh;
@@ -710,7 +690,6 @@ body {
     margin-bottom: 2rem;
   }
 
-  /* Кнопки */
   .contact-buttons {
     flex-direction: column;
     align-items: center;
@@ -722,7 +701,6 @@ body {
     max-width: 300px;
   }
 
-  /* Услуги */
   .services-grid {
     flex-direction: column;
     align-items: center;
@@ -735,23 +713,15 @@ body {
     padding: 1.5rem;
   }
 
-  /* Карусель проектов */
-  .carousel-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
-  }
-
-  .carousel-track {
-    max-width: 280px;
+  .projects-slider {
     gap: 1.5rem;
+    padding: 1rem;
   }
 
   .project-card {
     min-width: 280px;
   }
 
-  /* Модальное окно */
   .modal-content {
     width: 95%;
     max-height: 95vh;
@@ -783,13 +753,11 @@ body {
     font-size: 2.5rem;
   }
 
-  /* Контакты */
   .contact-info {
     font-size: 1rem;
     padding: 0 1rem;
   }
 
-  /* Меню */
   .nav-container {
     padding: 1rem 1.5rem;
   }
@@ -803,13 +771,11 @@ body {
     padding: 1.5rem 0;
   }
 
-  /* Отзывы */
   .quotes blockquote {
     font-size: 1rem;
     padding: 1.2rem;
   }
 
-  /* Заголовки */
   .section-title {
     font-size: 2.4rem;
     margin-bottom: 2rem;
@@ -821,7 +787,6 @@ body {
     bottom: -8px;
   }
 
-  /* Список */
   .features-list {
     margin: 1.5rem 0;
   }
@@ -831,13 +796,11 @@ body {
     font-size: 0.95rem;
   }
 
-  /* Футер */
   .footer {
     padding: 2rem 1rem;
     font-size: 0.9rem;
   }
 
-  /* Блокировка прокрутки при модалке */
   body.modal-open {
     overflow: hidden;
     height: 100vh;
