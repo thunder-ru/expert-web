@@ -146,48 +146,89 @@ contactForm?.addEventListener('submit', function(e) {
 });
 
 // ===================================
-// 6. ЧАТ-БОТ
+// 6. ГАЛЕРЕЯ ПОРТФОЛИО
 // ===================================
-const chatToggle = document.getElementById('chatBotToggle');
-const chatWindow = document.getElementById('chatBotWindow');
-const closeChat = document.getElementById('closeChat');
-const chatInput = document.getElementById('chatInput');
-const chatMessages = document.getElementById('chatMessages');
-const sendChat = document.getElementById('sendChat');
+const portfolioLinks = document.querySelectorAll('.portfolio-link');
+const modal = document.createElement('div');
+modal.id = 'galleryModal';
+modal.innerHTML = `
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="gallery-slider">
+      <div class="swiper gallery-swiper">
+        <div class="swiper-wrapper"></div>
+      </div>
+    </div>
+  </div>
+`;
+document.body.appendChild(modal);
 
-const responses = {
-  привет: "Привет! Готовы запустить сайт за 5 дней?",
-  запуск: "Отлично! Напишите @overgrand — и через 24 часа будет прототип.",
-  сайт: "Создаю сайты, которые приносят заявки с первого дня.",
-  default: "Напишите 'Запуск', чтобы начать."
+// Добавляем фотографии в галерею
+const galleryData = {
+  wanderlux: [
+    "https://images.unsplash.com/photo-1526815456743-3e55d10113da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1515378791036-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  ],
+  drivehive: [
+    "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1507035895480-2873dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  ],
+  dentacare: [
+    "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  ],
+  velox: [
+    "https://images.unsplash.com/photo-1541532713592-7538ad33342e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1507035895480-2873dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  ],
+  fitmaster: [
+    "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1517838277536-47dd04b87a9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  ],
+  teazen: [
+    "https://images.unsplash.com/photo-1595425970375-6f4f6a89ae5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1570186034764-8869f3e0e807?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+  ]
 };
 
-function addMsg(text, type) {
-  const msg = document.createElement('div');
-  msg.classList.add('msg', type);
-  msg.textContent = text;
-  chatMessages.appendChild(msg);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
+portfolioLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const project = link.getAttribute('data-project');
+    const images = galleryData[project] || [];
 
-chatToggle?.addEventListener('click', () => {
-  chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
-  if (chatWindow.style.display === 'block' && chatMessages.children.length <= 1) {
-    setTimeout(() => addMsg("Рад вас видеть! Какой проект вы хотите запустить?", 'bot'), 500);
+    const swiperWrapper = document.querySelector('.gallery-swiper .swiper-wrapper');
+    swiperWrapper.innerHTML = '';
+    images.forEach(img => {
+      const slide = document.createElement('div');
+      slide.className = 'swiper-slide';
+      slide.innerHTML = `<img src="${img}" alt="" style="width: 100%; height: 100%; object-fit: cover;">`;
+      swiperWrapper.appendChild(slide);
+    });
+
+    new Swiper('.gallery-swiper', {
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
+
+    modal.style.display = 'block';
+  });
+});
+
+// Закрытие модального окна
+document.querySelector('.close')?.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+window.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.style.display = 'none';
   }
-});
-
-closeChat?.addEventListener('click', () => chatWindow.style.display = 'none');
-
-sendChat?.addEventListener('click', () => {
-  const text = (chatInput?.value || '').trim().toLowerCase();
-  if (!text) return;
-  addMsg(chatInput.value, 'user');
-  chatInput.value = '';
-  const reply = Object.keys(responses).find(k => text.includes(k)) ? responses[text.split(' ')[0]] : responses.default;
-  setTimeout(() => addMsg(reply, 'bot'), 600);
-});
-
-chatInput?.addEventListener('keypress', e => {
-  if (e.key === 'Enter') sendChat.click();
 });
