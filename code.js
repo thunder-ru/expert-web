@@ -84,11 +84,11 @@ hamburger?.addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', () => {
   new Swiper('.portfolio-swiper', {
     loop: true,
-    spaceBetween: 30,
+    spaceBetween: 40,
     slidesPerView: 1,
     breakpoints: {
       640: { slidesPerView: 2 },
-      1024: { slidesPerView: 2 }
+      1024: { slidesPerView: 2.5 }
     },
     navigation: {
       nextEl: '.swiper-button-next',
@@ -106,6 +106,15 @@ document.addEventListener('DOMContentLoaded', () => {
 // ===================================
 const contactForm = document.getElementById('contactForm');
 const formStatus = document.getElementById('formStatus');
+const channelOptions = document.querySelectorAll('.channel-option');
+
+// Выбор канала
+channelOptions.forEach(option => {
+  option.addEventListener('click', () => {
+    channelOptions.forEach(o => o.classList.remove('active'));
+    option.classList.add('active');
+  });
+});
 
 contactForm?.addEventListener('submit', function(e) {
   e.preventDefault();
