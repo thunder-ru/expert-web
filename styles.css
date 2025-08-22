@@ -22,7 +22,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Canvas фон */
 #particles {
   position: fixed;
   top: 0;
@@ -33,7 +32,6 @@ body {
   background: radial-gradient(circle at center, #0a0e2a, #06091a);
 }
 
-/* Текстовые эффекты */
 .text-gradient {
   background: linear-gradient(90deg, var(--accent), var(--accent-gold));
   -webkit-background-clip: text;
@@ -45,7 +43,6 @@ body {
   color: var(--accent);
 }
 
-/* Анимации */
 .fade-in { opacity: 0; animation: fadeIn 1s forwards; }
 .fade-in-delay { opacity: 0; animation: fadeIn 1s 0.5s forwards; }
 .slide-left { opacity: 0; transform: translateX(-30px); animation: slideIn 0.8s forwards; }
@@ -58,7 +55,6 @@ body {
   to { opacity: 1; transform: translateX(0); }
 }
 
-/* Контейнер */
 .container {
   width: 90%;
   max-width: 1200px;
@@ -67,7 +63,6 @@ body {
   position: relative;
 }
 
-/* Header */
 header {
   position: fixed;
   width: 100%;
@@ -133,7 +128,18 @@ header .container {
   cursor: pointer;
 }
 
-/* Hero */
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: var(--accent);
+  margin: 3px 0;
+  transition: 0.3s;
+}
+
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+
 .hero {
   padding: 200px 0 120px;
   text-align: center;
@@ -191,7 +197,6 @@ header .container {
   100% { transform: scale(1.5); opacity: 0; }
 }
 
-/* Section */
 .section {
   padding: 100px 0;
   position: relative;
@@ -214,7 +219,6 @@ header .container {
   font-size: 1.1rem;
 }
 
-/* About */
 .about-flex {
   display: flex;
   gap: 60px;
@@ -273,7 +277,6 @@ header .container {
   50% { transform: translateY(-10px); }
 }
 
-/* Portfolio */
 .portfolio-filters {
   display: flex;
   justify-content: center;
@@ -365,7 +368,6 @@ header .container {
   display: inline-block;
 }
 
-/* Калькулятор */
 .calculator {
   background: var(--bg-light);
 }
@@ -402,7 +404,6 @@ header .container {
   font-weight: 600;
 }
 
-/* Контакты */
 .contact-flex {
   display: flex;
   gap: 60px;
@@ -476,7 +477,6 @@ header .container {
   gap: 8px;
 }
 
-/* Чат-бот */
 .chat-bot-toggle {
   position: fixed;
   bottom: 30px;
@@ -580,7 +580,6 @@ header .container {
   cursor: pointer;
 }
 
-/* Footer */
 footer {
   text-align: center;
   padding: 40px 0;
@@ -589,7 +588,6 @@ footer {
   border-top: 1px solid var(--border);
 }
 
-/* Адаптив */
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .hamburger { display: flex; }
