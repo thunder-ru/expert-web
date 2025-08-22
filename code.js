@@ -79,135 +79,30 @@ hamburger?.addEventListener('click', () => {
 });
 
 // ===================================
-// 4. МОДАЛЬНЫЕ ОКНА ПОРТФОЛИО
+// 4. SWIPER ПОРТФОЛИО
 // ===================================
-const portfolioItems = document.querySelectorAll('.portfolio-item');
-const modal = document.getElementById('projectModal');
-const modalTitle = document.getElementById('modalTitle');
-const modalGallery = document.getElementById('modalGallery');
-const closeModal = document.querySelector('.close');
-
-// Галереи проектов (ты потом заменишь ссылки)
-const galleries = {
-  travel: [
-    "https://images.unsplash.com/photo-1526815456743-3e55d10113da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-  ],
-  auto: [
-    "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1548624070-9b36d59862e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-  ],
-  health: [
-    "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-  ],
-  bike: [
-    "https://images.unsplash.com/photo-1541532713592-7538ad33342e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1507035895480-2b3156c32a33?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-  ],
-  trainer: [
-    "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1517838277536-47dd04b87a9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-  ],
-  tea: [
-    "https://images.unsplash.com/photo-1595425970375-6f4f6a89ae5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1570186034764-8869f3e0e807?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-  ]
-};
-
-portfolioItems.forEach(item => {
-  item.addEventListener('click', () => {
-    const project = item.getAttribute('data-project');
-    const title = item.querySelector('h3').textContent;
-    const images = galleries[project] || [];
-
-    modalTitle.textContent = title;
-    modalGallery.innerHTML = '';
-    images.forEach(src => {
-      const img = document.createElement('img');
-      img.src = src;
-      img.alt = title;
-      modalGallery.appendChild(img);
-    });
-
-    modal.style.display = 'block';
+document.addEventListener('DOMContentLoaded', () => {
+  new Swiper('.portfolio-swiper', {
+    loop: true,
+    spaceBetween: 30,
+    slidesPerView: 1,
+    breakpoints: {
+      640: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 }
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
   });
 });
 
-closeModal?.addEventListener('click', () => {
-  modal.style.display = 'none';
-});
-
-window.addEventListener('click', (e) => {
-  if (e.target === modal) {
-    modal.style.display = 'none';
-  }
-});
-
 // ===================================
-// 5. УМНЫЙ ЧАТ-БОТ (как ИИ)
-// ===================================
-const chatToggle = document.getElementById('chatBotToggle');
-const chatWindow = document.getElementById('chatBotWindow');
-const closeChat = document.getElementById('closeChat');
-const chatInput = document.getElementById('chatInput');
-const chatMessages = document.getElementById('chatMessages');
-const sendChat = document.getElementById('sendChat');
-
-// База знаний
-const aiResponses = {
-  привет|здравствуйте: "Привет! Я — Thunder AI. Чем могу помочь?",
-  запуск|старт|начать: "Отлично! Напишите @overgrand — и через 24 часа будет прототип.",
-  сайт|лендинг|магазин: "Создаю сайты, которые приносят заявки с первого дня.",
-  сроки|дедлайн: "Средний срок — 5–7 дней. Срочные — за 3 дня.",
-  цена|стоимость: "Зависит от задачи. От 8 000 ₽. Напишите — и я пришлю точную оценку.",
-  примеры|портфолио: "Смотрите раздел «Портфолио» — все проекты реальные.",
-  default: "Не совсем понял. Напишите 'Запуск', 'Сроки' или 'Примеры'."
-};
-
-function addMessage(text, type) {
-  const msg = document.createElement('div');
-  msg.classList.add('msg', type);
-  msg.textContent = text;
-  chatMessages.appendChild(msg);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-chatToggle?.addEventListener('click', () => {
-  chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
-  if (chatWindow.style.display === 'block' && chatMessages.children.length <= 1) {
-    setTimeout(() => addMessage("Рад вас видеть! Какой проект вы хотите запустить?", 'bot'), 500);
-  }
-});
-
-closeChat?.addEventListener('click', () => chatWindow.style.display = 'none');
-
-function handleUserMessage() {
-  const text = (chatInput?.value || '').trim().toLowerCase();
-  if (!text) return;
-
-  addMessage(chatInput.value, 'user');
-  chatInput.value = '';
-
-  let response = aiResponses.default;
-  for (const [keys, reply] of Object.entries(aiResponses)) {
-    if (keys === 'default') continue;
-    if (keys.split('|').some(k => text.includes(k))) {
-      response = reply;
-      break;
-    }
-  }
-
-  setTimeout(() => addMessage(response, 'bot'), 800);
-}
-
-sendChat?.addEventListener('click', handleUserMessage);
-chatInput?.addEventListener('keypress', e => {
-  if (e.key === 'Enter') handleUserMessage();
-});
-
-// ===================================
-// 6. УЛУЧШЕННАЯ ФОРМА
+// 5. УЛУЧШЕННАЯ ФОРМА
 // ===================================
 const contactForm = document.getElementById('contactForm');
 const formStatus = document.getElementById('formStatus');
@@ -239,4 +134,51 @@ contactForm?.addEventListener('submit', function(e) {
     window.open(url, '_blank');
     formStatus.textContent = 'Готово! Открываем Telegram/email...';
   }, 1000);
+});
+
+// ===================================
+// 6. ЧАТ-БОТ
+// ===================================
+const chatToggle = document.getElementById('chatBotToggle');
+const chatWindow = document.getElementById('chatBotWindow');
+const closeChat = document.getElementById('closeChat');
+const chatInput = document.getElementById('chatInput');
+const chatMessages = document.getElementById('chatMessages');
+const sendChat = document.getElementById('sendChat');
+
+const responses = {
+  привет: "Привет! Готовы запустить сайт за 5 дней?",
+  запуск: "Отлично! Напишите @overgrand — и через 24 часа будет прототип.",
+  сайт: "Создаю сайты, которые приносят заявки с первого дня.",
+  default: "Напишите 'Запуск', чтобы начать."
+};
+
+function addMsg(text, type) {
+  const msg = document.createElement('div');
+  msg.classList.add('msg', type);
+  msg.textContent = text;
+  chatMessages.appendChild(msg);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+chatToggle?.addEventListener('click', () => {
+  chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
+  if (chatWindow.style.display === 'block' && chatMessages.children.length <= 1) {
+    setTimeout(() => addMsg("Рад вас видеть! Какой проект вы хотите запустить?", 'bot'), 500);
+  }
+});
+
+closeChat?.addEventListener('click', () => chatWindow.style.display = 'none');
+
+sendChat?.addEventListener('click', () => {
+  const text = (chatInput?.value || '').trim().toLowerCase();
+  if (!text) return;
+  addMsg(chatInput.value, 'user');
+  chatInput.value = '';
+  const reply = Object.keys(responses).find(k => text.includes(k)) ? responses[text.split(' ')[0]] : responses.default;
+  setTimeout(() => addMsg(reply, 'bot'), 600);
+});
+
+chatInput?.addEventListener('keypress', e => {
+  if (e.key === 'Enter') sendChat.click();
 });
