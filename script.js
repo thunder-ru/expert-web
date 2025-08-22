@@ -1,14 +1,11 @@
 // ===================================
-// 1. УНИВЕРСАЛЬНЫЕ ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
+// 1. АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ ПРОКРУТКЕ
 // ===================================
-
-// Проверка видимости элемента на экране
 function isInView(el) {
   const rect = el.getBoundingClientRect();
   return rect.top <= window.innerHeight * 0.85;
 }
 
-// Анимация появления при прокрутке
 function animateOnScroll() {
   document.querySelectorAll('.fade-in, .slide-left, .slide-right').forEach(el => {
     if (isInView(el) && !el.classList.contains('animated')) {
@@ -24,9 +21,8 @@ window.addEventListener('scroll', animateOnScroll);
 window.addEventListener('load', animateOnScroll);
 
 // ===================================
-// 2. ФОН С ЧАСТИЦАМИ И МОЛНИЯМИ (Canvas)
+// 2. ФОН С ЧАСТИЦАМИ И МОЛНИЯМИ
 // ===================================
-
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
 let width, height;
@@ -56,14 +52,12 @@ for (let i = 0; i < numParticles; i++) {
 function animateParticles() {
   ctx.clearRect(0, 0, width, height);
 
-  // Градиент фона
   const gradient = ctx.createRadialGradient(width/2, height/2, 0, width/2, height/2, Math.max(width, height));
   gradient.addColorStop(0, 'rgba(10, 14, 42, 0.2)');
   gradient.addColorStop(1, 'rgba(6, 9, 26, 0.6)');
   ctx.fillStyle = gradient;
   ctx.fillRect(0, 0, width, height);
 
-  // Частицы
   particles.forEach(p => {
     p.x += p.vx * p.speed;
     p.y += p.vy * p.speed;
@@ -76,14 +70,12 @@ function animateParticles() {
     ctx.fillStyle = `rgba(0, 238, 255, ${p.alpha})`;
     ctx.fill();
 
-    // Лёгкое свечение
     ctx.beginPath();
     ctx.arc(p.x, p.y, p.radius * 2, 0, Math.PI * 2);
     ctx.fillStyle = `rgba(0, 238, 255, ${p.alpha * 0.2})`;
     ctx.fill();
   });
 
-  // Случайные молнии
   if (Math.random() < 0.004) {
     const x = Math.random() * width * 0.8 + width * 0.1;
     const y = Math.random() * height * 0.5 + 50;
@@ -120,7 +112,6 @@ animateParticles();
 // ===================================
 // 3. МОБИЛЬНОЕ МЕНЮ
 // ===================================
-
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
@@ -129,7 +120,6 @@ hamburger?.addEventListener('click', () => {
   hamburger.classList.toggle('active');
 });
 
-// Закрытие меню при клике на ссылку
 document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', () => {
     navLinks.classList.remove('active');
@@ -140,7 +130,6 @@ document.querySelectorAll('.nav-link').forEach(link => {
 // ===================================
 // 4. ФИЛЬТР ПОРТФОЛИО
 // ===================================
-
 const filterBtns = document.querySelectorAll('.filter-btn');
 const portfolioItems = document.querySelectorAll('.portfolio-item');
 
@@ -167,13 +156,11 @@ filterBtns.forEach(btn => {
   });
 });
 
-// Активация первой кнопки
 if (filterBtns[0]) filterBtns[0].click();
 
 // ===================================
-// 5. КАЛЬКУЛЯТОР СО СБОРОМ И ИСТОРИЕЙ
+// 5. КАЛЬКУЛЯТОР
 // ===================================
-
 const siteType = document.getElementById('siteType');
 const adaptive = document.getElementById('adaptive');
 const animations = document.getElementById('animations');
@@ -212,18 +199,15 @@ function updateCalc() {
   saveCalc();
 }
 
-// Слушатели
 [siteType, adaptive, animations, seo, crm].forEach(el => {
   if (el) el.addEventListener('change', updateCalc);
 });
 
-// Загрузка при старте
 if (total) loadCalc();
 
 // ===================================
-// 6. ЧАТ-БОТ С AI-ЛОГИКОЙ И ИСТОРИЕЙ
+// 6. ЧАТ-БОТ
 // ===================================
-
 const chatToggle = document.getElementById('chatBotToggle');
 const chatWindow = document.getElementById('chatBotWindow');
 const closeChat = document.getElementById('closeChat');
@@ -231,7 +215,6 @@ const chatInput = document.getElementById('chatInput');
 const chatMessages = document.getElementById('chatMessages');
 const sendChat = document.getElementById('sendChat');
 
-// База ответов
 const botResponses = {
   привет|здравствуйте|hello: "Привет! Я — Thunder Bot. Чем могу помочь?",
   цена|стоимость|сколько: "Отлично! Откройте калькулятор выше — и получите точную оценку за 10 секунд.",
@@ -250,13 +233,10 @@ function addMessage(text, type) {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-// Открытие/закрытие
 chatToggle?.addEventListener('click', () => {
   chatWindow.style.display = chatWindow.style.display === 'block' ? 'none' : 'block';
-  if (chatWindow.style.display === 'block') {
-    if (chatMessages.children.length <= 1) {
-      setTimeout(() => addMessage("Рад вас видеть! Какой проект вы хотите запустить?", 'bot'), 500);
-    }
+  if (chatWindow.style.display === 'block' && chatMessages.children.length <= 1) {
+    setTimeout(() => addMessage("Рад вас видеть! Какой проект вы хотите запустить?", 'bot'), 500);
   }
 });
 
@@ -264,7 +244,6 @@ closeChat?.addEventListener('click', () => {
   chatWindow.style.display = 'none';
 });
 
-// Отправка
 function handleUserMessage() {
   const text = (chatInput?.value || '').trim();
   if (!text) return;
@@ -272,7 +251,6 @@ function handleUserMessage() {
   addMessage(text, 'user');
   chatInput.value = '';
 
-  // Поиск ответа
   const lowerText = text.toLowerCase();
   let response = botResponses.default;
 
@@ -284,7 +262,6 @@ function handleUserMessage() {
     }
   }
 
-  // Задержка, как живой человек
   setTimeout(() => addMessage(response, 'bot'), 800);
 }
 
@@ -294,9 +271,8 @@ chatInput?.addEventListener('keypress', e => {
 });
 
 // ===================================
-// 7. ФОРМА ОБРАТНОЙ СВЯЗИ
+// 7. ФОРМА
 // ===================================
-
 const contactForm = document.getElementById('contactForm');
 contactForm?.addEventListener('submit', function(e) {
   e.preventDefault();
@@ -317,27 +293,4 @@ contactForm?.addEventListener('submit', function(e) {
     : `mailto:rosanov.danila2016@yandex.ru?subject=Запрос с сайта Thunder-Web&body=${body}`;
 
   window.open(url, '_blank');
-});
-
-// ===================================
-// 8. ДОПОЛНИТЕЛЬНО: ЗВУК ПРИ КЛИКЕ (опционально)
-// Уберите комментарий, если хотите
-// ===================================
-
-/*
-const clickSound = new Audio();
-clickSound.src = 'https://assets.mixkit.co/sfx/preview/mixkit-single-click-1117.mp3';
-
-document.addEventListener('click', () => {
-  clickSound.currentTime = 0;
-  clickSound.play().catch(() => {});
-}, { passive: true });
-*/
-
-// ===================================
-// 9. ОЧИСТКА ПАМЯТИ (на случай долгой сессии)
-// ===================================
-
-window.addEventListener('beforeunload', () => {
-  // Можно добавить аналитику
 });
