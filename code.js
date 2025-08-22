@@ -146,6 +146,7 @@ contactForm?.addEventListener('submit', function(e) {
 });
 
 // ===================================
+// ===================================
 // 6. ГАЛЕРЕЯ ПОРТФОЛИО
 // ===================================
 const portfolioLinks = document.querySelectorAll('.portfolio-link');
@@ -157,13 +158,15 @@ modal.innerHTML = `
     <div class="gallery-slider">
       <div class="swiper gallery-swiper">
         <div class="swiper-wrapper"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
       </div>
     </div>
   </div>
 `;
 document.body.appendChild(modal);
 
-// Добавляем фотографии в галерею
+// УБИРАЕМ ПРОБЕЛЫ В ССЫЛКАХ (важно!)
 const galleryData = {
   wanderlux: [
     "https://i.postimg.cc/8kvBPsBf/1.jpg",
@@ -189,7 +192,6 @@ const galleryData = {
     "https://i.postimg.cc/g2dcft4B/7.jpg",
     "https://i.postimg.cc/vm2QxYyp/8.jpg",
     "https://i.postimg.cc/DfX2m3MM/9.jpg"
-
   ],
   velox: [
     "https://i.postimg.cc/J7S6P9KZ/image.jpg",
@@ -199,7 +201,6 @@ const galleryData = {
     "https://i.postimg.cc/rFRHK9j9/5.jpg",
     "https://i.postimg.cc/wjKGJsbY/6.jpg",
     "https://i.postimg.cc/DwqYcytJ/7.jpg"
-
   ],
   fitmaster: [
     "https://i.postimg.cc/Z5xwY0mx/1.jpg",
@@ -207,7 +208,6 @@ const galleryData = {
     "https://i.postimg.cc/vH5p0znZ/3.jpg",
     "https://i.postimg.cc/bwT4hw3X/image.jpg",
     "https://i.postimg.cc/26PKwb8W/5.jpg"
-
   ],
   teazen: [
     "https://i.postimg.cc/xC4HTVqR/1.jpg",
@@ -220,6 +220,7 @@ const galleryData = {
   ]
 };
 
+// Открытие галереи
 portfolioLinks.forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
@@ -235,20 +236,21 @@ portfolioLinks.forEach(link => {
       swiperWrapper.appendChild(slide);
     });
 
-    // Инициализируем галерею
+    // Уничтожаем старый Swiper, если был
     if (window.gallerySwiper) {
-      window.gallerySwiper.destroy();
+      window.gallerySwiper.destroy(true, true);
     }
 
+    // Инициализируем новый
     window.gallerySwiper = new Swiper('.gallery-swiper', {
       loop: true,
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: false,
-      },
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
+      },
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false,
       },
     });
 
@@ -259,10 +261,16 @@ portfolioLinks.forEach(link => {
 // Закрытие модального окна
 document.querySelector('.close')?.addEventListener('click', () => {
   modal.style.display = 'none';
+  if (window.gallerySwiper) {
+    window.gallerySwiper.destroy(true, true);
+  }
 });
 
 window.addEventListener('click', (e) => {
   if (e.target === modal) {
     modal.style.display = 'none';
+    if (window.gallerySwiper) {
+      window.gallerySwiper.destroy(true, true);
+    }
   }
 });
