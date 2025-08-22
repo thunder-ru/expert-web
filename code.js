@@ -115,7 +115,7 @@ function requestQuote() {
   window.open(url, '_blank');
 }
 
-// Галерея — все URL очищены от пробелов
+// Галерея — все ID и URL проверены
 const galleryData = {
   auto: {
     title: "Аренда автомобилей",
@@ -199,7 +199,7 @@ const galleryData = {
   }
 };
 
-// Открытие галереи по ID проекта
+// Открытие галереи
 function openGallery(projectId) {
   const data = galleryData[projectId];
   if (!data) {
@@ -212,24 +212,15 @@ function openGallery(projectId) {
   document.getElementById('projectResult').innerText = data.result;
 
   const galleryGrid = document.getElementById('galleryGrid');
-  galleryGrid.innerHTML = ''; // Очистка предыдущих изображений
+  galleryGrid.innerHTML = '';
 
   data.images.forEach(imgUrl => {
     const img = document.createElement('img');
-    img.src = imgUrl.trim(); // Обрезаем пробелы
+    img.src = imgUrl.trim();
     img.alt = data.title;
-    img.style.maxWidth = '100%';
-    img.style.height = 'auto';
-    img.style.borderRadius = '10px';
-    img.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
-    img.style.transition = 'transform 0.3s ease';
-
-    // Обработка ошибки загрузки
-    img.onerror = function () {
-      this.src = "https://via.placeholder.com/800x500/333/fff?text=Ошибка+загрузки";
-      this.style.filter = 'grayscale(1)';
+    img.onerror = () => {
+      img.src = "https://via.placeholder.com/800x500/333/fff?text=Ошибка+загрузки";
     };
-
     galleryGrid.appendChild(img);
   });
 
@@ -247,7 +238,7 @@ function closeGallery() {
   }, 300);
 }
 
-// Открытие галереи при наведении (с задержкой)
+// Наведение
 let hoverTimeout;
 function openGalleryOnHover(projectId) {
   hoverTimeout = setTimeout(() => {
@@ -258,19 +249,14 @@ function closeGalleryOnHover() {
   clearTimeout(hoverTimeout);
 }
 
-// Закрытие модальных окон по Escape
-document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape') {
-    closeGallery();
-    closeCalculator();
-  }
+// Закрытие по Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeGallery();
 });
 
-// Закрытие галереи по клику вне контента
-document.getElementById('galleryModal').addEventListener('click', function (e) {
-  if (e.target === this) {
-    closeGallery();
-  }
+// Закрытие по клику вне
+document.getElementById('galleryModal').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) closeGallery();
 });
 
 // Мобильное меню
@@ -278,34 +264,33 @@ function toggleMenu() {
   document.getElementById("mainNav").classList.toggle("active");
 }
 
-// Обработка формы
-document.getElementById('contactForm').addEventListener('submit', function (e) {
+// Форма
+document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const name = document.getElementById('name').value.trim();
   const phone = document.getElementById('phone').value.trim();
   const email = document.getElementById('email').value.trim();
-  const message = document.getElementById('message').value.trim();
 
   if (!name || !phone || !email) {
     alert('Заполните все обязательные поля.');
     return;
   }
 
+  const message = document.getElementById('message').value.trim();
   let text = `📩 *НОВАЯ ЗАЯВКА*\n\n`;
   text += `👤 Имя: ${name}\n`;
   text += `📞 Телефон: ${phone}\n`;
   text += `✉️ Email: ${email}\n`;
-  if (message) text += `💬 Сообщение: ${message}\n\n`;
-  text += `—\nГотов к диалогу!`;
+  if (message) text += `💬 Сообщение: ${message}\n`;
+  text += `\n—\nГотов к диалогу!`;
 
   const encoded = encodeURIComponent(text);
-  const url = `https://t.me/overgrand?text=${encoded}`;
-  window.open(url, '_blank');
-  alert('✅ Заявка отправлена! Свяжемся в ближайшее время.');
+  window.open(`https://t.me/overgrand?text=${encoded}`, '_blank');
+  alert('✅ Заявка отправлена!');
   this.reset();
 });
 
-// Портфолио слайдер
+// Слайдер портфолио
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.dot');
@@ -321,51 +306,24 @@ function showSlide(n) {
   dots[currentSlide].classList.add('active');
 }
 
-function nextSlide() {
-  currentSlide++;
-  showSlide(currentSlide);
-}
-
-function prevSlide() {
-  currentSlide--;
-  showSlide(currentSlide);
-}
-
-function goToSlide(n) {
-  currentSlide = n;
-  showSlide(currentSlide);
-}
+function nextSlide() { currentSlide++; showSlide(currentSlide); }
+function prevSlide() { currentSlide--; showSlide(currentSlide); }
+function goToSlide(n) { currentSlide = n; showSlide(currentSlide); }
 
 let slideInterval = setInterval(nextSlide, 5000);
 
-document.querySelector('.portfolio-slider').addEventListener('mouseenter', () => {
-  clearInterval(slideInterval);
-});
-
+document.querySelector('.portfolio-slider').addEventListener('mouseenter', () => clearInterval(slideInterval));
 document.querySelector('.portfolio-slider').addEventListener('mouseleave', () => {
   slideInterval = setInterval(nextSlide, 5000);
 });
 
-if (nextBtn) nextBtn.addEventListener('click', () => {
-  clearInterval(slideInterval);
-  nextSlide();
-});
-
-if (prevBtn) prevBtn.addEventListener('click', () => {
-  clearInterval(slideInterval);
-  prevSlide();
-});
-
+if (nextBtn) nextBtn.addEventListener('click', () => { clearInterval(slideInterval); nextSlide(); });
+if (prevBtn) prevBtn.addEventListener('click', () => { clearInterval(slideInterval); prevSlide(); });
 dots.forEach((dot, i) => {
-  dot.addEventListener('click', () => {
-    clearInterval(slideInterval);
-    goToSlide(i);
-  });
+  dot.addEventListener('click', () => { clearInterval(slideInterval); goToSlide(i); });
 });
 
 // Инициализация
-document.addEventListener("DOMContentLoaded", function () {
-  if (slides.length > 0) {
-    showSlide(0);
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  if (slides.length > 0) showSlide(0);
 });
