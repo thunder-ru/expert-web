@@ -195,7 +195,6 @@ header .container {
   100% { transform: scale(1.5); opacity: 0; }
 }
 
-/* Градиентная кнопка */
 .gradient-btn {
   background: linear-gradient(45deg, var(--accent), var(--accent-gold));
   color: #000;
@@ -316,11 +315,15 @@ header .container {
 }
 
 /* Портфолио */
-.portfolio-grid {
+.portfolio-container {
+  margin-top: 30px;
+}
+
+.portfolio-fixed {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 25px;
-  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .portfolio-item {
@@ -344,7 +347,7 @@ header .container {
   transform: scale(1.1);
 }
 
-.overlay {
+overlay {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -355,19 +358,112 @@ header .container {
   transition: opacity 0.3s;
 }
 
-.portfolio-item:hover .overlay {
+.portfolio-item:hover overlay {
   opacity: 1;
 }
 
-.overlay h3 {
+overlay h3 {
   color: white;
   margin-bottom: 5px;
   font-family: 'Space Grotesk', sans-serif;
 }
 
-.overlay p {
+overlay p {
   color: #ccc;
   font-size: 0.9rem;
+}
+
+/* Слайдер портфолио */
+.swiper {
+  padding: 20px 0;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+}
+
+.portfolio-link {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 350px;
+  height: 280px;
+  display: block;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s;
+}
+
+.portfolio-link:hover {
+  transform: scale(1.05);
+}
+
+.portfolio-link img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.portfolio-link:hover img {
+  transform: scale(1.1);
+}
+
+overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(10, 14, 42, 0.9));
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.portfolio-link:hover overlay {
+  opacity: 1;
+}
+
+overlay h3 {
+  color: white;
+  margin-bottom: 5px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+overlay p {
+  color: #ccc;
+  font-size: 0.9rem;
+}
+
+/* Стрелки слайдера */
+.swiper-button-next, .swiper-button-prev {
+  color: var(--accent);
+  font-size: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.swiper-button-next:hover, .swiper-button-prev:hover {
+  background: var(--accent);
+  color: #000;
+}
+
+/* Индикаторы */
+.swiper-pagination-bullet {
+  background: var(--accent);
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--accent-gold);
 }
 
 /* Отзывы */
@@ -429,24 +525,29 @@ header .container {
   resize: vertical;
 }
 
-.radio-group {
+.channel-options {
   display: flex;
   gap: 20px;
-  margin-bottom: 15px;
   justify-content: center;
+  margin-bottom: 20px;
   flex-wrap: wrap;
 }
 
-.radio-group label {
+.channel-option {
   display: flex;
   align-items: center;
   gap: 8px;
   cursor: pointer;
   font-size: 0.95rem;
   color: #ccc;
+  transition: all 0.3s;
 }
 
-.radio-group input {
+.channel-option.active {
+  color: var(--accent);
+}
+
+.channel-option input[type="radio"] {
   accent-color: var(--accent);
 }
 
@@ -465,7 +566,7 @@ header .container {
   color: #f00;
 }
 
-/* Нижний блок контактов */
+/* Нижние кнопки */
 .footer-contact {
   padding: 40px 0;
   background: var(--bg);
@@ -480,37 +581,42 @@ header .container {
   gap: 20px;
 }
 
-.contact-links {
+.contact-buttons {
   display: flex;
-  gap: 40px;
-  flex-wrap: wrap;
+  gap: 30px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
-.contact-link {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: var(--text);
-  text-decoration: none;
-  transition: all 0.3s;
-  background: rgba(255, 255, 255, 0.05);
+.contact-btn {
   padding: 12px 24px;
   border-radius: 10px;
   border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.contact-link:hover {
+.contact-btn:hover {
   background: var(--accent);
   color: #000;
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(0, 238, 255, 0.3);
 }
 
-.contact-link i {
-  font-size: 1.4rem;
+.telegram-btn {
+  border: 1px solid var(--accent);
+}
+
+.email-btn {
+  border: 1px solid var(--accent-gold);
 }
 
 .contact-note {
@@ -551,24 +657,23 @@ footer {
 
 /* Адаптив */
 @media (max-width: 1200px) {
-  .portfolio-grid {
+  .portfolio-fixed {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 900px) {
-  .portfolio-grid {
+  .portfolio-fixed {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 600px) {
-  .portfolio-grid {
+  .portfolio-fixed {
     grid-template-columns: 1fr;
   }
-  .contact-links {
+  .contact-buttons {
     gap: 20px;
-    flex-direction: column;
   }
 }
 
