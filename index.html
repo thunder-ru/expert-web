@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Thunder-Web — Веб-дизайн, который бьёт током</title>
-  <meta name="description" content="Создаю сайты, которые продают. Тур-агентства, клиники, магазины — всё под ключ.">
-  <link rel="stylesheet" href="style.css" />
+  <title>web-thunder.ru — Сайт, который работает на вас</title>
+  <meta name="description" content="Веб-архитектор бизнеса. Создаю сайты, которые приносят прибыль с первого дня.">
+  <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/8a5f7b6a2e.js" crossorigin="anonymous"></script>
 </head>
@@ -15,15 +15,15 @@
   <canvas id="particles"></canvas>
 
   <!-- Header -->
-  <header id="home">
+  <header>
     <div class="container">
-      <div class="logo">⚡ <span>Thunder</span>-Web</div>
+      <div class="logo">⚡ web-thunder</div>
       <nav>
         <ul class="nav-links">
-          <li><a href="#home" class="nav-link">Главная</a></li>
-          <li><a href="#about" class="nav-link">О себе</a></li>
-          <li><a href="#portfolio" class="nav-link">Портфолио</a></li>
-          <li><a href="#contact" class="nav-link">Контакты</a></li>
+          <li><a href="#home">Главная</a></li>
+          <li><a href="#portfolio">Портфолио</a></li>
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#contact">Контакты</a></li>
         </ul>
         <div class="hamburger">
           <span></span>
@@ -35,165 +35,138 @@
   </header>
 
   <!-- Hero -->
-  <section class="hero">
+  <section id="home" class="hero">
     <div class="container">
-      <h1 class="fade-in">
-        <span class="text-gradient">Сайты,</span><br>
-        которые <span class="highlight">продают</span><br>
-        и <span class="highlight">вдохновляют</span>
-      </h1>
-      <p class="subtitle fade-in-delay">От идеи до запуска — за 7 дней. Готовы взорвать ваш бизнес?</p>
-      <a href="#contact" class="btn pulse">⚡ Начать проект</a>
+      <h1 class="fade-in">Сайт, который работает на вас<br><span class="highlight">с первого дня</span></h1>
+      <p class="subtitle fade-in-delay">Я — <strong>веб-архитектор бизнеса</strong>. Собираю сайты как конструктор: быстро, надёжно, с фокусом на прибыль.</p>
+      <a href="#contact" class="btn pulse">Начать проект</a>
     </div>
   </section>
 
   <!-- О себе -->
-  <section id="about" class="section">
+  <section class="section about">
     <div class="container">
-      <h2 class="section-title">Кто стоит за молнией?</h2>
-      <div class="about-flex">
+      <div class="about-content">
         <div class="about-text slide-left">
-          <p>Меня зовут Данила. Я — <strong>веб-архитектор</strong>, создающий цифровые продукты, которые не просто работают — они <strong>живут</strong>.</p>
-          <p>За 4 года я запустил более <strong>37 проектов</strong> — от лендингов до интернет-магазинов. Моя цель — не просто сайт, а <strong>инструмент роста</strong>.</p>
-          <div class="advantages-grid">
-            <div class="adv-item"><i class="fas fa-bolt"></i> Быстро</div>
-            <div class="adv-item"><i class="fas fa-paint-brush"></i> Стильно</div>
-            <div class="adv-item"><i class="fas fa-shield-alt"></i> Надёжно</div>
-            <div class="adv-item"><i class="fas fa-headset"></i> Поддержка 24/7</div>
-          </div>
+          <h2>Я не пишу код.<br>Я создаю прибыль</h2>
+          <p>За последние 2 года я реализовал <strong>15+ проектов</strong> — от лендингов до интернет-магазинов.</p>
+          <p>Мой подход: <strong>максимум пользы, минимум шума</strong>.</p>
+          <p>Я не гонюсь за сложностью. Я создаю сайты, которые:</p>
+          <ul class="advantages">
+            <li>⚡ Приносят заявки с первого дня</li>
+            <li>🔧 Загружаются за секунду</li>
+            <li>📱 Работают на любом устройстве</li>
+            <li>📈 Повышают конверсию</li>
+          </ul>
         </div>
         <div class="about-img slide-right">
-          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Разработчик">
+          <img src="https://images.unsplash.com/photo-1517433456740-3c00b1691103?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Веб-архитектор">
           <div class="glow"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Портфолио -->
-  <section id="portfolio" class="section">
+  <!-- Услуги -->
+  <section id="services" class="section services">
     <div class="container">
-      <h2 class="section-title">Последние проекты</h2>
-      <p class="text-center">Сайты, которые уже приносят деньги клиентам</p>
-      <div class="portfolio-filters">
-        <button class="filter-btn active" data-filter="all">Все</button>
-        <button class="filter-btn" data-filter="travel">Туризм</button>
-        <button class="filter-btn" data-filter="auto">Авто</button>
-        <button class="filter-btn" data-filter="health">Здоровье</button>
-        <button class="filter-btn" data-filter="sport">Спорт</button>
-        <button class="filter-btn" data-filter="shop">Магазины</button>
+      <h2 class="section-title">Услуги</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Сайт под ключ</h3>
+          <p>От дизайна до запуска. Готовый сайт за 5–7 дней.</p>
+        </div>
+        <div class="service-card">
+          <h3>Верстка макетов</h3>
+          <p>Pixel perfect, адаптив, кроссбраузерность.</p>
+        </div>
+        <div class="service-card">
+          <h3>Поддержка сайтов</h3>
+          <p>Обновления, баги, доработки — я всегда на связи.</p>
+        </div>
+        <div class="service-card">
+          <h3>Оптимизация и SEO</h3>
+          <p>Ускорение, индексация, повышение позиций.</p>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Портфолио -->
+  <section id="portfolio" class="section portfolio">
+    <div class="container">
+      <h2 class="section-title">Портфолио</h2>
+      <p class="text-center">Проекты, которые <strong>запускали бизнес</strong></p>
       <div class="portfolio-grid">
-        <div class="portfolio-item" data-category="travel">
+        <div class="portfolio-item">
           <img src="https://images.unsplash.com/photo-1526815456743-3e55d10113da?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Тур-агентство">
           <div class="overlay">
             <h3>WanderLux</h3>
             <p>Тур-агентство премиум-класса</p>
-            <span class="tag">Landing</span>
           </div>
         </div>
-        <div class="portfolio-item" data-category="auto">
+        <div class="portfolio-item">
           <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Аренда авто">
           <div class="overlay">
             <h3>DriveHive</h3>
             <p>Аренда автомобилей в Москве</p>
-            <span class="tag">Сайт-каталог</span>
           </div>
         </div>
-        <div class="portfolio-item" data-category="health">
+        <div class="portfolio-item">
           <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Стоматология">
           <div class="overlay">
             <h3>DentaCare</h3>
             <p>Стоматологическая клиника</p>
-            <span class="tag">Корпоративный</span>
           </div>
         </div>
-        <div class="portfolio-item" data-category="sport">
-          <img src="https://images.unsplash.com/photo-1541532713592-7538ad33342e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Веломагазин">
-          <div class="overlay">
-            <h3>Velox</h3>
-            <p>Продажа велосипедов и экипировки</p>
-            <span class="tag">Интернет-магазин</span>
-          </div>
-        </div>
-        <div class="portfolio-item" data-category="sport">
-          <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Персональный тренер">
-          <div class="overlay">
-            <h3>FitMaster</h3>
-            <p>Персональный тренер и онлайн-курсы</p>
-            <span class="tag">Landing + CRM</span>
-          </div>
-        </div>
-        <div class="portfolio-item" data-category="shop">
+        <div class="portfolio-item">
           <img src="https://images.unsplash.com/photo-1595425970375-6f4f6a89ae5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Чай">
           <div class="overlay">
             <h3>TeaZen</h3>
             <p>Онлайн-магазин элитного чая</p>
-            <span class="tag">E-commerce</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Калькулятор -->
-  <section class="section calculator">
+  <!-- Отзывы -->
+  <section class="section reviews">
     <div class="container">
-      <h2 class="section-title">Оцените стоимость</h2>
-      <p class="text-center">Выберите параметры — получите приблизительную цену за 10 секунд</p>
-      <div class="calc-grid">
-        <div class="calc-group">
-          <label>Тип сайта</label>
-          <select id="siteType">
-            <option value="8000">Лендинг — от 8 000 ₽</option>
-            <option value="15000">Сайт-визитка — от 15 000 ₽</option>
-            <option value="25000">Интернет-магазин — от 25 000 ₽</option>
-            <option value="20000">Корпоративный — от 20 000 ₽</option>
-          </select>
+      <h2 class="section-title">Что говорят клиенты</h2>
+      <div class="reviews-grid">
+        <div class="review">
+          <p>"Запустили сайт за 5 дней. Уже через неделю — 120 заявок. web-thunder — это не просто разработка, это рост бизнеса."</p>
         </div>
-        <div class="calc-group">
-          <label><input type="checkbox" id="adaptive"> Адаптивность (+3 000 ₽)</label>
+        <div class="review">
+          <p>"Работал с 3 разработчиками. Только web-thunder сделал всё без косяков и в срок."</p>
         </div>
-        <div class="calc-group">
-          <label><input type="checkbox" id="animations"> Анимации (+4 000 ₽)</label>
-        </div>
-        <div class="calc-group">
-          <label><input type="checkbox" id="seo"> SEO-оптимизация (+5 000 ₽)</label>
-        </div>
-        <div class="calc-group">
-          <label><input type="checkbox" id="crm"> CRM-интеграция (+7 000 ₽)</label>
+        <div class="review">
+          <p>"Сайт загружается за 0.8 сек. SEO в топе. Конверсия выросла на 70%."</p>
         </div>
       </div>
-      <div class="calc-result">
-        <strong>Итого: <span id="total">8 000</span> ₽</strong>
-      </div>
-      <a href="#contact" class="btn">Обсудить детали</a>
     </div>
   </section>
 
   <!-- Контакты -->
-  <section id="contact" class="section">
+  <section id="contact" class="section contact">
     <div class="container">
-      <h2 class="section-title">Давайте создадим что-то грандиозное</h2>
+      <h2 class="section-title">Готовы к запуску?</h2>
+      <p class="text-center">Напишите — и через 24 часа у вас будет <strong>прототип сайта</strong> или <strong>коммерческое предложение</strong>.</p>
       <div class="contact-flex">
-        <div class="contact-info slide-left">
-          <h3>Связь — мгновенно</h3>
+        <div class="contact-info">
           <p><i class="fab fa-telegram"></i> <a href="https://t.me/overgrand" target="_blank">@overgrand</a></p>
-          <p><i class="far fa-envelope"></i> <a href="mailto:rosanov.danila2016@yandex.ru">Почта</a></p>
-          <p><i class="fas fa-clock"></i> Отвечаю в течение 30 минут</p>
-          <div class="social">
-            <a href="#"><i class="fab fa-github"></i></a>
-          </div>
+          <p><i class="far fa-envelope"></i> <a href="mailto:rosanov.danila2016@yandex.ru">rosanov.danila2016@yandex.ru</a></p>
         </div>
-        <form id="contactForm" class="contact-form slide-right">
+        <form id="contactForm" class="contact-form">
           <input type="text" id="name" placeholder="Ваше имя" required>
           <input type="email" id="email" placeholder="Email" required>
-          <textarea id="message" placeholder="Расскажите о вашем проекте..." required></textarea>
+          <textarea id="message" placeholder="Опишите ваш проект..." required></textarea>
           <div class="radio-group">
             <label><input type="radio" name="channel" value="telegram" checked> Ответ в Telegram</label>
             <label><input type="radio" name="channel" value="email"> Ответ на email</label>
           </div>
-          <button type="submit" class="btn">⚡ Отправить запрос</button>
+          <button type="submit" class="btn">Отправить запрос</button>
         </form>
       </div>
     </div>
@@ -208,10 +181,10 @@
         <button id="closeChat">×</button>
       </div>
       <div class="chat-messages" id="chatMessages">
-        <div class="msg bot">Привет! Я — ваш цифровой помощник. Хотите узнать стоимость сайта за 10 сек? Напишите "Цена".</div>
+        <div class="msg bot">Привет! Я — ваш цифровой помощник. Хотите прототип за 24 часа? Напишите "Запуск".</div>
       </div>
       <div class="chat-input">
-        <input type="text" id="chatInput" placeholder="Спросите что угодно..." />
+        <input type="text" id="chatInput" placeholder="Спросите..." />
         <button id="sendChat">➤</button>
       </div>
     </div>
@@ -219,10 +192,10 @@
 
   <footer>
     <div class="container">
-      <p>⚡ Создано с током и любовью в 2025</p>
+      <p>⚡ © 2025 web-thunder.ru — работает с первого дня</p>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="code.js"></script>
 </body>
 </html>
