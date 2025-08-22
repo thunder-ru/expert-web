@@ -10,83 +10,96 @@
 </head>
 <body>
 
-  <!-- Анимация молнии в фоне -->
-  <div class="lightning-container">
-    <div class="lightning"></div>
-    <div class="lightning glow"></div>
-  </div>
+  <!-- Меню навигации -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">Web-Thunder</a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="#about" class="nav-link">О нас</a></li>
+        <li class="nav-item"><a href="#projects" class="nav-link">Проекты</a></li>
+        <li class="nav-item"><a href="#contact" class="nav-link">Контакты</a></li>
+      </ul>
+      <div class="nav-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
 
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <h1 class="hero-title" data-text="Web-Thunder">Web-Thunder</h1>
-      <p class="hero-subtitle">Создаю <strong>огненные</strong> сайты, которые <span class="highlight">продают 24/7</span></p>
+      <h1 class="hero-title">Сайты, которые <span class="highlight">взрывают</span> конверсию</h1>
+      <p class="hero-subtitle">Я создаю <strong>продающие</strong> сайты с нуля — быстро, стильно, эффективно.</p>
       <div class="cta-buttons">
-        <a href="#services" class="btn btn-3d btn-primary">Что я делаю</a>
-        <a href="#projects" class="btn btn-3d btn-secondary">Посмотреть проекты</a>
+        <a href="#projects" class="btn btn-primary">Посмотреть проекты</a>
+        <a href="https://t.me/overgrand" target="_blank" class="btn btn-outline">Написать в Telegram</a>
+      </div>
+    </div>
+    <div class="hero-wave"></div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2 class="section-title">Что я делаю</h2>
+      <div class="about-content">
+        <p>
+          Меня зовут <strong>Web-Thunder</strong> — я создаю сайты, которые <strong>работают как машина</strong>.
+          Каждый мой проект — это сочетание <strong>скорости, дизайна и конверсии</strong>.
+        </p>
+        <p>
+          Я не просто верстаю — я <strong>строю цифровые решения</strong>, которые приносят клиентов,
+          увеличивают продажи и делают бренд заметным.
+        </p>
+        <div class="features">
+          <div class="feature">
+            <i class="fas fa-bolt"></i>
+            <h3>Быстро</h3>
+            <p>Сайт за 3–7 дней. Без задержек.</p>
+          </div>
+          <div class="feature">
+            <i class="fas fa-rocket"></i>
+            <h3>Мощно</h3>
+            <p>100 баллов в Lighthouse, SEO, адаптивность.</p>
+          </div>
+          <div class="feature">
+            <i class="fas fa-handshake"></i>
+            <h3>Надёжно</h3>
+            <p>Поддержка после сдачи, правки, инструкции.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Services Section -->
-  <section id="services" class="services">
-    <h2 class="section-title">Что я делаю</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <i class="fas fa-bolt icon"></i>
-        <h3>Продающие сайты</h3>
-        <p>Сайты, которые не просто красивые — они <strong>конвертируют</strong> посетителей в клиентов с первого клика.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-tachometer-alt icon"></i>
-        <h3>Максимальная скорость</h3>
-        <p>Оптимизирую под 100/100 в Lighthouse. Быстрее — только мысли.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-mobile-alt icon"></i>
-        <h3>Адаптивность</h3>
-        <p>От смартфона до 4K — сайт выглядит идеально на любом устройстве.</p>
-      </div>
-      <div class="service-card">
-        <i class="fas fa-rocket icon"></i>
-        <h3>SEO & UX</h3>
-        <p>Грамотная структура, юзабилити и SEO — чтобы Google любил, а люди оставались.</p>
-      </div>
-    </div>
-    <div class="cta-center">
-      <a href="https://t.me/overgrand" target="_blank" class="btn btn-3d btn-primary">Заказать сайт</a>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
+  <!-- Projects Section (горизонтальный слайдер) -->
   <section id="projects" class="projects">
-    <h2 class="section-title">Последние проекты</h2>
-    <div class="project-grid">
-      <div class="project-card" onclick="openModal('travel')">
-        <div class="project-img-container">
-          <img src="https://images.unsplash.com/photo-1525766034134-8e8f6c8a7d8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Тур-агентство" class="project-img">
-          <div class="overlay"></div>
+    <div class="container">
+      <h2 class="section-title">Последние проекты</h2>
+      <div class="projects-slider">
+        <div class="project-card" onclick="openModal('travel')">
+          <img src="https://images.unsplash.com/photo-1525766034134-8e8f6c8a7d8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Тур-агентство">
+          <div class="project-info">
+            <h3>Тур-агентство "Горизонт"</h3>
+            <p>Сайт с бронированием туров и анимацией природы</p>
+          </div>
         </div>
-        <h3>Тур-агентство "Горизонт"</h3>
-        <p>Сайт с бронированием туров и анимацией природы</p>
-      </div>
-
-      <div class="project-card" onclick="openModal('dentist')">
-        <div class="project-img-container">
-          <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Стоматология" class="project-img">
-          <div class="overlay"></div>
+        <div class="project-card" onclick="openModal('dentist')">
+          <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Стоматология">
+          <div class="project-info">
+            <h3>Стоматология "Улыбка+"</h3>
+            <p>Клиника с онлайн-записью и 3D-эффектами</p>
+          </div>
         </div>
-        <h3>Стоматология "Улыбка+"</h3>
-        <p>Клиника с онлайн-записью и 3D-эффектами</p>
-      </div>
-
-      <div class="project-card" onclick="openModal('trainer')">
-        <div class="project-img-container">
-          <img src="https://images.unsplash.com/photo-1540497077202-7c8a9b9a0b1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Персональный тренер" class="project-img">
-          <div class="overlay"></div>
+        <div class="project-card" onclick="openModal('trainer')">
+          <img src="https://images.unsplash.com/photo-1540497077202-7c8a9b9a0b1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Персональный тренер">
+          <div class="project-info">
+            <h3>Фитнес-тренер Анна</h3>
+            <p>Сайт с программами и видео</p>
+          </div>
         </div>
-        <h3>Фитнес-тренер Анна</h3>
-        <p>Сайт-визитка с программами и видео</p>
       </div>
     </div>
   </section>
@@ -101,26 +114,25 @@
   </div>
 
   <!-- Contact Section -->
-  <section class="contact">
-    <h2 class="section-title">Готов начать?</h2>
-    <p>Создам сайт, который будет <strong>приносить клиентов</strong> уже с первого дня.</p>
-    <div class="contact-buttons">
-      <a href="mailto:rosanov.danila2016@yandex.ru" class="btn btn-3d btn-outline">Написать на почту</a>
-      <a href="https://t.me/overgrand" target="_blank" class="btn btn-3d btn-primary">Написать в Telegram</a>
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 class="section-title">Готов начать?</h2>
+      <p>Создам сайт, который будет <strong>приносить клиентов</strong> уже с первого дня.</p>
+      <div class="contact-buttons">
+        <a href="mailto:rosanov.danila2016@yandex.ru" class="btn btn-outline">Написать на почту</a>
+        <a href="https://t.me/overgrand" target="_blank" class="btn btn-primary">Написать в Telegram</a>
+      </div>
+      <p class="contact-info">
+        <i class="fas fa-paper-plane"></i> Telegram: <a href="https://t.me/overgrand">@overgrand</a><br>
+        <i class="fas fa-envelope"></i> Email: <a href="mailto:rosanov.danila2016@yandex.ru">rosanov.danila2016@yandex.ru</a>
+      </p>
     </div>
-    <p class="contact-info">
-      <i class="fas fa-paper-plane"></i> Telegram: <a href="https://t.me/overgrand">@overgrand</a><br>
-      <i class="fas fa-envelope"></i> Email: <a href="mailto:rosanov.danila2016@yandex.ru">rosanov.danila2016@yandex.ru</a>
-    </p>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
     <p>&copy; 2025 Web-Thunder. Сайты, которые <strong>грозят</strong> успехом.</p>
   </footer>
-
-  <!-- Звук при клике (по желанию) -->
-  <audio id="clickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-single-click-1114.mp3" preload="auto"></audio>
 
   <script src="code.js"></script>
 </body>
