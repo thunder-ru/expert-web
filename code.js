@@ -1,732 +1,329 @@
-/* Обнуление */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  font-family: 'Inter', sans-serif;
-  line-height: 1.7;
-  color: #e2e8f0;
-  background: #0f172a;
-  scroll-behavior: smooth;
-}
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+// Прокрутка к секции
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
 }
 
-/* Хедер */
-.header {
-  background: rgba(15, 23, 42, 0.95);
-  backdrop-filter: blur(10px);
-  padding: 15px 0;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  border-bottom: 1px solid #334155;
-}
-.header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.logo {
-  font-weight: 700;
-  font-size: 1.6rem;
-  font-family: 'Space Grotesk', sans-serif;
-  background: linear-gradient(90deg, #8b5cf6, #06b6d4, #8b5cf6);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shine 4s ease infinite;
-  white-space: nowrap;
-}
-@keyframes shine {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-.nav {
-  display: flex;
-  gap: 20px;
-}
-.nav a {
-  color: #e2e8f0;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 8px 16px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  font-size: 0.95rem;
-}
-.nav a:hover {
-  background: linear-gradient(90deg, #8b5cf6, #06b6d4);
-  color: white;
-  transform: translateY(-2px);
-}
-.nav-telegram {
-  background: linear-gradient(90deg, #06b6d4, #3b82f6) !important;
-  color: white !important;
-  font-weight: 600;
+// Открытие Telegram
+function openTelegram() {
+  window.open("https://t.me/overgrand", '_blank');
 }
 
-/* Бургер-меню */
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  gap: 5px;
-}
-.menu-toggle span {
-  width: 28px;
-  height: 3px;
-  background: #8b5cf6;
-  border-radius: 3px;
-  transition: 0.3s;
-}
-.menu-toggle:hover span {
-  background: #06b6d4;
-}
-.nav.active {
-  display: flex;
-  flex-direction: column;
-  background: #1e293b;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  padding: 20px 0;
-  border-top: 2px solid #8b5cf6;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-}
-.nav.active a {
-  margin: 10px 20px;
-  text-align: center;
-}
-
-/* Hero */
-.hero {
-  padding: 140px 20px 100px;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  text-align: center;
-}
-.hero .container {
-  max-width: 1000px;
-}
-.neon-text {
-  font-size: 3.5rem;
-  font-weight: 800;
-  margin: 20px 0;
-  font-family: 'Space Grotesk', sans-serif;
-  background: linear-gradient(90deg, #8b5cf6, #06b6d4, #8b5cf6);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shine 4s ease infinite;
-  line-height: 1.3;
-}
-.lead {
-  font-size: 1.3rem;
-  margin: 20px 0;
-  color: #cbd5e1;
-}
-.sub {
-  font-size: 1.1rem;
-  opacity: 0.9;
-  margin-bottom: 30px;
-  color: #94a3b8;
-}
-.cta {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-/* Кнопки */
-.btn {
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-}
-.btn.primary {
-  background: #8b5cf6;
-  color: white;
-}
-.btn.secondary {
-  background: transparent;
-  color: #e2e8f0;
-  border: 2px solid #8b5cf6;
-}
-.btn.large {
-  padding: 16px 32px;
-  font-size: 1.1rem;
-}
-.glow {
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
-}
-
-/* Секции */
-.section {
-  padding: 80px 20px;
-}
-.section.dark {
-  background: #1e293b;
-  color: #e2e8f0;
-}
-.section h2 {
-  text-align: center;
-  font-size: 2.2rem;
-  color: #e2e8f0;
-  margin-bottom: 30px;
-  font-family: 'Space Grotesk', sans-serif;
-}
-.text-center {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto 30px;
-  color: #94a3b8;
-}
-
-/* Портфолио слайдер */
-.portfolio-slider {
-  max-width: 950px;
-  margin: 0 auto;
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-  height: 500px;
-  display: flex;
-  align-items: center;
-}
-.slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  background: #1e293b;
-  border: 1px solid #334155;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-.slide.active {
-  opacity: 1;
-}
-.slide img {
-  width: 100%;
-  height: 320px;
-  object-fit: contain;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-.slide img:hover {
-  transform: scale(1.05);
-}
-.slide img::after {
-  content: "Посмотреть галерею";
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(139, 92, 246, 0.9);
-  color: white;
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 6px 12px;
-  border-radius: 6px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.slide img:hover::after {
-  opacity: 1;
-}
-.slide h4 {
-  margin: 15px 0 5px;
-  color: #e2e8f0;
-  font-size: 1.1rem;
-}
-.slide p {
-  color: #8b5cf6;
-  font-size: 0.9rem;
-  margin: 0;
-}
-
-/* Управление слайдером */
-.slider-controls {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  margin-top: 20px;
-}
-.nav-btn {
-  background: #8b5cf6;
-  color: white;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 50%;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-.nav-btn:hover {
-  transform: scale(1.1);
-}
-.dots {
-  display: flex;
-  gap: 8px;
-}
-.dot {
-  width: 10px;
-  height: 10px;
-  background: #475569;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-.dot:hover {
-  background: #8b5cf6;
-}
-.dot.active {
-  background: #8b5cf6;
-}
-
-/* Модальные окна */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.8);
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.modal.show {
-  opacity: 1;
-}
-.modal-content {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-  transform: scale(0.9);
-  transition: transform 0.3s ease;
-}
-.modal.show .modal-content {
-  transform: scale(1);
-}
-
-/* Калькулятор модал */
-.calc-modal {
-  max-width: 900px;
-  max-height: 90vh;
-  overflow: hidden;
-  background: #0f172a;
-  color: #e2e8f0;
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-}
-
-.modal-header {
-  padding: 20px;
-  background: #1e293b;
-  border-bottom: 1px solid #334155;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.modal-header h3 {
-  color: #e2e8f0;
-  margin: 0;
-}
-.close-btn {
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  color: #94a3b8;
-  cursor: pointer;
-}
-.close-btn:hover {
-  color: #e2e8f0;
-}
-
-.calc-wrapper {
-  padding: 40px;
-  flex: 1;
-  overflow-y: auto;
-  max-height: 60vh;
-}
-
-/* Прогресс-бар */
-.progress-bar {
-  width: 100%;
-  height: 6px;
-  background: #334155;
-  border-radius: 3px;
-  margin-bottom: 30px;
-  overflow: hidden;
-}
-.progress-fill {
-  height: 100%;
-  background: #8b5cf6;
-  transition: width 0.4s ease;
-}
-
-/* Галерея проектов */
-.gallery-modal {
-  max-width: 900px;
-  max-height: 90vh;
-  width: 90%;
-  border-radius: 16px;
-  overflow: hidden;
-  position: relative;
-}
-.gallery-modal .close-btn {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  background: none;
-  border: none;
-  font-size: 2rem;
-  color: #e2e8f0;
-  cursor: pointer;
-  z-index: 10;
-  opacity: 0.8;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,0.3);
-  border-radius: 50%;
-  transition: all 0.3s ease;
-}
-.gallery-modal .close-btn:hover {
-  opacity: 1;
-  transform: scale(1.1);
-  background: rgba(0,0,0,0.5);
-}
-
-.gallery-header {
-  padding: 25px;
-  background: #1e293b;
-  border-bottom: 1px solid #334155;
-  text-align: center;
-}
-.gallery-header h3 {
-  color: #e2e8f0;
-  margin-bottom: 8px;
-  font-size: 1.4rem;
-}
-.gallery-header p {
-  color: #94a3b8;
-  margin: 5px 0;
-}
-.gallery-grid {
-  padding: 30px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 25px;
-  overflow-y: auto;
-  max-height: calc(90vh - 200px);
-}
-.gallery-grid img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease;
-}
-.gallery-grid img:hover {
-  transform: scale(1.03);
-}
-
-/* Услуги */
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 40px;
-}
-.card {
-  background: #1e293b;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-  text-align: center;
-  border: 1px solid #334155;
-}
-.card h3 {
-  color: #e2e8f0;
-  margin-bottom: 15px;
-}
-.card p {
-  color: #94a3b8;
-}
-
-/* Отзывы */
-.reviews {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  margin-top: 30px;
-}
-.review-card {
-  background: #1e293b;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-  border: 1px solid #334155;
-  text-align: center;
-  transition: transform 0.3s;
-}
-.review-card:hover {
-  transform: translateY(-5px);
-}
-.review-card h4 {
-  color: #e2e8f0;
-  margin-bottom: 5px;
-}
-.position {
-  color: #8b5cf6;
-  font-size: 0.9rem;
-  margin-bottom: 15px;
-  font-weight: 500;
-}
-.text {
-  color: #cbd5e1;
-  font-style: italic;
-  line-height: 1.6;
-}
-
-/* Контактная форма */
-.contact-form {
-  max-width: 600px;
-  margin: 0 auto;
-  background: #1e293b;
-  padding: 30px;
-  border-radius: 12px;
-  border: 1px solid #334155;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-}
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 12px;
-  margin: 15px 0;
-  border: 1px solid #334155;
-  border-radius: 8px;
-  background: #0f172a;
-  color: #e2e8f0;
-  font-size: 1rem;
-}
-.contact-form textarea {
-  resize: vertical;
-}
-
-/* Калькулятор */
-.calc-title {
-  text-align: center;
-  font-size: 2.5rem;
-  color: #e2e8f0;
-  margin-bottom: 30px;
-  font-family: 'Space Grotesk', sans-serif;
-}
-.step {
-  display: none;
-  margin-bottom: 40px;
-}
-.step.active {
-  display: block;
-}
-.step h3 {
-  color: #e2e8f0;
-  margin-bottom: 20px;
-  font-size: 1.8rem;
-}
-.options {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin-bottom: 30px;
-}
-.option {
-  cursor: pointer;
-}
-.option input {
-  display: none;
-}
-.card {
-  border: 2px solid #334155;
-  border-radius: 14px;
-  padding: 25px;
-  text-align: center;
-  transition: all 0.3s ease;
-  background: #1e293b;
-  color: #e2e8f0;
-}
-.option input:checked + .card {
-  border-color: #8b5cf6;
-  background: rgba(139, 92, 246, 0.1);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.2);
-}
-.card h4 {
-  color: #e2e8f0;
-  margin-bottom: 10px;
-  font-size: 1.3rem;
-}
-.card p {
-  color: #94a3b8;
-  margin-bottom: 15px;
-  font-size: 0.9rem;
-}
-.price {
-  font-weight: 700;
-  color: #8b5cf6;
-}
-.checkbox-group {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin: 20px 0 30px;
-}
-.checkbox-group label {
-  color: #e2e8f0;
-  cursor: pointer;
-  font-size: 1.1rem;
-}
-.result {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #06b6d4;
-  margin: 30px 0;
-  text-align: center;
-  padding: 15px;
-  background: rgba(6, 182, 212, 0.1);
-  border-radius: 8px;
-  border: 1px solid rgba(6, 182, 212, 0.2);
-}
-
-/* Футер */
-.footer {
-  background: #0f172a;
-  color: #94a3b8;
-  text-align: center;
-  padding: 40px 20px;
-  border-top: 1px solid #334155;
-}
-.footer a {
-  color: #8b5cf6;
-  text-decoration: none;
-}
-.footer a:hover {
-  text-decoration: underline;
-}
-
-/* Чат-виджет */
-.chat-widget {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: #8b5cf6;
-  color: white;
-  padding: 12px 16px;
-  border-radius: 50px;
-  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  z-index: 100;
-  animation: pulse 2s infinite;
-  font-weight: 500;
-}
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-/* Адаптив */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: flex;
-  }
-  .nav {
-    display: none;
-  }
-  .hero, .section {
-    padding: 60px 20px;
-  }
-  .btn {
-    width: 100%;
-    margin: 10px 0;
-  }
-  .neon-text {
-    font-size: 2.5rem;
-  }
-  .options {
-    grid-template-columns: 1fr;
-  }
-  .portfolio-slider {
-    max-width: 100%;
-    height: 360px;
-  }
-  .slide img {
-    height: 280px;
-    object-fit: contain;
-  }
-  .calc-wrapper {
-    padding: 20px;
-  }
-  .result {
-    font-size: 1.5rem;
-  }
-  .modal-content {
-    width: 90%;
-    margin: 20px;
-  }
-  .calc-modal {
-    max-width: 95%;
-  }
-  .gallery-modal {
-    max-width: 95%;
-    max-height: 95vh;
-  }
-  .gallery-grid {
-    max-height: 60vh;
-  }
-  .gallery-modal .close-btn {
-    top: 10px;
-    right: 15px;
-    font-size: 1.6rem;
-    width: 36px;
-    height: 36px;
+// Показать шаг
+function showStep(n) {
+  document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
+  const step = document.getElementById(`step${n}`);
+  if (step) {
+    step.classList.add('active');
+    updateProgress();
   }
 }
+
+// Обновление прогресс-бара
+function updateProgress() {
+  const step = Array.from(document.querySelectorAll('.step')).findIndex(s => s.classList.contains('active')) + 1;
+  const progress = (step / 4) * 100;
+  document.getElementById('progressFill').style.width = `${progress}%`;
+}
+
+// Проверка выбора и переход
+function validateAndNext(currentStep, nextStepNum) {
+  let valid = true;
+  if (currentStep === 1 && !document.querySelector('input[name="siteType"]:checked')) valid = false;
+  else if (currentStep === 2 && !document.querySelector('input[name="design"]:checked')) valid = false;
+  else if (currentStep === 3 && !document.querySelector('input[name="seo"]:checked')) valid = false;
+  else if (currentStep === 4 && !document.querySelector('input[name="support"]:checked')) valid = false;
+
+  if (!valid) {
+    alert("Пожалуйста, выберите вариант.");
+    return;
+  }
+  showStep(nextStepNum);
+  updateTotal();
+}
+
+// Назад
+function goBack() {
+  for (let i = 2; i <= 4; i++) {
+    const step = document.getElementById(`step${i}`);
+    if (step && step.classList.contains('active')) {
+      showStep(i - 1);
+      return;
+    }
+  }
+  showStep(1);
+}
+
+// Обновление итога
+function updateTotal() {
+  let total = 0;
+  const siteType = document.querySelector('input[name="siteType"]:checked');
+  if (siteType) total += parseFloat(siteType.value) || 0;
+  const design = document.querySelector('input[name="design"]:checked');
+  if (design) total += parseFloat(design.value) || 0;
+  const seo = document.querySelector('input[name="seo"]:checked');
+  if (seo) total += parseFloat(seo.value) || 0;
+  const support = document.querySelector('input[name="support"]:checked');
+  if (support) total += parseFloat(support.value) || 0;
+
+  const resultEl = document.getElementById('result');
+  if (resultEl) {
+    resultEl.innerHTML = `
+      <strong>Примерная стоимость: ${total.toLocaleString()}&nbsp;₽</strong>
+      <br>
+      <small style="color: #94a3b8;">Точная цена будет после анализа вашего бизнеса</small>
+    `;
+  }
+}
+
+// Открытие калькулятора
+function openCalculator() {
+  const modal = document.getElementById('calculatorModal');
+  modal.style.display = 'flex';
+  setTimeout(() => modal.classList.add('show'), 50);
+  showStep(1);
+  updateTotal();
+}
+
+// Закрытие калькулятора
+function closeCalculator() {
+  const modal = document.getElementById('calculatorModal');
+  modal.classList.remove('show');
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 300);
+}
+
+// Отправка заявки
+function requestQuote() {
+  const siteTypeLabel = document.querySelector('input[name="siteType"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
+  const designLabel = document.querySelector('input[name="design"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
+  const seoLabel = document.querySelector('input[name="seo"]:checked')?.value > 0 ? 'Да' : 'Нет';
+  const supportLabel = document.querySelector('input[name="support"]:checked')?.nextElementSibling?.querySelector('h4')?.innerText || '—';
+  const totalEl = document.getElementById('result').querySelector('strong');
+  const total = totalEl ? totalEl.innerText.match(/\d+/)?.[0] : '0';
+
+  let message = `🚀 *ЗАЯВКА НА СМЕТУ*\n\n`;
+  message += `🔹 Тип сайта: ${siteTypeLabel}\n`;
+  message += `🔹 Дизайн: ${designLabel}\n`;
+  message += `🔹 SEO: ${seoLabel}\n`;
+  message += `🔹 Поддержка: ${supportLabel}\n\n`;
+  message += `💰 Итого: ${total} ₽\n\n`;
+  message += `—\nГотов обсудить детали!`;
+
+  const encoded = encodeURIComponent(message);
+  const url = `https://t.me/overgrand?text=${encoded}`;
+  window.open(url, '_blank');
+}
+
+// Галерея — все URL очищены
+const galleryData = {
+  auto: {
+    title: "Аренда автомобилей",
+    desc: "Сайт для аренды автомобилей с онлайн-бронированием.",
+    result: "+30% заявок за 2 месяца",
+    images: [
+      "https://i.postimg.cc/pdkWMT84/Black1.jpg",
+      "https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg",
+      "https://i.postimg.cc/PrmQ0R29/Black3.jpg",
+      "https://i.postimg.cc/0yndyJgC/Black4.jpg",
+      "https://i.postimg.cc/HnbbDr4X/Black-5.jpg"
+    ]
+  },
+  dentist: {
+    title: "Стоматология",
+    desc: "Сайт-визитка с записью на приём и отзывами.",
+    result: "ТОП-5 в Яндекс по ключевым запросам",
+    images: [
+      "https://i.postimg.cc/GmFkPfSL/1.jpg",
+      "https://i.postimg.cc/5tgJdxjX/2.jpg",
+      "https://i.postimg.cc/D0J3XL6G/3.jpg",
+      "https://i.postimg.cc/8k9SVXkm/4.jpg",
+      "https://i.postimg.cc/zf0s20PW/6.jpg",
+      "https://i.postimg.cc/g2dcft4B/7.jpg",
+      "https://i.postimg.cc/vm2QxYyp/8.jpg",
+      "https://i.postimg.cc/DfX2m3MM/9.jpg"
+    ]
+  },
+  tea: {
+    title: "Онлайн магазин чая и кофе",
+    desc: "Интернет-магазин с каталогом и корзиной.",
+    result: "Окупился за 1.5 недели",
+    images: [
+      "https://i.postimg.cc/xC4HTVqR/1.jpg",
+      "https://i.postimg.cc/GmSbdtS8/2.jpg",
+      "https://i.postimg.cc/tCTfyk0k/3.jpg",
+      "https://i.postimg.cc/MpfFfGpj/4.jpg",
+      "https://i.postimg.cc/d08NnSds/5.jpg",
+      "https://i.postimg.cc/nz2Rfj0N/6.jpg",
+      "https://i.postimg.cc/zf10LSQ9/7.jpg"
+    ]
+  },
+  bike: {
+    title: "Магазин велосипедов",
+    desc: "Сайт с каталогом, фильтрами и оплатой.",
+    result: "+30% трафика и 20+ заказов в месяц",
+    images: [
+      "https://i.postimg.cc/J7S6P9KZ/image.jpg",
+      "https://i.postimg.cc/MG02XYWL/2.jpg",
+      "https://i.postimg.cc/zfr4mRnF/3.jpg",
+      "https://i.postimg.cc/dQxXsf21/4.jpg",
+      "https://i.postimg.cc/rFRHK9j9/5.jpg",
+      "https://i.postimg.cc/wjKGJsbY/6.jpg",
+      "https://i.postimg.cc/DwqYcytJ/7.jpg"
+    ]
+  },
+  fitness: {
+    title: "Фитнес-тренер",
+    desc: "Сайт для персонального тренера",
+    result: "12+ новых клиентов за месяц",
+    images: [
+      "https://i.postimg.cc/Z5xwY0mx/1.jpg",
+      "https://i.postimg.cc/907v5PN1/2.jpg",
+      "https://i.postimg.cc/vH5p0znZ/3.jpg",
+      "https://i.postimg.cc/bwT4hw3X/image.jpg",
+      "https://i.postimg.cc/26PKwb8W/5.jpg"
+    ]
+  },
+  travel: {
+    title: "Турагентство",
+    desc: "Сайт для бронирования туров с фильтрами и онлайн-оплатой.",
+    result: "Удобное бронирование туров онлайн",
+    images: [
+      "https://i.postimg.cc/8kvBPsBf/1.jpg",
+      "https://i.postimg.cc/zG02QPG8/2.jpg",
+      "https://i.postimg.cc/xdB5DrDD/3.jpg",
+      "https://i.postimg.cc/9FcpjtSM/4.jpg",
+      "https://i.postimg.cc/bwBHkXvD/5.jpg",
+      "https://i.postimg.cc/MGf0Yscs/6.jpg"
+    ]
+  }
+};
+
+// Открытие галереи
+function openGallery(projectId) {
+  const data = galleryData[projectId];
+  if (!data) {
+    console.error("Проект не найден:", projectId);
+    return;
+  }
+
+  document.getElementById('projectTitle').innerText = data.title;
+  document.getElementById('projectDesc').innerText = data.desc;
+  document.getElementById('projectResult').innerText = data.result;
+
+  const galleryGrid = document.getElementById('galleryGrid');
+  galleryGrid.innerHTML = '';
+
+  data.images.forEach(imgUrl => {
+    const img = document.createElement('img');
+    img.src = imgUrl.trim();
+    img.alt = data.title;
+    img.onerror = () => {
+      img.src = "https://via.placeholder.com/800x500/333/fff?text=Ошибка+загрузки";
+    };
+    galleryGrid.appendChild(img);
+  });
+
+  const modal = document.getElementById('galleryModal');
+  modal.style.display = 'flex';
+  setTimeout(() => modal.classList.add('show'), 50);
+}
+
+// Закрытие галереи
+function closeGallery() {
+  const modal = document.getElementById('galleryModal');
+  modal.classList.remove('show');
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 300);
+}
+
+// Наведение
+let hoverTimeout;
+function openGalleryOnHover(projectId) {
+  hoverTimeout = setTimeout(() => {
+    openGallery(projectId);
+  }, 800);
+}
+function closeGalleryOnHover() {
+  clearTimeout(hoverTimeout);
+}
+
+// Закрытие по Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeGallery();
+});
+
+// Закрытие по клику вне
+document.getElementById('galleryModal').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) closeGallery();
+});
+
+// Мобильное меню
+function toggleMenu() {
+  document.getElementById("mainNav").classList.toggle("active");
+}
+
+// Форма
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim();
+
+  if (!name || !phone || !email) {
+    alert('Заполните все обязательные поля.');
+    return;
+  }
+
+  const message = document.getElementById('message').value.trim();
+  let text = `📩 *НОВАЯ ЗАЯВКА*\n\n`;
+  text += `👤 Имя: ${name}\n`;
+  text += `📞 Телефон: ${phone}\n`;
+  text += `✉️ Email: ${email}\n`;
+  if (message) text += `💬 Сообщение: ${message}\n`;
+  text += `\n—\nГотов к диалогу!`;
+
+  const encoded = encodeURIComponent(text);
+  window.open(`https://t.me/overgrand?text=${encoded}`, '_blank');
+  alert('✅ Заявка отправлена!');
+  this.reset();
+});
+
+// Слайдер портфолио
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const dots = document.querySelectorAll('.dot');
+const nextBtn = document.getElementById('nextSlide');
+const prevBtn = document.getElementById('prevSlide');
+
+function showSlide(n) {
+  if (n >= slides.length) currentSlide = 0;
+  if (n < 0) currentSlide = slides.length - 1;
+  slides.forEach(s => s.classList.remove('active'));
+  dots.forEach(d => d.classList.remove('active'));
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() { currentSlide++; showSlide(currentSlide); }
+function prevSlide() { currentSlide--; showSlide(currentSlide); }
+function goToSlide(n) { currentSlide = n; showSlide(currentSlide); }
+
+let slideInterval = setInterval(nextSlide, 5000);
+
+document.querySelector('.portfolio-slider').addEventListener('mouseenter', () => clearInterval(slideInterval));
+document.querySelector('.portfolio-slider').addEventListener('mouseleave', () => {
+  slideInterval = setInterval(nextSlide, 5000);
+});
+
+if (nextBtn) nextBtn.addEventListener('click', () => { clearInterval(slideInterval); nextSlide(); });
+if (prevBtn) prevBtn.addEventListener('click', () => { clearInterval(slideInterval); prevSlide(); });
+dots.forEach((dot, i) => {
+  dot.addEventListener('click', () => { clearInterval(slideInterval); goToSlide(i); });
+});
+
+// Инициализация
+document.addEventListener("DOMContentLoaded", () => {
+  if (slides.length > 0) showSlide(0);
+});
