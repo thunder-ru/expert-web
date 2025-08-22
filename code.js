@@ -1,106 +1,142 @@
-// Мобильное меню
-const mobileMenu = document.getElementById('mobile-menu');
-const navMenu = document.querySelector('.nav-menu');
+// Ждём загрузки DOM
+document.addEventListener('DOMContentLoaded', function () {
+  // Мобильное меню
+  const mobileMenu = document.getElementById('mobile-menu');
+  const navMenu = document.querySelector('.nav-menu');
 
-mobileMenu.addEventListener('click', function () {
-  mobileMenu.classList.toggle('active');
-  navMenu.classList.toggle('active');
-});
-
-// Данные проектов — теперь с несколькими фото
-const projectData = {
-  travel: {
-    images: [
-      "https://i.postimg.cc/8kvBPsBf/1.jpg",
-      "https://i.postimg.cc/zG02QPG8/2.jpg",
-      "https://i.postimg.cc/xdB5DrDD/3.jpg",
-      "https://i.postimg.cc/9FcpjtSM/4.jpg",
-      "https://i.postimg.cc/bwBHkXvD/5.jpg",
-      "https://i.postimg.cc/MGf0Yscs/6.jpg"
-    ],
-    caption: "Тур-агентство «Горизонт» — сайт с анимированными фонами и бронированием туров"
-  },
-  dentist: {
-    images: [
-      "https://i.postimg.cc/GmFkPfSL/1.jpg",
-      "https://i.postimg.cc/5tgJdxjX/2.jpg",
-      "https://i.postimg.cc/D0J3XL6G/3.jpg",
-      "https://i.postimg.cc/8k9SVXkm/4.jpg",
-      "https://i.postimg.cc/zf0s20PW/6.jpg",
-      "https://i.postimg.cc/g2dcft4B/7.jpg",
-      "https://i.postimg.cc/vm2QxYyp/8.jpg",
-      "https://i.postimg.cc/DfX2m3MM/9.jpg"
-    ],
-    caption: "Стоматология «Улыбка+» — современный сайт с 3D-эффектами и онлайн-записью"
-  },
-  trainer: {
-    images: [
-      "https://i.postimg.cc/Z5xwY0mx/1.jpg",
-      "https://i.postimg.cc/907v5PN1/2.jpg",
-      "https://i.postimg.cc/vH5p0znZ/3.jpg",
-      "https://i.postimg.cc/bwT4hw3X/image.jpg",
-      "https://i.postimg.cc/26PKwb8W/5.jpg"
-    ],
-    caption: "Фитнес-тренер Анна — сайт с видео и программами тренировок"
+  if (mobileMenu && navMenu) {
+    mobileMenu.addEventListener('click', function () {
+      mobileMenu.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
   }
-};
 
-// Глобальные переменные для слайдера
-let currentProject = null;
-let currentIndex = 0;
+  // Данные проектов
+  const projectData = {
+    travel: {
+      images: [
+        "https://images.unsplash.com/photo-1525766034134-8e8f6c8a7d8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+        "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
+      ],
+      caption: "Тур-агентство «Горизонт» — сайт с анимированными фонами и бронированием туров"
+    },
+    dentist: {
+      images: [
+        "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+        "https://images.unsplash.com/photo-1598256010104-42b36f197d69?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+        "https://images.unsplash.com/photo-1606811972-d08b035b7c61?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
+      ],
+      caption: "Стоматология «Улыбка+» — современный сайт с 3D-эффектами и онлайн-записью"
+    },
+    trainer: {
+      images: [
+        "https://images.unsplash.com/photo-1540497077202-7c8a9b9a0b1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
+        "https://images.unsplash.com/photo-1518310391440-153773659315?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
+      ],
+      caption: "Фитнес-тренер Анна — сайт с видео и программами тренировок"
+    }
+  };
 
-// Открытие модального окна
-function openModal(key) {
-  currentProject = projectData[key];
-  if (currentProject) {
+  // Элементы модального окна
+  const modal = document.getElementById("imageModal");
+  const galleryInner = document.getElementById("galleryInner");
+  const modalCaption = document.getElementById("modalCaption");
+  let currentProjectKey = null;
+  let currentIndex = 0;
+
+  if (!modal || !galleryInner || !modalCaption) {
+    console.error("Модальные элементы не найдены");
+    return;
+  }
+
+  // Открытие модального окна
+  window.openModal = function (key) {
+    currentProjectKey = key;
+    const project = projectData[key];
+    if (!project) {
+      console.error("Проект не найден:", key);
+      return;
+    }
+
+    // Очищаем и заполняем галерею
+    galleryInner.innerHTML = '';
+    project.images.forEach(imgSrc => {
+      const img = document.createElement('img');
+      img.src = imgSrc;
+      img.alt = "Фото проекта";
+      galleryInner.appendChild(img);
+    });
+
     currentIndex = 0;
-    updateModal();
-    document.getElementById("imageModal").style.display = "flex";
+    modalCaption.textContent = `${project.caption} (1/${project.images.length})`;
+    modal.style.display = "flex";
+
+    // Анимация появления
     setTimeout(() => {
-      document.querySelector('.modal-content').style.opacity = "1";
+      modal.querySelector('.modal-content').style.opacity = "1";
     }, 10);
+
+    // Прокручиваем к первому фото
+    scrollToCurrent();
+  };
+
+  // Прокрутка к текущему изображению
+  function scrollToCurrent() {
+    const images = galleryInner.querySelectorAll('img');
+    if (images[currentIndex]) {
+      images[currentIndex].scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
   }
-}
 
-// Обновление изображения и подписи
-function updateModal() {
-  const img = document.getElementById("modalImage");
-  img.src = currentProject.images[currentIndex];
-  document.getElementById("modalCaption").textContent = 
-    `${currentProject.caption} (${currentIndex + 1}/${currentProject.images.length})`;
-}
-
-// Следующее изображение
-function nextImage() {
-  if (currentProject && currentIndex < currentProject.images.length - 1) {
+  // Следующее изображение
+  window.nextImage = function () {
+    const project = projectData[currentProjectKey];
+    if (!project || currentIndex >= project.images.length - 1) return;
     currentIndex++;
-    updateModal();
-  }
-}
+    updateCaption();
+    scrollToCurrent();
+  };
 
-// Предыдущее изображение
-function prevImage() {
-  if (currentProject && currentIndex > 0) {
+  // Предыдущее изображение
+  window.prevImage = function () {
+    if (currentIndex <= 0) return;
     currentIndex--;
-    updateModal();
+    updateCaption();
+    scrollToCurrent();
+  };
+
+  // Обновление подписи
+  function updateCaption() {
+    const project = projectData[currentProjectKey];
+    modalCaption.textContent = `${project.caption} (${currentIndex + 1}/${project.images.length})`;
   }
-}
 
-// Закрытие модального окна
-function closeModal() {
-  document.querySelector('.modal-content').style.opacity = "0";
-  setTimeout(() => {
-    document.getElementById("imageModal").style.display = "none";
-  }, 300);
-}
+  // Закрытие модального окна
+  window.closeModal = function () {
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent) {
+      modalContent.style.opacity = "0";
+    }
+    setTimeout(() => {
+      modal.style.display = "none";
+    }, 300);
+  };
 
-// Закрытие по клику вне и Esc
-document.getElementById("imageModal").addEventListener("click", (e) => {
-  if (e.target === document.getElementById("imageModal")) closeModal();
-});
+  // Закрытие по клику вне
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeModal();
-  if (e.key === "ArrowRight" && currentProject) nextImage();
-  if (e.key === "ArrowLeft" && currentProject) prevImage();
+  // Управление стрелками
+  document.addEventListener("keydown", (e) => {
+    if (currentProjectKey) {
+      if (e.key === "ArrowDown") nextImage();
+      if (e.key === "ArrowUp") prevImage();
+    }
+    if (e.key === "Escape") closeModal();
+  });
 });
