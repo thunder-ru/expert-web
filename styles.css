@@ -229,7 +229,6 @@ body {
 }
 .slide.active {
   opacity: 1;
-  position: relative;
 }
 .slide img {
   width: 100%;
@@ -237,7 +236,7 @@ body {
   object-fit: contain;
   border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 .slide img:hover {
@@ -257,8 +256,6 @@ body {
   border-radius: 6px;
   opacity: 0;
   transition: opacity 0.3s ease;
-  white-space: nowrap;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 .slide img:hover::after {
   opacity: 1;
@@ -372,12 +369,6 @@ body {
   font-size: 1.8rem;
   color: #94a3b8;
   cursor: pointer;
-  padding: 0;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .close-btn:hover {
   color: #e2e8f0;
@@ -469,15 +460,10 @@ body {
   height: auto;
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
 }
 .gallery-grid img:hover {
   transform: scale(1.03);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-}
-.gallery-footer {
-  padding: 20px;
-  text-align: center;
 }
 
 /* Услуги */
