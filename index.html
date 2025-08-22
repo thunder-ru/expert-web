@@ -1,127 +1,236 @@
-/* === МОДАЛЬНОЕ ОКНО ГАЛЕРЕИ (вертикальное) === */
-#galleryModal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.95);
-  z-index: 10000;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  backdrop-filter: blur(10px);
-}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>web-thunder.ru — Сайт, который работает на вас</title>
+  <meta name="description" content="Веб-архитектор бизнеса. Создаю сайты, которые приносят прибыль с первого дня.">
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/8a5f7b6a2e.js" crossorigin="anonymous"></script>
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+<body>
 
-#galleryModal .modal-content {
-  width: 90%;
-  height: 85vh;
-  max-width: 900px;
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-  background: #0a0e2a;
-  display: flex;
-  flex-direction: column;
-}
+  <!-- Фон с молниями -->
+  <canvas id="particles"></canvas>
 
-#galleryModal .close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  color: white;
-  font-size: 30px;
-  cursor: pointer;
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.6);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s;
-  z-index: 100;
-}
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="logo">⚡ web-thunder</div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#home">Главная</a></li>
+          <li><a href="#portfolio">Портфолио</a></li>
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#contact">Контакты</a></li>
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </div>
+  </header>
 
-#galleryModal .close:hover {
-  background: #00eeff;
-  color: #000;
-}
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="container">
+      <h1 class="fade-in">Сайт, который работает на вас<br><span class="highlight">с первого дня</span></h1>
+      <p class="subtitle fade-in-delay">Я — <strong>веб-архитектор бизнеса</strong>. Собираю сайты как конструктор: быстро, надёжно, с фокусом на прибыль, а не на красивый код.</p>
+      <a href="#portfolio" class="btn pulse">Посмотреть портфолио</a>
+    </div>
+  </section>
 
-#galleryModal .gallery-slider {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
+  <!-- О себе -->
+  <section class="section about">
+    <div class="container">
+      <h2 class="section-title fade-in">Я не пишу код.<br>Я создаю прибыль</h2>
+      <div class="about-text text-center slide-left">
+        <p>За последние 2 года я реализовал <strong>15+ проектов</strong> — от лендингов до интернет-магазинов.</p>
+        <p>Мой подход: <strong>максимум пользы, минимум шума</strong>.</p>
+        <p>Я не гонюсь за сложностью. Я создаю сайты, которые:</p>
+        <ul class="advantages">
+          <li>⚡ Приносят заявки с первого дня</li>
+          <li>🔧 Загружаются за секунду</li>
+          <li>📱 Работают на любом устройстве</li>
+          <li>📈 Повышают конверсию</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-#galleryModal .swiper.gallery-swiper {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
+  <!-- Услуги -->
+  <section id="services" class="section services">
+    <div class="container">
+      <h2 class="section-title">Услуги</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Сайт под ключ</h3>
+          <p>От дизайна до запуска. Готовый сайт за 5–7 дней.</p>
+        </div>
+        <div class="service-card">
+          <h3>Верстка макетов</h3>
+          <p>Pixel perfect, адаптив, кроссбраузерность.</p>
+        </div>
+        <div class="service-card">
+          <h3>Поддержка сайтов</h3>
+          <p>Обновления, баги, доработки — я всегда на связи.</p>
+        </div>
+        <div class="service-card">
+          <h3>Оптимизация и SEO</h3>
+          <p>Ускорение, индексация, повышение позиций.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-#galleryModal .swiper-slide {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  <!-- Портфолио -->
+  <section id="portfolio" class="section portfolio">
+    <div class="container">
+      <h2 class="section-title">Портфолио</h2>
+      <p class="text-center">Проекты, которые <strong>запускали бизнес</strong></p>
 
-#galleryModal .swiper-slide img {
-  max-width: 100%;
-  max-height: 90vh;
-  object-fit: contain;
-  border-radius: 8px;
-}
+      <div class="swiper portfolio-swiper">
+        <div class="swiper-wrapper">
+          <!-- Тур-агентство -->
+          <div class="swiper-slide">
+            <a href="#" class="portfolio-link" data-project="wanderlux">
+              <img src="https://i.postimg.cc/8kvBPsBf/1.jpg" alt="WanderLux">
+              <div class="overlay">
+                <h3>WanderLux</h3>
+                <p>Тур-агентство премиум-класса</p>
+                <span class="tag">Landing</span>
+              </div>
+            </a>
+          </div>
 
-/* Кнопки вверх/вниз */
-#galleryModal .swiper-button-next,
-#galleryModal .swiper-button-prev {
-  color: #00eeff;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid #3a4a8a;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s;
-  position: absolute;
-  z-index: 10;
-  font-size: 24px;
-  top: 50%;
-  transform: translateY(-50%);
-  right: -60px;
-}
+          <!-- Аренда авто -->
+          <div class="swiper-slide">
+            <a href="#" class="portfolio-link" data-project="drivehive">
+              <img src="https://i.postimg.cc/pdkWMT84/Black1.jpg" alt="DriveHive">
+              <div class="overlay">
+                <h3>DriveHive</h3>
+                <p>Аренда автомобилей в Москве</p>
+                <span class="tag">Сайт-каталог</span>
+              </div>
+            </a>
+          </div>
 
-#galleryModal .swiper-button-prev {
-  left: -60px;
-  right: auto;
-}
+          <!-- Стоматология -->
+          <div class="swiper-slide">
+            <a href="#" class="portfolio-link" data-project="dentacare">
+              <img src="https://i.postimg.cc/GmFkPfSL/1.jpg" alt="DentaCare">
+              <div class="overlay">
+                <h3>DentaCare</h3>
+                <p>Стоматологическая клиника</p>
+                <span class="tag">Корпоративный</span>
+              </div>
+            </a>
+          </div>
 
-#galleryModal .swiper-button-next:hover,
-#galleryModal .swiper-button-prev:hover {
-  background: #00eeff;
-  color: #000;
-}
+          <!-- Вело-продажи -->
+          <div class="swiper-slide">
+            <a href="#" class="portfolio-link" data-project="velox">
+              <img src="https://i.postimg.cc/J7S6P9KZ/image.jpg" alt="Velox">
+              <div class="overlay">
+                <h3>Velox</h3>
+                <p>Продажа велосипедов и экипировки</p>
+                <span class="tag">Интернет-магазин</span>
+              </div>
+            </a>
+          </div>
 
-/* На мобильных — кнопки внизу */
-@media (max-width: 768px) {
-  #galleryModal .swiper-button-next,
-  #galleryModal .swiper-button-prev {
-    right: 10px;
-    left: 10px;
-    top: auto;
-    bottom: 20px;
-    transform: none;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-  }
-}
+          <!-- Персональный тренер -->
+          <div class="swiper-slide">
+            <a href="#" class="portfolio-link" data-project="fitmaster">
+              <img src="https://i.postimg.cc/Z5xwY0mx/1.jpg" alt="FitMaster">
+              <div class="overlay">
+                <h3>FitMaster</h3>
+                <p>Персональный тренер и онлайн-курсы</p>
+                <span class="tag">Landing + CRM</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Чай -->
+          <div class="swiper-slide">
+            <a href="#" class="portfolio-link" data-project="teazen">
+              <img src="https://i.postimg.cc/xC4HTVqR/1.jpg" alt="TeaZen">
+              <div class="overlay">
+                <h3>TeaZen</h3>
+                <p>Онлайн-магазин элитного чая</p>
+                <span class="tag">E-commerce</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Навигация -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Отзывы -->
+  <section class="section reviews">
+    <div class="container">
+      <h2 class="section-title">Что говорят клиенты</h2>
+      <div class="reviews-grid">
+        <div class="review">
+          <p>"Запустили сайт за 5 дней. Уже через неделю — 120 заявок. web-thunder — это не просто разработка, это рост бизнеса."</p>
+        </div>
+        <div class="review">
+          <p>"Работал с 3 разработчиками. Только web-thunder сделал всё без косяков и в срок."</p>
+        </div>
+        <div class="review">
+          <p>"Сайт загружается за 0.8 сек. SEO в топе. Конверсия выросла на 70%."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Контакты -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <h2 class="section-title">Готовы к запуску?</h2>
+      <p class="text-center">Напишите — и через 24 часа у вас будет <strong>прототип сайта</strong> или <strong>коммерческое предложение</strong>.</p>
+
+      <form id="contactForm" class="contact-form">
+        <input type="text" id="name" placeholder="Ваше имя" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <textarea id="message" placeholder="Опишите ваш проект..." required></textarea>
+
+        <div class="channel-options">
+          <label class="channel-option active">
+            <input type="radio" name="channel" value="telegram" checked>
+            <span>💬 В Telegram</span>
+          </label>
+          <label class="channel-option">
+            <input type="radio" name="channel" value="email">
+            <span>✉️ На email</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn gradient-btn">Отправить запрос</button>
+        <div id="formStatus" class="status"></div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>⚡ © 2025 web-thunder.ru — работает с первого дня</p>
+    </div>
+  </footer>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="code.js"></script>
+</body>
+</html>
