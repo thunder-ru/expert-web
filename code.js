@@ -1,11 +1,17 @@
+// Мобильное меню
+const mobileMenu = document.getElementById('mobile-menu');
+const navMenu = document.querySelector('.nav-menu');
+
+mobileMenu.addEventListener('click', function () {
+  mobileMenu.classList.toggle('active');
+  navMenu.classList.toggle('active');
+});
+
 // Модальное окно
 const modal = document.getElementById("imageModal");
 const modalImg = document.getElementById("modalImage");
 const modalCaption = document.getElementById("modalCaption");
-const closeBtn = document.querySelector(".close");
-const clickSound = document.getElementById("clickSound");
 
-// Данные проектов
 const projects = {
   travel: {
     img: "https://images.unsplash.com/photo-1525766034134-8e8f6c8a7d8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80",
@@ -21,61 +27,31 @@ const projects = {
   }
 };
 
-// Открытие модального окна
-function openModal(projectKey) {
-  const project = projects[projectKey];
+function openModal(key) {
+  const project = projects[key];
   if (project) {
     modalImg.src = project.img;
     modalCaption.textContent = project.caption;
     modal.style.display = "flex";
-    playClickSound();
     setTimeout(() => {
       modal.querySelector('.modal-content').style.opacity = "1";
     }, 10);
   }
 }
 
-// Закрытие модального окна
 function closeModal() {
-  modal.style.display = "none";
   modal.querySelector('.modal-content').style.opacity = "0";
-  playClickSound();
+  setTimeout(() => {
+    modal.style.display = "none";
+  }, 300);
 }
 
-// Закрытие по клику вне изображения
-modal.addEventListener("click", function(e) {
-  if (e.target === modal) {
-    closeModal();
-  }
+// Закрытие по клику вне
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) closeModal();
 });
 
 // Закрытие по Esc
-document.addEventListener("keydown", function(e) {
-  if (e.key === "Escape") {
-    closeModal();
-  }
-});
-
-// Звук при клике (если хочешь — убери, если не нужен)
-function playClickSound() {
-  clickSound.currentTime = 0;
-  clickSound.play().catch(e => console.log("Звук отключен браузером"));
-}
-
-// Добавляем 3D-эффект наведения на карточки (параллакс)
-document.querySelectorAll('.project-card').forEach(card => {
-  card.addEventListener('mousemove', (e) => {
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateY = (x - centerX) / 10;
-    const rotateX = (centerY - y) / 10;
-    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-12px)`;
-  });
-
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = 'rotateX(0) rotateY(0) translateY(-12px)';
-  });
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeModal();
 });
