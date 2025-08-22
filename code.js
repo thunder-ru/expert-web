@@ -115,7 +115,7 @@ function requestQuote() {
   window.open(url, '_blank');
 }
 
-// Галерея — только по клику, без наведения
+// Галерея — все проекты с правильными ID
 const galleryData = {
   auto: {
     title: "Аренда автомобилей",
@@ -199,11 +199,11 @@ const galleryData = {
   }
 };
 
-// Открытие галереи — ТОЛЬКО ПО КЛИКУ
+// Открытие галереи
 function openGallery(projectId) {
   const data = galleryData[projectId];
   if (!data) {
-    alert("Проект не найден");
+    console.error("Проект не найден:", projectId);
     return;
   }
 
@@ -224,8 +224,9 @@ function openGallery(projectId) {
     galleryGrid.appendChild(img);
   });
 
-  document.getElementById('galleryModal').style.display = 'flex';
-  setTimeout(() => document.getElementById('galleryModal').classList.add('show'), 50);
+  const modal = document.getElementById('galleryModal');
+  modal.style.display = 'flex';
+  setTimeout(() => modal.classList.add('show'), 50);
 }
 
 // Закрытие галереи
@@ -237,8 +238,41 @@ function closeGallery() {
   }, 300);
 }
 
-// Убрали ВСЁ, что связано с hover
-// Больше никаких openGalleryOnHover, closeGalleryOnHover, hoverTimeout
+// Наведение — показывает "Посмотреть галерею"
+let hoverTimeout;
+function openGalleryOnHover(projectId) {
+  const img = event.target;
+  const tooltip = document.createElement('div');
+  tooltip.className = 'gallery-tooltip';
+  tooltip.innerText = 'Посмотреть галерею';
+  tooltip.style.cssText = `
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(139, 92, 246, 0.9);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 6px;
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 10;
+  `;
+  img.style.position = 'relative';
+  img.appendChild(tooltip);
+
+  hoverTimeout = setTimeout(() => {
+    // Можно убрать автозапуск, оставить только подсказку
+  }, 800);
+}
+
+function closeGalleryOnHover() {
+  clearTimeout(hoverTimeout);
+  const tooltip = document.querySelector('.gallery-tooltip');
+  if (tooltip) tooltip.remove();
+}
 
 // Закрытие по Escape
 document.addEventListener('keydown', (e) => {
@@ -301,8 +335,8 @@ function nextSlide() { currentSlide++; showSlide(currentSlide); }
 function prevSlide() { currentSlide--; showSlide(currentSlide); }
 function goToSlide(n) { currentSlide = n; showSlide(currentSlide); }
 
-// УБРАЛИ ВСЁ, СВЯЗАННОЕ С АВТОПРОКРУТКОЙ
-// Никаких setInterval
+// Убрали автопрокрутку
+// let slideInterval = setInterval(nextSlide, 5000);
 
 // Кнопки
 if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); });
