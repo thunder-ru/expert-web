@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Web-Thunder — Сайты, которые продают</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 <body>
   <!-- Хедер -->
@@ -45,57 +45,33 @@
     <div class="container">
       <h2>Портфолио</h2>
       <div class="portfolio-slider">
-        <div class="slide active">
-          <img src="https://i.postimg.cc/pdkWMT84/Black1.jpg" 
-               alt="Аренда автомобилей" 
-               onclick="openGallery('auto')" 
-               onmouseenter="openGalleryOnHover('auto')" 
-               onmouseleave="closeGalleryOnHover()">
+        <div class="slide active" data-id="auto">
+          <img src="https://i.postimg.cc/pdkWMT84/Black1.jpg" alt="Аренда автомобилей">
           <h4>Аренда автомобилей</h4>
           <p>+30% заявок за 2 месяца</p>
         </div>
-        <div class="slide">
-          <img src="https://i.postimg.cc/GmFkPfSL/1.jpg" 
-               alt="Стоматология" 
-               onclick="openGallery('dentist')" 
-               onmouseenter="openGalleryOnHover('dentist')" 
-               onmouseleave="closeGalleryOnHover()">
+        <div class="slide" data-id="dentist">
+          <img src="https://i.postimg.cc/GmFkPfSL/1.jpg" alt="Стоматология">
           <h4>Стоматология</h4>
           <p>ТОП-5 в Яндекс по запросам</p>
         </div>
-        <div class="slide">
-          <img src="https://i.postimg.cc/xC4HTVqR/1.jpg" 
-               alt="Онлайн магазин чая" 
-               onclick="openGallery('tea')" 
-               onmouseenter="openGalleryOnHover('tea')" 
-               onmouseleave="closeGalleryOnHover()">
+        <div class="slide" data-id="tea">
+          <img src="https://i.postimg.cc/xC4HTVqR/1.jpg" alt="Онлайн магазин чая">
           <h4>Онлайн магазин чая</h4>
           <p>Окупился за 1.5 недели</p>
         </div>
-        <div class="slide">
-          <img src="https://i.postimg.cc/J7S6P9KZ/image.jpg" 
-               alt="Магазин велосипедов" 
-               onclick="openGallery('bike')" 
-               onmouseenter="openGalleryOnHover('bike')" 
-               onmouseleave="closeGalleryOnHover()">
+        <div class="slide" data-id="bike">
+          <img src="https://i.postimg.cc/J7S6P9KZ/image.jpg" alt="Магазин велосипедов">
           <h4>Магазин велосипедов</h4>
           <p>+30% трафика и 20+ заказов</p>
         </div>
-        <div class="slide">
-          <img src="https://i.postimg.cc/Z5xwY0mx/1.jpg" 
-               alt="Фитнес-тренер" 
-               onclick="openGallery('fitness')" 
-               onmouseenter="openGalleryOnHover('fitness')" 
-               onmouseleave="closeGalleryOnHover()">
+        <div class="slide" data-id="fitness">
+          <img src="https://i.postimg.cc/Z5xwY0mx/1.jpg" alt="Фитнес-тренер">
           <h4>Фитнес-тренер</h4>
           <p>12 новых клиентов за месяц</p>
         </div>
-        <div class="slide">
-          <img src="https://i.postimg.cc/8kvBPsBf/1.jpg" 
-               alt="Турагентство" 
-               onclick="openGallery('travel')" 
-               onmouseenter="openGalleryOnHover('travel')" 
-               onmouseleave="closeGalleryOnHover()">
+        <div class="slide" data-id="travel">
+          <img src="https://i.postimg.cc/8kvBPsBf/1.jpg" alt="Турагентство">
           <h4>Турагентство</h4>
           <p>Удобное бронирование туров</p>
         </div>
@@ -105,12 +81,12 @@
       <div class="slider-controls">
         <button id="prevSlide" class="nav-btn">‹</button>
         <div class="dots">
-          <span class="dot active" onclick="goToSlide(0)"></span>
-          <span class="dot" onclick="goToSlide(1)"></span>
-          <span class="dot" onclick="goToSlide(2)"></span>
-          <span class="dot" onclick="goToSlide(3)"></span>
-          <span class="dot" onclick="goToSlide(4)"></span>
-          <span class="dot" onclick="goToSlide(5)"></span>
+          <span class="dot active" data-slide="0"></span>
+          <span class="dot" data-slide="1"></span>
+          <span class="dot" data-slide="2"></span>
+          <span class="dot" data-slide="3"></span>
+          <span class="dot" data-slide="4"></span>
+          <span class="dot" data-slide="5"></span>
         </div>
         <button id="nextSlide" class="nav-btn">›</button>
       </div>
@@ -186,7 +162,7 @@
     </div>
   </section>
 
-  <!-- Модальное окно калькулятора -->
+  <!-- Калькулятор -->
   <div id="calculatorModal" class="modal">
     <div class="modal-content calc-modal">
       <div class="modal-header">
@@ -199,13 +175,13 @@
         </div>
 
         <div id="step1" class="step active">
-          <h3>1. Выберите тип сайта</h3>
+          <h3>1. Тип сайта</h3>
           <div class="options">
             <label class="option">
               <input type="radio" name="siteType" value="30000" onchange="updateTotal(); validateAndNext(1,2)">
               <div class="card">
                 <h4>Лендинг</h4>
-                <p>Одностраничный сайт для быстрых продаж</p>
+                <p>Одностраничный сайт</p>
                 <div class="price">от 30 000 ₽</div>
               </div>
             </label>
@@ -213,15 +189,15 @@
               <input type="radio" name="siteType" value="50000" onchange="updateTotal(); validateAndNext(1,2)">
               <div class="card">
                 <h4>Визитка</h4>
-                <p>Сайт-презентация компании</p>
+                <p>Сайт-презентация</p>
                 <div class="price">от 50 000 ₽</div>
               </div>
             </label>
             <label class="option">
               <input type="radio" name="siteType" value="65000" onchange="updateTotal(); validateAndNext(1,2)">
               <div class="card">
-                <h4>Корпоративный сайт</h4>
-                <p>Многостраничный сайт с функционалом</p>
+                <h4>Корпоративный</h4>
+                <p>Многостраничный сайт</p>
                 <div class="price">от 65 000 ₽</div>
               </div>
             </label>
@@ -229,7 +205,7 @@
               <input type="radio" name="siteType" value="80000" onchange="updateTotal(); validateAndNext(1,2)">
               <div class="card">
                 <h4>Интернет-магазин</h4>
-                <p>Полноценный магазин с каталогом и корзиной</p>
+                <p>С каталогом и корзиной</p>
                 <div class="price">от 80 000 ₽</div>
               </div>
             </label>
@@ -238,13 +214,13 @@
         </div>
 
         <div id="step2" class="step">
-          <h3>2. Выберите дизайн</h3>
+          <h3>2. Дизайн</h3>
           <div class="options">
             <label class="option">
               <input type="radio" name="design" value="0" onchange="updateTotal(); validateAndNext(2,3)">
               <div class="card">
                 <h4>Шаблонный</h4>
-                <p>Готовое решение с минимальной адаптацией</p>
+                <p>Готовое решение</p>
                 <div class="price">+0 ₽</div>
               </div>
             </label>
@@ -252,7 +228,7 @@
               <input type="radio" name="design" value="20000" onchange="updateTotal(); validateAndNext(2,3)">
               <div class="card">
                 <h4>Уникальный</h4>
-                <p>Дизайн с нуля под ваш бренд</p>
+                <p>С нуля под бренд</p>
                 <div class="price">+20 000 ₽</div>
               </div>
             </label>
@@ -262,13 +238,13 @@
         </div>
 
         <div id="step3" class="step">
-          <h3>3. SEO-оптимизация</h3>
+          <h3>3. SEO</h3>
           <div class="options">
             <label class="option">
               <input type="radio" name="seo" value="0" onchange="updateTotal()">
               <div class="card">
                 <h4>Без SEO</h4>
-                <p>Без продвижения в поиске</p>
+                <p>Без продвижения</p>
                 <div class="price">+0 ₽</div>
               </div>
             </label>
@@ -286,7 +262,7 @@
         </div>
 
         <div id="step4" class="step">
-          <h3>4. Техническая поддержка</h3>
+          <h3>4. Поддержка</h3>
           <div class="options">
             <label class="option">
               <input type="radio" name="support" value="0" onchange="updateTotal()">
@@ -300,7 +276,7 @@
               <input type="radio" name="support" value="6000" onchange="updateTotal()">
               <div class="card">
                 <h4>3 месяца</h4>
-                <p>Обновления, бэкапы, помощь</p>
+                <p>Обновления, бэкапы</p>
                 <div class="price">+6 000 ₽</div>
               </div>
             </label>
@@ -308,7 +284,7 @@
               <input type="radio" name="support" value="12000" onchange="updateTotal()">
               <div class="card">
                 <h4>6 месяцев</h4>
-                <p>Полная техподдержка</p>
+                <p>Полная поддержка</p>
                 <div class="price">+12 000 ₽</div>
               </div>
             </label>
@@ -321,7 +297,7 @@
     </div>
   </div>
 
-  <!-- Галерея проектов -->
+  <!-- Галерея -->
   <div id="galleryModal" class="modal">
     <div class="modal-content gallery-modal">
       <button class="close-btn" onclick="closeGallery()">×</button>
@@ -345,11 +321,11 @@
     </div>
   </footer>
 
-  <!-- Чат-виджет -->
+  <!-- Чат -->
   <div class="chat-widget" onclick="openTelegram()">
     <span>💬 Чат в Telegram</span>
   </div>
 
-  <script src="code.js?v=5"></script>
+  <script src="code.js?v=6"></script>
 </body>
 </html>
