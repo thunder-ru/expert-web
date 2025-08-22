@@ -227,6 +227,13 @@ header .container {
   flex-wrap: wrap;
 }
 
+.about-text {
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
+}
+
 .about-text h2 {
   font-size: 2.5rem;
   margin-bottom: 20px;
@@ -250,30 +257,6 @@ header .container {
   display: flex;
   align-items: center;
   gap: 10px;
-}
-
-.about-img img {
-  width: 300px;
-  border-radius: 16px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-  border: 2px solid var(--accent);
-}
-
-.glow {
-  position: absolute;
-  width: 340px;
-  height: 340px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,238,255,0.1), transparent 70%);
-  top: -20px;
-  left: -20px;
-  z-index: -1;
-  animation: float 6s infinite ease-in-out;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
 }
 
 /* Услуги */
@@ -342,7 +325,7 @@ header .container {
   transform: scale(1.15);
 }
 
-.overlay {
+overlay {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -361,13 +344,13 @@ header .container {
   opacity: 1;
 }
 
-.overlay h3 {
+overlay h3 {
   font-size: 1.4rem;
   margin: 0;
   font-family: 'Space Grotesk', sans-serif;
 }
 
-.overlay p {
+overlay p {
   font-size: 0.9rem;
   color: #ccc;
   margin: 0;
