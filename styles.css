@@ -382,6 +382,18 @@ overlay p {
   justify-content: center;
   cursor: pointer;
   transition: all 0.3s;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.swiper-button-next {
+  right: -50px;
+}
+
+.swiper-button-prev {
+  left: -50px;
 }
 
 .swiper-button-next:hover, .swiper-button-prev:hover {
@@ -543,4 +555,16 @@ footer {
   .about-content { flex-direction: column; }
   .slide-left, .slide-right { opacity: 1; transform: translateX(0); }
   .portfolio-link { max-width: 100%; }
+  .swiper-button-next, .swiper-button-prev {
+    right: 0;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .swiper-button-next {
+    right: 10px;
+  }
+  .swiper-button-prev {
+    left: 10px;
+  }
 }
