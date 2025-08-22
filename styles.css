@@ -146,6 +146,8 @@ header .container {
   display: inline-block;
   box-shadow: 0 0 20px rgba(0, 238, 255, 0.4);
   transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn:hover {
@@ -282,6 +284,12 @@ header .container {
   height: 250px;
   position: relative;
   box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.portfolio-item:hover {
+  transform: scale(1.05);
 }
 
 .portfolio-item img {
@@ -318,6 +326,54 @@ header .container {
 .overlay p {
   color: #ccc;
   font-size: 0.9rem;
+}
+
+/* Модальное окно */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: var(--bg-light);
+  margin: 5% auto;
+  padding: 30px;
+  border-radius: 16px;
+  width: 80%;
+  max-width: 800px;
+  position: relative;
+  border: 1px solid var(--border);
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--accent);
 }
 
 /* Отзывы */
@@ -380,6 +436,21 @@ header .container {
   flex-wrap: wrap;
 }
 
+.status {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  text-align: center;
+  min-height: 20px;
+}
+
+.status.success {
+  color: #0f0;
+}
+
+.status.error {
+  color: #f00;
+}
+
 /* Чат-бот */
 .chat-bot-toggle {
   position: fixed;
@@ -404,10 +475,10 @@ header .container {
   position: fixed;
   bottom: 100px;
   right: 30px;
-  width: 320px;
-  height: 400px;
+  width: 340px;
+  height: 440px;
   background: var(--bg-light);
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
   display: none;
@@ -416,7 +487,7 @@ header .container {
 
 .chat-header {
   background: var(--bg);
-  padding: 12px;
+  padding: 14px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -427,14 +498,14 @@ header .container {
 .chat-header button {
   background: none;
   border: none;
-  font-size: 18px;
+  font-size: 20px;
   color: #fff;
   cursor: pointer;
 }
 
 .chat-messages {
   padding: 15px;
-  height: 320px;
+  height: 340px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -499,4 +570,5 @@ footer {
   .hero h1 { font-size: 3rem; }
   .about-content, .contact-flex { flex-direction: column; }
   .slide-left, .slide-right { opacity: 1; transform: translateX(0); }
+  .modal-content { width: 90%; }
 }
