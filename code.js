@@ -9,39 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Карусель проектов
-  const track = document.getElementById('carouselTrack');
-  const prevBtn = document.getElementById('prevProject');
-  const nextBtn = document.getElementById('nextProject');
-  const cards = document.querySelectorAll('.project-card');
-  const cardWidth = cards[0].offsetWidth + 32; // ширина + gap
-
-  let currentIndex = 0;
-
-  prevBtn.addEventListener('click', () => {
-    if (currentIndex > 0) {
-      currentIndex--;
-      track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-    }
-  });
-
-  nextBtn.addEventListener('click', () => {
-    if (currentIndex < cards.length - 1) {
-      currentIndex++;
-      track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
-    }
-  });
-
-  // Свайп по карусели
-  let touchStartX = 0;
-  track.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX, { passive: true });
-  track.addEventListener('touchend', e => {
-    const touchEndX = e.changedTouches[0].clientX;
-    const diff = touchStartX - touchEndX;
-    if (diff > 50) nextBtn.click();
-    if (diff < -50) prevBtn.click();
-  }, { passive: true });
-
   // Данные проектов
   const projectData = {
     travel: {
@@ -80,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
 
+  // Элементы модального окна
   const modal = document.getElementById("imageModal");
   const galleryInner = document.getElementById("galleryInner");
   const modalCaption = document.getElementById("modalCaption");
@@ -209,30 +177,5 @@ document.addEventListener('DOMContentLoaded', function () {
     navigator.clipboard.writeText('@overgrand').then(() => {
       alert('Никнейм Telegram скопирован! Напишу в течение часа :)');
     });
-  });
-
-  // Тема
-  const themeToggle = document.getElementById('themeToggle');
-  const savedTheme = localStorage.getItem('theme') || 'dark';
-
-  if (savedTheme === 'light') {
-    document.body.classList.add('light-theme');
-    themeToggle.textContent = '🌞';
-  } else {
-    themeToggle.textContent = '🌙';
-  }
-
-  themeToggle.addEventListener('click', () => {
-    if (document.body.classList.contains('light-theme')) {
-      document.body.classList.remove('light-theme');
-      document.body.classList.add('dark-theme');
-      localStorage.setItem('theme', 'dark');
-      themeToggle.textContent = '🌙';
-    } else {
-      document.body.classList.remove('dark-theme');
-      document.body.classList.add('light-theme');
-      localStorage.setItem('theme', 'light');
-      themeToggle.textContent = '🌞';
-    }
   });
 });
