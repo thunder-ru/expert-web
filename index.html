@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/8a5f7b6a2e.js" crossorigin="anonymous"></script>
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
 
@@ -98,60 +100,70 @@
       <h2 class="section-title">Портфолио</h2>
       <p class="text-center">Проекты, которые <strong>запускали бизнес</strong></p>
 
-      <div class="portfolio-grid">
-        <!-- Тур-агентство -->
-        <a href="https://example.com/wanderlux" target="_blank" class="portfolio-item">
-          <img src="https://images.unsplash.com/photo-1526815456743-3e55d10113da?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Тур-агентство">
-          <div class="overlay">
-            <h3>WanderLux</h3>
-            <p>Тур-агентство премиум-класса</p>
-          </div>
-        </a>
+      <div class="portfolio-container">
+        <!-- Первые 4 проекта — в сетке -->
+        <div class="portfolio-fixed">
+          <a href="https://example.com/wanderlux" target="_blank" class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1526815456743-3e55d10113da?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Тур-агентство">
+            <div class="overlay">
+              <h3>WanderLux</h3>
+              <p>Тур-агентство премиум-класса</p>
+            </div>
+          </a>
 
-        <!-- Аренда авто -->
-        <a href="https://example.com/drivehive" target="_blank" class="portfolio-item">
-          <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Аренда авто">
-          <div class="overlay">
-            <h3>DriveHive</h3>
-            <p>Аренда автомобилей в Москве</p>
-          </div>
-        </a>
+          <a href="https://example.com/drivehive" target="_blank" class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Аренда авто">
+            <div class="overlay">
+              <h3>DriveHive</h3>
+              <p>Аренда автомобилей в Москве</p>
+            </div>
+          </a>
 
-        <!-- Стоматология -->
-        <a href="https://example.com/dentacare" target="_blank" class="portfolio-item">
-          <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Стоматология">
-          <div class="overlay">
-            <h3>DentaCare</h3>
-            <p>Стоматологическая клиника</p>
-          </div>
-        </a>
+          <a href="https://example.com/dentacare" target="_blank" class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Стоматология">
+            <div class="overlay">
+              <h3>DentaCare</h3>
+              <p>Стоматологическая клиника</p>
+            </div>
+          </a>
 
-        <!-- Вело-продажи -->
-        <a href="https://example.com/velox" target="_blank" class="portfolio-item">
-          <img src="https://images.unsplash.com/photo-1541532713592-7538ad33342e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Веломагазин">
-          <div class="overlay">
-            <h3>Velox</h3>
-            <p>Велосипеды и экипировка</p>
-          </div>
-        </a>
+          <a href="https://example.com/velox" target="_blank" class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1541532713592-7538ad33342e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Веломагазин">
+            <div class="overlay">
+              <h3>Velox</h3>
+              <p>Велосипеды и экипировка</p>
+            </div>
+          </a>
+        </div>
 
-        <!-- Персональный тренер -->
-        <a href="https://example.com/fitmaster" target="_blank" class="portfolio-item">
-          <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Персональный тренер">
-          <div class="overlay">
-            <h3>FitMaster</h3>
-            <p>Персональный тренер и онлайн-курсы</p>
-          </div>
-        </a>
+        <!-- Остальные проекты — слайдер -->
+        <div class="swiper portfolio-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <a href="https://example.com/fitmaster" target="_blank" class="portfolio-link">
+                <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Персональный тренер">
+                <div class="overlay">
+                  <h3>FitMaster</h3>
+                  <p>Персональный тренер и онлайн-курсы</p>
+                </div>
+              </a>
+            </div>
 
-        <!-- Чай -->
-        <a href="https://example.com/teazen" target="_blank" class="portfolio-item">
-          <img src="https://images.unsplash.com/photo-1595425970375-6f4f6a89ae5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Чай">
-          <div class="overlay">
-            <h3>TeaZen</h3>
-            <p>Онлайн-магазин элитного чая</p>
+            <div class="swiper-slide">
+              <a href="https://example.com/teazen" target="_blank" class="portfolio-link">
+                <img src="https://images.unsplash.com/photo-1595425970375-6f4f6a89ae5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Чай">
+                <div class="overlay">
+                  <h3>TeaZen</h3>
+                  <p>Онлайн-магазин элитного чая</p>
+                </div>
+              </a>
+            </div>
           </div>
-        </a>
+
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -185,9 +197,15 @@
         <input type="email" id="email" placeholder="Email" required>
         <textarea id="message" placeholder="Опишите ваш проект..." required></textarea>
 
-        <div class="radio-group">
-          <label><input type="radio" name="channel" value="telegram" checked> Ответ в Telegram</label>
-          <label><input type="radio" name="channel" value="email"> Ответ на email</label>
+        <div class="channel-options">
+          <label class="channel-option active">
+            <input type="radio" name="channel" value="telegram" checked>
+            <span>Ответ в Telegram</span>
+          </label>
+          <label class="channel-option">
+            <input type="radio" name="channel" value="email">
+            <span>Ответ на email</span>
+          </label>
         </div>
 
         <button type="submit" class="btn gradient-btn">Отправить запрос</button>
@@ -196,17 +214,15 @@
     </div>
   </section>
 
-  <!-- Контактная информация (внизу) -->
+  <!-- Нижние кнопки (как у тебя в примере) -->
   <div class="footer-contact">
     <div class="container">
-      <div class="contact-links">
-        <a href="https://t.me/overgrand" target="_blank" class="contact-link">
-          <i class="fab fa-telegram"></i>
-          <span>@overgrand</span>
+      <div class="contact-buttons">
+        <a href="https://t.me/overgrand" target="_blank" class="contact-btn telegram-btn">
+          @overgrand
         </a>
-        <a href="mailto:rosanov.danila2016@yandex.ru" target="_blank" class="contact-link">
-          <i class="far fa-envelope"></i>
-          <span>rosanov.danila2016@yandex.ru</span>
+        <a href="mailto:rosanov.danila2016@yandex.ru" target="_blank" class="contact-btn email-btn">
+          rosanov.danila2016@yandex.ru
         </a>
       </div>
       <p class="contact-note">Отвечаю в течение 30 минут. Без воды — только по делу.</p>
@@ -237,6 +253,8 @@
     </div>
   </footer>
 
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="code.js"></script>
 </body>
 </html>
