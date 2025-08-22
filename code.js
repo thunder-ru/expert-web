@@ -79,7 +79,65 @@ hamburger?.addEventListener('click', () => {
 });
 
 // ===================================
-// 4. ЧАТ-БОТ
+// 4. SWIPER ПОРТФОЛИО
+// ===================================
+document.addEventListener('DOMContentLoaded', () => {
+  new Swiper('.portfolio-swiper', {
+    loop: true,
+    spaceBetween: 30,
+    slidesPerView: 1,
+    breakpoints: {
+      640: { slidesPerView: 2 },
+      1024: { slidesPerView: 2 }
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  });
+});
+
+// ===================================
+// 5. ФОРМА ОБРАТНОЙ СВЯЗИ
+// ===================================
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
+
+contactForm?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  formStatus.className = 'status';
+
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+  const channel = document.querySelector('input[name="channel"]:checked').value;
+
+  if (!name || !email || !message) {
+    formStatus.textContent = 'Заполните все поля';
+    formStatus.className = 'status error';
+    return;
+  }
+
+  const body = `Имя: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0AСообщение: ${encodeURIComponent(message)}`;
+  const url = channel === 'telegram'
+    ? `https://t.me/overgrand?text=${body}`
+    : `mailto:rosanov.danila2016@yandex.ru?subject=Запрос с web-thunder.ru&body=${body}`;
+
+  formStatus.textContent = 'Переходим к связи...';
+  formStatus.className = 'status success';
+
+  setTimeout(() => {
+    window.open(url, '_blank');
+    formStatus.textContent = 'Готово! Открываем Telegram/email...';
+  }, 1000);
+});
+
+// ===================================
+// 6. ЧАТ-БОТ
 // ===================================
 const chatToggle = document.getElementById('chatBotToggle');
 const chatWindow = document.getElementById('chatBotWindow');
@@ -123,39 +181,4 @@ sendChat?.addEventListener('click', () => {
 
 chatInput?.addEventListener('keypress', e => {
   if (e.key === 'Enter') sendChat.click();
-});
-
-// ===================================
-// 5. ФОРМА ОБРАТНОЙ СВЯЗИ
-// ===================================
-const contactForm = document.getElementById('contactForm');
-const formStatus = document.getElementById('formStatus');
-
-contactForm?.addEventListener('submit', function(e) {
-  e.preventDefault();
-  formStatus.className = 'status';
-
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const message = document.getElementById('message').value.trim();
-  const channel = document.querySelector('input[name="channel"]:checked').value;
-
-  if (!name || !email || !message) {
-    formStatus.textContent = 'Заполните все поля';
-    formStatus.className = 'status error';
-    return;
-  }
-
-  const body = `Имя: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0AСообщение: ${encodeURIComponent(message)}`;
-  const url = channel === 'telegram'
-    ? `https://t.me/overgrand?text=${body}`
-    : `mailto:rosanov.danila2016@yandex.ru?subject=Запрос с web-thunder.ru&body=${body}`;
-
-  formStatus.textContent = 'Переходим к связи...';
-  formStatus.className = 'status success';
-
-  setTimeout(() => {
-    window.open(url, '_blank');
-    formStatus.textContent = 'Готово! Открываем Telegram/email...';
-  }, 1000);
 });
