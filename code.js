@@ -1,85 +1,52 @@
+// Модальное окно для просмотра проектов
+const modal = document.getElementById("imageModal");
+const modalImg = document.getElementById("modalImage");
+const modalCaption = document.getElementById("modalCaption");
+const closeBtn = document.querySelector(".close");
+
 // Данные проектов
 const projects = {
   travel: {
-    title: "Тур-Агентство",
-    images: [
-      "https://images.unsplash.com/photo-1526098712321-5926067b7804?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1562512344-5d8a18796a5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1574848022150-555739878988?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-    ]
+    img: "https://via.placeholder.com/800x600?text=Тур-Агентство+Горизонт",
+    caption: "Тур-агентство «Горизонт» — сайт с анимированными фонами и бронированием туров"
   },
   dentist: {
-    title: "Стоматология",
-    images: [
-      "https://images.unsplash.com/photo-1606265752835-96665d34443e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1598256989800-fe5f95da9787?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-    ]
+    img: "https://via.placeholder.com/800x600?text=Стоматология+Улыбка+",
+    caption: "Стоматология «Улыбка+» — современный сайт с 3D-эффектами и онлайн-записью"
   },
   trainer: {
-    title: "Персональный тренер",
-    images: [
-      "https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-    ]
+    img: "https://via.placeholder.com/800x600?text=Фитнес-тренер+Анна",
+    caption: "Фитнес-тренер Анна — сайт с видео и программами тренировок"
   }
 };
 
-// Модальное окно
-const modal = document.getElementById("modal");
-const modalTitle = document.getElementById("modal-title");
-const modalGallery = document.getElementById("modal-gallery");
-const closeModal = document.querySelector(".close");
-
-document.querySelectorAll(".project-card").forEach(item => {
-  item.addEventListener("click", () => {
-    const projectKey = item.dataset.project;
-    const project = projects[projectKey];
-
-    modalTitle.textContent = project.title;
-    modalGallery.innerHTML = "";
-
-    project.images.forEach(imgSrc => {
-      const img = document.createElement("img");
-      img.src = imgSrc;
-      img.alt = project.title;
-      modalGallery.appendChild(img);
-    });
-
+// Открытие модального окна
+function openModal(projectKey) {
+  const project = projects[projectKey];
+  if (project) {
+    modalImg.src = project.img;
+    modalCaption.textContent = project.caption;
     modal.style.display = "flex";
-    document.body.style.overflow = "hidden";
-  });
-});
+    document.body.style.overflow = "hidden"; // Отключаем скролл
+  }
+}
 
-closeModal.addEventListener("click", () => {
+// Закрытие модального окна
+function closeModal() {
   modal.style.display = "none";
-  document.body.style.overflow = "auto";
-});
+  document.body.style.overflow = ""; // Возвращаем скролл
+}
 
-window.addEventListener("click", (e) => {
+// Закрытие по клику вне изображения
+modal.addEventListener("click", function(e) {
   if (e.target === modal) {
-    modal.style.display = "none";
-    document.body.style.overflow = "auto";
+    closeModal();
   }
 });
 
-// Плавное появление при скролле
-const animateOnScroll = () => {
-  document.querySelectorAll('.project-card, .service-item, .btn-large').forEach(el => {
-    const pos = el.getBoundingClientRect().top;
-    if (pos < window.innerHeight - 100) {
-      el.style.opacity = "1";
-      el.style.transform = "translateY(0)";
-    }
-  });
-};
-
-document.querySelectorAll('.project-card, .service-item, .btn-large').forEach(el => {
-  el.style.opacity = "0";
-  el.style.transform = "translateY(30px)";
-  el.style.transition = "0.7s cubic-bezier(0.2, 0, 0, 1)";
+// Закрытие по клавише Esc
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    closeModal();
+  }
 });
-
-window.addEventListener("scroll", animateOnScroll);
-window.addEventListener("load", animateOnScroll);
