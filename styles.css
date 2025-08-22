@@ -7,49 +7,52 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background: #000;
-  color: #e0e0e0;
-  line-height: 1.8;
+  background: #fff;
+  color: #0a0a0a;
+  line-height: 1.7;
   overflow-x: hidden;
-  text-align: center;
 }
 
-/* Шрифты */
-h1, h2, h3, .highlight, .btn {
-  font-family: 'Space Grotesk', sans-serif;
+/* Ссылки */
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-/* Навигация — по центру, чисто */
+/* Навигация */
 .navbar {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 40px;
   padding: 30px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
   position: fixed;
   width: 100%;
   top: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
   z-index: 1000;
-  border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 
 .logo {
-  font-size: 1.4rem;
+  font-family: 'Space Grotesk', sans-serif;
   font-weight: 700;
-  color: #fff;
-  text-decoration: none;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  font-size: 1.6rem;
+  color: #000;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .nav-link {
-  color: #aaa;
-  text-decoration: none;
-  font-size: 0.95rem;
+  color: #555;
   font-weight: 500;
+  font-size: 0.95rem;
   transition: color 0.3s;
 }
 
@@ -57,15 +60,31 @@ h1, h2, h3, .highlight, .btn {
   color: #FFD700;
 }
 
+.btn-small {
+  background: #000;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+.btn-small:hover {
+  background: #222;
+  transform: translateY(-2px);
+}
+
 /* Hero */
 .hero {
   padding: 220px 20px 100px;
+  text-align: center;
   max-width: 800px;
   margin: 0 auto;
 }
 
 .hero h1 {
-  font-size: 5rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 4.5rem;
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 20px;
@@ -73,37 +92,31 @@ h1, h2, h3, .highlight, .btn {
 
 .highlight {
   color: #FFD700;
+  position: relative;
 }
 
 .hero p {
-  font-size: 1.3rem;
-  color: #999;
-  margin-bottom: 40px;
+  font-size: 1.25rem;
+  color: #555;
   max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 40px;
 }
 
-.cta {
-  margin-top: 40px;
-}
-
-/* Кнопка */
-.btn {
-  background: #FFD700;
-  color: #000;
+.btn-large {
+  background: #000;
+  color: #fff;
   padding: 16px 40px;
   border-radius: 30px;
-  font-weight: 600;
-  text-decoration: none;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
   display: inline-block;
   transition: all 0.4s cubic-bezier(0.2, 0, 0, 1);
-  box-shadow: 0 0 0 1px #FFD700 inset;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
 
-.btn:hover {
+.btn-large:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(255, 215, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 /* Проекты */
@@ -114,40 +127,42 @@ h1, h2, h3, .highlight, .btn {
 }
 
 .section-title {
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 2.4rem;
   font-weight: 600;
-  color: #fff;
+  color: #000;
   margin-bottom: 60px;
+  text-align: center;
 }
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 30px;
 }
 
-.project {
+.project-card {
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
   position: relative;
-  height: 320px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  height: 300px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   transition: transform 0.4s ease;
 }
 
-.project:hover {
+.project-card:hover {
   transform: translateY(-10px);
 }
 
-.project img {
+.project-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: 0.5s;
 }
 
-.project:hover img {
+.project-card:hover img {
   scale: 1.05;
 }
 
@@ -157,19 +172,19 @@ h1, h2, h3, .highlight, .btn {
   left: 0;
   right: 0;
   padding: 30px;
-  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
   color: #fff;
   opacity: 0;
   transition: opacity 0.4s;
 }
 
-.project:hover .project-info {
+.project-card:hover .project-info {
   opacity: 1;
 }
 
 .project-info h3 {
-  font-size: 1.5rem;
-  margin-bottom: 8px;
+  font-size: 1.4rem;
+  margin-bottom: 6px;
 }
 
 .project-info p {
@@ -177,55 +192,89 @@ h1, h2, h3, .highlight, .btn {
   color: #ccc;
 }
 
-/* Позиционирование */
-.positioning {
+/* Услуги */
+.services {
   padding: 100px 20px;
-  max-width: 700px;
+  max-width: 1000px;
   margin: 0 auto;
-  color: #ccc;
-  font-size: 1.3rem;
-  line-height: 1.9;
 }
 
-.positioning strong {
+.service-item {
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.service-item h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
   color: #FFD700;
+  margin-bottom: 12px;
 }
 
-/* Контакты */
-.contact {
-  padding: 120px 20px;
-  max-width: 700px;
+.service-item p {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 600px;
   margin: 0 auto;
 }
 
-.contact h2 {
+/* CTA */
+.cta {
+  padding: 120px 20px;
+  text-align: center;
+  background: #f9f9ff;
+}
+
+.cta h2 {
+  font-family: 'Space Grotesk', sans-serif;
   font-size: 2.8rem;
-  color: #fff;
+  color: #000;
   margin-bottom: 20px;
 }
 
-.contact p {
-  color: #999;
+.cta p {
+  color: #777;
   font-size: 1.2rem;
   margin-bottom: 40px;
 }
 
-.contact-buttons {
+.cta-buttons {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 15px;
-  align-items: center;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
-.email-link {
-  color: #777;
-  font-size: 0.95rem;
-  text-decoration: none;
-  transition: color 0.3s;
+.btn-primary {
+  background: #000;
+  color: #fff;
+  padding: 16px 30px;
+  border-radius: 30px;
+  font-weight: 500;
+  transition: 0.4s;
+  min-width: 220px;
 }
 
-.email-link:hover {
-  color: #FFD700;
+.btn-primary:hover {
+  background: #222;
+  transform: translateY(-3px);
+}
+
+.btn-secondary {
+  border: 1px solid #ddd;
+  color: #555;
+  padding: 16px 30px;
+  border-radius: 30px;
+  font-weight: 500;
+  transition: 0.3s;
+  min-width: 220px;
+}
+
+.btn-secondary:hover {
+  border-color: #000;
+  color: #000;
 }
 
 /* Модальное окно */
@@ -237,31 +286,30 @@ h1, h2, h3, .highlight, .btn {
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(0, 0, 0, 0.9);
   justify-content: center;
   align-items: center;
 }
 
 .modal-content {
-  background: #111;
+  background: #fff;
   width: 90%;
   max-width: 1000px;
   max-height: 90vh;
   border-radius: 16px;
   padding: 50px;
-  color: #fff;
+  color: #000;
   overflow-y: auto;
-  border: 1px solid rgba(255, 215, 0, 0.2);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
 }
 
 .close {
   position: absolute;
   top: 30px;
   right: 40px;
-  font-size: 2.2rem;
-  color: #777;
+  font-size: 2rem;
+  color: #888;
   cursor: pointer;
-  font-weight: 400;
 }
 
 .close:hover {
@@ -269,10 +317,10 @@ h1, h2, h3, .highlight, .btn {
 }
 
 #modal-title {
-  font-size: 2.4rem;
-  color: #FFD700;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.2rem;
+  color: #000;
   margin-bottom: 30px;
-  text-align: left;
 }
 
 .modal-gallery {
@@ -287,34 +335,33 @@ h1, h2, h3, .highlight, .btn {
   border-radius: 12px;
   aspect-ratio: 4/3;
   object-fit: cover;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 /* Футер */
 .footer {
   padding: 60px 20px 40px;
-  color: #555;
-  font-size: 0.9rem;
+  text-align: center;
+  color: #888;
+  font-size: 0.95rem;
 }
 
 /* Адаптив */
 @media (max-width: 768px) {
   .hero h1 {
-    font-size: 3.5rem;
-  }
-  .navbar {
-    gap: 20px;
-  }
-  .navbar .logo {
-    font-size: 1.2rem;
+    font-size: 3.2rem;
   }
   .section-title {
     font-size: 2.2rem;
   }
-  .contact h2 {
+  .cta h2 {
     font-size: 2.4rem;
   }
-  .positioning {
-    font-size: 1.2rem;
+  .cta-buttons {
+    flex-direction: column;
+  }
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    max-width: 300px;
   }
 }
