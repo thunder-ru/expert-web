@@ -115,7 +115,7 @@ function requestQuote() {
   window.open(url, '_blank');
 }
 
-// Галерея — все URL очищены
+// Галерея — только по клику, без наведения
 const galleryData = {
   auto: {
     title: "Аренда автомобилей",
@@ -199,11 +199,11 @@ const galleryData = {
   }
 };
 
-// Открытие галереи
+// Открытие галереи — ТОЛЬКО ПО КЛИКУ
 function openGallery(projectId) {
   const data = galleryData[projectId];
   if (!data) {
-    console.error("Проект не найден:", projectId);
+    alert("Проект не найден");
     return;
   }
 
@@ -224,9 +224,8 @@ function openGallery(projectId) {
     galleryGrid.appendChild(img);
   });
 
-  const modal = document.getElementById('galleryModal');
-  modal.style.display = 'flex';
-  setTimeout(() => modal.classList.add('show'), 50);
+  document.getElementById('galleryModal').style.display = 'flex';
+  setTimeout(() => document.getElementById('galleryModal').classList.add('show'), 50);
 }
 
 // Закрытие галереи
@@ -238,16 +237,8 @@ function closeGallery() {
   }, 300);
 }
 
-// Наведение
-let hoverTimeout;
-function openGalleryOnHover(projectId) {
-  hoverTimeout = setTimeout(() => {
-    openGallery(projectId);
-  }, 800);
-}
-function closeGalleryOnHover() {
-  clearTimeout(hoverTimeout);
-}
+// Убрали ВСЁ, что связано с hover
+// Больше никаких openGalleryOnHover, closeGalleryOnHover, hoverTimeout
 
 // Закрытие по Escape
 document.addEventListener('keydown', (e) => {
@@ -290,7 +281,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   this.reset();
 });
 
-// Слайдер портфолио
+// Слайдер портфолио — БЕЗ АВТОПРОКРУТКИ
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.dot');
@@ -310,8 +301,8 @@ function nextSlide() { currentSlide++; showSlide(currentSlide); }
 function prevSlide() { currentSlide--; showSlide(currentSlide); }
 function goToSlide(n) { currentSlide = n; showSlide(currentSlide); }
 
-// УБРАНА АВТОПРОКРУТКА — она мешает наведению
-// let slideInterval = setInterval(nextSlide, 5000);
+// УБРАЛИ ВСЁ, СВЯЗАННОЕ С АВТОПРОКРУТКОЙ
+// Никаких setInterval
 
 // Кнопки
 if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); });
