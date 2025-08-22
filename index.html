@@ -46,7 +46,8 @@
       <h2>Портфолио</h2>
       <div class="portfolio-slider">
         <div class="slide active">
-          <img src="https://i.postimg.cc/pdkWMT84/Black1.jpg" alt="Аренда автомобилей" 
+          <img src="https://i.postimg.cc/pdkWMT84/Black1.jpg" 
+               alt="Аренда автомобилей" 
                onclick="openGallery('auto')" 
                onmouseenter="openGalleryOnHover('auto')" 
                onmouseleave="closeGalleryOnHover()">
@@ -54,15 +55,17 @@
           <p>+30% заявок за 2 месяца</p>
         </div>
         <div class="slide">
-          <img src="https://i.postimg.cc/GmFkPfSL/1.jpg" alt="Стоматология" 
+          <img src="https://i.postimg.cc/GmFkPfSL/1.jpg" 
+               alt="Стоматология" 
                onclick="openGallery('dentist')" 
                onmouseenter="openGalleryOnHover('dentist')" 
                onmouseleave="closeGalleryOnHover()">
           <h4>Стоматология</h4>
-          <p>ТОП-5 в Яндекс по запросам</p>
+          <p>ТОП-5 в Яндекс по ключевым запросам</p>
         </div>
         <div class="slide">
-          <img src="https://i.postimg.cc/xC4HTVqR/1.jpg" alt="Онлайн магазин чая" 
+          <img src="https://i.postimg.cc/xC4HTVqR/1.jpg" 
+               alt="Онлайн магазин чая" 
                onclick="openGallery('tea')" 
                onmouseenter="openGalleryOnHover('tea')" 
                onmouseleave="closeGalleryOnHover()">
@@ -70,7 +73,8 @@
           <p>Окупился за 1.5 недели</p>
         </div>
         <div class="slide">
-          <img src="https://i.postimg.cc/J7S6P9KZ/image.jpg" alt="Магазин велосипедов" 
+          <img src="https://i.postimg.cc/J7S6P9KZ/image.jpg" 
+               alt="Магазин велосипедов" 
                onclick="openGallery('bike')" 
                onmouseenter="openGalleryOnHover('bike')" 
                onmouseleave="closeGalleryOnHover()">
@@ -78,7 +82,8 @@
           <p>+30% трафика и 20+ заказов</p>
         </div>
         <div class="slide">
-          <img src="https://i.postimg.cc/Z5xwY0mx/1.jpg" alt="Фитнес-тренер" 
+          <img src="https://i.postimg.cc/Z5xwY0mx/1.jpg" 
+               alt="Фитнес-тренер" 
                onclick="openGallery('fitness')" 
                onmouseenter="openGalleryOnHover('fitness')" 
                onmouseleave="closeGalleryOnHover()">
@@ -86,7 +91,8 @@
           <p>12 новых клиентов за месяц</p>
         </div>
         <div class="slide">
-          <img src="https://i.postimg.cc/8kvBPsBf/1.jpg" alt="Турагентство" 
+          <img src="https://i.postimg.cc/8kvBPsBf/1.jpg" 
+               alt="Турагентство" 
                onclick="openGallery('travel')" 
                onmouseenter="openGalleryOnHover('travel')" 
                onmouseleave="closeGalleryOnHover()">
@@ -323,7 +329,7 @@
   <!-- Галерея проектов -->
   <div id="galleryModal" class="modal">
     <div class="modal-content gallery-modal">
-      <span class="close" onclick="closeGallery()">&times;</span>
+      <button class="close-btn" onclick="closeGallery()">×</button>
       <div class="gallery-header">
         <h3 id="projectTitle">Проект</h3>
         <p id="projectDesc">Описание</p>
