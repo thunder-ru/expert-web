@@ -79,42 +79,7 @@ hamburger?.addEventListener('click', () => {
 });
 
 // ===================================
-// 4. СЛАЙДЕР ПОРТФОЛИО
-// ===================================
-const track = document.getElementById('portfolioTrack');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-let currentIndex = 0;
-const itemWidth = 280 + 25; // ширина + gap
-const totalItems = document.querySelectorAll('.portfolio-item').length;
-const visibleItems = window.innerWidth > 1024 ? 4 : window.innerWidth > 768 ? 3 : 1;
-
-function updateTrack() {
-  const offset = -currentIndex * itemWidth;
-  track.style.transform = `translateX(${offset}px)`;
-}
-
-nextBtn?.addEventListener('click', () => {
-  if (currentIndex < totalItems - visibleItems) {
-    currentIndex++;
-    updateTrack();
-  }
-});
-
-prevBtn?.addEventListener('click', () => {
-  if (currentIndex > 0) {
-    currentIndex--;
-    updateTrack();
-  }
-});
-
-// Адаптив
-window.addEventListener('resize', () => {
-  updateTrack();
-});
-
-// ===================================
-// 5. ЧАТ-БОТ
+// 4. ЧАТ-БОТ
 // ===================================
 const chatToggle = document.getElementById('chatBotToggle');
 const chatWindow = document.getElementById('chatBotWindow');
@@ -158,4 +123,39 @@ sendChat?.addEventListener('click', () => {
 
 chatInput?.addEventListener('keypress', e => {
   if (e.key === 'Enter') sendChat.click();
+});
+
+// ===================================
+// 5. ФОРМА ОБРАТНОЙ СВЯЗИ
+// ===================================
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
+
+contactForm?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  formStatus.className = 'status';
+
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+  const channel = document.querySelector('input[name="channel"]:checked').value;
+
+  if (!name || !email || !message) {
+    formStatus.textContent = 'Заполните все поля';
+    formStatus.className = 'status error';
+    return;
+  }
+
+  const body = `Имя: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0AСообщение: ${encodeURIComponent(message)}`;
+  const url = channel === 'telegram'
+    ? `https://t.me/overgrand?text=${body}`
+    : `mailto:rosanov.danila2016@yandex.ru?subject=Запрос с web-thunder.ru&body=${body}`;
+
+  formStatus.textContent = 'Переходим к связи...';
+  formStatus.className = 'status success';
+
+  setTimeout(() => {
+    window.open(url, '_blank');
+    formStatus.textContent = 'Готово! Открываем Telegram/email...';
+  }, 1000);
 });
