@@ -310,20 +310,35 @@ function nextSlide() { currentSlide++; showSlide(currentSlide); }
 function prevSlide() { currentSlide--; showSlide(currentSlide); }
 function goToSlide(n) { currentSlide = n; showSlide(currentSlide); }
 
-let slideInterval = setInterval(nextSlide, 5000);
+// Убрана автопрокрутка — она мешала
+// let slideInterval = setInterval(nextSlide, 5000);
 
-document.querySelector('.portfolio-slider').addEventListener('mouseenter', () => clearInterval(slideInterval));
+// Но можно оставить, если хочешь
+let slideInterval = null;
+
+// Запуск автопрокрутки при загрузке
+document.addEventListener("DOMContentLoaded", function () {
+  if (slides.length > 0) {
+    showSlide(0);
+    // slideInterval = setInterval(nextSlide, 5000);
+  }
+});
+
+// Остановка при наведении
+document.querySelector('.portfolio-slider').addEventListener('mouseenter', () => {
+  if (slideInterval) clearInterval(slideInterval);
+});
+
+// Возобновление
 document.querySelector('.portfolio-slider').addEventListener('mouseleave', () => {
   slideInterval = setInterval(nextSlide, 5000);
 });
 
-if (nextBtn) nextBtn.addEventListener('click', () => { clearInterval(slideInterval); nextSlide(); });
-if (prevBtn) prevBtn.addEventListener('click', () => { clearInterval(slideInterval); prevSlide(); });
-dots.forEach((dot, i) => {
-  dot.addEventListener('click', () => { clearInterval(slideInterval); goToSlide(i); });
-});
+// Кнопки
+if (nextBtn) nextBtn.addEventListener('click', () => { if (slideInterval) clearInterval(slideInterval); nextSlide(); });
+if (prevBtn) prevBtn.addEventListener('click', () => { if (slideInterval) clearInterval(slideInterval); prevSlide(); });
 
-// Инициализация
-document.addEventListener("DOMContentLoaded", () => {
-  if (slides.length > 0) showSlide(0);
+// Точки
+dots.forEach((dot, i) => {
+  dot.addEventListener('click', () => { if (slideInterval) clearInterval(slideInterval); goToSlide(i); });
 });
