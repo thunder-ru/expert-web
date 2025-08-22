@@ -548,7 +548,7 @@ footer {
     left: 10px;
 }
 
-  /* === МОДАЛЬНОЕ ОКНО ГАЛЕРЕИ === */
+ /* === МОДАЛЬНОЕ ОКНО ГАЛЕРЕИ === */
 #galleryModal {
   display: none;
   position: fixed;
