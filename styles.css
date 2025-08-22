@@ -412,7 +412,34 @@ body {
   width: 90%;
   border-radius: 16px;
   overflow: hidden;
+  position: relative;
 }
+.gallery-modal .close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #e2e8f0;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0.8;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.3);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+.gallery-modal .close-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  background: rgba(0,0,0,0.5);
+}
+
 .gallery-header {
   padding: 25px;
   background: #1e293b;
@@ -636,7 +663,7 @@ body {
   text-decoration: underline;
 }
 
-/* Чат */
+/* Чат-виджет */
 .chat-widget {
   position: fixed;
   bottom: 30px;
@@ -708,5 +735,12 @@ body {
   }
   .gallery-grid {
     max-height: 60vh;
+  }
+  .gallery-modal .close-btn {
+    top: 10px;
+    right: 15px;
+    font-size: 1.6rem;
+    width: 36px;
+    height: 36px;
   }
 }
