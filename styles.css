@@ -11,20 +11,60 @@ body {
   color: #e0e0ff;
   line-height: 1.6;
   overflow-x: hidden;
+  position: relative;
 }
 
-/* Градиентный фон с эффектом "грозы" */
+/* Анимация молнии в фоне */
+.lightning-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.lightning {
+  position: absolute;
+  width: 4px;
+  height: 0;
+  background: #fff;
+  top: 0;
+  left: 50%;
+  box-shadow: 
+    0 0 30px 5px #00eeff,
+    0 0 60px 10px rgba(0, 238, 255, 0.5);
+  animation: strike 6s infinite;
+}
+
+.lightning.glow {
+  width: 10px;
+  opacity: 0.3;
+  filter: blur(5px);
+  animation: strike 6s infinite 2s;
+}
+
+@keyframes strike {
+  0%, 97%, 100% { height: 0; opacity: 0; }
+  98% { height: 100vh; opacity: 1; }
+  99% { height: 100vh; opacity: 0; }
+}
+
+/* Градиентный фон с анимацией */
 .hero {
-  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+  background: linear-gradient(135deg, #1a1a2e, #0f3460, #16213e);
   background-size: 400% 400%;
-  animation: gradientShift 8s ease infinite;
+  animation: gradientShift 10s ease infinite;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  position: relative;
   padding: 2rem;
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
 }
 
 @keyframes gradientShift {
@@ -33,26 +73,32 @@ body {
   100% { background-position: 0% 50%; }
 }
 
+/* Эффект "парящего текста" */
 .hero-title {
   font-size: 5rem;
   font-weight: 800;
-  color: #fff;
-  text-shadow: 0 0 20px rgba(255, 215, 0, 0.6),
-               0 0 40px rgba(255, 215, 0, 0.4);
-  letter-spacing: 2px;
-  margin-bottom: 1rem;
-  animation: pulse 2s infinite alternate;
+  color: transparent;
+  background: linear-gradient(45deg, #ffd700, #00eeff, #ff6b6b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  letter-spacing: 3px;
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  animation: float 3s ease-in-out infinite;
 }
 
-@keyframes pulse {
-  from { transform: scale(1); }
-  to { transform: scale(1.05); }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 .hero-subtitle {
   font-size: 1.8rem;
-  margin-bottom: 2rem;
-  color: #ffd700;
+  margin-bottom: 2.5rem;
+  color: #a0eaff;
+  text-shadow: 0 0 10px rgba(160, 234, 255, 0.3);
 }
 
 .highlight {
@@ -60,94 +106,97 @@ body {
   text-shadow: 0 0 10px rgba(0, 238, 255, 0.5);
 }
 
-.cta-buttons {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-/* Кнопки */
+/* 3D-кнопки */
 .btn {
-  padding: 1rem 2rem;
+  padding: 1rem 2.2rem;
   font-size: 1.1rem;
   font-weight: 600;
   border-radius: 50px;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   border: none;
   cursor: pointer;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  bottom: -6px;
+  left: 0;
+  border-radius: 50px;
+  transform: translateY(0) rotateX(90deg);
+  transform-origin: bottom;
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.btn:hover::before {
+  transform: translateY(0) rotateX(0deg);
+}
+
+.btn:hover {
+  transform: translateY(-6px) translateZ(10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
 .btn-primary {
   background: linear-gradient(45deg, #ff6b6b, #feca57);
   color: #fff;
-  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
-}
-
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.5);
 }
 
 .btn-secondary {
   background: transparent;
   color: #00eeff;
   border: 2px solid #00eeff;
-  box-shadow: 0 0 10px rgba(0, 238, 255, 0.3);
-}
-
-.btn-secondary:hover {
-  background: rgba(0, 238, 255, 0.1);
-  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 238, 255, 0.4);
 }
 
 .btn-outline {
   background: transparent;
   color: #ffd700;
   border: 2px solid #ffd700;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+  box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
 }
 
-.btn-outline:hover {
-  background: rgba(255, 215, 0, 0.1);
-  transform: translateY(-3px);
-}
-
-/* Проекты */
-.projects {
-  padding: 5rem 2rem;
-  background: #121220;
-  text-align: center;
-}
-
-.section-title {
-  font-size: 2.8rem;
-  margin-bottom: 3rem;
-  color: #fff;
+/* Улучшенные карточки проектов */
+.project-img-container {
   position: relative;
-  display: inline-block;
+  overflow: hidden;
+  border-radius: 10px;
+  height: 200px;
 }
 
-.section-title::after {
-  content: '';
+.project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.overlay {
   position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, #00eeff, #ffd700);
-  border-radius: 2px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-.project-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+.project-card:hover .overlay {
+  opacity: 1;
+}
+
+.project-card:hover .project-img {
+  transform: scale(1.1) rotate(2deg);
 }
 
 .project-card {
@@ -155,38 +204,59 @@ body {
   border-radius: 15px;
   overflow: hidden;
   width: 350px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
   cursor: pointer;
   padding: 1rem;
+  transform-style: preserve-3d;
+  perspective: 800px;
 }
 
 .project-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 238, 255, 0.2);
+  transform: translateY(-12px) rotateX(10deg);
+  box-shadow: 0 20px 40px rgba(0, 238, 255, 0.2);
 }
 
-.project-img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 10px;
+/* Услуги */
+.services {
+  padding: 6rem 2rem;
+  background: #121220;
+  text-align: center;
+}
+
+.services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+}
+
+.service-card {
+  background: rgba(26, 26, 46, 0.7);
+  padding: 2rem;
+  border-radius: 15px;
+  width: 280px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 215, 0, 0.1);
   transition: transform 0.3s ease;
 }
 
-.project-card:hover .project-img {
-  transform: scale(1.05);
+.service-card:hover {
+  transform: translateY(-10px);
+  border-color: #00eeff;
 }
 
-.project-card h3 {
-  margin: 1rem 0 0.5rem;
-  font-size: 1.4rem;
+.icon {
+  font-size: 3rem;
+  color: #00eeff;
+  margin-bottom: 1rem;
+}
+
+.service-card h3 {
   color: #ffd700;
-}
-
-.project-card p {
-  color: #aaa;
-  font-size: 1rem;
+  margin-bottom: 1rem;
 }
 
 /* Модальное окно */
@@ -198,15 +268,10 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.95);
   justify-content: center;
   align-items: center;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  animation: fadeIn 0.4s ease;
 }
 
 .modal-content {
@@ -215,13 +280,8 @@ body {
   max-height: 90vh;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 0 30px rgba(0, 238, 255, 0.5);
-  animation: scaleIn 0.4s ease;
-}
-
-@keyframes scaleIn {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  box-shadow: 0 0 50px rgba(0, 238, 255, 0.6);
+  animation: scaleIn 0.5s ease;
 }
 
 .modal-img {
@@ -239,24 +299,28 @@ body {
   color: #fff;
   cursor: pointer;
   opacity: 0.8;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 .close:hover {
   opacity: 1;
+  transform: scale(1.1);
+  text-shadow: 0 0 15px #fff;
 }
 
 .modal-caption {
   text-align: center;
   margin-top: 1rem;
-  font-size: 1.2rem;
-  color: #ffd700;
+  font-size: 1.3rem;
+  color: #00eeff;
   padding: 0 1rem;
+  text-shadow: 0 0 5px rgba(0, 238, 255, 0.3);
 }
 
 /* Контактная секция */
 .contact {
-  padding: 5rem 2rem;
+  padding: 6rem 2rem;
   background: #0f1421;
   text-align: center;
 }
@@ -267,13 +331,14 @@ body {
 
 .contact p {
   max-width: 600px;
-  margin: 0 auto 2rem;
+  margin: 0 auto 2.5rem;
   font-size: 1.2rem;
+  color: #ccc;
 }
 
 .contact-buttons {
   display: flex;
-  gap: 1.5rem;
+  gap: 1.8rem;
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 2rem;
@@ -282,7 +347,7 @@ body {
 .contact-info {
   margin-top: 2rem;
   color: #888;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .contact-info a {
@@ -297,10 +362,11 @@ body {
 /* Футер */
 .footer {
   text-align: center;
-  padding: 2rem;
+  padding: 2.5rem;
   background: #0a0a14;
-  color: #555;
-  font-size: 0.9rem;
+  color: #666;
+  font-size: 0.95rem;
+  border-top: 1px solid #222;
 }
 
 /* Адаптивность */
@@ -313,19 +379,18 @@ body {
     font-size: 1.4rem;
   }
 
-  .project-card {
+  .project-card, .service-card {
     width: 100%;
-    max-width: 350px;
-  }
-
-  .cta-buttons, .contact-buttons {
-    flex-direction: column;
-    align-items: center;
+    max-width: 320px;
   }
 
   .btn {
     width: 100%;
     max-width: 300px;
-    text-align: center;
+  }
+
+  .contact-buttons, .cta-buttons {
+    flex-direction: column;
+    align-items: center;
   }
 }
