@@ -3,97 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Web-Thunder — Сайты, которые продают</title>
+  <title>Web-Thunder — Сайты для тех, кто побеждает</title>
   <link rel="stylesheet" href="styles.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Навигация (лёгкая, фиксированная, но не жирная) -->
+  <!-- Навигация (центрированная, лёгкая) -->
   <nav class="navbar">
-    <div class="nav-container">
-      <a href="#" class="logo">Web-Thunder</a>
-      <a href="#contact" class="nav-cta">Написать в Telegram</a>
-    </div>
+    <a href="#" class="logo">Web-Thunder</a>
+    <div class="spacer"></div>
+    <a href="#projects" class="nav-link">Проекты</a>
+    <a href="#contact" class="nav-link">Связь</a>
   </nav>
 
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-content">
-      <h1>Создаю сайты,<br><span class="highlight">которые работают</span></h1>
-      <p>Не просто красиво. А чтобы <strong>клиенты приходили, оставались и покупали</strong>.<br>Под ключ. Быстро. Без воды.</p>
-      <div class="hero-buttons">
-        <a href="#portfolio" class="btn-primary">Посмотреть проекты</a>
-        <a href="https://t.me/overgrand" class="btn-secondary" target="_blank">Написать в Telegram</a>
-      </div>
+    <h1>Сайты,<br><span class="highlight">которые продают</span></h1>
+    <p>Не дизайны. Не заглушки.<br>Готовые решения, которые приносят деньги с первого дня.</p>
+    <div class="cta">
+      <a href="#projects" class="btn">Посмотреть проекты</a>
     </div>
   </section>
 
-  <!-- Портфолио -->
-  <section id="portfolio" class="portfolio">
-    <div class="section-title">Последние работы</div>
-    <div class="portfolio-grid">
-      <div class="portfolio-item" data-project="travel">
+  <!-- Проекты -->
+  <section id="projects" class="projects">
+    <h2 class="section-title">Последние запуски</h2>
+    <div class="project-grid">
+      <div class="project" data-project="travel">
         <img src="https://via.placeholder.com/800x600?text=Тур-Агентство" alt="Тур-агентство">
-        <div class="overlay">
+        <div class="project-info">
           <h3>Тур-Агентство</h3>
-          <p>Лендинг с бронированием туров</p>
+          <p>Лендинг с бронированием. ROI: 320% за 30 дней.</p>
         </div>
       </div>
-      <div class="portfolio-item" data-project="dentist">
+      <div class="project" data-project="dentist">
         <img src="https://via.placeholder.com/800x600?text=Стоматология" alt="Стоматология">
-        <div class="overlay">
+        <div class="project-info">
           <h3>Стоматология</h3>
-          <p>Сайт с онлайн-записью</p>
+          <p>Сайт с записью. 87 заявок в первую неделю.</p>
         </div>
       </div>
-      <div class="portfolio-item" data-project="trainer">
+      <div class="project" data-project="trainer">
         <img src="https://via.placeholder.com/800x600?text=Персональный+тренер" alt="Персональный тренер">
-        <div class="overlay">
+        <div class="project-info">
           <h3>Персональный тренер</h3>
-          <p>Минимализм + конверсия</p>
+          <p>Минимализм. Конверсия 9.4%. Никакого шлака.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Услуги -->
-  <section class="services">
-    <div class="service-item">
-      <h2>01. Лендинги</h2>
-      <p>Высокая конверсия, адаптив, анимации. Под ключ за 7–10 дней.</p>
-    </div>
-    <div class="service-item">
-      <h2>02. Корпсайты</h2>
-      <p>Стильно, информативно, с админкой. Для бизнеса, который растёт.</p>
-    </div>
-    <div class="service-item">
-      <h2>03. Магазины</h2>
-      <p>Каталог, корзина, оплата. Работаю с Tilda, Webflow, кодом.</p>
-    </div>
+  <!-- Позиционирование -->
+  <section class="positioning">
+    <p>Я не делаю сайты.<br>Я создаю <strong>точки притяжения клиентов</strong>.</p>
+    <p>Ты приходишь с идеей.<br>Уходишь — с работающим бизнесом.</p>
   </section>
 
   <!-- Контакты -->
   <section id="contact" class="contact">
-    <div class="contact-content">
-      <h2>Хочешь такой же сайт?</h2>
-      <p>Напиши — обсудим твой проект, сроки и бюджет. Без обязательств.</p>
-      <div class="contact-buttons">
-        <a href="https://t.me/overgrand" class="btn-primary" target="_blank">💬 Написать в Telegram</a>
-        <a href="mailto:rosanov.danila2016@yandex.ru" class="btn-secondary">📧 Написать на почту</a>
-      </div>
+    <h2>Готов к результату?</h2>
+    <p>Напиши — обсудим твой проект. Без воды. Только суть.</p>
+    <div class="contact-buttons">
+      <a href="https://t.me/overgrand" class="btn" target="_blank">Написать в Telegram</a>
+      <a href="mailto:rosanov.danila2016@yandex.ru" class="email-link">rosanov.danila2016@yandex.ru</a>
     </div>
   </section>
 
   <!-- Футер -->
   <footer class="footer">
-    <div class="footer-content">
-      <p>© 2025 Web-Thunder. Все права за мной.</p>
-      <div class="footer-links">
-        <a href="https://t.me/overgrand" target="_blank">Telegram</a>
-        <a href="mailto:rosanov.danila2016@yandex.ru">Email</a>
-      </div>
-    </div>
+    <p>© 2025 Web-Thunder. Все сайты, которые ты хочешь — здесь.</p>
   </footer>
 
   <!-- Модальное окно -->
