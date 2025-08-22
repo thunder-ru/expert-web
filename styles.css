@@ -406,7 +406,7 @@ body {
   position: relative;
   max-width: 90%;
   max-height: 90vh;
-  width: 600px; /* Увеличено с 400px */
+  width: 1200px; /* Увеличено с 600px */
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 0 50px rgba(0, 238, 255, 0.6);
@@ -466,8 +466,8 @@ body {
 }
 
 .gallery-inner img {
-  width: 540px; /* Под размер 600px */
-  max-height: 300px;
+  width: 1100px; /* Под размер 1200px */
+  max-height: 400px;
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
