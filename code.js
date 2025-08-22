@@ -39,11 +39,11 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     trainer: {
       images: [
-        "https://i.postimg.cc/Z5xwY0mx/1.jpg",
-        "https://i.postimg.cc/907v5PN1/2.jpg",
-        "https://i.postimg.cc/vH5p0znZ/3.jpg",
-        "https://i.postimg.cc/bwT4hw3X/image.jpg",
-        "https://i.postimg.cc/26PKwb8W/5.jpg"
+        "https://i.postimg.cc/qvP8vZHV/1.jpg",
+        "https://i.postimg.cc/YSQQGft4/2.jpg",
+        "https://i.postimg.cc/fLZmxtb8/3.jpg",
+        "https://i.postimg.cc/MTDRt6Mq/5.jpg",
+        "https://i.postimg.cc/8PsWBV1g/image.jpg"
       ],
       caption: "Фитнес-тренер Анна — сайт с видео и программами тренировок"
     }
