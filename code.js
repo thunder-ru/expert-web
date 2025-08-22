@@ -146,7 +146,6 @@ contactForm?.addEventListener('submit', function(e) {
 });
 
 // ===================================
-// ===================================
 // 6. ГАЛЕРЕЯ ПОРТФОЛИО (вертикальная, модально)
 // ===================================
 const portfolioLinks = document.querySelectorAll('.portfolio-link');
