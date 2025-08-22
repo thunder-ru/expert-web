@@ -10,7 +10,7 @@
 </head>
 <body>
 
-  <!-- Молнии по бокам (поверх всех блоков) -->
+  <!-- Молнии по бокам -->
   <div class="storm-overlay">
     <div class="lightning left"></div>
     <div class="lightning right"></div>
@@ -56,7 +56,7 @@
       <h2 class="section-title">Я не пишу код.<br>Я создаю прибыль</h2>
       <div class="about-content">
         <p>
-          За последние 2 года я реализовал <strong>15+ проектов</strong> — от лендингов до интернет-магазинов.
+          За последние 2 года я реализовал <strong><span id="projectCounter">0</span>+ проектов</strong> — от лендингов до интернет-магазинов.
         </p>
         <p>
           Мой подход: <strong>максимум пользы, минимум шума</strong>.
@@ -104,28 +104,33 @@
     <div class="container">
       <h2 class="section-title">Портфолио</h2>
       <p class="projects-subtitle">Проекты, которые <strong>запускали бизнес</strong></p>
-      <div class="projects-slider">
-        <div class="project-card" data-project="travel">
-          <img src="https://i.postimg.cc/MT4Kbg6d/1.jpg" alt="Тур-агентство">
-          <div class="project-info">
-            <h3>Тур-агентство "Аюрведа Тур"</h3>
-            <p>Сайт с бронированием туров и анимацией природы</p>
+
+      <div class="projects-carousel">
+        <button class="carousel-btn left" id="prevProject">&#10094;</button>
+        <div class="carousel-track" id="carouselTrack">
+          <div class="project-card" data-project="travel">
+            <img src="https://i.postimg.cc/MT4Kbg6d/1.jpg" alt="Тур-агентство">
+            <div class="project-info">
+              <h3>Тур-агентство "Аюрведа Тур"</h3>
+              <p>Сайт с бронированием туров и анимацией природы</p>
+            </div>
+          </div>
+          <div class="project-card" data-project="dentist">
+            <img src="https://i.postimg.cc/g02R2wgR/1.jpg" alt="Стоматология">
+            <div class="project-info">
+              <h3>Стоматология "Дентикс+"</h3>
+              <p>Клиника с онлайн-записью</p>
+            </div>
+          </div>
+          <div class="project-card" data-project="trainer">
+            <img src="https://i.postimg.cc/MThj59qb/1.jpg" alt="Персональный тренер">
+            <div class="project-info">
+              <h3>Фитнес-тренер Альмир Мусаев</h3>
+              <p>Сайт-визитка с покупкой абонемента</p>
+            </div>
           </div>
         </div>
-        <div class="project-card" data-project="dentist">
-          <img src="https://i.postimg.cc/g02R2wgR/1.jpg" alt="Стоматология">
-          <div class="project-info">
-            <h3>Стоматология "Дентикс+"</h3>
-            <p>Клиника с онлайн-записью</p>
-          </div>
-        </div>
-        <div class="project-card" data-project="trainer">
-          <img src="https://i.postimg.cc/MThj59qb/1.jpg" alt="Персональный тренер">
-          <div class="project-info">
-            <h3>Фитнес-тренер Альмир Мусаев</h3>
-            <p>Сайт-визитка с покупкой абонемента</p>
-          </div>
-        </div>
+        <button class="carousel-btn right" id="nextProject">&#10095;</button>
       </div>
     </div>
   </section>
@@ -148,16 +153,14 @@
     </div>
   </section>
 
-  <!-- Modal (вертикальная галерея) -->
+  <!-- Modal -->
   <div id="imageModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
       <div class="modal-vertical-gallery">
         <button class="gallery-btn up" onclick="prevImage()">&#10094;</button>
-        <div class="gallery-container">
-          <div class="gallery-inner" id="galleryInner">
-            <!-- Фото будут добавлены через JS -->
-          </div>
+        <div class="gallery-container" id="galleryContainer">
+          <div class="gallery-inner" id="galleryInner"></div>
         </div>
         <button class="gallery-btn down" onclick="nextImage()">&#10095;</button>
       </div>
@@ -175,7 +178,7 @@
         <a href="https://t.me/overgrand" target="_blank" class="btn btn-primary">Написать в Telegram</a>
       </div>
       <p class="contact-info">
-        <i class="fas fa-paper-plane"></i> Telegram: <a href="https://t.me/overgrand">@overgrand</a><br>
+        <i class="fas fa-paper-plane"></i> Telegram: <span id="telegram-link" style="cursor: pointer; text-decoration: underline; color: #00eeff;">@overgrand</span><br>
         <i class="fas fa-envelope"></i> Email: <a href="mailto:rosanov.danila2016@yandex.ru">rosanov.danila2016@yandex.ru</a>
       </p>
     </div>
@@ -185,6 +188,17 @@
   <footer class="footer">
     <p>&copy; 2025 Web-Thunder. Сайты, которые <strong>грозят</strong> успехом.</p>
   </footer>
+
+  <!-- Floating Buttons -->
+  <a href="https://wa.me/79036254250" target="_blank" class="floating-tg whatsapp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <a href="https://t.me/overgrand" target="_blank" class="floating-tg telegram">
+    <i class="fab fa-telegram-plane"></i>
+  </a>
+
+  <!-- Theme Toggle -->
+  <button class="toggle-theme" id="themeToggle">🌙 / 🌞</button>
 
   <script src="code.js"></script>
 </body>
