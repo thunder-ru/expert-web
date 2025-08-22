@@ -164,7 +164,10 @@ const galleryData = {
 // Открытие галереи
 function openGallery(projectId) {
   const data = galleryData[projectId];
-  if (!data) return;
+  if (!data) {
+    console.error(`No data found for projectId: ${projectId}`);
+    return;
+  }
 
   document.getElementById('projectTitle').innerText = data.title;
   document.getElementById('projectDesc').innerText = data.desc;
@@ -176,12 +179,13 @@ function openGallery(projectId) {
     const img = document.createElement('img');
     img.src = src.trim();
     img.alt = data.title;
-    img.onerror = () => img.src = "https://via.placeholder.com/800x500/333/fff?text=Ошибка";
+    img.onerror = () => (img.src = "https://via.placeholder.com/800x500/333/fff?text=Ошибка");
     grid.appendChild(img);
   });
 
-  document.getElementById('galleryModal').style.display = 'flex';
-  setTimeout(() => document.getElementById('galleryModal').classList.add('show'), 50);
+  const modal = document.getElementById('galleryModal');
+  modal.style.display = 'flex';
+  setTimeout(() => modal.classList.add('show'), 50);
 }
 
 function closeGallery() {
@@ -193,10 +197,20 @@ function closeGallery() {
 // Наведение
 let hoverTimeout;
 function openGalleryOnHover(id) {
-  hoverTimeout = setTimeout(() => openGallery(id), 800);
+  clearTimeout(hoverTimeout);
+  hoverTimeout = setTimeout(() => {
+    if (galleryData[id]) {
+      openGallery(id);
+    }
+  }, 800);
 }
+
 function closeGalleryOnHover() {
   clearTimeout(hoverTimeout);
+  const modal = document.getElementById('galleryModal');
+  if (modal.classList.contains('show')) {
+    closeGallery();
+  }
 }
 
 // Закрытие
@@ -229,7 +243,7 @@ let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 const dots = document.querySelectorAll('.dot');
 const nextBtn = document.getElementById('nextSlide');
-const prevBtn = document.getElementById('nextSlide');
+const prevBtn = document.getElementById('prevSlide');
 
 function showSlide(n) {
   if (n >= slides.length) currentSlide = 0;
@@ -243,13 +257,23 @@ function showSlide(n) {
 slides.forEach(slide => {
   slide.addEventListener('click', () => {
     const id = slide.getAttribute('data-id');
-    openGallery(id);
+    if (id && galleryData[id]) {
+      openGallery(id);
+    }
   });
   slide.addEventListener('mouseenter', () => {
     const id = slide.getAttribute('data-id');
-    openGalleryOnHover(id);
+    if (id && galleryData[id]) {
+      openGalleryOnHover(id);
+    }
   });
   slide.addEventListener('mouseleave', closeGalleryOnHover);
+  slide.addEventListener('touchstart', () => {
+    const id = slide.getAttribute('data-id');
+    if (id && galleryData[id]) {
+      openGallery(id);
+    }
+  });
 });
 
 dots.forEach((dot, i) => {
