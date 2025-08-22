@@ -14,8 +14,8 @@ body {
   position: relative;
 }
 
-/* Анимация молнии в фоне */
-.lightning-container {
+/* === ГРОЗА ПО БОКАМ ЭКРАНА === */
+.storm {
   position: fixed;
   top: 0;
   left: 0;
@@ -28,35 +28,62 @@ body {
 
 .lightning {
   position: absolute;
-  width: 4px;
+  width: 3px;
   height: 0;
   background: #fff;
-  top: 0;
-  left: 50%;
   box-shadow: 
-    0 0 30px 5px #00eeff,
-    0 0 60px 10px rgba(0, 238, 255, 0.5);
-  animation: strike 6s infinite;
+    0 0 20px 4px #00eeff,
+    0 0 40px 8px rgba(0, 238, 255, 0.4);
+  opacity: 0;
 }
 
-.lightning.glow {
-  width: 10px;
-  opacity: 0.3;
-  filter: blur(5px);
-  animation: strike 6s infinite 2s;
+.lightning.left {
+  left: 10%;
+  top: 0;
+  animation: strike-vertical 6s infinite;
 }
 
-@keyframes strike {
+.lightning.right {
+  right: 10%;
+  top: 0;
+  animation: strike-vertical 5s infinite 1.5s;
+}
+
+.lightning.left-delay {
+  left: 15%;
+  top: 0;
+  animation: strike-vertical 7s infinite 3s;
+}
+
+.lightning.right-delay {
+  right: 15%;
+  top: 0;
+  animation: strike-vertical 4s infinite 2s;
+}
+
+@keyframes strike-vertical {
   0%, 97%, 100% { height: 0; opacity: 0; }
   98% { height: 100vh; opacity: 1; }
   99% { height: 100vh; opacity: 0; }
 }
 
-/* Градиентный фон с анимацией */
+/* === ГЛАВНЫЙ ЭКРАН (HERO) === */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border: 2px solid rgba(0, 238, 255, 0.1);
+  pointer-events: none;
+  box-shadow: 
+    0 0 15px 0 rgba(0, 238, 255, 0.2),
+    inset 0 0 15px 0 rgba(0, 238, 255, 0.1);
+  z-index: -1;
+}
+
 .hero {
-  background: linear-gradient(135deg, #1a1a2e, #0f3460, #16213e);
+  background: linear-gradient(135deg, #121224, #1a1a2e, #16213e);
   background-size: 400% 400%;
-  animation: gradientShift 10s ease infinite;
+  animation: gradientShift 12s ease infinite;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -65,6 +92,7 @@ body {
   padding: 2rem;
   position: relative;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
+  z-index: 1;
 }
 
 @keyframes gradientShift {
@@ -73,7 +101,7 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* Эффект "парящего текста" */
+/* Заголовок */
 .hero-title {
   font-size: 5rem;
   font-weight: 800;
@@ -85,28 +113,31 @@ body {
   margin-bottom: 1.5rem;
   position: relative;
   display: inline-block;
-  text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
   animation: float 3s ease-in-out infinite;
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-8px); }
 }
 
 .hero-subtitle {
   font-size: 1.8rem;
   margin-bottom: 2.5rem;
   color: #a0eaff;
-  text-shadow: 0 0 10px rgba(160, 234, 255, 0.3);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 0 10px rgba(160, 234, 255, 0.2);
 }
 
 .highlight {
   color: #00eeff;
-  text-shadow: 0 0 10px rgba(0, 238, 255, 0.5);
+  text-shadow: 0 0 10px rgba(0, 238, 255, 0.4);
 }
 
-/* 3D-кнопки */
+/* === КНОПКИ С 3D-ЭФФЕКТОМ === */
 .btn {
   padding: 1rem 2.2rem;
   font-size: 1.1rem;
@@ -165,7 +196,107 @@ body {
   box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
 }
 
-/* Улучшенные карточки проектов */
+/* === УСЛУГИ === */
+.services {
+  padding: 6rem 2rem;
+  background: #121220;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.8rem;
+  margin-bottom: 3rem;
+  color: #fff;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #00eeff, #ffd700);
+  border-radius: 2px;
+}
+
+.services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+}
+
+.service-card {
+  background: rgba(26, 26, 46, 0.7);
+  padding: 2rem;
+  border-radius: 15px;
+  width: 280px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  border-color: #00eeff;
+}
+
+.icon {
+  font-size: 3rem;
+  color: #00eeff;
+  margin-bottom: 1rem;
+}
+
+.service-card h3 {
+  color: #ffd700;
+  margin-bottom: 1rem;
+}
+
+.service-card p {
+  color: #ccc;
+  font-size: 1rem;
+}
+
+/* === ПРОЕКТЫ === */
+.projects {
+  padding: 6rem 2rem;
+  background: #121220;
+  text-align: center;
+}
+
+.project-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-card {
+  background: #1a1a2e;
+  border-radius: 15px;
+  overflow: hidden;
+  width: 350px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+  padding: 1rem;
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+
+.project-card:hover {
+  transform: translateY(-12px) rotateX(10deg);
+  box-shadow: 0 20px 40px rgba(0, 238, 255, 0.2);
+}
+
 .project-img-container {
   position: relative;
   overflow: hidden;
@@ -199,67 +330,18 @@ body {
   transform: scale(1.1) rotate(2deg);
 }
 
-.project-card {
-  background: #1a1a2e;
-  border-radius: 15px;
-  overflow: hidden;
-  width: 350px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  cursor: pointer;
-  padding: 1rem;
-  transform-style: preserve-3d;
-  perspective: 800px;
-}
-
-.project-card:hover {
-  transform: translateY(-12px) rotateX(10deg);
-  box-shadow: 0 20px 40px rgba(0, 238, 255, 0.2);
-}
-
-/* Услуги */
-.services {
-  padding: 6rem 2rem;
-  background: #121220;
-  text-align: center;
-}
-
-.services-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2.5rem;
-  max-width: 1200px;
-  margin: 0 auto 3rem;
-}
-
-.service-card {
-  background: rgba(26, 26, 46, 0.7);
-  padding: 2rem;
-  border-radius: 15px;
-  width: 280px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 215, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-10px);
-  border-color: #00eeff;
-}
-
-.icon {
-  font-size: 3rem;
-  color: #00eeff;
-  margin-bottom: 1rem;
-}
-
-.service-card h3 {
+.project-card h3 {
+  margin: 1rem 0 0.5rem;
+  font-size: 1.4rem;
   color: #ffd700;
-  margin-bottom: 1rem;
 }
 
-/* Модальное окно */
+.project-card p {
+  color: #aaa;
+  font-size: 1rem;
+}
+
+/* === МОДАЛЬНОЕ ОКНО === */
 .modal {
   display: none;
   position: fixed;
@@ -274,6 +356,11 @@ body {
   animation: fadeIn 0.4s ease;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .modal-content {
   position: relative;
   max-width: 90%;
@@ -281,7 +368,8 @@ body {
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 0 50px rgba(0, 238, 255, 0.6);
-  animation: scaleIn 0.5s ease;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .modal-img {
@@ -318,7 +406,7 @@ body {
   text-shadow: 0 0 5px rgba(0, 238, 255, 0.3);
 }
 
-/* Контактная секция */
+/* === КОНТАКТЫ === */
 .contact {
   padding: 6rem 2rem;
   background: #0f1421;
@@ -359,7 +447,7 @@ body {
   text-decoration: underline;
 }
 
-/* Футер */
+/* === ФУТЕР === */
 .footer {
   text-align: center;
   padding: 2.5rem;
@@ -369,7 +457,7 @@ body {
   border-top: 1px solid #222;
 }
 
-/* Адаптивность */
+/* === АДАПТИВНОСТЬ === */
 @media (max-width: 768px) {
   .hero-title {
     font-size: 3.5rem;
