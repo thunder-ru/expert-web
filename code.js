@@ -18,7 +18,7 @@ const projects = {
     caption: "Тур-агентство «Горизонт» — сайт с анимированными фонами и бронированием туров"
   },
   dentist: {
-    img: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=800&q=80",
+    img: "https://i.postimg.cc/hPNcYjvK/image.jpg",
     caption: "Стоматология «Улыбка+» — современный сайт с 3D-эффектами и онлайн-записью"
   },
   trainer: {
