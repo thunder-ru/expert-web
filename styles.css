@@ -730,17 +730,4 @@ body {
     max-width: 95%;
   }
   .gallery-modal {
-    max-width: 95%;
-    max-height: 95vh;
-  }
-  .gallery-grid {
-    max-height: 60vh;
-  }
-  .gallery-modal .close-btn {
-    top: 10px;
-    right: 15px;
-    font-size: 1.6rem;
-    width: 36px;
-    height: 36px;
-  }
-}
+    max
