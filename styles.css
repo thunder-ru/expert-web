@@ -14,7 +14,7 @@ body {
   scroll-behavior: smooth;
 }
 
-/* === МОЛНИИ ПО БОКАМ (ПОВЕРХ ВСЕГО) === */
+/* === МОЛНИИ ПО БОКАМ === */
 .storm-overlay {
   position: fixed;
   top: 0;
@@ -37,29 +37,10 @@ body {
   opacity: 0;
 }
 
-.lightning.left {
-  left: 10%;
-  top: 0;
-  animation: strike-vertical 6s infinite;
-}
-
-.lightning.right {
-  right: 10%;
-  top: 0;
-  animation: strike-vertical 5s infinite 1.5s;
-}
-
-.lightning.left-delay {
-  left: 15%;
-  top: 0;
-  animation: strike-vertical 7s infinite 3s;
-}
-
-.lightning.right-delay {
-  right: 15%;
-  top: 0;
-  animation: strike-vertical 4s infinite 2s;
-}
+.lightning.left { left: 10%; top: 0; animation: strike-vertical 6s infinite; }
+.lightning.right { right: 10%; top: 0; animation: strike-vertical 5s infinite 1.5s; }
+.lightning.left-delay { left: 15%; top: 0; animation: strike-vertical 7s infinite 3s; }
+.lightning.right-delay { right: 15%; top: 0; animation: strike-vertical 4s infinite 2s; }
 
 @keyframes strike-vertical {
   0%, 97%, 100% { height: 0; opacity: 0; }
@@ -109,9 +90,7 @@ body {
   transition: color 0.3s ease;
 }
 
-.nav-link:hover {
-  color: #00eeff;
-}
+.nav-link:hover { color: #00eeff; }
 
 .nav-toggle {
   display: none;
@@ -140,14 +119,8 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     padding: 2rem 0;
   }
-
-  .nav-menu.active {
-    left: 0;
-  }
-
-  .nav-toggle {
-    display: flex;
-  }
+  .nav-menu.active { left: 0; }
+  .nav-toggle { display: flex; }
 }
 
 /* === HERO === */
@@ -199,7 +172,6 @@ body {
   flex-wrap: wrap;
 }
 
-/* Волна */
 .hero-wave {
   position: absolute;
   bottom: 0;
@@ -308,7 +280,6 @@ body {
 .projects {
   padding: 6rem 0;
   background: #121220;
-  overflow: hidden;
 }
 
 .projects-subtitle {
@@ -318,21 +289,48 @@ body {
   margin-bottom: 3rem;
 }
 
-.projects-slider {
+.projects-carousel {
+  position: relative;
   display: flex;
-  gap: 2rem;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 1rem 0 2rem;
-  scrollbar-width: none;
+  align-items: center;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.projects-slider::-webkit-scrollbar {
-  display: none;
+.carousel-btn {
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.carousel-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.carousel-btn.left { margin-right: 1rem; }
+.carousel-btn.right { margin-left: 1rem; }
+
+.carousel-track {
+  display: flex;
+  gap: 2rem;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  width: 100%;
+  max-width: 800px;
 }
 
 .project-card {
-  min-width: 320px;
+  min-width: 300px;
   background: #1a1a2e;
   border-radius: 15px;
   overflow: hidden;
@@ -388,7 +386,7 @@ body {
   border-left: 4px solid #00eeff;
 }
 
-/* === МОДАЛЬНОЕ ОКНО С ВЕРТИКАЛЬНОЙ ГАЛЕРЕЕЙ === */
+/* === МОДАЛЬНОЕ ОКНО === */
 .modal {
   display: none;
   position: fixed;
@@ -437,11 +435,7 @@ body {
   z-index: 10;
 }
 
-.gallery-btn:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
+.gallery-btn:hover { opacity: 1; transform: scale(1.1); }
 .up { margin-bottom: 20px; }
 .down { margin-top: 20px; }
 
@@ -453,9 +447,7 @@ body {
   scrollbar-width: none;
 }
 
-.gallery-container::-webkit-scrollbar {
-  display: none;
-}
+.gallery-container::-webkit-scrollbar { display: none; }
 
 .gallery-inner {
   display: flex;
@@ -471,15 +463,12 @@ body {
   height: auto;
   max-height: 480px;
   object-fit: contain;
-  object-position: center;
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
 }
 
-.gallery-inner img:hover {
-  transform: scale(1.01);
-}
+.gallery-inner img:hover { transform: scale(1.01); }
 
 .close {
   position: absolute;
@@ -494,10 +483,7 @@ body {
   z-index: 10;
 }
 
-.close:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
+.close:hover { opacity: 1; transform: scale(1.1); }
 
 .modal-caption {
   text-align: center;
@@ -570,12 +556,15 @@ body {
   font-size: 1.1rem;
 }
 
-.contact-info a {
+.contact-info a,
+#telegram-link {
   color: #00eeff;
   text-decoration: none;
+  cursor: pointer;
 }
 
-.contact-info a:hover {
+.contact-info a:hover,
+#telegram-link:hover {
   text-decoration: underline;
 }
 
@@ -591,17 +580,95 @@ body {
 
 /* === АНИМАЦИИ === */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* === АДАПТИВ (ТОЛЬКО МОБИЛЬНЫЕ) === */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === ПЛАВАЮЩИЕ КНОПКИ === */
+.floating-tg {
+  position: fixed;
+  bottom: 20px;
+  width: 60px;
+  height: 60px;
+  background: #0088cc;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  text-decoration: none;
+}
+
+.floating-tg:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp { right: 90px; }
+.telegram { right: 20px; }
+
+/* === ТЕМА === */
+body.light-theme {
+  background-color: #f0f2f5;
+  color: #111;
+}
+
+body.light-theme * {
+  color: #111 !important;
+}
+
+body.light-theme .nav-menu,
+body.light-theme .project-card,
+body.light-theme .service-card,
+body.light-theme .quotes blockquote {
+  background: #fff !important;
+  color: #111 !important;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+body.light-theme .btn-outline {
+  color: #000 !important;
+  border-color: #000;
+}
+
+body.light-theme .btn-primary {
+  background: linear-gradient(45deg, #000, #333) !important;
+}
+
+body.light-theme .section-title::after {
+  background: linear-gradient(90deg, #000, #555) !important;
+}
+
+.toggle-theme {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: 1px solid #00eeff;
+  padding: 10px 15px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  z-index: 1001;
+  backdrop-filter: blur(5px);
+}
+
+/* === АДАПТИВ === */
 @media (max-width: 768px) {
   .hero {
     clip-path: none;
@@ -609,10 +676,7 @@ body {
     height: auto;
     padding: 4rem 0 8rem;
   }
-
-  .hero-wave {
-    display: none;
-  }
+  .hero-wave { display: none; }
 
   .hero-title {
     font-size: 2.4rem;
@@ -625,10 +689,10 @@ body {
     font-size: 1.1rem;
     padding: 0 1rem;
     margin-bottom: 2rem;
-    max-width: 100%;
   }
 
-  .cta-buttons {
+  .cta-buttons,
+  .contact-buttons {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
@@ -637,7 +701,6 @@ body {
   .btn {
     width: 90%;
     max-width: 300px;
-    text-align: center;
   }
 
   .services-grid {
@@ -652,9 +715,15 @@ body {
     padding: 1.5rem;
   }
 
-  .projects-slider {
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .carousel-track {
+    max-width: 280px;
     gap: 1.5rem;
-    padding: 1rem;
   }
 
   .project-card {
@@ -663,46 +732,25 @@ body {
 
   .modal-content {
     width: 95%;
-    max-width: 95%;
     max-height: 95vh;
     border-radius: 12px;
   }
 
-  .modal-vertical-gallery {
-    height: 70vh;
-  }
+  .modal-vertical-gallery { height: 70vh; }
 
   .gallery-btn {
     width: 50px;
     height: 50px;
     font-size: 1.5rem;
-    opacity: 0.7;
-  }
-
-  .up { margin-bottom: 10px; }
-  .down { margin-top: 10px; }
-
-  .gallery-container {
-    padding: 10px 0;
-  }
-
-  .gallery-inner {
-    gap: 20px;
-    padding: 15px;
   }
 
   .gallery-inner img {
-    width: 100%;
-    max-width: 100%;
     max-height: 320px;
-    object-fit: contain;
   }
 
   .modal-caption {
     font-size: 1.2rem;
     padding: 1rem;
-    margin-top: 1rem;
-    word-wrap: break-word;
   }
 
   .close {
@@ -711,68 +759,21 @@ body {
     font-size: 2.5rem;
   }
 
-  .contact p {
-    font-size: 1.1rem;
-    padding: 0 1rem;
-  }
-
-  .contact-buttons {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-
   .contact-info {
     font-size: 1rem;
     padding: 0 1rem;
-    line-height: 1.6;
   }
 
-  .nav-container {
-    padding: 1rem 1.5rem;
-  }
+  .nav-container { padding: 1rem 1.5rem; }
+  .nav-logo { font-size: 1.6rem; }
+  .nav-menu { top: 60px; padding: 1.5rem 0; }
 
-  .nav-logo {
-    font-size: 1.6rem;
-  }
+  .quotes blockquote { font-size: 1rem; }
+  .section-title { font-size: 2.4rem; margin-bottom: 2rem; }
+  .section-title::after { width: 60px; height: 3px; bottom: -8px; }
+  .features-list { margin: 1.5rem 0; }
+  .features-list li { margin: 0.6rem 0; font-size: 0.95rem; }
+  .footer { padding: 2rem 1rem; font-size: 0.9rem; }
 
-  .nav-menu {
-    top: 60px;
-    padding: 1.5rem 0;
-  }
-
-  .quotes blockquote {
-    padding: 1.2rem;
-    font-size: 1rem;
-  }
-
-  .section-title {
-    font-size: 2.4rem;
-    margin-bottom: 2rem;
-  }
-
-  .section-title::after {
-    width: 60px;
-    height: 3px;
-    bottom: -8px;
-  }
-
-  .features-list {
-    margin: 1.5rem 0;
-  }
-
-  .features-list li {
-    margin: 0.6rem 0;
-    font-size: 0.95rem;
-  }
-
-  .footer {
-    padding: 2rem 1rem;
-    font-size: 0.9rem;
-  }
-
-  body.modal-open {
-    overflow: hidden;
-    height: 100vh;
-  }
+  body.modal-open { overflow: hidden; height: 100vh; }
 }
