@@ -98,28 +98,42 @@
       <h2 class="section-title">Портфолио</h2>
       <p class="text-center">Проекты, которые <strong>запускали бизнес</strong></p>
       <div class="portfolio-grid">
-        <div class="portfolio-item">
+        <div class="portfolio-item" data-project="travel">
           <img src="https://images.unsplash.com/photo-1526815456743-3e55d10113da?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Тур-агентство">
           <div class="overlay">
             <h3>WanderLux</h3>
             <p>Тур-агентство премиум-класса</p>
           </div>
         </div>
-        <div class="portfolio-item">
+        <div class="portfolio-item" data-project="auto">
           <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Аренда авто">
           <div class="overlay">
             <h3>DriveHive</h3>
             <p>Аренда автомобилей в Москве</p>
           </div>
         </div>
-        <div class="portfolio-item">
+        <div class="portfolio-item" data-project="health">
           <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Стоматология">
           <div class="overlay">
             <h3>DentaCare</h3>
             <p>Стоматологическая клиника</p>
           </div>
         </div>
-        <div class="portfolio-item">
+        <div class="portfolio-item" data-project="bike">
+          <img src="https://images.unsplash.com/photo-1541532713592-7538ad33342e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Веломагазин">
+          <div class="overlay">
+            <h3>Velox</h3>
+            <p>Велосипеды и экипировка</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-project="trainer">
+          <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Персональный тренер">
+          <div class="overlay">
+            <h3>FitMaster</h3>
+            <p>Персональный тренер и онлайн-курсы</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-project="tea">
           <img src="https://images.unsplash.com/photo-1595425970375-6f4f6a89ae5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Чай">
           <div class="overlay">
             <h3>TeaZen</h3>
@@ -129,6 +143,15 @@
       </div>
     </div>
   </section>
+
+  <!-- Модальное окно портфолио -->
+  <div id="projectModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modalTitle"></h2>
+      <div id="modalGallery" class="gallery"></div>
+    </div>
+  </div>
 
   <!-- Отзывы -->
   <section class="section reviews">
@@ -167,6 +190,7 @@
             <label><input type="radio" name="channel" value="email"> Ответ на email</label>
           </div>
           <button type="submit" class="btn">Отправить запрос</button>
+          <div id="formStatus" class="status"></div>
         </form>
       </div>
     </div>
@@ -174,17 +198,17 @@
 
   <!-- Чат-бот -->
   <div class="chat-bot">
-    <div class="chat-bot-toggle" id="chatBotToggle">💬</div>
+    <div class="chat-bot-toggle" id="chatBotToggle">🤖</div>
     <div class="chat-bot-window" id="chatBotWindow">
       <div class="chat-header">
-        <span>Thunder Bot</span>
+        <span>Thunder AI</span>
         <button id="closeChat">×</button>
       </div>
       <div class="chat-messages" id="chatMessages">
-        <div class="msg bot">Привет! Я — ваш цифровой помощник. Хотите прототип за 24 часа? Напишите "Запуск".</div>
+        <div class="msg bot">Привет! Я — ваш цифровой ассистент. Хотите прототип за 24 часа? Напишите "Запуск".</div>
       </div>
       <div class="chat-input">
-        <input type="text" id="chatInput" placeholder="Спросите..." />
+        <input type="text" id="chatInput" placeholder="Спросите о ценах, сроках, примерах..." />
         <button id="sendChat">➤</button>
       </div>
     </div>
