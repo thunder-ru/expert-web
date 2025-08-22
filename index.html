@@ -38,11 +38,13 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <h1 class="hero-title">Сайты, которые <span class="highlight">взрывают</span> конверсию</h1>
-      <p class="hero-subtitle">Я создаю продающие сайты с нуля — быстро, стильно, эффективно.</p>
+      <h1 class="hero-title">Сайт, который работает на вас<br><span class="highlight">с первого дня</span></h1>
+      <p class="hero-subtitle">
+        Я — <strong>веб-архитектор бизнеса</strong>. Собираю сайты как конструктор: быстро, надёжно, с фокусом на прибыль, а не на красивый код.
+      </p>
       <div class="cta-buttons">
-        <a href="#projects" class="btn btn-primary">Посмотреть проекты</a>
-        <a href="https://t.me/overgrand" target="_blank" class="btn btn-outline">Написать в Telegram</a>
+        <a href="#contact" class="btn btn-primary">Написать в Telegram</a>
+        <a href="mailto:rosanov.danila2016@yandex.ru" class="btn btn-outline">Написать на почту</a>
       </div>
     </div>
     <div class="hero-wave"></div>
@@ -51,32 +53,47 @@
   <!-- About Section -->
   <section id="about" class="about">
     <div class="container">
-      <h2 class="section-title">Что я делаю</h2>
+      <h2 class="section-title">Я не пишу код.<br>Я создаю прибыль</h2>
       <div class="about-content">
         <p>
-          Меня зовут <strong>Web-Thunder</strong> — я создаю сайты, которые <strong>работают как машина</strong>.
-          Каждый мой проект — это сочетание <strong>скорости, дизайна и конверсии</strong>.
+          За последние 2 года я реализовал <strong>15+ проектов</strong> — от лендингов до интернет-магазинов.
         </p>
         <p>
-          Я не просто верстаю — я <strong>строю цифровые решения</strong>, которые приносят клиентов,
-          увеличивают продажи и делают бренд заметным.
+          Мой подход: <strong>максимум пользы, минимум шума</strong>.
         </p>
-        <div class="features">
-          <div class="feature">
-            <i class="fas fa-bolt"></i>
-            <h3>Быстро</h3>
-            <p>Сайт за 3–7 дней. Без задержек.</p>
-          </div>
-          <div class="feature">
-            <i class="fas fa-rocket"></i>
-            <h3>Мощно</h3>
-            <p>100 баллов в Lighthouse, SEO, адаптивность.</p>
-          </div>
-          <div class="feature">
-            <i class="fas fa-handshake"></i>
-            <h3>Надёжно</h3>
-            <p>Поддержка после сдачи, правки, инструкции.</p>
-          </div>
+        <p>
+          Я не гонюсь за сложностью. Я создаю сайты, которые:
+        </p>
+        <ul class="features-list">
+          <li>✅ Приносят клиентов с первого дня</li>
+          <li>✅ Загружаются за секунду</li>
+          <li>✅ Выглядят идеально на любом устройстве</li>
+          <li>✅ Увеличивают конверсию</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services">
+    <div class="container">
+      <h2 class="section-title">Услуги</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Сайт под ключ</h3>
+          <p>От дизайна до запуска. Готовый сайт за 5–7 дней.</p>
+        </div>
+        <div class="service-card">
+          <h3>Верстка макетов</h3>
+          <p>Pixel perfect, адаптив, кроссбраузерность.</p>
+        </div>
+        <div class="service-card">
+          <h3>Поддержка сайтов</h3>
+          <p>Обновления, баги, доработки — я всегда на связи.</p>
+        </div>
+        <div class="service-card">
+          <h3>Оптимизация и SEO</h3>
+          <p>Ускорение, индексация, повышение позиций.</p>
         </div>
       </div>
     </div>
@@ -85,29 +102,48 @@
   <!-- Projects Section -->
   <section id="projects" class="projects">
     <div class="container">
-      <h2 class="section-title">Последние проекты</h2>
+      <h2 class="section-title">Портфолио</h2>
+      <p class="projects-subtitle">Проекты, которые <strong>запускали бизнес</strong></p>
       <div class="projects-slider">
-        <div class="project-card" onclick="openModal('travel')">
-          <img src="https://i.postimg.cc/HLh2wf3v/XXXL.webp" alt="Тур-агентство">
+        <div class="project-card" data-project="travel">
+          <img src="https://images.unsplash.com/photo-1525766034134-8e8f6c8a7d8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Тур-агентство">
           <div class="project-info">
             <h3>Тур-агентство "Горизонт"</h3>
             <p>Сайт с бронированием туров и анимацией природы</p>
           </div>
         </div>
-        <div class="project-card" onclick="openModal('dentist')">
+        <div class="project-card" data-project="dentist">
           <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Стоматология">
           <div class="project-info">
             <h3>Стоматология "Улыбка+"</h3>
             <p>Клиника с онлайн-записью и 3D-эффектами</p>
           </div>
         </div>
-        <div class="project-card" onclick="openModal('trainer')">
-          <img src="https://i.postimg.cc/2ywLwWrj/a605a7bf5f3497b48cd706742dafc066.jpg" alt="Персональный тренер">
+        <div class="project-card" data-project="trainer">
+          <img src="https://images.unsplash.com/photo-1540497077202-7c8a9b9a0b1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300&q=80" alt="Персональный тренер">
           <div class="project-info">
             <h3>Фитнес-тренер Анна</h3>
             <p>Сайт с программами и видео</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="section-title">Что говорят клиенты</h2>
+      <div class="quotes">
+        <blockquote>
+          "Запустили сайт за 5 дней. Уже через неделю — 120 заявок. web-thunder — это не просто разработка, это рост бизнеса."
+        </blockquote>
+        <blockquote>
+          "Работал с 3 разработчиками. Только web-thunder сделал всё без косяков и в срок."
+        </blockquote>
+        <blockquote>
+          "Сайт загружается за 0.8 сек. SEO в топе. Конверсия выросла на 70%."
+        </blockquote>
       </div>
     </div>
   </section>
@@ -132,8 +168,8 @@
   <!-- Contact Section -->
   <section id="contact" class="contact">
     <div class="container">
-      <h2 class="section-title">Готов начать?</h2>
-      <p>Создам сайт, который будет <strong>приносить клиентов</strong> уже с первого дня.</p>
+      <h2 class="section-title">Готовы к запуску?</h2>
+      <p>Напишите — и через 24 часа у вас будет <strong>прототип сайта</strong> или <strong>коммерческое предложение</strong>.</p>
       <div class="contact-buttons">
         <a href="mailto:rosanov.danila2016@yandex.ru" class="btn btn-outline">Написать на почту</a>
         <a href="https://t.me/overgrand" target="_blank" class="btn btn-primary">Написать в Telegram</a>
