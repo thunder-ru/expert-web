@@ -42,10 +42,7 @@
       <p class="hero-subtitle">
         Я — <strong>веб-дизайнер</strong>. Моя цель — помочь бизнесам и индивидуальным клиентам выделиться в онлайн-пространстве, создавая визуально привлекательные и удобные в использовании веб-ресурсы.
       </p>
-      <div class="cta-buttons">
-        <a href="#contact" class="btn btn-primary">Написать в Telegram</a>
-        <a href="mailto:rosanov.danila2016@yandex.ru" class="btn btn-outline">Написать на почту</a>
-      </div>
+      <!-- УБРАЛ КНОПКИ ИЗ ЭТОЙ ОБЛАСТИ -->
     </div>
     <div class="hero-wave"></div>
   </section>
@@ -176,6 +173,8 @@
       <div class="contact-buttons">
         <a href="mailto:rosanov.danila2016@yandex.ru" class="btn btn-outline">Написать на почту</a>
         <a href="https://t.me/overgrand" target="_blank" class="btn btn-primary">Написать в Telegram</a>
+        <!-- Добавлена кнопка WhatsApp -->
+        <a href="https://wa.me/79036254250" target="_blank" class="btn btn-whatsapp">Написать в WhatsApp</a>
       </div>
       <p class="contact-info">
         <i class="fas fa-paper-plane"></i> Telegram: <span id="telegram-link" style="cursor: pointer; text-decoration: underline; color: #00eeff;">@overgrand</span><br>
@@ -189,16 +188,15 @@
     <p>&copy; 2025 Web-Thunder. Сайты, которые <strong>грозят</strong> успехом.</p>
   </footer>
 
-  <!-- Floating Buttons -->
-  <a href="https://wa.me/79036254250" target="_blank" class="floating-tg whatsapp">
+  <!-- Плавающая кнопка WhatsApp -->
+  <a href="https://wa.me/79036254250" target="_blank" class="floating-btn whatsapp">
     <i class="fab fa-whatsapp"></i>
   </a>
-  <a href="https://t.me/overgrand" target="_blank" class="floating-tg telegram">
+
+  <!-- Кнопка Telegram (опционально) -->
+  <a href="https://t.me/overgrand" target="_blank" class="floating-btn telegram">
     <i class="fab fa-telegram-plane"></i>
   </a>
-
-  <!-- Theme Toggle -->
-  <button class="toggle-theme" id="themeToggle">🌙 / 🌞</button>
 
   <script src="code.js"></script>
 </body>
