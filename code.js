@@ -166,55 +166,28 @@ document.body.appendChild(modal);
 // Добавляем фотографии в галерею
 const galleryData = {
   wanderlux: [
-    "https://i.postimg.cc/8kvBPsBf/1.jpg",
-    "https://i.postimg.cc/zG02QPG8/2.jpg",
-    "https://i.postimg.cc/xdB5DrDD/3.jpg",
-    "https://i.postimg.cc/9FcpjtSM/4.jpg",
-    "https://i.postimg.cc/bwBHkXvD/5.jpg",
-    "https://i.postimg.cc/MGf0Yscs/6.jpg"
+    "https://images.unsplash.com/photo-1526815456743-3e55d10113da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1515378791036-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
   ],
   drivehive: [
-    "https://i.postimg.cc/pdkWMT84/Black1.jpg",
-    "https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg",
-    "https://i.postimg.cc/PrmQ0R29/Black3.jpg",
-    "https://i.postimg.cc/0yndyJgC/Black4.jpg",
-    "https://i.postimg.cc/HnbbDr4X/Black-5.jpg"
+    "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1507035895480-2873dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
   ],
   dentacare: [
-    "https://i.postimg.cc/GmFkPfSL/1.jpg",
-    "https://i.postimg.cc/5tgJdxjX/2.jpg",
-    "https://i.postimg.cc/D0J3XL6G/3.jpg",
-    "https://i.postimg.cc/8k9SVXkm/4.jpg",
-    "https://i.postimg.cc/zf0s20PW/6.jpg",
-    "https://i.postimg.cc/g2dcft4B/7.jpg",
-    "https://i.postimg.cc/vm2QxYyp/8.jpg",
-    "https://i.postimg.cc/DfX2m3MM/9.jpg"
+    "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
   ],
   velox: [
-    "https://i.postimg.cc/J7S6P9KZ/image.jpg",
-    "https://i.postimg.cc/MG02XYWL/2.jpg",
-    "https://i.postimg.cc/zfr4mRnF/3.jpg",
-    "https://i.postimg.cc/dQxXsf21/4.jpg",
-    "https://i.postimg.cc/rFRHK9j9/5.jpg",
-    "https://i.postimg.cc/wjKGJsbY/6.jpg",
-    "https://i.postimg.cc/DwqYcytJ/7.jpg"
+    "https://images.unsplash.com/photo-1541532713592-7538ad33342e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1507035895480-2873dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
   ],
   fitmaster: [
-    "https://i.postimg.cc/Z5xwY0mx/1.jpg",
-    "https://i.postimg.cc/907v5PN1/2.jpg",
-    "https://i.postimg.cc/vH5p0znZ/3.jpg",
-    "https://i.postimg.cc/bwT4hw3X/image.jpg",
-    "https://i.postimg.cc/26PKwb8W/5.jpg"
-
+    "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1517838277536-47dd04b87a9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
   ],
   teazen: [
-    "https://i.postimg.cc/xC4HTVqR/1.jpg",
-    "https://i.postimg.cc/GmSbdtS8/2.jpg",
-    "https://i.postimg.cc/tCTfyk0k/3.jpg",
-    "https://i.postimg.cc/MpfFfGpj/4.jpg",
-    "https://i.postimg.cc/d08NnSds/5.jpg",
-    "https://i.postimg.cc/nz2Rfj0N/6.jpg",
-    "https://i.postimg.cc/zf10LSQ9/7.jpg"
+    "https://images.unsplash.com/photo-1595425970375-6f4f6a89ae5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    "https://images.unsplash.com/photo-1570186034764-8869f3e0e807?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
   ]
 };
 
@@ -233,7 +206,12 @@ portfolioLinks.forEach(link => {
       swiperWrapper.appendChild(slide);
     });
 
-    new Swiper('.gallery-swiper', {
+    // Инициализируем галерею
+    if (window.gallerySwiper) {
+      window.gallerySwiper.destroy();
+    }
+
+    window.gallerySwiper = new Swiper('.gallery-swiper', {
       loop: true,
       autoplay: {
         delay: 3000,
