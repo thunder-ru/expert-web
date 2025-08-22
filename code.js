@@ -115,7 +115,7 @@ function requestQuote() {
   window.open(url, '_blank');
 }
 
-// Галерея
+// Галерея — все URL очищены от пробелов
 const galleryData = {
   auto: {
     title: "Аренда автомобилей",
@@ -199,32 +199,55 @@ const galleryData = {
   }
 };
 
+// Открытие галереи по ID проекта
 function openGallery(projectId) {
   const data = galleryData[projectId];
-  if (!data) return;
+  if (!data) {
+    console.error("Проект не найден:", projectId);
+    return;
+  }
+
   document.getElementById('projectTitle').innerText = data.title;
   document.getElementById('projectDesc').innerText = data.desc;
   document.getElementById('projectResult').innerText = data.result;
+
   const galleryGrid = document.getElementById('galleryGrid');
-  galleryGrid.innerHTML = '';
+  galleryGrid.innerHTML = ''; // Очистка предыдущих изображений
+
   data.images.forEach(imgUrl => {
     const img = document.createElement('img');
-    img.src = imgUrl.trim();
+    img.src = imgUrl.trim(); // Обрезаем пробелы
     img.alt = data.title;
-    img.onerror = () => {
-      img.src = "https://via.placeholder.com/300x200/ff0000/ffffff?text=Ошибка+загрузки";
+    img.style.maxWidth = '100%';
+    img.style.height = 'auto';
+    img.style.borderRadius = '10px';
+    img.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+    img.style.transition = 'transform 0.3s ease';
+
+    // Обработка ошибки загрузки
+    img.onerror = function () {
+      this.src = "https://via.placeholder.com/800x500/333/fff?text=Ошибка+загрузки";
+      this.style.filter = 'grayscale(1)';
     };
+
     galleryGrid.appendChild(img);
   });
+
   const modal = document.getElementById('galleryModal');
   modal.style.display = 'flex';
+  setTimeout(() => modal.classList.add('show'), 50);
 }
 
+// Закрытие галереи
 function closeGallery() {
-  document.getElementById('galleryModal').style.display = 'none';
+  const modal = document.getElementById('galleryModal');
+  modal.classList.remove('show');
+  setTimeout(() => {
+    modal.style.display = 'none';
+  }, 300);
 }
 
-// Открытие галереи при наведении
+// Открытие галереи при наведении (с задержкой)
 let hoverTimeout;
 function openGalleryOnHover(projectId) {
   hoverTimeout = setTimeout(() => {
@@ -235,17 +258,19 @@ function closeGalleryOnHover() {
   clearTimeout(hoverTimeout);
 }
 
-// Закрытие модалок по Escape
-document.addEventListener('keydown', function(e) {
+// Закрытие модальных окон по Escape
+document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape') {
     closeGallery();
     closeCalculator();
   }
 });
 
-// Закрытие галереи по клику вне
-document.getElementById('galleryModal').addEventListener('click', function(e) {
-  if (e.target === this) closeGallery();
+// Закрытие галереи по клику вне контента
+document.getElementById('galleryModal').addEventListener('click', function (e) {
+  if (e.target === this) {
+    closeGallery();
+  }
 });
 
 // Мобильное меню
@@ -253,8 +278,8 @@ function toggleMenu() {
   document.getElementById("mainNav").classList.toggle("active");
 }
 
-// Форма — отправка в Telegram
-document.getElementById('contactForm').addEventListener('submit', function(e) {
+// Обработка формы
+document.getElementById('contactForm').addEventListener('submit', function (e) {
   e.preventDefault();
   const name = document.getElementById('name').value.trim();
   const phone = document.getElementById('phone').value.trim();
@@ -321,8 +346,16 @@ document.querySelector('.portfolio-slider').addEventListener('mouseleave', () =>
   slideInterval = setInterval(nextSlide, 5000);
 });
 
-if (nextBtn) nextBtn.addEventListener('click', () => { clearInterval(slideInterval); nextSlide(); });
-if (prevBtn) prevBtn.addEventListener('click', () => { clearInterval(slideInterval); prevSlide(); });
+if (nextBtn) nextBtn.addEventListener('click', () => {
+  clearInterval(slideInterval);
+  nextSlide();
+});
+
+if (prevBtn) prevBtn.addEventListener('click', () => {
+  clearInterval(slideInterval);
+  prevSlide();
+});
+
 dots.forEach((dot, i) => {
   dot.addEventListener('click', () => {
     clearInterval(slideInterval);
@@ -330,6 +363,7 @@ dots.forEach((dot, i) => {
   });
 });
 
+// Инициализация
 document.addEventListener("DOMContentLoaded", function () {
   if (slides.length > 0) {
     showSlide(0);
