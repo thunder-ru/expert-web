@@ -12,7 +12,17 @@ function openTelegram() {
 function showStep(n) {
   document.querySelectorAll('.step').forEach(step => step.classList.remove('active'));
   const step = document.getElementById(`step${n}`);
-  if (step) step.classList.add('active');
+  if (step) {
+    step.classList.add('active');
+    updateProgress();
+  }
+}
+
+// Обновление прогресс-бара
+function updateProgress() {
+  const step = Array.from(document.querySelectorAll('.step')).findIndex(s => s.classList.contains('active')) + 1;
+  const progress = (step / 4) * 100;
+  document.getElementById('progressFill').style.width = `${progress}%`;
 }
 
 // Проверка выбора и переход
@@ -69,7 +79,7 @@ function updateTotal() {
 function openCalculator() {
   const modal = document.getElementById('calculatorModal');
   modal.style.display = 'flex';
-  setTimeout(() => modal.classList.add('show'), 10);
+  setTimeout(() => modal.classList.add('show'), 50);
   showStep(1);
   updateTotal();
 }
@@ -201,10 +211,6 @@ function openGallery(projectId) {
     const img = document.createElement('img');
     img.src = imgUrl.trim();
     img.alt = data.title;
-    img.style.maxWidth = '100%';
-    img.style.height = 'auto';
-    img.style.borderRadius = '8px';
-    img.style.boxShadow = '0 8px 20px rgba(0,0,0,0.1)';
     img.onerror = () => {
       img.src = "https://via.placeholder.com/300x200/ff0000/ffffff?text=Ошибка+загрузки";
     };
@@ -217,6 +223,30 @@ function openGallery(projectId) {
 function closeGallery() {
   document.getElementById('galleryModal').style.display = 'none';
 }
+
+// Открытие галереи при наведении
+let hoverTimeout;
+function openGalleryOnHover(projectId) {
+  hoverTimeout = setTimeout(() => {
+    openGallery(projectId);
+  }, 800);
+}
+function closeGalleryOnHover() {
+  clearTimeout(hoverTimeout);
+}
+
+// Закрытие модалок по Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeGallery();
+    closeCalculator();
+  }
+});
+
+// Закрытие галереи по клику вне
+document.getElementById('galleryModal').addEventListener('click', function(e) {
+  if (e.target === this) closeGallery();
+});
 
 // Мобильное меню
 function toggleMenu() {
@@ -281,20 +311,16 @@ function goToSlide(n) {
   showSlide(currentSlide);
 }
 
-// Автопрокрутка
 let slideInterval = setInterval(nextSlide, 5000);
 
-// Остановить при наведении
 document.querySelector('.portfolio-slider').addEventListener('mouseenter', () => {
   clearInterval(slideInterval);
 });
 
-// Возобновить
 document.querySelector('.portfolio-slider').addEventListener('mouseleave', () => {
   slideInterval = setInterval(nextSlide, 5000);
 });
 
-// Обработчики событий
 if (nextBtn) nextBtn.addEventListener('click', () => { clearInterval(slideInterval); nextSlide(); });
 if (prevBtn) prevBtn.addEventListener('click', () => { clearInterval(slideInterval); prevSlide(); });
 dots.forEach((dot, i) => {
@@ -304,7 +330,6 @@ dots.forEach((dot, i) => {
   });
 });
 
-// Инициализация
 document.addEventListener("DOMContentLoaded", function () {
   if (slides.length > 0) {
     showSlide(0);
