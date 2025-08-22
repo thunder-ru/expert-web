@@ -166,12 +166,19 @@ document.body.appendChild(modal);
 // Добавляем фотографии в галерею
 const galleryData = {
   wanderlux: [
-    "https://images.unsplash.com/photo-1526815456743-3e55d10113da?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1515378791036-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    "https://i.postimg.cc/8kvBPsBf/1.jpg",
+    "https://i.postimg.cc/zG02QPG8/2.jpg",
+    "https://i.postimg.cc/xdB5DrDD/3.jpg",
+    "https://i.postimg.cc/9FcpjtSM/4.jpg",
+    "https://i.postimg.cc/bwBHkXvD/5.jpg",
+    "https://i.postimg.cc/MGf0Yscs/6.jpg"
   ],
   drivehive: [
-    "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    "https://images.unsplash.com/photo-1507035895480-2873dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    "https://i.postimg.cc/pdkWMT84/Black1.jpg",
+    "https://i.postimg.cc/tR8BKPyZ/Blakc2.jpg",
+    "https://i.postimg.cc/PrmQ0R29/Black3.jpg",
+    "https://i.postimg.cc/0yndyJgC/Black4.jpg",
+    "https://i.postimg.cc/HnbbDr4X/Black-5.jpg"
   ],
   dentacare: [
     "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
