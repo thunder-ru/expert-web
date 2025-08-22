@@ -115,7 +115,7 @@ function requestQuote() {
   window.open(url, '_blank');
 }
 
-// Галерея — все ID и URL проверены
+// Галерея — все URL очищены
 const galleryData = {
   auto: {
     title: "Аренда автомобилей",
