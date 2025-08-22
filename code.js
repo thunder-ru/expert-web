@@ -254,7 +254,15 @@ portfolioLinks.forEach(link => {
       },
     });
 
+    // Показываем модальное окно
     modal.style.display = 'block';
+
+    // Добавляем класс для адаптивного поведения
+    if (window.innerWidth <= 768) {
+      modal.classList.add('mobile-view');
+    } else {
+      modal.classList.remove('mobile-view');
+    }
   });
 });
 
