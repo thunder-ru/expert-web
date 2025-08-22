@@ -5,95 +5,92 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Web-Thunder — Сайты, которые продают</title>
   <link rel="stylesheet" href="styles.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <header class="header">
-    <div class="container">
-      <div class="logo">Web-Thunder</div>
-      <nav class="nav">
-        <a href="#portfolio">Портфолио</a>
-        <a href="#services">Услуги</a>
-        <a href="#contact">Контакты</a>
-      </nav>
+  <!-- Навигация (лёгкая, фиксированная, но не жирная) -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">Web-Thunder</a>
+      <a href="#contact" class="nav-cta">Написать в Telegram</a>
     </div>
-  </header>
+  </nav>
 
+  <!-- Hero -->
   <section class="hero">
-    <div class="container">
-      <h1 class="hero-title">Сайты,<br><span>которые <strong>продают</strong></span></h1>
-      <p class="hero-subtitle">Создаю лаконичные, быстрые и красивые сайты под ключ. Для тех, кто ценит стиль и результат.</p>
-      <a href="#portfolio" class="btn">Посмотреть проекты</a>
+    <div class="hero-content">
+      <h1>Создаю сайты,<br><span class="highlight">которые работают</span></h1>
+      <p>Не просто красиво. А чтобы <strong>клиенты приходили, оставались и покупали</strong>.<br>Под ключ. Быстро. Без воды.</p>
+      <div class="hero-buttons">
+        <a href="#portfolio" class="btn-primary">Посмотреть проекты</a>
+        <a href="https://t.me/overgrand" class="btn-secondary" target="_blank">Написать в Telegram</a>
+      </div>
     </div>
   </section>
 
+  <!-- Портфолио -->
   <section id="portfolio" class="portfolio">
-    <div class="container">
-      <h2 class="section-title">Последние проекты</h2>
-      <div class="portfolio-grid">
-        <div class="portfolio-item" data-project="travel">
-          <img src="https://via.placeholder.com/600x400?text=Тур-Агентство" alt="Тур-агентство">
-          <div class="item-info">
-            <h3>Тур-Агентство</h3>
-            <p>Лендинг с бронированием туров</p>
-          </div>
+    <div class="section-title">Последние работы</div>
+    <div class="portfolio-grid">
+      <div class="portfolio-item" data-project="travel">
+        <img src="https://via.placeholder.com/800x600?text=Тур-Агентство" alt="Тур-агентство">
+        <div class="overlay">
+          <h3>Тур-Агентство</h3>
+          <p>Лендинг с бронированием туров</p>
         </div>
-        <div class="portfolio-item" data-project="dentist">
-          <img src="https://via.placeholder.com/600x400?text=Стоматология" alt="Стоматология">
-          <div class="item-info">
-            <h3>Стоматология</h3>
-            <p>Корпоративный сайт с записью</p>
-          </div>
+      </div>
+      <div class="portfolio-item" data-project="dentist">
+        <img src="https://via.placeholder.com/800x600?text=Стоматология" alt="Стоматология">
+        <div class="overlay">
+          <h3>Стоматология</h3>
+          <p>Сайт с онлайн-записью</p>
         </div>
-        <div class="portfolio-item" data-project="trainer">
-          <img src="https://via.placeholder.com/600x400?text=Персональный+тренер" alt="Персональный тренер">
-          <div class="item-info">
-            <h3>Персональный тренер</h3>
-            <p>Минималистичный сайт-визитка</p>
-          </div>
+      </div>
+      <div class="portfolio-item" data-project="trainer">
+        <img src="https://via.placeholder.com/800x600?text=Персональный+тренер" alt="Персональный тренер">
+        <div class="overlay">
+          <h3>Персональный тренер</h3>
+          <p>Минимализм + конверсия</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="services" class="services">
-    <div class="container">
-      <h2 class="section-title">Что я создаю</h2>
-      <div class="service-grid">
-        <div class="service-card">
-          <h3>Лендинги</h3>
-          <p>Высокая конверсия, адаптив, анимации, Tilda / Webflow / код</p>
-        </div>
-        <div class="service-card">
-          <h3>Корпсайты</h3>
-          <p>Стильные, информативные, с админкой и SEO</p>
-        </div>
-        <div class="service-card">
-          <h3>Интернет-магазины</h3>
-          <p>Каталог, корзина, оплата, доставка</p>
-        </div>
-        <div class="service-card">
-          <h3>Адаптация & UX</h3>
-          <p>Микровзаимодействия, плавные переходы, вовлечение</p>
-        </div>
+  <!-- Услуги -->
+  <section class="services">
+    <div class="service-item">
+      <h2>01. Лендинги</h2>
+      <p>Высокая конверсия, адаптив, анимации. Под ключ за 7–10 дней.</p>
+    </div>
+    <div class="service-item">
+      <h2>02. Корпсайты</h2>
+      <p>Стильно, информативно, с админкой. Для бизнеса, который растёт.</p>
+    </div>
+    <div class="service-item">
+      <h2>03. Магазины</h2>
+      <p>Каталог, корзина, оплата. Работаю с Tilda, Webflow, кодом.</p>
+    </div>
+  </section>
+
+  <!-- Контакты -->
+  <section id="contact" class="contact">
+    <div class="contact-content">
+      <h2>Хочешь такой же сайт?</h2>
+      <p>Напиши — обсудим твой проект, сроки и бюджет. Без обязательств.</p>
+      <div class="contact-buttons">
+        <a href="https://t.me/overgrand" class="btn-primary" target="_blank">💬 Написать в Telegram</a>
+        <a href="mailto:rosanov.danila2016@yandex.ru" class="btn-secondary">📧 Написать на почту</a>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="cta">
-    <div class="container">
-      <h2>Готов к проекту?</h2>
-      <p>Напиши — обсудим концепцию, сроки и бюджет.</p>
-      <a href="https://t.me/overgrand" class="btn" target="_blank">Написать в Telegram</a>
-    </div>
-  </section>
-
+  <!-- Футер -->
   <footer class="footer">
-    <div class="container">
-      <div>© 2025 Web-Thunder</div>
-      <div>
-        <a href="https://t.me/overgrand" target="_blank">Telegram</a> • 
+    <div class="footer-content">
+      <p>© 2025 Web-Thunder. Все права за мной.</p>
+      <div class="footer-links">
+        <a href="https://t.me/overgrand" target="_blank">Telegram</a>
         <a href="mailto:rosanov.danila2016@yandex.ru">Email</a>
       </div>
     </div>
