@@ -5,7 +5,7 @@
   --accent: #00eeff;
   --accent-gold: #ffd700;
   --border: #3a4a8a;
-  --shadow: 0 8px 32px rgba(0, 110, 255, 0.15);
+  --shadow: 0 10px 40px rgba(0, 110, 255, 0.2);
 }
 
 * {
@@ -30,17 +30,6 @@ body {
   height: 100%;
   z-index: -1;
   background: radial-gradient(circle at center, #0a0e2a, #06091a);
-}
-
-/* Градиентный текст */
-.text-gradient {
-  background: linear-gradient(90deg, var(--accent), var(--accent-gold));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.highlight {
-  color: var(--accent);
 }
 
 /* Анимации */
@@ -315,67 +304,8 @@ header .container {
 }
 
 /* Портфолио */
-.portfolio-container {
-  margin-top: 30px;
-}
-
-.portfolio-fixed {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
-  margin-bottom: 30px;
-}
-
-.portfolio-item {
-  border-radius: 16px;
-  overflow: hidden;
-  height: 250px;
-  position: relative;
-  box-shadow: var(--shadow);
-  cursor: pointer;
-  transition: transform 0.3s;
-}
-
-.portfolio-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s;
-}
-
-.portfolio-item:hover img {
-  transform: scale(1.1);
-}
-
-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(transparent, rgba(10, 14, 42, 0.9));
-  padding: 20px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.portfolio-item:hover overlay {
-  opacity: 1;
-}
-
-overlay h3 {
-  color: white;
-  margin-bottom: 5px;
-  font-family: 'Space Grotesk', sans-serif;
-}
-
-overlay p {
-  color: #ccc;
-  font-size: 0.9rem;
-}
-
-/* Слайдер портфолио */
-.swiper {
-  padding: 20px 0;
+.portfolio-swiper {
+  padding: 40px 0;
 }
 
 .swiper-slide {
@@ -388,52 +318,71 @@ overlay p {
   border-radius: 16px;
   overflow: hidden;
   width: 100%;
-  max-width: 350px;
-  height: 280px;
+  max-width: 400px;
+  height: 300px;
   display: block;
   box-shadow: var(--shadow);
-  transition: transform 0.3s;
+  transition: transform 0.4s, box-shadow 0.4s;
+  cursor: pointer;
 }
 
 .portfolio-link:hover {
   transform: scale(1.05);
+  box-shadow: 0 20px 60px rgba(0, 110, 255, 0.3);
 }
 
 .portfolio-link img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s;
+  transition: transform 0.6s;
 }
 
 .portfolio-link:hover img {
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
 
-overlay {
+.overlay {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(transparent, rgba(10, 14, 42, 0.9));
-  padding: 20px;
+  background: linear-gradient(transparent, rgba(10, 14, 42, 0.95));
+  padding: 25px;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.4s;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.portfolio-link:hover overlay {
+.portfolio-link:hover .overlay {
   opacity: 1;
 }
 
-overlay h3 {
-  color: white;
-  margin-bottom: 5px;
+.overlay h3 {
+  font-size: 1.4rem;
+  margin: 0;
   font-family: 'Space Grotesk', sans-serif;
 }
 
-overlay p {
-  color: #ccc;
+.overlay p {
   font-size: 0.9rem;
+  color: #ccc;
+  margin: 0;
+}
+
+.tag {
+  background: var(--accent);
+  color: #000;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-block;
+  width: fit-content;
+  font-weight: 600;
+  margin-top: 8px;
 }
 
 /* Стрелки слайдера */
@@ -479,6 +428,7 @@ overlay p {
   border-radius: 12px;
   font-style: italic;
   border-left: 4px solid var(--accent);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* Контакты */
@@ -492,11 +442,11 @@ overlay p {
   max-width: 600px;
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.03);
-  padding: 40px;
+  padding: 50px;
   border-radius: 20px;
   border: 1px solid var(--border);
   backdrop-filter: blur(10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 }
 
 .contact-form input,
@@ -517,7 +467,7 @@ overlay p {
 .contact-form textarea:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 15px rgba(0, 238, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 238, 255, 0.2);
 }
 
 .contact-form textarea {
@@ -536,19 +486,26 @@ overlay p {
 .channel-option {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   cursor: pointer;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: #ccc;
   transition: all 0.3s;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .channel-option.active {
-  color: var(--accent);
+  background: var(--accent);
+  color: #000;
+  font-weight: 600;
+  box-shadow: 0 0 20px rgba(0, 238, 255, 0.3);
 }
 
 .channel-option input[type="radio"] {
-  accent-color: var(--accent);
+  accent-color: #000;
+  display: none;
 }
 
 .status {
@@ -564,66 +521,6 @@ overlay p {
 
 .status.error {
   color: #f00;
-}
-
-/* Нижние кнопки */
-.footer-contact {
-  padding: 40px 0;
-  background: var(--bg);
-  border-top: 1px solid var(--border);
-  text-align: center;
-}
-
-.footer-contact .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
-.contact-buttons {
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.contact-btn {
-  padding: 12px 24px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--text);
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: all 0.3s;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.contact-btn:hover {
-  background: var(--accent);
-  color: #000;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 238, 255, 0.3);
-}
-
-.telegram-btn {
-  border: 1px solid var(--accent);
-}
-
-.email-btn {
-  border: 1px solid var(--accent-gold);
-}
-
-.contact-note {
-  color: #aaa;
-  font-size: 0.9rem;
-  margin-top: 10px;
-  font-style: italic;
 }
 
 /* Чат-бот */
@@ -656,31 +553,11 @@ footer {
 }
 
 /* Адаптив */
-@media (max-width: 1200px) {
-  .portfolio-fixed {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 900px) {
-  .portfolio-fixed {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .portfolio-fixed {
-    grid-template-columns: 1fr;
-  }
-  .contact-buttons {
-    gap: 20px;
-  }
-}
-
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .hamburger { display: flex; }
   .hero h1 { font-size: 3rem; }
   .about-content { flex-direction: column; }
   .slide-left, .slide-right { opacity: 1; transform: translateX(0); }
+  .portfolio-link { max-width: 100%; }
 }
