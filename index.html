@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Web-Thunder — Сайты, которые продают</title>
   <link rel="stylesheet" href="styles.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -13,10 +13,8 @@
     <div class="container">
       <div class="logo">Web-Thunder</div>
       <nav class="nav">
-        <a href="#services">Услуги</a>
         <a href="#portfolio">Портфолио</a>
-        <a href="#process">Процесс</a>
-        <a href="#reviews">Отзывы</a>
+        <a href="#services">Услуги</a>
         <a href="#contact">Контакты</a>
       </nav>
     </div>
@@ -24,12 +22,36 @@
 
   <section class="hero">
     <div class="container">
-      <div class="hero-content">
-        <h1>Создаю сайты, <span class="highlight">которые продают</span></h1>
-        <p>Красивые, быстрые, лаконичные — под ключ за 7–14 дней. Работаю с предпринимателями и стартапами.</p>
-        <div class="hero-buttons">
-          <a href="#portfolio" class="btn btn-primary">Посмотреть работы</a>
-          <a href="https://t.me/overgrand" class="btn btn-secondary" target="_blank">Заказать сайт</a>
+      <h1 class="hero-title">Сайты,<br><span>которые <strong>продают</strong></span></h1>
+      <p class="hero-subtitle">Создаю лаконичные, быстрые и красивые сайты под ключ. Для тех, кто ценит стиль и результат.</p>
+      <a href="#portfolio" class="btn">Посмотреть проекты</a>
+    </div>
+  </section>
+
+  <section id="portfolio" class="portfolio">
+    <div class="container">
+      <h2 class="section-title">Последние проекты</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item" data-project="travel">
+          <img src="https://via.placeholder.com/600x400?text=Тур-Агентство" alt="Тур-агентство">
+          <div class="item-info">
+            <h3>Тур-Агентство</h3>
+            <p>Лендинг с бронированием туров</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-project="dentist">
+          <img src="https://via.placeholder.com/600x400?text=Стоматология" alt="Стоматология">
+          <div class="item-info">
+            <h3>Стоматология</h3>
+            <p>Корпоративный сайт с записью</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-project="trainer">
+          <img src="https://via.placeholder.com/600x400?text=Персональный+тренер" alt="Персональный тренер">
+          <div class="item-info">
+            <h3>Персональный тренер</h3>
+            <p>Минималистичный сайт-визитка</p>
+          </div>
         </div>
       </div>
     </div>
@@ -37,77 +59,23 @@
 
   <section id="services" class="services">
     <div class="container">
-      <h2>Что я делаю</h2>
+      <h2 class="section-title">Что я создаю</h2>
       <div class="service-grid">
         <div class="service-card">
           <h3>Лендинги</h3>
-          <p>Под продукт, услугу, запуск. Высокая конверсия, адаптив.</p>
+          <p>Высокая конверсия, адаптив, анимации, Tilda / Webflow / код</p>
         </div>
         <div class="service-card">
           <h3>Корпсайты</h3>
-          <p>Стильные, информативные, с админкой.</p>
+          <p>Стильные, информативные, с админкой и SEO</p>
         </div>
         <div class="service-card">
           <h3>Интернет-магазины</h3>
-          <p>С каталогом, корзиной, оплатой. Tilda, Webflow, код.</p>
+          <p>Каталог, корзина, оплата, доставка</p>
         </div>
         <div class="service-card">
-          <h3>Анимации & UX</h3>
-          <p>Микровзаимодействия, плавности, вовлечение.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="portfolio" class="portfolio">
-    <div class="container">
-      <h2>Последние проекты</h2>
-      <div class="portfolio-grid">
-        <div class="portfolio-item">
-          <img src="https://via.placeholder.com/400x250?text=Project+1" alt="Проект 1">
-          <h3>Магазин косметики</h3>
-          <p>Лендинг + каталог. Конверсия 6.8%</p>
-          <a href="https://example.com" target="_blank" class="view-link">Смотреть →</a>
-        </div>
-        <div class="portfolio-item">
-          <img src="https://via.placeholder.com/400x250?text=Project+2" alt="Проект 2">
-          <h3>Клиника красоты</h3>
-          <p>Корпоративный сайт с бронированием</p>
-          <a href="https://example.com" target="_blank" class="view-link">Смотреть →</a>
-        </div>
-        <div class="portfolio-item">
-          <img src="https://via.placeholder.com/400x250?text=Project+3" alt="Проект 3">
-          <h3>Стартап SaaS</h3>
-          <p>Многостраничник + админка</p>
-          <a href="https://example.com" target="_blank" class="view-link">Смотреть →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="process" class="process">
-    <div class="container">
-      <h2>Как я работаю</h2>
-      <div class="steps">
-        <div class="step"><span>1</span> Бриф</div>
-        <div class="step"><span>2</span> Дизайн</div>
-        <div class="step"><span>3</span> Верстка</div>
-        <div class="step"><span>4</span> Запуск</div>
-      </div>
-    </div>
-  </section>
-
-  <section id="reviews" class="reviews">
-    <div class="container">
-      <h2>Отзывы</h2>
-      <div class="review-grid">
-        <div class="review">
-          <p>«Сделал сайт за 10 дней, всё чётко, без нервов. Конверсия выросла на 40%. Рекомендую!»</p>
-          <strong>— Алексей, e-commerce</strong>
-        </div>
-        <div class="review">
-          <p>«Дизайн — чистый, код — идеальный. Работать с ним легко.»</p>
-          <strong>— Марина, маркетолог</strong>
+          <h3>Адаптация & UX</h3>
+          <p>Микровзаимодействия, плавные переходы, вовлечение</p>
         </div>
       </div>
     </div>
@@ -115,22 +83,30 @@
 
   <section id="contact" class="cta">
     <div class="container">
-      <h2>Готов начать?</h2>
-      <p>Напиши — обсудим твой проект, сроки и бюджет.</p>
-      <a href="https://t.me/overgrand" class="btn btn-large" target="_blank">Написать в Telegram</a>
+      <h2>Готов к проекту?</h2>
+      <p>Напиши — обсудим концепцию, сроки и бюджет.</p>
+      <a href="https://t.me/overgrand" class="btn" target="_blank">Написать в Telegram</a>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <div class="logo">Web-Thunder</div>
-      <div class="contacts">
-        <a href="https://t.me/overgrand" target="_blank">Telegram</a>
+      <div>© 2025 Web-Thunder</div>
+      <div>
+        <a href="https://t.me/overgrand" target="_blank">Telegram</a> • 
         <a href="mailto:rosanov.danila2016@yandex.ru">Email</a>
       </div>
-      <p>© 2025 Web-Thunder. Удалённо. Москва.</p>
     </div>
   </footer>
+
+  <!-- Модальное окно -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modal-title"></h2>
+      <div class="modal-gallery" id="modal-gallery"></div>
+    </div>
+  </div>
 
   <script src="code.js"></script>
 </body>
