@@ -32,7 +32,7 @@ const modalTitle = document.getElementById("modal-title");
 const modalGallery = document.getElementById("modal-gallery");
 const closeModal = document.querySelector(".close");
 
-document.querySelectorAll(".portfolio-item").forEach(item => {
+document.querySelectorAll(".project").forEach(item => {
   item.addEventListener("click", () => {
     const projectKey = item.dataset.project;
     const project = projects[projectKey];
@@ -61,15 +61,5 @@ window.addEventListener("click", (e) => {
   if (e.target === modal) {
     modal.style.display = "none";
     document.body.style.overflow = "auto";
-  }
-});
-
-// Прозрачная шапка при скролле
-const navbar = document.querySelector(".navbar");
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 100) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
   }
 });
