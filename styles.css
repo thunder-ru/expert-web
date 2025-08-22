@@ -405,8 +405,8 @@ body {
 .modal-content {
   position: relative;
   max-width: 95%;
-  max-height: 90vh;
   width: 1200px;
+  max-height: 90vh;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 0 50px rgba(0, 238, 255, 0.6);
@@ -419,7 +419,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 600px;
+  height: 650px; /* Увеличено, чтобы дать больше места */
   position: relative;
 }
 
@@ -461,23 +461,24 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
-  padding: 20px;
+  gap: 40px; /* Увеличил отступы между фото */
+  padding: 30px;
 }
 
 .gallery-inner img {
   width: 100%;
   max-width: 1100px;
   height: auto;
-  max-height: 400px;
-  object-fit: contain; /* Ключевое изменение: не обрезает, вписывает целиком */
+  max-height: 480px; /* Увеличил с 400px → 480px */
+  object-fit: contain;
+  object-position: center;
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease;
 }
 
 .gallery-inner img:hover {
-  transform: scale(1.02);
+  transform: scale(1.01);
 }
 
 .close {
