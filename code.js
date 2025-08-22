@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
     galleryInner.innerHTML = '';
     project.images.forEach(imgSrc => {
       const img = document.createElement('img');
-      img.src = imgSrc;
+      img.src = imgSrc.trim(); // Убираем лишние пробелы
       img.alt = "Фото проекта";
       galleryInner.appendChild(img);
     });
@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
     currentIndex = 0;
     modalCaption.textContent = `${project.caption} (1/${project.images.length})`;
     modal.style.display = "flex";
+    document.body.classList.add('modal-open'); // Блокируем прокрутку
 
     setTimeout(() => {
       modal.querySelector('.modal-content').style.opacity = "1";
@@ -128,6 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     setTimeout(() => {
       modal.style.display = "none";
+      document.body.classList.remove('modal-open'); // Разрешаем прокрутку
     }, 300);
   };
 
