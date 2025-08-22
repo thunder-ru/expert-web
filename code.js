@@ -146,7 +146,6 @@ contactForm?.addEventListener('submit', function(e) {
 });
 
 // ===================================
-// ===================================
 // 6. ГАЛЕРЕЯ ПОРТФОЛИО
 // ===================================
 const portfolioLinks = document.querySelectorAll('.portfolio-link');
@@ -166,7 +165,7 @@ modal.innerHTML = `
 `;
 document.body.appendChild(modal);
 
-// УБИРАЕМ ПРОБЕЛЫ В ССЫЛКАХ (важно!)
+// УБИРАЕМ ПРОБЕЛЫ В ССЫЛКАХ
 const galleryData = {
   wanderlux: [
     "https://i.postimg.cc/8kvBPsBf/1.jpg",
@@ -236,7 +235,7 @@ portfolioLinks.forEach(link => {
       swiperWrapper.appendChild(slide);
     });
 
-    // Уничтожаем старый Swiper, если был
+    // Уничтожаем старый Swiper
     if (window.gallerySwiper) {
       window.gallerySwiper.destroy(true, true);
     }
@@ -248,21 +247,9 @@ portfolioLinks.forEach(link => {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       },
-      autoplay: {
-        delay: 4000,
-        disableOnInteraction: false,
-      },
     });
 
-    // Показываем модальное окно
     modal.style.display = 'block';
-
-    // Добавляем класс для адаптивного поведения
-    if (window.innerWidth <= 768) {
-      modal.classList.add('mobile-view');
-    } else {
-      modal.classList.remove('mobile-view');
-    }
   });
 });
 
