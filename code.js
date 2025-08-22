@@ -146,7 +146,8 @@ contactForm?.addEventListener('submit', function(e) {
 });
 
 // ===================================
-// 6. ГАЛЕРЕЯ ПОРТФОЛИО
+// ===================================
+// 6. ГАЛЕРЕЯ ПОРТФОЛИО (вертикальная, модально)
 // ===================================
 const portfolioLinks = document.querySelectorAll('.portfolio-link');
 const modal = document.createElement('div');
@@ -231,7 +232,7 @@ portfolioLinks.forEach(link => {
     images.forEach(img => {
       const slide = document.createElement('div');
       slide.className = 'swiper-slide';
-      slide.innerHTML = `<img src="${img}" alt="" style="width: 100%; height: 100%; object-fit: cover;">`;
+      slide.innerHTML = `<img src="${img}" alt="Фото проекта">`;
       swiperWrapper.appendChild(slide);
     });
 
@@ -240,16 +241,29 @@ portfolioLinks.forEach(link => {
       window.gallerySwiper.destroy(true, true);
     }
 
-    // Инициализируем новый
+    // Инициализируем новый — вертикальный
     window.gallerySwiper = new Swiper('.gallery-swiper', {
+      direction: 'vertical',
       loop: true,
+      mousewheel: {
+        invert: false,
+        sensitivity: 1,
+      },
+      keyboard: {
+        enabled: true,
+      },
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
       },
+      on: {
+        slideChange: function () {
+          console.log('Слайд изменён');
+        }
+      }
     });
 
-    modal.style.display = 'block';
+    modal.style.display = 'flex'; // Используем flex, чтобы центрировать
   });
 });
 
