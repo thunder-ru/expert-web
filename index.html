@@ -3,95 +3,73 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Web-Thunder — Сайты, от которых невозможно оторваться</title>
-  <link rel="stylesheet" href="styles.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <title>Web-Thunder | Создаю сайты, которые продают</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Навигация -->
-  <nav class="navbar">
-    <a href="#" class="logo">Web-Thunder</a>
-    <div class="nav-right">
-      <a href="#projects" class="nav-link">Проекты</a>
-      <a href="#contact" class="btn-small">Связь</a>
-    </div>
-  </nav>
-
-  <!-- Hero -->
+  <!-- Hero Section -->
   <section class="hero">
-    <h1>Сайты,<br><span class="highlight">которые невозможно игнорировать</span></h1>
-    <p>Не просто красиво. А так, чтобы клиент заходил — и <strong>оставался</strong>.<br>Под ключ. За 7–14 дней. Без компромиссов.</p>
-    <a href="#projects" class="btn-large">Посмотреть проекты</a>
+    <div class="hero-content">
+      <h1 class="hero-title">Web-Thunder</h1>
+      <p class="hero-subtitle">Сайты, которые <span class="highlight">взрывают</span> конверсию</p>
+      <div class="cta-buttons">
+        <a href="#projects" class="btn btn-primary">Посмотреть проекты</a>
+        <a href="https://t.me/overgrand" target="_blank" class="btn btn-secondary">Написать в Telegram</a>
+      </div>
+    </div>
   </section>
 
-  <!-- Портфолио -->
+  <!-- Projects Section -->
   <section id="projects" class="projects">
-    <h2 class="section-title">Последние запуски</h2>
+    <h2 class="section-title">Последние проекты</h2>
     <div class="project-grid">
-      <div class="project-card" data-project="travel">
-        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Тур-Агентство">
-        <div class="project-info">
-          <h3>Тур-Агентство</h3>
-          <p>Лендинг с бронированием. ROI: 320% за 30 дней.</p>
-        </div>
+      <div class="project-card" onclick="openModal('travel')">
+        <img src="https://via.placeholder.com/400x300?text=Тур-Агентство" alt="Тур-агентство" class="project-img">
+        <h3>Тур-агентство "Горизонт"</h3>
+        <p>Сайт с бронированием туров и анимацией природы</p>
       </div>
-      <div class="project-card" data-project="dentist">
-        <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Стоматология">
-        <div class="project-info">
-          <h3>Стоматология</h3>
-          <p>Сайт с онлайн-записью. 87 заявок в первую неделю.</p>
-        </div>
+
+      <div class="project-card" onclick="openModal('dentist')">
+        <img src="https://via.placeholder.com/400x300?text=Стоматология" alt="Стоматология" class="project-img">
+        <h3>Стоматология "Улыбка+"</h3>
+        <p>Клиника с онлайн-записью и 3D-эффектами</p>
       </div>
-      <div class="project-card" data-project="trainer">
-        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Персональный тренер">
-        <div class="project-info">
-          <h3>Персональный тренер</h3>
-          <p>Минимализм. Конверсия 9.4%. Никакого шлака.</p>
-        </div>
+
+      <div class="project-card" onclick="openModal('trainer')">
+        <img src="https://via.placeholder.com/400x300?text=Персональный+тренер" alt="Персональный тренер" class="project-img">
+        <h3>Фитнес-тренер Анна</h3>
+        <p>Сайт-визитка с программами и видео</p>
       </div>
     </div>
   </section>
 
-  <!-- Услуги -->
-  <section class="services">
-    <div class="service-item">
-      <h2>01. Лендинги</h2>
-      <p>Высокая конверсия, адаптив, анимации. Под ключ за 7–10 дней.</p>
-    </div>
-    <div class="service-item">
-      <h2>02. Корпсайты</h2>
-      <p>Стильно, информативно, с админкой. Для бизнеса, который растёт.</p>
-    </div>
-    <div class="service-item">
-      <h2>03. Магазины</h2>
-      <p>Каталог, корзина, оплата. Работаю с Tilda, Webflow, кодом.</p>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section id="contact" class="cta">
-    <h2>Хочешь такой же?</h2>
-    <p>Напиши — обсудим твой проект. Без воды. Только суть.</p>
-    <div class="cta-buttons">
-      <a href="https://t.me/overgrand" class="btn-primary" target="_blank">💬 Написать в Telegram</a>
-      <a href="mailto:rosanov.danila2016@yandex.ru" class="btn-secondary">📧 Написать на почту</a>
-    </div>
-  </section>
-
-  <!-- Футер -->
-  <footer class="footer">
-    <p>© 2025 Web-Thunder. Все сайты, которые ты хочешь — здесь.</p>
-  </footer>
-
-  <!-- Модальное окно -->
-  <div id="modal" class="modal">
+  <!-- Modal -->
+  <div id="imageModal" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2 id="modal-title"></h2>
-      <div class="modal-gallery" id="modal-gallery"></div>
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImage" class="modal-img" src="" alt="Проект">
+      <div class="modal-caption" id="modalCaption"></div>
     </div>
   </div>
+
+  <!-- Contact Section -->
+  <section class="contact">
+    <h2 class="section-title">Готов начать?</h2>
+    <p>Создам сайт, который будет <strong>приносить клиентов</strong> уже с первого дня.</p>
+    <div class="contact-buttons">
+      <a href="mailto:rosanov.danila2016@yandex.ru" class="btn btn-outline">Написать на почту</a>
+      <a href="https://t.me/overgrand" target="_blank" class="btn btn-primary">Написать в Telegram</a>
+    </div>
+    <p class="contact-info">Telegram: <a href="https://t.me/overgrand">@overgrand</a><br>
+       Email: <a href="mailto:rosanov.danila2016@yandex.ru">rosanov.danila2016@yandex.ru</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Web-Thunder. Сайты, которые гремят.</p>
+  </footer>
 
   <script src="code.js"></script>
 </body>
