@@ -3,49 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Web-Thunder — Сайты для тех, кто побеждает</title>
+  <title>Web-Thunder — Сайты, от которых невозможно оторваться</title>
   <link rel="stylesheet" href="styles.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Навигация (центрированная, лёгкая) -->
+  <!-- Навигация -->
   <nav class="navbar">
     <a href="#" class="logo">Web-Thunder</a>
-    <div class="spacer"></div>
-    <a href="#projects" class="nav-link">Проекты</a>
-    <a href="#contact" class="nav-link">Связь</a>
+    <div class="nav-right">
+      <a href="#projects" class="nav-link">Проекты</a>
+      <a href="#contact" class="btn-small">Связь</a>
+    </div>
   </nav>
 
   <!-- Hero -->
   <section class="hero">
-    <h1>Сайты,<br><span class="highlight">которые продают</span></h1>
-    <p>Не дизайны. Не заглушки.<br>Готовые решения, которые приносят деньги с первого дня.</p>
-    <div class="cta">
-      <a href="#projects" class="btn">Посмотреть проекты</a>
-    </div>
+    <h1>Сайты,<br><span class="highlight">которые невозможно игнорировать</span></h1>
+    <p>Не просто красиво. А так, чтобы клиент заходил — и <strong>оставался</strong>.<br>Под ключ. За 7–14 дней. Без компромиссов.</p>
+    <a href="#projects" class="btn-large">Посмотреть проекты</a>
   </section>
 
-  <!-- Проекты -->
+  <!-- Портфолио -->
   <section id="projects" class="projects">
     <h2 class="section-title">Последние запуски</h2>
     <div class="project-grid">
-      <div class="project" data-project="travel">
-        <img src="https://via.placeholder.com/800x600?text=Тур-Агентство" alt="Тур-агентство">
+      <div class="project-card" data-project="travel">
+        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Тур-Агентство">
         <div class="project-info">
           <h3>Тур-Агентство</h3>
           <p>Лендинг с бронированием. ROI: 320% за 30 дней.</p>
         </div>
       </div>
-      <div class="project" data-project="dentist">
-        <img src="https://via.placeholder.com/800x600?text=Стоматология" alt="Стоматология">
+      <div class="project-card" data-project="dentist">
+        <img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Стоматология">
         <div class="project-info">
           <h3>Стоматология</h3>
-          <p>Сайт с записью. 87 заявок в первую неделю.</p>
+          <p>Сайт с онлайн-записью. 87 заявок в первую неделю.</p>
         </div>
       </div>
-      <div class="project" data-project="trainer">
-        <img src="https://via.placeholder.com/800x600?text=Персональный+тренер" alt="Персональный тренер">
+      <div class="project-card" data-project="trainer">
+        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Персональный тренер">
         <div class="project-info">
           <h3>Персональный тренер</h3>
           <p>Минимализм. Конверсия 9.4%. Никакого шлака.</p>
@@ -54,19 +53,29 @@
     </div>
   </section>
 
-  <!-- Позиционирование -->
-  <section class="positioning">
-    <p>Я не делаю сайты.<br>Я создаю <strong>точки притяжения клиентов</strong>.</p>
-    <p>Ты приходишь с идеей.<br>Уходишь — с работающим бизнесом.</p>
+  <!-- Услуги -->
+  <section class="services">
+    <div class="service-item">
+      <h2>01. Лендинги</h2>
+      <p>Высокая конверсия, адаптив, анимации. Под ключ за 7–10 дней.</p>
+    </div>
+    <div class="service-item">
+      <h2>02. Корпсайты</h2>
+      <p>Стильно, информативно, с админкой. Для бизнеса, который растёт.</p>
+    </div>
+    <div class="service-item">
+      <h2>03. Магазины</h2>
+      <p>Каталог, корзина, оплата. Работаю с Tilda, Webflow, кодом.</p>
+    </div>
   </section>
 
-  <!-- Контакты -->
-  <section id="contact" class="contact">
-    <h2>Готов к результату?</h2>
+  <!-- CTA -->
+  <section id="contact" class="cta">
+    <h2>Хочешь такой же?</h2>
     <p>Напиши — обсудим твой проект. Без воды. Только суть.</p>
-    <div class="contact-buttons">
-      <a href="https://t.me/overgrand" class="btn" target="_blank">Написать в Telegram</a>
-      <a href="mailto:rosanov.danila2016@yandex.ru" class="email-link">rosanov.danila2016@yandex.ru</a>
+    <div class="cta-buttons">
+      <a href="https://t.me/overgrand" class="btn-primary" target="_blank">💬 Написать в Telegram</a>
+      <a href="mailto:rosanov.danila2016@yandex.ru" class="btn-secondary">📧 Написать на почту</a>
     </div>
   </section>
 
