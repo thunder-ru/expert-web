@@ -325,7 +325,7 @@ header .container {
   transform: scale(1.15);
 }
 
-.overlay {
+overlay {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -344,13 +344,13 @@ header .container {
   opacity: 1;
 }
 
-.overlay h3 {
+overlay h3 {
   font-size: 1.4rem;
   margin: 0;
   font-family: 'Space Grotesk', sans-serif;
 }
 
-.overlay p {
+overlay p {
   font-size: 0.9rem;
   color: #ccc;
   margin: 0;
