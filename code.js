@@ -15,25 +15,35 @@ document.addEventListener('DOMContentLoaded', function () {
   const projectData = {
     travel: {
       images: [
-        "https://images.unsplash.com/photo-1525766034134-8e8f6c8a7d8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
-        "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
-        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
+        "https://i.postimg.cc/8kvBPsBf/1.jpg",
+        "https://i.postimg.cc/zG02QPG8/2.jpg",
+        "https://i.postimg.cc/xdB5DrDD/3.jpg",
+        "https://i.postimg.cc/9FcpjtSM/4.jpg",
+        "https://i.postimg.cc/bwBHkXvD/5.jpg",
+        "https://i.postimg.cc/MGf0Yscs/6.jpg"
       ],
       caption: "Тур-агентство «Горизонт» — сайт с анимированными фонами и бронированием туров"
     },
     dentist: {
       images: [
-        "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
-        "https://images.unsplash.com/photo-1598256010104-42b36f197d69?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
-        "https://images.unsplash.com/photo-1606811972-d08b035b7c61?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
+        "https://i.postimg.cc/GmFkPfSL/1.jpg",
+        "https://i.postimg.cc/5tgJdxjX/2.jpg",
+        "https://i.postimg.cc/D0J3XL6G/3.jpg",
+        "https://i.postimg.cc/8k9SVXkm/4.jpg",
+        "https://i.postimg.cc/zf0s20PW/6.jpg",
+        "https://i.postimg.cc/g2dcft4B/7.jpg",
+        "https://i.postimg.cc/vm2QxYyp/8.jpg",
+        "https://i.postimg.cc/DfX2m3MM/9.jpg"
       ],
       caption: "Стоматология «Улыбка+» — современный сайт с 3D-эффектами и онлайн-записью"
     },
     trainer: {
       images: [
-        "https://images.unsplash.com/photo-1540497077202-7c8a9b9a0b1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
-        "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80",
-        "https://images.unsplash.com/photo-1518310391440-153773659315?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80"
+        "https://i.postimg.cc/Z5xwY0mx/1.jpg",
+        "https://i.postimg.cc/907v5PN1/2.jpg",
+        "https://i.postimg.cc/vH5p0znZ/3.jpg",
+        "https://i.postimg.cc/bwT4hw3X/image.jpg",
+        "https://i.postimg.cc/26PKwb8W/5.jpg"
       ],
       caption: "Фитнес-тренер Анна — сайт с видео и программами тренировок"
     }
@@ -60,7 +70,6 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
-    // Очищаем и заполняем галерею
     galleryInner.innerHTML = '';
     project.images.forEach(imgSrc => {
       const img = document.createElement('img');
@@ -73,12 +82,10 @@ document.addEventListener('DOMContentLoaded', function () {
     modalCaption.textContent = `${project.caption} (1/${project.images.length})`;
     modal.style.display = "flex";
 
-    // Анимация появления
     setTimeout(() => {
       modal.querySelector('.modal-content').style.opacity = "1";
     }, 10);
 
-    // Прокручиваем к первому фото
     scrollToCurrent();
   };
 
@@ -123,6 +130,16 @@ document.addEventListener('DOMContentLoaded', function () {
       modal.style.display = "none";
     }, 300);
   };
+
+  // Обработчик кликов по карточкам
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', function () {
+      const key = this.getAttribute('data-project');
+      if (key && projectData[key]) {
+        openModal(key);
+      }
+    });
+  });
 
   // Закрытие по клику вне
   modal.addEventListener("click", (e) => {
