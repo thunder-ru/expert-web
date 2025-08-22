@@ -1,808 +1,181 @@
-/* Обнуление и базовые стили */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Montserrat', sans-serif;
-  background-color: #0a0f1a;
-  color: #e0e0ff;
-  line-height: 1.6;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-}
-
-/* === МОЛНИИ ПО БОКАМ (ПОВЕРХ ВСЕГО) === */
-.storm-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 3000;
-  overflow: hidden;
-}
-
-.lightning {
-  position: absolute;
-  width: 3px;
-  height: 0;
-  background: #fff;
-  box-shadow: 
-    0 0 20px 4px #00eeff,
-    0 0 40px 8px rgba(0, 238, 255, 0.4);
-  opacity: 0;
-}
-
-.lightning.left {
-  left: 10%;
-  top: 0;
-  animation: strike-vertical 6s infinite;
-}
-
-.lightning.right {
-  right: 10%;
-  top: 0;
-  animation: strike-vertical 5s infinite 1.5s;
-}
-
-.lightning.left-delay {
-  left: 15%;
-  top: 0;
-  animation: strike-vertical 7s infinite 3s;
-}
-
-.lightning.right-delay {
-  right: 15%;
-  top: 0;
-  animation: strike-vertical 4s infinite 2s;
-}
-
-@keyframes strike-vertical {
-  0%, 97%, 100% { height: 0; opacity: 0; }
-  98% { height: 100vh; opacity: 1; }
-  99% { height: 0; opacity: 0; }
-}
-
-/* === МЕНЮ === */
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(10, 15, 26, 0.95);
-  backdrop-filter: blur(10px);
-  z-index: 1000;
-  border-bottom: 1px solid rgba(100, 150, 255, 0.1);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-}
-
-.nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav-logo {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #00eeff;
-  text-decoration: none;
-  letter-spacing: 1px;
-}
-
-.nav-menu {
-  display: flex;
-  list-style: none;
-  gap: 2rem;
-}
-
-.nav-link {
-  color: #ddd;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-  color: #00eeff;
-}
-
-.nav-toggle {
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-}
-
-.bar {
-  width: 25px;
-  height: 3px;
-  background: #00eeff;
-  margin: 3px 0;
-  transition: 0.3s;
-}
-
-@media (max-width: 768px) {
-  .nav-menu {
-    position: fixed;
-    left: -100%;
-    top: 70px;
-    flex-direction: column;
-    background: #0a0f1a;
-    width: 100%;
-    text-align: center;
-    transition: 0.3s;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    padding: 2rem 0;
+document.addEventListener('DOMContentLoaded', function () {
+  // Мобильное меню
+  const mobileMenu = document.getElementById('mobile-menu');
+  const navMenu = document.querySelector('.nav-menu');
+  if (mobileMenu && navMenu) {
+    mobileMenu.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
   }
 
-  .nav-menu.active {
-    left: 0;
+  // Данные проектов
+  const projectData = {
+    travel: {
+      images: [
+        "https://i.postimg.cc/8kvBPsBf/1.jpg",
+        "https://i.postimg.cc/zG02QPG8/2.jpg",
+        "https://i.postimg.cc/xdB5DrDD/3.jpg",
+        "https://i.postimg.cc/9FcpjtSM/4.jpg",
+        "https://i.postimg.cc/bwBHkXvD/5.jpg",
+        "https://i.postimg.cc/MGf0Yscs/6.jpg"
+      ],
+      caption: "Тур-агентство «Горизонт» — сайт с анимированными фонами и бронированием туров"
+    },
+    dentist: {
+      images: [
+        "https://i.postimg.cc/GmFkPfSL/1.jpg",
+        "https://i.postimg.cc/5tgJdxjX/2.jpg",
+        "https://i.postimg.cc/D0J3XL6G/3.jpg",
+        "https://i.postimg.cc/8k9SVXkm/4.jpg",
+        "https://i.postimg.cc/zf0s20PW/6.jpg",
+        "https://i.postimg.cc/g2dcft4B/7.jpg",
+        "https://i.postimg.cc/vm2QxYyp/8.jpg",
+        "https://i.postimg.cc/DfX2m3MM/9.jpg"
+      ],
+      caption: "Стоматология «Улыбка+» — современный сайт с 3D-эффектами и онлайн-записью"
+    },
+    trainer: {
+      images: [
+        "https://i.postimg.cc/qvP8vZHV/1.jpg",
+        "https://i.postimg.cc/YSQQGft4/2.jpg",
+        "https://i.postimg.cc/fLZmxtb8/3.jpg",
+        "https://i.postimg.cc/MTDRt6Mq/5.jpg",
+        "https://i.postimg.cc/8PsWBV1g/image.jpg"
+      ],
+      caption: "Фитнес-тренер Анна — сайт с видео и программами тренировок"
+    }
+  };
+
+  // Элементы модального окна
+  const modal = document.getElementById("imageModal");
+  const galleryInner = document.getElementById("galleryInner");
+  const modalCaption = document.getElementById("modalCaption");
+  const galleryContainer = document.getElementById("galleryContainer");
+
+  let currentProjectKey = null;
+  let currentImageIndex = 0;
+
+  window.openModal = function (key) {
+    currentProjectKey = key;
+    const project = projectData[key];
+    if (!project) return;
+
+    galleryInner.innerHTML = '';
+    project.images.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src.trim();
+      img.alt = "Фото проекта";
+      galleryInner.appendChild(img);
+    });
+
+    currentImageIndex = 0;
+    modalCaption.textContent = `${project.caption} (1/${project.images.length})`;
+    modal.style.display = "flex";
+    document.body.classList.add('modal-open');
+
+    setTimeout(() => {
+      modal.querySelector('.modal-content').style.opacity = "1";
+    }, 10);
+
+    scrollToCurrent();
+  };
+
+  function scrollToCurrent() {
+    const imgs = galleryInner.querySelectorAll('img');
+    if (imgs[currentImageIndex]) {
+      imgs[currentImageIndex].scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
   }
 
-  .nav-toggle {
-    display: flex;
-  }
-}
-
-/* === HERO === */
-.hero {
-  background: linear-gradient(135deg, #0d1b2a, #1b263b, #1e3a5f);
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 2rem;
-  position: relative;
-  overflow: hidden;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
-  z-index: 1;
-}
-
-.hero-content {
-  max-width: 800px;
-  animation: fadeInUp 1s ease;
-}
-
-.hero-title {
-  font-size: 3.5rem;
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: 1rem;
-  line-height: 1.3;
-}
-
-.hero-title .highlight {
-  color: #00eeff;
-  text-shadow: 0 0 10px rgba(0, 238, 255, 0.4);
-}
-
-.hero-subtitle {
-  font-size: 1.3rem;
-  margin-bottom: 2.5rem;
-  color: #a0d2ff;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Волна */
-.hero-wave {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  background: url("image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%230a0f1a' d='M0,192L48,197.3C96,203,192,213,288,208C384,203,480,181,576,181.3C672,181,768,203,864,213.3C960,224,1056,224,1152,202.7C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") top center no-repeat;
-  background-size: cover;
-  z-index: 0;
-}
-
-/* === ОБЩИЕ СТИЛИ === */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.section-title {
-  font-size: 2.8rem;
-  margin-bottom: 3rem;
-  color: #fff;
-  text-align: center;
-  position: relative;
-}
-
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, #00eeff, #6a5acd);
-  border-radius: 2px;
-}
-
-/* === О НАС === */
-.about {
-  padding: 6rem 0;
-  background: #0f1421;
-}
-
-.about-content {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-  font-size: 1.2rem;
-  color: #ccc;
-  line-height: 1.8;
-}
-
-.features-list {
-  margin: 2rem 0;
-  text-align: left;
-  display: inline-block;
-}
-
-.features-list li {
-  margin: 0.8rem 0;
-  color: #a0eaff;
-}
-
-/* === УСЛУГИ === */
-.services {
-  padding: 6rem 0;
-  background: #121220;
-}
-
-.services-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.service-card {
-  background: rgba(26, 38, 60, 0.5);
-  padding: 2rem;
-  border-radius: 15px;
-  width: 280px;
-  text-align: center;
-  border: 1px solid rgba(106, 90, 205, 0.2);
-  transition: transform 0.3s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-5px);
-  border-color: #00eeff;
-}
-
-.service-card h3 {
-  color: #ffd700;
-  margin-bottom: 1rem;
-}
-
-.service-card p {
-  color: #ccc;
-  font-size: 1rem;
-}
-
-/* === ПРОЕКТЫ === */
-.projects {
-  padding: 6rem 0;
-  background: #121220;
-  overflow: hidden;
-}
-
-.projects-subtitle {
-  text-align: center;
-  font-size: 1.5rem;
-  color: #00eeff;
-  margin-bottom: 3rem;
-}
-
-.projects-slider {
-  display: flex;
-  gap: 2rem;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 1rem 0 2rem;
-  scrollbar-width: none;
-}
-
-.projects-slider::-webkit-scrollbar {
-  display: none;
-}
-
-.project-card {
-  min-width: 320px;
-  background: #1a1a2e;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-
-.project-card:hover {
-  transform: translateY(-8px);
-}
-
-.project-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.project-info {
-  padding: 1.2rem;
-}
-
-.project-info h3 {
-  font-size: 1.3rem;
-  color: #ffd700;
-  margin-bottom: 0.5rem;
-}
-
-.project-info p {
-  color: #aaa;
-  font-size: 0.95rem;
-}
-
-/* === ОТЗЫВЫ === */
-.testimonials {
-  padding: 6rem 0;
-  background: #0f1421;
-}
-
-.quotes {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.quotes blockquote {
-  background: rgba(26, 38, 60, 0.5);
-  padding: 1.5rem;
-  border-radius: 15px;
-  margin: 1.5rem 0;
-  font-style: italic;
-  color: #a0eaff;
-  border-left: 4px solid #00eeff;
-}
-
-/* === МОДАЛЬНОЕ ОКНО С ВЕРТИКАЛЬНОЙ ГАЛЕРЕЕЙ === */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.95);
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  position: relative;
-  max-width: 95%;
-  width: 1200px;
-  max-height: 90vh;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 0 50px rgba(0, 238, 255, 0.6);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  background: #1a1a2e;
-}
-
-.modal-vertical-gallery {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 650px;
-  position: relative;
-}
-
-.gallery-btn {
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  border: none;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  font-size: 2rem;
-  cursor: pointer;
-  opacity: 0.8;
-  transition: all 0.3s ease;
-  z-index: 10;
-}
-
-.gallery-btn:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-.up { margin-bottom: 20px; }
-.down { margin-top: 20px; }
-
-.gallery-container {
-  flex: 1;
-  overflow-y: auto;
-  width: 100%;
-  padding: 20px 0;
-  scrollbar-width: none;
-}
-
-.gallery-container::-webkit-scrollbar {
-  display: none;
-}
-
-.gallery-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-  padding: 30px;
-}
-
-.gallery-inner img {
-  width: 100%;
-  max-width: 1100px;
-  height: auto;
-  max-height: 480px;
-  object-fit: contain;
-  object-position: center;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-}
-
-.gallery-inner img:hover {
-  transform: scale(1.01);
-}
-
-.close {
-  position: absolute;
-  top: 30px;
-  right: 40px;
-  font-size: 4rem;
-  color: #fff;
-  cursor: pointer;
-  opacity: 0.8;
-  transition: all 0.3s ease;
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-  z-index: 10;
-}
-
-.close:hover {
-  opacity: 1;
-  transform: scale(1.1);
-}
-
-.modal-caption {
-  text-align: center;
-  margin-top: 2rem;
-  font-size: 1.6rem;
-  color: #00eeff;
-  padding: 0 2rem;
-}
-
-/* === КНОПКИ === */
-.btn {
-  padding: 1rem 2.2rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 50px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-  display: inline-block;
-  text-align: center;
-}
-
-.btn-primary {
-  background: linear-gradient(45deg, #00eeff, #6a5acd);
-  color: #fff;
-  box-shadow: 0 5px 15px rgba(0, 238, 255, 0.3);
-}
-
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 238, 255, 0.5);
-}
-
-.btn-outline {
-  background: transparent;
-  color: #00eeff;
-  border: 2px solid #00eeff;
-  box-shadow: 0 0 10px rgba(0, 238, 255, 0.2);
-}
-
-.btn-outline:hover {
-  background: rgba(0, 238, 255, 0.1);
-  transform: translateY(-3px);
-}
-
-/* Кнопка WhatsApp */
-.btn-whatsapp {
-  background: #25D366;
-  color: white;
-  border: none;
-  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-}
-
-.btn-whatsapp:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
-}
-
-/* === КОНТАКТЫ === */
-.contact {
-  padding: 6rem 0;
-  background: #0f1421;
-  text-align: center;
-}
-
-.contact p {
-  max-width: 600px;
-  margin: 0 auto 2.5rem;
-  font-size: 1.2rem;
-  color: #ccc;
-}
-
-.contact-buttons {
-  display: flex;
-  gap: 1.8rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-}
-
-.contact-info {
-  margin-top: 2rem;
-  color: #888;
-  font-size: 1.1rem;
-}
-
-.contact-info a,
-#telegram-link {
-  color: #00eeff;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.contact-info a:hover,
-#telegram-link:hover {
-  text-decoration: underline;
-}
-
-/* === ФУТЕР === */
-.footer {
-  text-align: center;
-  padding: 2.5rem;
-  background: #0a0a14;
-  color: #666;
-  font-size: 0.95rem;
-  border-top: 1px solid #222;
-}
-
-/* === АНИМАЦИИ === */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* === ПЛАВНОЕ ПОЯВЛЕНИЕ БЛОКОВ === */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* === ПЛАВАЮЩИЕ КНОПКИ С ПОДПИСЯМИ === */
-.floating-btn {
-  position: fixed;
-  bottom: 20px;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  z-index: 1000;
-  transition: transform 0.3s ease;
-  text-decoration: none;
-  color: white;
-  overflow: hidden;
-}
-
-.floating-btn:hover {
-  transform: scale(1.1);
-}
-
-.floating-btn.telegram {
-  background: #0088cc;
-  right: 90px;
-}
-
-.floating-btn.whatsapp {
-  background: #25D366;
-  right: 20px;
-}
-
-.floating-btn .btn-label {
-  font-size: 0.9rem;
-  font-weight: 700;
-  font-family: 'Montserrat', sans-serif;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-}
-
-/* === АДАПТИВ === */
-@media (max-width: 768px) {
-  .hero {
-    clip-path: none;
-    min-height: 100vh;
-    height: auto;
-    padding: 4rem 0 8rem;
+  window.nextImage = () => {
+    const project = projectData[currentProjectKey];
+    if (!project || currentImageIndex >= project.images.length - 1) return;
+    currentImageIndex++;
+    updateCaption();
+    scrollToCurrent();
+  };
+
+  window.prevImage = () => {
+    if (currentImageIndex <= 0) return;
+    currentImageIndex--;
+    updateCaption();
+    scrollToCurrent();
+  };
+
+  function updateCaption() {
+    const project = projectData[currentProjectKey];
+    modalCaption.textContent = `${project.caption} (${currentImageIndex + 1}/${project.images.length})`;
   }
 
-  .hero-wave {
-    display: none;
-  }
+  window.closeModal = () => {
+    const content = modal.querySelector('.modal-content');
+    if (content) content.style.opacity = "0";
+    setTimeout(() => {
+      modal.style.display = "none";
+      document.body.classList.remove('modal-open');
+    }, 300);
+  };
 
-  .hero-title {
-    font-size: 2.4rem;
-    line-height: 1.3;
-    padding: 0 1rem;
-    margin-bottom: 1.5rem;
-  }
+  // Свайп в модалке
+  let startY = 0;
+  galleryContainer.addEventListener('touchstart', e => { startY = e.touches[0].clientY; }, { passive: true });
+  galleryContainer.addEventListener('touchend', e => {
+    const endY = e.changedTouches[0].clientY;
+    const diff = startY - endY;
+    if (diff > 50) nextImage();
+    if (diff < -50) prevImage();
+  }, { passive: true });
 
-  .hero-subtitle {
-    font-size: 1.1rem;
-    padding: 0 1rem;
-    margin-bottom: 2rem;
-  }
+  // Обработчики карточек
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const key = card.getAttribute('data-project');
+      if (key && projectData[key]) openModal(key);
+    });
+  });
 
-  .contact-buttons {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
+  modal.addEventListener("click", e => {
+    if (e.target === modal) closeModal();
+  });
 
-  .btn {
-    width: 90%;
-    max-width: 300px;
-  }
+  document.addEventListener("keydown", e => {
+    if (currentProjectKey) {
+      if (e.key === "ArrowDown") nextImage();
+      if (e.key === "ArrowUp") prevImage();
+    }
+    if (e.key === "Escape") closeModal();
+  });
 
-  .services-grid {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-  }
+  // Счётчик проектов
+  const counter = document.getElementById('projectCounter');
+  let count = 0;
+  const target = 15;
+  const duration = 1500;
+  const stepTime = duration / target;
 
-  .service-card {
-    width: 100%;
-    max-width: 320px;
-    padding: 1.5rem;
-  }
+  const timer = setInterval(() => {
+    count++;
+    counter.textContent = count;
+    if (count === target) clearInterval(timer);
+  }, stepTime);
 
-  .projects-slider {
-    gap: 1.5rem;
-    padding: 1rem;
-  }
+  // Плавное появление
+  const fadeElements = document.querySelectorAll('.section-title, .service-card, .project-card, .quotes blockquote, .about-content, .contact p');
+  fadeElements.forEach(el => el.classList.add('fade-in'));
 
-  .project-card {
-    min-width: 280px;
-  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
 
-  .modal-content {
-    width: 95%;
-    max-height: 95vh;
-    border-radius: 12px;
-  }
+  fadeElements.forEach(el => observer.observe(el));
 
-  .modal-vertical-gallery {
-    height: 70vh;
-  }
-
-  .gallery-btn {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
-  }
-
-  .gallery-inner img {
-    max-height: 320px;
-  }
-
-  .modal-caption {
-    font-size: 1.2rem;
-    padding: 1rem;
-  }
-
-  .close {
-    top: 15px;
-    right: 15px;
-    font-size: 2.5rem;
-  }
-
-  .contact-info {
-    font-size: 1rem;
-    padding: 0 1rem;
-  }
-
-  .nav-container {
-    padding: 1rem 1.5rem;
-  }
-
-  .nav-logo {
-    font-size: 1.6rem;
-  }
-
-  .nav-menu {
-    top: 60px;
-    padding: 1.5rem 0;
-  }
-
-  .quotes blockquote {
-    font-size: 1rem;
-    padding: 1.2rem;
-  }
-
-  .section-title {
-    font-size: 2.4rem;
-    margin-bottom: 2rem;
-  }
-
-  .section-title::after {
-    width: 60px;
-    height: 3px;
-    bottom: -8px;
-  }
-
-  .features-list {
-    margin: 1.5rem 0;
-  }
-
-  .features-list li {
-    margin: 0.6rem 0;
-    font-size: 0.95rem;
-  }
-
-  .footer {
-    padding: 2rem 1rem;
-    font-size: 0.9rem;
-  }
-
-  body.modal-open {
-    overflow: hidden;
-    height: 100vh;
-  }
-}
+  // Копирование Telegram
+  document.getElementById('telegram-link').addEventListener('click', () => {
+    navigator.clipboard.writeText('@overgrand').then(() => {
+      alert('Никнейм Telegram скопирован! Напишу в течение часа :)');
+    });
+  });
+});
