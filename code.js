@@ -236,6 +236,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
   fadeElements.forEach(el => fadeObserver.observe(el));
 
+  // === СЧЁТЧИК ПРОЕКТОВ ===
+  const projectCounterEl = document.getElementById('projectCounter');
+  if (projectCounterEl) {
+    let count = 0;
+    const target = 15;
+    const duration = 1500;
+    const stepTime = duration / (target * 10);
+
+    const timer = setInterval(() => {
+      count += 1;
+      projectCounterEl.textContent = Math.floor(count);
+      if (count >= target) {
+        clearInterval(timer);
+        projectCounterEl.textContent = target;
+      }
+    }, stepTime);
+  }
+
   // Копирование Telegram
   document.getElementById('telegram-link').addEventListener('click', () => {
     navigator.clipboard.writeText('@overgrand').then(() => {
