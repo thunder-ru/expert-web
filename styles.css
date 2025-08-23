@@ -217,6 +217,53 @@ body {
   z-index: 0;
 }
 
+/* === ТИКЕРЫ С РЕЗУЛЬТАТАМИ === */
+.result-tickers {
+  padding: 3rem 0;
+  background: #0f1421;
+  position: relative;
+  z-index: 1;
+}
+
+.result-tickers .container {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.ticker-item {
+  text-align: center;
+}
+
+.ticker-number {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #00eeff;
+  text-shadow: 0 0 20px rgba(0, 238, 255, 0.4);
+  line-height: 1;
+}
+
+.ticker-label {
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .result-tickers .container {
+    gap: 2rem;
+  }
+
+  .ticker-number {
+    font-size: 2.5rem;
+  }
+
+  .ticker-label {
+    font-size: 1rem;
+  }
+}
+
 /* === ОБЩИЕ СТИЛИ === */
 .container {
   max-width: 1200px;
@@ -285,53 +332,52 @@ body {
   margin: 0 auto;
 }
 
-.skill-card {
-  background: rgba(26, 38, 60, 0.5);
+/* Неон-карточки */
+.neon-card {
+  background: rgba(26, 38, 60, 0.3);
   padding: 2rem;
   border-radius: 15px;
   width: 260px;
   text-align: center;
-  border: 1px solid rgba(106, 90, 205, 0.2);
-  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 238, 255, 0.3);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s ease;
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(30px);
 }
 
-.skill-card:hover {
+.neon-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.neon-card:hover {
   transform: translateY(-10px);
   border-color: #00eeff;
-  box-shadow: 0 15px 30px rgba(0, 238, 255, 0.15);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(0, 238, 255, 0.4),
+    0 0 40px rgba(0, 238, 255, 0.2);
 }
 
-.skill-icon {
-  width: 60px;
-  height: 60px;
-  background: rgba(0, 238, 255, 0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1rem;
-  font-size: 2rem;
+.neon-card i {
+  font-size: 2.5rem;
   color: #00eeff;
-  transition: all 0.3s ease;
+  text-shadow: 0 0 15px rgba(0, 238, 255, 0.6);
+  margin-bottom: 1rem;
+  display: block;
 }
 
-.skill-card:hover .skill-icon {
-  transform: scale(1.1);
-  background: rgba(0, 238, 255, 0.2);
-}
-
-.skill-card h3 {
-  color: #ffd700;
+.neon-card h3 {
+  color: #fff;
   margin-bottom: 0.5rem;
   font-size: 1.3rem;
 }
 
-.skill-card p {
+.neon-card p {
   color: #aaa;
   font-size: 0.95rem;
-  line-height: 1.5;
 }
 
 /* === УСЛУГИ === */
@@ -839,6 +885,18 @@ body {
     margin-bottom: 2rem;
   }
 
+  .result-tickers .container {
+    gap: 1.5rem;
+  }
+
+  .ticker-number {
+    font-size: 2.2rem;
+  }
+
+  .ticker-label {
+    font-size: 1rem;
+  }
+
   .contact-buttons {
     flex-direction: column;
     align-items: center;
@@ -967,7 +1025,7 @@ body {
     gap: 1.5rem;
   }
 
-  .skill-card {
+  .neon-card {
     width: 100%;
     max-width: 300px;
   }
