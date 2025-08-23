@@ -246,59 +246,6 @@
     </div>
   </section>
 
-  <!-- Interactive Quiz -->
-  <section class="quiz" id="quiz">
-    <div class="container">
-      <h2 class="section-title">Подходит ли тебе сайт?</h2>
-      <p class="quiz-subtitle">Ответь на 3 вопроса — и узнай, нужен ли тебе сайт, лендинг или визитка.</p>
-
-      <!-- Прогресс-бар -->
-      <div class="quiz-progress-container">
-        <div class="quiz-progress" id="quizProgress"></div>
-      </div>
-
-      <div class="quiz-container">
-        <!-- Вопрос 1 -->
-        <div class="quiz-question active" id="q1">
-          <h3>Что ты хочешь получить от сайта?</h3>
-          <button class="quiz-btn" onclick="nextQuestion(1, 'business')">Больше клиентов или продаж</button>
-          <button class="quiz-btn" onclick="nextQuestion(1, 'presence')">Просто быть в интернете</button>
-          <button class="quiz-btn" onclick="nextQuestion(1, 'portfolio')">Показать своё портфолио или работы</button>
-        </div>
-
-        <!-- Вопрос 2 -->
-        <div class="quiz-question" id="q2">
-          <h3>У тебя уже есть сайт?</h3>
-          <button class="quiz-btn" onclick="nextQuestion(2, 'yes')">Да, но он не работает</button>
-          <button class="quiz-btn" onclick="nextQuestion(2, 'no')">Нет, хочу первый</button>
-          <button class="quiz-btn" onclick="nextQuestion(2, 'old')">Да, но он старый и устаревший</button>
-        </div>
-
-        <!-- Вопрос 3 -->
-        <div class="quiz-question" id="q3">
-          <h3>Какой бюджет ты готов вложить?</h3>
-          <button class="quiz-btn" onclick="showResult('low')">До 30 000 ₽</button>
-          <button class="quiz-btn" onclick="showResult('mid')">50 000 – 80 000 ₽</button>
-          <button class="quiz-btn" onclick="showResult('high')">100 000+ ₽</button>
-          <button class="quiz-btn" onclick="showResult('not-sure')">Пока не знаю</button>
-        </div>
-
-        <!-- Результат -->
-        <div class="quiz-result" id="result" style="display: none;">
-          <div class="result-content">
-            <h3 id="result-title">Ты на верном пути!</h3>
-            <p id="result-text">Узнай, как я могу помочь.</p>
-            <a href="https://t.me/overgrand" target="_blank" class="btn btn-primary">Написать в Telegram</a>
-            <p style="margin-top: 1rem; color: #aaa; font-size: 0.9rem;">Отвечу в течение часа. Готов сделать тебе прототип.</p>
-          </div>
-        </div>
-
-        <!-- Кнопка "Назад" -->
-        <button class="quiz-back" onclick="prevQuestion()" id="back-btn" style="display: none;">← Назад</button>
-      </div>
-    </div>
-  </section>
-
   <!-- Contact Section -->
   <section id="contact" class="contact">
     <div class="container">
