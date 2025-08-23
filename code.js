@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // === СЧЁТЧИКИ В ТИКЕРАХ ===
   const counters = {
-    clients: { el: document.getElementById('clientsCounter'), target: 25 },
+    clients: { el: document.getElementById('clientsCounter'), target: 15 },
     projects: { el: document.getElementById('projectsCounter'), target: 15 },
     conversion: { el: document.getElementById('conversionCounter'), target: 70 },
     speed: { el: document.getElementById('speedCounter'), target: 0.8 }
