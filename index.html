@@ -252,6 +252,11 @@
       <h2 class="section-title">Подходит ли тебе сайт?</h2>
       <p class="quiz-subtitle">Ответь на 3 вопроса — и узнай, нужен ли тебе сайт, лендинг или визитка.</p>
 
+      <!-- Прогресс-бар -->
+      <div class="quiz-progress-container">
+        <div class="quiz-progress" id="quizProgress"></div>
+      </div>
+
       <div class="quiz-container">
         <!-- Вопрос 1 -->
         <div class="quiz-question active" id="q1">
@@ -284,6 +289,7 @@
             <h3 id="result-title">Ты на верном пути!</h3>
             <p id="result-text">Узнай, как я могу помочь.</p>
             <a href="https://t.me/overgrand" target="_blank" class="btn btn-primary">Написать в Telegram</a>
+            <p style="margin-top: 1rem; color: #aaa; font-size: 0.9rem;">Отвечу в течение часа. Готов сделать тебе прототип.</p>
           </div>
         </div>
 
@@ -292,21 +298,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Modal -->
-  <div id="imageModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <div class="modal-vertical-gallery">
-        <button class="gallery-btn up" onclick="prevImage()">&#10094;</button>
-        <div class="gallery-container" id="galleryContainer">
-          <div class="gallery-inner" id="galleryInner"></div>
-        </div>
-        <button class="gallery-btn down" onclick="nextImage()">&#10095;</button>
-      </div>
-      <div class="modal-caption" id="modalCaption"></div>
-    </div>
-  </div>
 
   <!-- Contact Section -->
   <section id="contact" class="contact">
