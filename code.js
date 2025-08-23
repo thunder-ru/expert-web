@@ -188,9 +188,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Плавное появление блоков
   const fadeElements = document.querySelectorAll('.section-title, .service-card, .project-card, .quotes blockquote, .about-content, .contact p');
-  fadeElements.forEach(el => {
-    el.classList.add('fade-in');
-  });
+  fadeElements.forEach(el => el.classList.add('fade-in'));
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -200,9 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }, { threshold: 0.1 });
 
-  fadeElements.forEach(el => {
-    observer.observe(el);
-  });
+  fadeElements.forEach(el => observer.observe(el));
 
   // Копирование Telegram
   document.getElementById('telegram-link').addEventListener('click', () => {
