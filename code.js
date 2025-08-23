@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // === СЧЁТЧИКИ В ТИКЕРАХ ===
   const counters = {
-    clients: { el: document.getElementById('clientsCounter'), target: 15 },
+    clients: { el: document.getElementById('clientsCounter'), target: 25 },
     projects: { el: document.getElementById('projectsCounter'), target: 15 },
     conversion: { el: document.getElementById('conversionCounter'), target: 70 },
     speed: { el: document.getElementById('speedCounter'), target: 0.8 }
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // === АНИМАЦИЯ ПОЯВЛЕНИЯ НАВЫКОВ ===
   const skillCards = document.querySelectorAll('.neon-card');
-  const observer = new IntersectionObserver((entries) => {
+  const skillObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }, { threshold: 0.1 });
 
   skillCards.forEach(card => {
-    observer.observe(card);
+    skillObserver.observe(card);
   });
 
   // === ПЛАВНОЕ ПОЯВЛЕНИЕ БЛОКОВ ===
@@ -235,6 +235,57 @@ document.addEventListener('DOMContentLoaded', function () {
   }, { threshold: 0.1 });
 
   fadeElements.forEach(el => fadeObserver.observe(el));
+
+  // === ИНТЕРАКТИВНЫЙ ТЕСТ ===
+  let currentQuestion = 1;
+  const totalQuestions = 3;
+
+  window.nextQuestion = function (current, answer) {
+    document.getElementById(`q${current}`).classList.remove('active');
+    currentQuestion++;
+    document.getElementById(`q${current}`).classList.add('active');
+
+    if (currentQuestion > 1) {
+      document.getElementById('back-btn').style.display = 'inline-block';
+    }
+  };
+
+  window.prevQuestion = function () {
+    if (currentQuestion > 1) {
+      document.getElementById(`q${currentQuestion}`).classList.remove('active');
+      currentQuestion--;
+      document.getElementById(`q${currentQuestion}`).classList.add('active');
+    }
+
+    if (currentQuestion === 1) {
+      document.getElementById('back-btn').style.display = 'none';
+    }
+  };
+
+  window.showResult = function (budget) {
+    const result = document.getElementById('result');
+    const resultTitle = document.getElementById('result-title');
+    const resultText = document.getElementById('result-text');
+
+    document.getElementById('q3').classList.remove('active');
+    result.style.display = 'block';
+
+    result.scrollIntoView({ behavior: 'smooth' });
+
+    if (budget === 'low') {
+      resultTitle.textContent = 'Отлично! Есть решение.';
+      resultText.textContent = 'Могу сделать лендинг или визитку за 30к. Быстро, чисто, с фокусом на результат.';
+    } else if (budget === 'mid') {
+      resultTitle.textContent = 'Идеальный бюджет!';
+      resultText.textContent = 'Сделаю сайт под ключ за 5–7 дней: дизайн, верстка, SEO, адаптив — всё включено.';
+    } else if (budget === 'high') {
+      resultTitle.textContent = 'Готов к масштабу!';
+      resultText.textContent = 'Создам мощный сайт с интеграциями, аналитикой и системой роста. Будет работать как бизнес.';
+    } else if (budget === 'not-sure') {
+      resultTitle.textContent = 'Не знаешь бюджет?';
+      resultText.textContent = 'Напиши — и я предложу оптимальное решение под твои цели. Через 24 часа будет прототип.';
+    }
+  };
 
   // Копирование Telegram
   document.getElementById('telegram-link').addEventListener('click', () => {
