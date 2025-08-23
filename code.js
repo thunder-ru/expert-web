@@ -173,55 +173,68 @@ document.addEventListener('DOMContentLoaded', function () {
     if (diff < -50) prevImage();
   }, { passive: true });
 
-  // === АНИМАЦИЯ БЕГУЩЕЙ СТРОКИ ===
-  function animateRoller(rollerId, targetValue, decimals = 0) {
-    const roller = document.getElementById(rollerId);
-    if (!roller) return;
-
-    const track = roller.querySelector('.roller-track');
-    const numberHeight = 60;
-    const totalNumbers = 10;
-    const duration = 1500;
-    const steps = 30;
-    const stepTime = duration / steps;
+  // === ТИКЕРЫ С ПАДАЮЩИМИ ЦИФРАМИ ===
+  function createFallingTicker(elementId, target, decimals = 0) {
+    const container = document.getElementById(elementId);
     let current = 0;
+    const steps = 30;
+    const stepTime = 1500 / steps;
 
     const timer = setInterval(() => {
-      current += targetValue / steps;
+      current += target / steps;
       const value = decimals === 0 ? Math.floor(current) : current.toFixed(decimals);
       
-      if (current >= targetValue) {
+      if (current >= target) {
         clearInterval(timer);
-        current = targetValue;
-        value = decimals === 0 ? targetValue : targetValue.toFixed(decimals);
+        current = target;
+        value = decimals === 0 ? target : target.toFixed(decimals);
       }
 
-      // Обновляем позицию
-      const offset = -value * numberHeight;
-      track.style.transform = `translateY(${offset}px)`;
-    }, stepTime);
+      const digit = document.createElement('div');
+      digit.className = 'falling-digit';
+      digit.textContent = value;
+      container.appendChild(digit);
 
-    // Показываем трек
-    setTimeout(() => {
-      track.style.opacity = "1";
-    }, 100);
+      setTimeout(() => {
+        container.removeChild(digit);
+      }, 1500);
+    }, stepTime);
   }
 
-  // Запуск анимации при прокрутке
   const tickerSection = document.querySelector('.result-tickers');
-  const observer = new IntersectionObserver((entries) => {
+  const tickerObserver = new IntersectionObserver((entries) => {
     if (entries[0].isIntersecting) {
-      animateRoller('clientsRoller', 25);
-      animateRoller('projectsRoller', 15);
-      animateRoller('conversionRoller', 70);
-      animateRoller('speedRoller', 0.8, 1);
-      observer.unobserve(tickerSection);
+      createFallingTicker('clientsFall', 25);
+      createFallingTicker('projectsFall', 15);
+      createFallingTicker('conversionFall', 70);
+      createFallingTicker('speedFall', 0.8, 1);
+      tickerObserver.unobserve(tickerSection);
     }
-  }, { threshold: 0.2 });
+  }, { threshold: 0.1 });
 
   if (tickerSection) {
-    observer.observe(tickerSection);
+    tickerObserver.observe(tickerSection);
   }
+
+  // === 3D ПОВОРОТ КАРТОЧЕК ПО ДВИЖЕНИЮ МЫШИ ===
+  document.querySelectorAll('.mistake-card-t').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const deltaX = e.clientX - centerX;
+      const deltaY = e.clientY - centerY;
+
+      const rotateY = (deltaX / rect.width) * 20;
+      const rotateX = (deltaY / rect.height) * -20;
+
+      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'rotateX(0) rotateY(0)';
+    });
+  });
 
   // === АНИМАЦИЯ ПОЯВЛЕНИЯ НАВЫКОВ ===
   const skillCards = document.querySelectorAll('.neon-card');
