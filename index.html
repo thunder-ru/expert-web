@@ -107,6 +107,10 @@
             <h3>Тур-агентство "Аюрведа Тур"</h3>
             <p>Сайт с бронированием туров и анимацией природы</p>
           </div>
+          <div class="project-actions">
+            <button class="btn btn-outline btn-small" onclick="openModal('travel')">Галерея</button>
+            <a href="https://example-travel.com" target="_blank" class="btn btn-primary btn-small">Посмотреть сайт</a>
+          </div>
         </div>
         <div class="project-card" data-project="dentist">
           <img src="https://i.postimg.cc/g02R2wgR/1.jpg" alt="Стоматология">
@@ -114,12 +118,20 @@
             <h3>Стоматология "Дентикс+"</h3>
             <p>Клиника с онлайн-записью</p>
           </div>
+          <div class="project-actions">
+            <button class="btn btn-outline btn-small" onclick="openModal('dentist')">Галерея</button>
+            <a href="https://example-dentist.com" target="_blank" class="btn btn-primary btn-small">Посмотреть сайт</a>
+          </div>
         </div>
         <div class="project-card" data-project="trainer">
           <img src="https://i.postimg.cc/MThj59qb/1.jpg" alt="Персональный тренер">
           <div class="project-info">
             <h3>Фитнес-тренер Альмир Мусаев</h3>
             <p>Сайт-визитка с покупкой абонемента</p>
+          </div>
+          <div class="project-actions">
+            <button class="btn btn-outline btn-small" onclick="openModal('trainer')">Галерея</button>
+            <a href="https://example-trainer.com" target="_blank" class="btn btn-primary btn-small">Посмотреть сайт</a>
           </div>
         </div>
       </div>
@@ -181,13 +193,21 @@
     <p>&copy; 2025 Web-Thunder. Сайты, которые <strong>грозят</strong> успехом.</p>
   </footer>
 
-  <!-- Плавающие кнопки с подписями -->
-  <a href="https://t.me/overgrand" target="_blank" class="floating-btn telegram">
+  <!-- Плавающие кнопки -->
+  <a href="https://t.me/overgrand" target="_blank" class="floating-btn telegram" data-tooltip="Telegram">
     <span class="btn-label">TG</span>
   </a>
-  <a href="https://wa.me/79036254250" target="_blank" class="floating-btn whatsapp">
+  <a href="https://wa.me/79036254250" target="_blank" class="floating-btn whatsapp" data-tooltip="WhatsApp">
     <span class="btn-label">WA</span>
   </a>
+  <a href="tel:+79036254250" class="floating-btn call" data-tooltip="Позвонить">
+    <span class="btn-label">📞</span>
+  </a>
+
+  <!-- Онлайн-статус -->
+  <div class="online-status">
+    <span class="status-dot"></span> В сети — отвечаю в течение 15 минут
+  </div>
 
   <script src="code.js"></script>
 </body>
