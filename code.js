@@ -173,57 +173,54 @@ document.addEventListener('DOMContentLoaded', function () {
     if (diff < -50) prevImage();
   }, { passive: true });
 
-  // === СЧЁТЧИКИ В ТИКЕРАХ ===
-  const counters = {
-    clients: { el: document.getElementById('clientsCounter'), target: 25 },
-    projects: { el: document.getElementById('projectsCounter'), target: 15 },
-    conversion: { el: document.getElementById('conversionCounter'), target: 70 },
-    speed: { el: document.getElementById('speedCounter'), target: 0.8 }
-  };
+  // === АНИМАЦИЯ БЕГУЩЕЙ СТРОКИ ===
+  function animateRoller(rollerId, targetValue, decimals = 0) {
+    const roller = document.getElementById(rollerId);
+    if (!roller) return;
 
-  Object.keys(counters).forEach(key => {
-    const counter = counters[key];
-    if (!counter.el) return;
-
-    let count = 0;
-    const target = counter.target;
+    const track = roller.querySelector('.roller-track');
+    const numberHeight = 60;
+    const totalNumbers = 10;
     const duration = 1500;
-    const stepTime = duration / (target * 10);
+    const steps = 30;
+    const stepTime = duration / steps;
+    let current = 0;
 
     const timer = setInterval(() => {
-      count += target / (target * 10);
-      if (key === 'speed') {
-        counter.el.textContent = count.toFixed(1);
-      } else {
-        counter.el.textContent = Math.floor(count);
-      }
-      if (count >= target) {
+      current += targetValue / steps;
+      const value = decimals === 0 ? Math.floor(current) : current.toFixed(decimals);
+      
+      if (current >= targetValue) {
         clearInterval(timer);
-        if (key === 'speed') {
-          counter.el.textContent = target.toFixed(1);
-        } else {
-          counter.el.textContent = target;
-        }
+        current = targetValue;
+        value = decimals === 0 ? targetValue : targetValue.toFixed(decimals);
       }
-    }, stepTime);
-  });
 
-  // === СЧЁТЧИК ПРОЕКТОВ В ТЕКСТЕ ===
-  const projectCounterEl = document.getElementById('projectCounter');
-  if (projectCounterEl) {
-    let count = 0;
-    const target = 15;
-    const duration = 1500;
-    const stepTime = duration / (target * 10);
-
-    const timer = setInterval(() => {
-      count += 1;
-      projectCounterEl.textContent = Math.floor(count);
-      if (count >= target) {
-        clearInterval(timer);
-        projectCounterEl.textContent = target;
-      }
+      // Обновляем позицию
+      const offset = -value * numberHeight;
+      track.style.transform = `translateY(${offset}px)`;
     }, stepTime);
+
+    // Показываем трек
+    setTimeout(() => {
+      track.style.opacity = "1";
+    }, 100);
+  }
+
+  // Запуск анимации при прокрутке
+  const tickerSection = document.querySelector('.result-tickers');
+  const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      animateRoller('clientsRoller', 25);
+      animateRoller('projectsRoller', 15);
+      animateRoller('conversionRoller', 70);
+      animateRoller('speedRoller', 0.8, 1);
+      observer.unobserve(tickerSection);
+    }
+  }, { threshold: 0.2 });
+
+  if (tickerSection) {
+    observer.observe(tickerSection);
   }
 
   // === АНИМАЦИЯ ПОЯВЛЕНИЯ НАВЫКОВ ===
@@ -253,6 +250,24 @@ document.addEventListener('DOMContentLoaded', function () {
   }, { threshold: 0.1 });
 
   fadeElements.forEach(el => fadeObserver.observe(el));
+
+  // === СЧЁТЧИК ПРОЕКТОВ В ТЕКСТЕ ===
+  const projectCounterEl = document.getElementById('projectCounter');
+  if (projectCounterEl) {
+    let count = 0;
+    const target = 15;
+    const duration = 1500;
+    const stepTime = duration / (target * 10);
+
+    const timer = setInterval(() => {
+      count += 1;
+      projectCounterEl.textContent = Math.floor(count);
+      if (count >= target) {
+        clearInterval(timer);
+        projectCounterEl.textContent = target;
+      }
+    }, stepTime);
+  }
 
   // Копирование Telegram
   document.getElementById('telegram-link').addEventListener('click', () => {
