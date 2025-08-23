@@ -281,6 +281,21 @@
     <span class="status-dot"></span> В сети — отвечаю в течение 15 минут
   </div>
 
+  <!-- Модальное окно -->
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div class="modal-vertical-gallery">
+        <button class="gallery-btn up" onclick="prevImage()">&#10094;</button>
+        <div class="gallery-container" id="galleryContainer">
+          <div class="gallery-inner" id="galleryInner"></div>
+        </div>
+        <button class="gallery-btn down" onclick="nextImage()">&#10095;</button>
+      </div>
+      <div class="modal-caption" id="modalCaption"></div>
+    </div>
+  </div>
+
   <script src="code.js"></script>
 </body>
 </html>
