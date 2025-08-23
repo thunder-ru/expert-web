@@ -217,12 +217,13 @@ body {
   z-index: 0;
 }
 
-/* === ТИКЕРЫ С РЕЗУЛЬТАТАМИ === */
+/* === ТИКЕРЫ "БЕГУЩАЯ СТРОКА" === */
 .result-tickers {
   padding: 3rem 0;
   background: #0f1421;
   position: relative;
   z-index: 1;
+  overflow: hidden;
 }
 
 .result-tickers .container {
@@ -234,14 +235,7 @@ body {
 
 .ticker-item {
   text-align: center;
-}
-
-.ticker-number {
-  font-size: 3.5rem;
-  font-weight: 800;
-  color: #00eeff;
-  text-shadow: 0 0 20px rgba(0, 238, 255, 0.4);
-  line-height: 1;
+  position: relative;
 }
 
 .ticker-label {
@@ -250,31 +244,146 @@ body {
   margin-top: 0.5rem;
 }
 
-/* === ОБЩИЕ СТИЛИ === */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+/* Бегущая строка */
+.ticker-roller {
+  width: 60px;
+  height: 70px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(0, 238, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 15px rgba(0, 238, 255, 0.2);
 }
 
-.section-title {
+.roller-track {
+  display: flex;
+  flex-direction: column;
+  animation: roll-up 1.5s linear forwards;
+  opacity: 0;
+}
+
+.roller-number {
   font-size: 2.8rem;
-  margin-bottom: 3rem;
-  color: #fff;
-  text-align: center;
+  font-weight: 800;
+  color: #00eeff;
+  text-shadow: 0 0 10px rgba(0, 238, 255, 0.5);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes roll-up {
+  from { transform: translateY(0); }
+  to { transform: translateY(-540px); }
+}
+
+/* === ОШИБКИ — ВАУ ДИЗАЙН С 3D ЭФФЕКТОМ === */
+.mistakes-wow {
+  padding: 6rem 0;
+  background: #0f1421;
   position: relative;
 }
 
-.section-title::after {
+.mistakes-wow::before {
   content: '';
   position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, #00eeff, #6a5acd);
-  border-radius: 2px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 238, 255, 0.05), rgba(106, 90, 205, 0.05));
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 15px;
+}
+
+.mistakes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.mistake-card-w {
+  background: rgba(26, 38, 60, 0.5);
+  padding: 2rem;
+  border-radius: 15px;
+  width: 350px;
+  border: 1px solid rgba(0, 238, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transform: translateZ(0);
+}
+
+.mistake-card-w::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(0, 238, 255, 0.1), transparent);
+  transform: rotate(45deg);
+  transform-origin: center;
+  animation: shine 3s infinite linear;
+  opacity: 0;
+  z-index: 1;
+}
+
+.mistake-card-w:hover::before {
+  opacity: 1;
+}
+
+.mistake-card-w:hover {
+  transform: translateY(-12px) rotateX(10deg);
+  border-color: #00eeff;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.5),
+    0 0 40px rgba(0, 238, 255, 0.3);
+}
+
+.mistake-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  background: rgba(0, 238, 255, 0.1);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  line-height: 60px;
+  color: #00eeff;
+}
+
+.mistake-card-w h3 {
+  color: #ffd700;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.mistake-card-w p {
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
 }
 
 /* === О НАС === */
@@ -1016,150 +1125,16 @@ body {
     max-width: 300px;
   }
 
+  /* Ошибки на мобиле */
+  .mistake-card-w {
+    width: 100%;
+    max-width: 350px;
+  }
+
   .online-status {
     font-size: 0.8rem;
     padding: 5px 9px;
     right: 15px;
     bottom: 80px;
   }
-
-  /* ... остальные стили без изменений до секции тикеров ... */
-
-/* === ТИКЕРЫ "БЕГУЩАЯ СТРОКА" === */
-.result-tickers {
-  padding: 3rem 0;
-  background: #0f1421;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
 }
-
-.result-tickers .container {
-  display: flex;
-  justify-content: center;
-  gap: 4rem;
-  flex-wrap: wrap;
-}
-
-.ticker-item {
-  text-align: center;
-  position: relative;
-}
-
-.ticker-label {
-  font-size: 1.2rem;
-  color: #ccc;
-  margin-top: 0.5rem;
-}
-
-/* Бегущая строка */
-.ticker-roller {
-  width: 60px;
-  height: 70px;
-  overflow: hidden;
-  position: relative;
-  border: 1px solid rgba(0, 238, 255, 0.3);
-  border-radius: 8px;
-  background: rgba(0, 0, 0, 0.3);
-  box-shadow: 0 0 15px rgba(0, 238, 255, 0.2);
-}
-
-.roller-track {
-  display: flex;
-  flex-direction: column;
-  animation: roll-up 1.5s linear forwards;
-  opacity: 0;
-}
-
-.roller-number {
-  font-size: 2.8rem;
-  font-weight: 800;
-  color: #00eeff;
-  text-shadow: 0 0 10px rgba(0, 238, 255, 0.5);
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@keyframes roll-up {
-  from { transform: translateY(0); }
-  to { transform: translateY(-540px); }
-}
-
-/* === ОШИБКИ — ВАУ ДИЗАЙН === */
-.mistakes-wow {
-  padding: 6rem 0;
-  background: #0f1421;
-  position: relative;
-}
-
-.mistakes-wow::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(0, 238, 255, 0.05), rgba(106, 90, 205, 0.05));
-  z-index: 0;
-  pointer-events: none;
-  border-radius: 15px;
-}
-
-.mistakes-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-
-.mistake-card-w {
-  background: rgba(26, 38, 60, 0.5);
-  padding: 2rem;
-  border-radius: 15px;
-  width: 350px;
-  border: 1px solid rgba(0, 238, 255, 0.3);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-}
-
-.mistake-card-w:hover {
-  transform: translateY(-10px);
-  border-color: #00eeff;
-  box-shadow: 
-    0 15px 40px rgba(0, 0, 0, 0.4),
-    0 0 30px rgba(0, 238, 255, 0.2);
-}
-
-.mistake-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  display: inline-block;
-  background: rgba(0, 238, 255, 0.1);
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  line-height: 60px;
-  color: #00eeff;
-}
-
-.mistake-card-w h3 {
-  color: #ffd700;
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
-}
-
-.mistake-card-w p {
-  color: #ccc;
-  font-size: 1rem;
-  line-height: 1.6;
-}
- }
