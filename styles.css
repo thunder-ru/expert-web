@@ -248,6 +248,7 @@ body {
   font-size: 1.2rem;
   color: #ccc;
   margin-top: 0.5rem;
+  transition: color 0.3s ease, transform 0.2s ease;
 }
 
 /* === ОБЩИЕ СТИЛИ === */
@@ -301,6 +302,11 @@ body {
 .features-list li {
   margin: 0.8rem 0;
   color: #a0eaff;
+  transition: transform 0.2s ease;
+}
+
+.features-list li:hover {
+  transform: translateX(5px);
 }
 
 /* === НАВЫКИ === */
@@ -353,12 +359,26 @@ body {
   text-shadow: 0 0 15px rgba(0, 238, 255, 0.6);
   margin-bottom: 1rem;
   display: block;
+  transition: all 0.3s ease;
+}
+
+.neon-card:hover i {
+  text-shadow: 
+    0 0 20px rgba(0, 238, 255, 0.8),
+    0 0 30px rgba(0, 238, 255, 0.5),
+    0 0 40px rgba(0, 238, 255, 0.3);
+  transform: scale(1.1);
 }
 
 .neon-card h3 {
   color: #fff;
   margin-bottom: 0.5rem;
   font-size: 1.3rem;
+  transition: color 0.3s ease;
+}
+
+.neon-card:hover h3 {
+  color: #00eeff;
 }
 
 .neon-card p {
@@ -385,6 +405,19 @@ body {
   z-index: 0;
   pointer-events: none;
   border-radius: 15px;
+}
+
+.mistakes-thunder::after {
+  content: 'Хочешь избежать этих ошибок? Напиши — и получишь бесплатный аудит сайта';
+  display: block;
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1.2rem;
+  color: #a0d2ff;
+  font-style: italic;
+  opacity: 0.9;
+  animation: fadeIn 1s ease 2s forwards;
+  pointer-events: none;
 }
 
 .mistakes-grid {
@@ -445,6 +478,7 @@ body {
   font-size: 1.3rem;
   position: relative;
   z-index: 2;
+  transition: transform 0.2s ease;
 }
 
 .mistake-card-t p {
@@ -453,12 +487,31 @@ body {
   line-height: 1.6;
   position: relative;
   z-index: 2;
+  transition: transform 0.2s ease;
+}
+
+.mistake-card-t h3:hover,
+.mistake-card-t p:hover {
+  transform: translateX(5px);
 }
 
 /* === УСЛУГИ === */
 .services {
   padding: 6rem 0;
   background: #121220;
+}
+
+.services::after {
+  content: 'Хочешь такой же результат? Получи прототип за 24 часа';
+  display: block;
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1.2rem;
+  color: #a0d2ff;
+  font-style: italic;
+  opacity: 0.9;
+  animation: fadeIn 1s ease 2s forwards;
+  pointer-events: none;
 }
 
 .services-grid {
@@ -477,12 +530,13 @@ body {
   width: 280px;
   text-align: center;
   border: 1px solid rgba(106, 90, 205, 0.2);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
   border-color: #00eeff;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
 }
 
 .service-card h3 {
@@ -500,6 +554,19 @@ body {
   padding: 6rem 0;
   background: #121220;
   overflow: hidden;
+}
+
+.projects::after {
+  content: 'Хочешь такой же результат? Получи прототип за 24 часа';
+  display: block;
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1.2rem;
+  color: #a0d2ff;
+  font-style: italic;
+  opacity: 0.9;
+  animation: fadeIn 1s ease 2s forwards;
+  pointer-events: none;
 }
 
 .projects-subtitle {
@@ -528,12 +595,13 @@ body {
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.25, 0.7, 0.35, 1), box-shadow 0.4s ease;
   cursor: pointer;
 }
 
 .project-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-10px) rotateX(5deg) rotateY(2deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .project-card img {
@@ -572,14 +640,28 @@ body {
 }
 
 .btn-gallery:hover {
-  transform: scale(1.05);
+  transform: scale(1.05) translateY(-2px);
   background: rgba(0, 238, 255, 0.15);
+  box-shadow: 0 5px 15px rgba(0, 238, 255, 0.2);
 }
 
 /* === ОТЗЫВЫ === */
 .testimonials {
   padding: 6rem 0;
   background: #0f1421;
+}
+
+.testimonials::after {
+  content: 'Хочешь такие же отзывы? Напиши — и начнём завтра';
+  display: block;
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1.2rem;
+  color: #a0d2ff;
+  font-style: italic;
+  opacity: 0.9;
+  animation: fadeIn 1s ease 2s forwards;
+  pointer-events: none;
 }
 
 .quotes {
@@ -596,6 +678,11 @@ body {
   font-style: italic;
   color: #a0eaff;
   border-left: 4px solid #00eeff;
+  transition: transform 0.2s ease;
+}
+
+.quotes blockquote:hover {
+  transform: translateX(5px);
 }
 
 /* === МОДАЛЬНОЕ ОКНО === */
@@ -724,7 +811,7 @@ body {
   font-weight: 600;
   border-radius: 50px;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   border: none;
   cursor: pointer;
   display: inline-block;
@@ -738,8 +825,8 @@ body {
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 238, 255, 0.5);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 238, 255, 0.4);
 }
 
 .btn-outline {
@@ -751,7 +838,7 @@ body {
 
 .btn-outline:hover {
   background: rgba(0, 238, 255, 0.1);
-  transform: translateY(-3px);
+  transform: translateY(-3px) scale(1.03);
 }
 
 /* Кнопка WhatsApp */
@@ -763,8 +850,8 @@ body {
 }
 
 .btn-whatsapp:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
 }
 
 /* === КОНТАКТЫ === */
@@ -827,6 +914,11 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 0.9; }
 }
 
 /* === ПЛАВНОЕ ПОЯВЛЕНИЕ БЛОКОВ === */
