@@ -359,6 +359,20 @@ body {
   font-size: 0.95rem;
 }
 
+/* === КНОПКИ ВНУТРИ КАРТОЧКИ === */
+.project-actions {
+  padding: 0 1.2rem 1.2rem;
+  display: flex;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.btn-small {
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 30px;
+}
+
 /* === ОТЗЫВЫ === */
 .testimonials {
   padding: 6rem 0;
@@ -624,7 +638,28 @@ body {
   transform: translateY(0);
 }
 
-/* === ПЛАВАЮЩИЕ КНОПКИ С ПОДПИСЯМИ === */
+/* === МИКРО-АНИМАЦИИ === */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  animation: pulse 0.6s ease;
+}
+
+.btn:hover {
+  animation: flash 0.3s ease;
+}
+
+/* === ПЛАВАЮЩИЕ КНОПКИ С ПОДСКАЗКАМИ === */
 .floating-btn {
   position: fixed;
   bottom: 20px;
@@ -657,11 +692,69 @@ body {
   right: 20px;
 }
 
+.floating-btn.call {
+  background: #FFA500;
+  right: 160px;
+}
+
 .floating-btn .btn-label {
   font-size: 0.9rem;
   font-weight: 700;
   font-family: 'Montserrat', sans-serif;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.floating-btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1;
+}
+
+.floating-btn:hover::after {
+  opacity: 1;
+}
+
+/* === СТАТУС "В СЕТИ" === */
+.online-status {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  background: rgba(0, 238, 255, 0.1);
+  color: #00eeff;
+  padding: 8px 12px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 10px rgba(0, 238, 255, 0.2);
+}
+
+.status-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: #00eeff;
+  border-radius: 50%;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
 /* === АДАПТИВ === */
@@ -806,91 +899,17 @@ body {
     height: 100vh;
   }
 
-  /* === МИКРО-АНИМАЦИИ === */
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
+  /* Адаптация новых элементов */
+  .floating-btn {
+    width: 55px;
+    height: 55px;
+    font-size: 1.2rem;
+  }
 
-@keyframes flash {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
-}
-
-.project-card:hover {
-  transform: translateY(-8px) !important;
-  animation: pulse 0.6s ease;
-}
-
-.btn:hover {
-  animation: flash 0.3s ease;
-}
-
-/* === КНОПКИ ВНУТРИ КАРТОЧКИ === */
-.project-actions {
-  padding: 0 1.2rem 1.2rem;
-  display: flex;
-  gap: 0.8rem;
-  justify-content: center;
-}
-
-.btn-small {
-  padding: 0.6rem 1rem;
-  font-size: 0.9rem;
-  border-radius: 30px;
-}
-
-/* === ПЛАВАЮЩИЕ КНОПКИ С ПОДСКАЗКАМИ === */
-.floating-btn::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  top: -35px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #000;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.3s;
-  z-index: 1;
-}
-
-.floating-btn:hover::after {
-  opacity: 1;
-}
-
-/* === СТАТУС "В СЕТИ" === */
-.online-status {
-  position: fixed;
-  bottom: 90px;
-  right: 20px;
-  background: rgba(0, 238, 255, 0.1);
-  color: #00eeff;
-  padding: 8px 12px;
-  border-radius: 30px;
-  font-size: 0.9rem;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  backdrop-filter: blur(5px);
-  box-shadow: 0 0 10px rgba(0, 238, 255, 0.2);
-}
-
-.status-dot {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  background: #00eeff;
-  border-radius: 50%;
-  animation: blink 1.5s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  .online-status {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    right: 15px;
+    bottom: 80px;
+  }
 }
