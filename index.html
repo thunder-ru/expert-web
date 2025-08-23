@@ -49,80 +49,23 @@
     <div class="hero-wave"></div>
   </section>
 
-  <!-- Тикеры "бегущей строкой" -->
+  <!-- Тикеры с падающими цифрами -->
   <section class="result-tickers">
     <div class="container">
       <div class="ticker-item">
-        <div class="ticker-roller" id="clientsRoller">
-          <div class="roller-track">
-            <span class="roller-number">0</span>
-            <span class="roller-number">1</span>
-            <span class="roller-number">2</span>
-            <span class="roller-number">3</span>
-            <span class="roller-number">4</span>
-            <span class="roller-number">5</span>
-            <span class="roller-number">6</span>
-            <span class="roller-number">7</span>
-            <span class="roller-number">8</span>
-            <span class="roller-number">9</span>
-            <span class="roller-number">0</span>
-          </div>
-        </div>
+        <div class="ticker-fall" id="clientsFall"></div>
         <div class="ticker-label">клиентов</div>
       </div>
       <div class="ticker-item">
-        <div class="ticker-roller" id="projectsRoller">
-          <div class="roller-track">
-            <span class="roller-number">0</span>
-            <span class="roller-number">1</span>
-            <span class="roller-number">2</span>
-            <span class="roller-number">3</span>
-            <span class="roller-number">4</span>
-            <span class="roller-number">5</span>
-            <span class="roller-number">6</span>
-            <span class="roller-number">7</span>
-            <span class="roller-number">8</span>
-            <span class="roller-number">9</span>
-            <span class="roller-number">0</span>
-          </div>
-        </div>
+        <div class="ticker-fall" id="projectsFall"></div>
         <div class="ticker-label">проектов</div>
       </div>
       <div class="ticker-item">
-        <div class="ticker-roller" id="conversionRoller">
-          <div class="roller-track">
-            <span class="roller-number">0</span>
-            <span class="roller-number">1</span>
-            <span class="roller-number">2</span>
-            <span class="roller-number">3</span>
-            <span class="roller-number">4</span>
-            <span class="roller-number">5</span>
-            <span class="roller-number">6</span>
-            <span class="roller-number">7</span>
-            <span class="roller-number">8</span>
-            <span class="roller-number">9</span>
-            <span class="roller-number">0</span>
-          </div>
-        </div>
+        <div class="ticker-fall" id="conversionFall"></div>
         <div class="ticker-label">+ конверсии</div>
       </div>
       <div class="ticker-item">
-        <div class="ticker-roller" id="speedRoller">
-          <div class="roller-track">
-            <span class="roller-number">0</span>
-            <span class="roller-number">.</span>
-            <span class="roller-number">1</span>
-            <span class="roller-number">2</span>
-            <span class="roller-number">3</span>
-            <span class="roller-number">4</span>
-            <span class="roller-number">5</span>
-            <span class="roller-number">6</span>
-            <span class="roller-number">7</span>
-            <span class="roller-number">8</span>
-            <span class="roller-number">9</span>
-            <span class="roller-number">0</span>
-          </div>
-        </div>
+        <div class="ticker-fall" id="speedFall"></div>
         <div class="ticker-label">сек загрузка</div>
       </div>
     </div>
@@ -251,32 +194,32 @@
     </div>
   </section>
 
-  <!-- Mistakes Section (вау-дизайн) -->
-  <section class="mistakes-wow">
+  <!-- Mistakes Section (стиль сайта + 3D) -->
+  <section class="mistakes-thunder">
     <div class="container">
       <h2 class="section-title">5 ошибок при заказе сайта,<br>которые убивают результат</h2>
       <div class="mistakes-grid">
-        <div class="mistake-card-w">
+        <div class="mistake-card-t" data-mistake="1">
           <div class="mistake-icon">❌</div>
           <h3>Красивый дизайн вместо результата</h3>
           <p>Сайт может быть красивым, но если он не приносит клиентов — это просто картинка. Я создаю сайты, которые работают.</p>
         </div>
-        <div class="mistake-card-w">
+        <div class="mistake-card-t" data-mistake="2">
           <div class="mistake-icon">🐢</div>
           <h3>Медленная загрузка</h3>
           <p>Если сайт грузится дольше 2 секунд — 50% уйдут. Все мои сайты загружаются за 0.8–1.2 сек.</p>
         </div>
-        <div class="mistake-card-w">
+        <div class="mistake-card-t" data-mistake="3">
           <div class="mistake-icon">📱</div>
           <h3>Нет адаптации под мобильные</h3>
           <p>80% заходят с телефона. Если сайт не адаптирован — вы теряете клиентов. Все мои сайты идеальны на любом устройстве.</p>
         </div>
-        <div class="mistake-card-w">
+        <div class="mistake-card-t" data-mistake="4">
           <div class="mistake-icon">🔇</div>
           <h3>Нет CTA (призыва к действию)</h3>
           <p>Кнопка "Заказать" должна кричать. Если нет CTA — нет и заявок. Я проектирую сайты так, чтобы пользователь действовал.</p>
         </div>
-        <div class="mistake-card-w">
+        <div class="mistake-card-t" data-mistake="5">
           <div class="mistake-icon">💻</div>
           <h3>Думают, что сайт = разработка</h3>
           <p>Сайт — это инструмент роста. Я не пишу код. Я создаю прибыль, трафик и доверие.</p>
