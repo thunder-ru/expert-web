@@ -1,9 +1,11 @@
+// Ждём загрузки DOM
 document.addEventListener('DOMContentLoaded', function () {
   // Мобильное меню
   const mobileMenu = document.getElementById('mobile-menu');
   const navMenu = document.querySelector('.nav-menu');
+
   if (mobileMenu && navMenu) {
-    mobileMenu.addEventListener('click', () => {
+    mobileMenu.addEventListener('click', function () {
       mobileMenu.classList.toggle('active');
       navMenu.classList.toggle('active');
     });
@@ -52,19 +54,27 @@ document.addEventListener('DOMContentLoaded', function () {
   const galleryInner = document.getElementById("galleryInner");
   const modalCaption = document.getElementById("modalCaption");
   const galleryContainer = document.getElementById("galleryContainer");
-
   let currentProjectKey = null;
   let currentImageIndex = 0;
 
+  if (!modal || !galleryInner || !modalCaption || !galleryContainer) {
+    console.error("Модальные элементы не найдены");
+    return;
+  }
+
+  // Открытие модального окна
   window.openModal = function (key) {
     currentProjectKey = key;
     const project = projectData[key];
-    if (!project) return;
+    if (!project) {
+      console.error("Проект не найден:", key);
+      return;
+    }
 
     galleryInner.innerHTML = '';
-    project.images.forEach(src => {
+    project.images.forEach(imgSrc => {
       const img = document.createElement('img');
-      img.src = src.trim();
+      img.src = imgSrc.trim();
       img.alt = "Фото проекта";
       galleryInner.appendChild(img);
     });
@@ -81,14 +91,16 @@ document.addEventListener('DOMContentLoaded', function () {
     scrollToCurrent();
   };
 
+  // Прокрутка к текущему изображению
   function scrollToCurrent() {
-    const imgs = galleryInner.querySelectorAll('img');
-    if (imgs[currentImageIndex]) {
-      imgs[currentImageIndex].scrollIntoView({ block: 'center', behavior: 'smooth' });
+    const images = galleryInner.querySelectorAll('img');
+    if (images[currentImageIndex]) {
+      images[currentImageIndex].scrollIntoView({ block: 'center', behavior: 'smooth' });
     }
   }
 
-  window.nextImage = () => {
+  // Следующее изображение
+  window.nextImage = function () {
     const project = projectData[currentProjectKey];
     if (!project || currentImageIndex >= project.images.length - 1) return;
     currentImageIndex++;
@@ -96,56 +108,70 @@ document.addEventListener('DOMContentLoaded', function () {
     scrollToCurrent();
   };
 
-  window.prevImage = () => {
+  // Предыдущее изображение
+  window.prevImage = function () {
     if (currentImageIndex <= 0) return;
     currentImageIndex--;
     updateCaption();
     scrollToCurrent();
   };
 
+  // Обновление подписи
   function updateCaption() {
     const project = projectData[currentProjectKey];
     modalCaption.textContent = `${project.caption} (${currentImageIndex + 1}/${project.images.length})`;
   }
 
-  window.closeModal = () => {
-    const content = modal.querySelector('.modal-content');
-    if (content) content.style.opacity = "0";
+  // Закрытие модального окна
+  window.closeModal = function () {
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent) {
+      modalContent.style.opacity = "0";
+    }
     setTimeout(() => {
       modal.style.display = "none";
       document.body.classList.remove('modal-open');
     }, 300);
   };
 
-  // Свайп в модалке
-  let startY = 0;
-  galleryContainer.addEventListener('touchstart', e => { startY = e.touches[0].clientY; }, { passive: true });
-  galleryContainer.addEventListener('touchend', e => {
-    const endY = e.changedTouches[0].clientY;
-    const diff = startY - endY;
-    if (diff > 50) nextImage();
-    if (diff < -50) prevImage();
-  }, { passive: true });
-
-  // Обработчики карточек
+  // Обработчик кликов по карточкам
   document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const key = card.getAttribute('data-project');
-      if (key && projectData[key]) openModal(key);
+    card.addEventListener('click', function () {
+      const key = this.getAttribute('data-project');
+      if (key && projectData[key]) {
+        openModal(key);
+      }
     });
   });
 
-  modal.addEventListener("click", e => {
-    if (e.target === modal) closeModal();
+  // Закрытие по клику вне
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
   });
 
-  document.addEventListener("keydown", e => {
+  // Управление стрелками
+  document.addEventListener("keydown", (e) => {
     if (currentProjectKey) {
       if (e.key === "ArrowDown") nextImage();
       if (e.key === "ArrowUp") prevImage();
     }
     if (e.key === "Escape") closeModal();
   });
+
+  // Свайп в модальном окне
+  let startY = 0;
+  galleryContainer.addEventListener('touchstart', e => {
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+
+  galleryContainer.addEventListener('touchend', e => {
+    const endY = e.changedTouches[0].clientY;
+    const diff = startY - endY;
+    if (diff > 50) nextImage();
+    if (diff < -50) prevImage();
+  }, { passive: true });
 
   // Счётчик проектов
   const counter = document.getElementById('projectCounter');
@@ -160,17 +186,23 @@ document.addEventListener('DOMContentLoaded', function () {
     if (count === target) clearInterval(timer);
   }, stepTime);
 
-  // Плавное появление
+  // Плавное появление блоков
   const fadeElements = document.querySelectorAll('.section-title, .service-card, .project-card, .quotes blockquote, .about-content, .contact p');
-  fadeElements.forEach(el => el.classList.add('fade-in'));
+  fadeElements.forEach(el => {
+    el.classList.add('fade-in');
+  });
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
     });
   }, { threshold: 0.1 });
 
-  fadeElements.forEach(el => observer.observe(el));
+  fadeElements.forEach(el => {
+    observer.observe(el);
+  });
 
   // Копирование Telegram
   document.getElementById('telegram-link').addEventListener('click', () => {
