@@ -239,6 +239,15 @@ document.addEventListener('DOMContentLoaded', function () {
   // === ИНТЕРАКТИВНЫЙ ТЕСТ ===
   let currentQuestion = 1;
   const totalQuestions = 3;
+  const progressEl = document.getElementById('quizProgress');
+
+  // Обновление прогресс-бара
+  function updateProgress() {
+    const progress = ((currentQuestion - 1) / totalQuestions) * 100;
+    if (progressEl) {
+      progressEl.style.width = `${progress}%`;
+    }
+  }
 
   window.nextQuestion = function (current, answer) {
     document.getElementById(`q${current}`).classList.remove('active');
@@ -248,6 +257,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (currentQuestion > 1) {
       document.getElementById('back-btn').style.display = 'inline-block';
     }
+
+    updateProgress();
   };
 
   window.prevQuestion = function () {
@@ -260,6 +271,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (currentQuestion === 1) {
       document.getElementById('back-btn').style.display = 'none';
     }
+
+    updateProgress();
   };
 
   window.showResult = function (budget) {
@@ -285,7 +298,15 @@ document.addEventListener('DOMContentLoaded', function () {
       resultTitle.textContent = 'Не знаешь бюджет?';
       resultText.textContent = 'Напиши — и я предложу оптимальное решение под твои цели. Через 24 часа будет прототип.';
     }
+
+    // Завершаем прогресс
+    if (progressEl) {
+      progressEl.style.width = '100%';
+    }
   };
+
+  // Инициализация прогресс-бара
+  updateProgress();
 
   // Копирование Telegram
   document.getElementById('telegram-link').addEventListener('click', () => {
