@@ -173,66 +173,77 @@ document.addEventListener('DOMContentLoaded', function () {
     if (diff < -50) prevImage();
   }, { passive: true });
 
-  // === ТИКЕРЫ С ПАДАЮЩИМИ ЦИФРАМИ ===
-  function createFallingTicker(elementId, target, decimals = 0) {
-    const container = document.getElementById(elementId);
-    let current = 0;
-    const steps = 30;
-    const stepTime = 1500 / steps;
+  // === СЧЁТЧИКИ В ТИКЕРАХ ===
+  const counters = {
+    clients: { el: document.getElementById('clientsCounter'), target: 25 },
+    projects: { el: document.getElementById('projectsCounter'), target: 15 },
+    conversion: { el: document.getElementById('conversionCounter'), target: 70 },
+    speed: { el: document.getElementById('speedCounter'), target: 0.8 }
+  };
+
+  Object.keys(counters).forEach(key => {
+    const counter = counters[key];
+    if (!counter.el) return;
+
+    let count = 0;
+    const target = counter.target;
+    const duration = 1500;
+    const stepTime = duration / (target * 10);
 
     const timer = setInterval(() => {
-      current += target / steps;
-      const value = decimals === 0 ? Math.floor(current) : current.toFixed(decimals);
-      
-      if (current >= target) {
-        clearInterval(timer);
-        current = target;
-        value = decimals === 0 ? target : target.toFixed(decimals);
+      count += target / (target * 10);
+      if (key === 'speed') {
+        counter.el.textContent = count.toFixed(1);
+      } else {
+        counter.el.textContent = Math.floor(count);
       }
-
-      const digit = document.createElement('div');
-      digit.className = 'falling-digit';
-      digit.textContent = value;
-      container.appendChild(digit);
-
-      setTimeout(() => {
-        container.removeChild(digit);
-      }, 1500);
+      if (count >= target) {
+        clearInterval(timer);
+        if (key === 'speed') {
+          counter.el.textContent = target.toFixed(1);
+        } else {
+          counter.el.textContent = target;
+        }
+      }
     }, stepTime);
-  }
+  });
 
-  const tickerSection = document.querySelector('.result-tickers');
-  const tickerObserver = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      createFallingTicker('clientsFall', 25);
-      createFallingTicker('projectsFall', 15);
-      createFallingTicker('conversionFall', 70);
-      createFallingTicker('speedFall', 0.8, 1);
-      tickerObserver.unobserve(tickerSection);
-    }
-  }, { threshold: 0.1 });
+  // === СЧЁТЧИК ПРОЕКТОВ ===
+  const projectCounterEl = document.getElementById('projectCounter');
+  if (projectCounterEl) {
+    let count = 0;
+    const target = 15;
+    const duration = 1500;
+    const stepTime = duration / (target * 10);
 
-  if (tickerSection) {
-    tickerObserver.observe(tickerSection);
+    const timer = setInterval(() => {
+      count += 1;
+      projectCounterEl.textContent = Math.floor(count);
+      if (count >= target) {
+        clearInterval(timer);
+        projectCounterEl.textContent = target;
+      }
+    }, stepTime);
   }
 
   // === 3D ПОВОРОТ КАРТОЧЕК ПО ДВИЖЕНИЮ МЫШИ ===
   document.querySelectorAll('.mistake-card-t').forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const deltaX = e.clientX - centerX;
-      const deltaY = e.clientY - centerY;
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
-      const rotateY = (deltaX / rect.width) * 20;
-      const rotateX = (deltaY / rect.height) * -20;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
 
-      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      const rotateY = (x - centerX) / 10;
+      const rotateX = (centerY - y) / 10;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
 
     card.addEventListener('mouseleave', () => {
-      card.style.transform = 'rotateX(0) rotateY(0)';
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
     });
   });
 
@@ -263,24 +274,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }, { threshold: 0.1 });
 
   fadeElements.forEach(el => fadeObserver.observe(el));
-
-  // === СЧЁТЧИК ПРОЕКТОВ В ТЕКСТЕ ===
-  const projectCounterEl = document.getElementById('projectCounter');
-  if (projectCounterEl) {
-    let count = 0;
-    const target = 15;
-    const duration = 1500;
-    const stepTime = duration / (target * 10);
-
-    const timer = setInterval(() => {
-      count += 1;
-      projectCounterEl.textContent = Math.floor(count);
-      if (count >= target) {
-        clearInterval(timer);
-        projectCounterEl.textContent = target;
-      }
-    }, stepTime);
-  }
 
   // Копирование Telegram
   document.getElementById('telegram-link').addEventListener('click', () => {
