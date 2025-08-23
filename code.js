@@ -1,5 +1,22 @@
 // Ждём загрузки DOM
 document.addEventListener('DOMContentLoaded', function () {
+  // Инициализация particles.js
+  if (typeof particlesJS !== 'undefined') {
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: '#00eeff' },
+        shape: { type: 'circle' },
+        opacity: { value: 0.3, random: true },
+        size: { value: 2, random: true },
+        line_linked: { enable: false },
+        move: { enable: true, speed: 1, direction: 'none', random: true, out_mode: 'out' }
+      },
+      interactivity: { detect_on: 'canvas', events: { onhover: { enable: false }, onclick: { enable: false }, resize: true } },
+      retina_detect: true
+    });
+  }
+
   // Мобильное меню
   const mobileMenu = document.getElementById('mobile-menu');
   const navMenu = document.querySelector('.nav-menu');
@@ -175,8 +192,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // === СЧЁТЧИКИ В ТИКЕРАХ ===
   const counters = {
-    clients: { el: document.getElementById('clientsCounter'), target: 23 },
-    projects: { el: document.getElementById('projectsCounter'), target: 16 },
+    clients: { el: document.getElementById('clientsCounter'), target: 25 },
+    projects: { el: document.getElementById('projectsCounter'), target: 15 },
     conversion: { el: document.getElementById('conversionCounter'), target: 70 },
     speed: { el: document.getElementById('speedCounter'), target: 0.8 }
   };
