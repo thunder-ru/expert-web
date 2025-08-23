@@ -14,7 +14,7 @@ body {
   scroll-behavior: smooth;
 }
 
-/* === МОЛНИИ ПО БОКАМ (ПОВЕРХ ВСЕГО) === */
+/* === МОЛНИИ ПО БОКАМ === */
 .storm-overlay {
   position: fixed;
   top: 0;
@@ -250,20 +250,6 @@ body {
   margin-top: 0.5rem;
 }
 
-@media (max-width: 768px) {
-  .result-tickers .container {
-    gap: 2rem;
-  }
-
-  .ticker-number {
-    font-size: 2.5rem;
-  }
-
-  .ticker-label {
-    font-size: 1rem;
-  }
-}
-
 /* === ОБЩИЕ СТИЛИ === */
 .container {
   max-width: 1200px;
@@ -378,59 +364,6 @@ body {
 .neon-card p {
   color: #aaa;
   font-size: 0.95rem;
-}
-
-/* === ОШИБКИ КЛИЕНТОВ === */
-.mistakes {
-  padding: 6rem 0;
-  background: #0f1421;
-}
-
-.mistakes-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.mistake-card {
-  background: rgba(26, 38, 60, 0.5);
-  padding: 2rem;
-  border-radius: 15px;
-  width: 350px;
-  border: 1px solid rgba(106, 90, 205, 0.2);
-  transition: transform 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.mistake-card:hover {
-  transform: translateY(-6px);
-  border-color: #00eeff;
-}
-
-.mistake-number {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 2rem;
-  font-weight: 800;
-  color: rgba(0, 238, 255, 0.1);
-  pointer-events: none;
-}
-
-.mistake-card h3 {
-  color: #ffd700;
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
-}
-
-.mistake-card p {
-  color: #ccc;
-  font-size: 1rem;
-  line-height: 1.6;
 }
 
 /* === УСЛУГИ === */
@@ -576,7 +509,7 @@ body {
   border-left: 4px solid #00eeff;
 }
 
-/* === МОДАЛЬНОЕ ОКНО С ВЕРТИКАЛЬНОЙ ГАЛЕРЕЕЙ === */
+/* === МОДАЛЬНОЕ ОКНО === */
 .modal {
   display: none;
   position: fixed;
@@ -943,7 +876,7 @@ body {
   }
 
   .ticker-number {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
 
   .ticker-label {
@@ -1081,12 +1014,6 @@ body {
   .neon-card {
     width: 100%;
     max-width: 300px;
-  }
-
-  /* Ошибки на мобиле */
-  .mistake-card {
-    width: 100%;
-    max-width: 350px;
   }
 
   .online-status {
