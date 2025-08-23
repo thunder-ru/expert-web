@@ -643,10 +643,72 @@ body {
   transform: translateY(0);
 }
 
+/* === ПЛАВАЮЩИЕ КНОПКИ === */
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  text-decoration: none;
+  color: white;
+  overflow: hidden;
+}
+
+.floating-btn:hover {
+  transform: scale(1.1);
+}
+
+.floating-btn.telegram {
+  background: #0088cc;
+  right: 90px;
+}
+
+.floating-btn.whatsapp {
+  background: #25D366;
+  right: 20px;
+}
+
+.floating-btn .btn-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Подсказки при наведении */
+.floating-btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1;
+}
+
+.floating-btn:hover::after {
+  opacity: 1;
+}
+
 /* === СТАТУС "В СЕТИ" === */
 .online-status {
   position: fixed;
-  bottom: 20px;
+  bottom: 90px;
   right: 20px;
   background: rgba(0, 238, 255, 0.1);
   color: #00eeff;
@@ -822,10 +884,25 @@ body {
     height: 100vh;
   }
 
+  /* Адаптация плавающих кнопок */
+  .floating-btn {
+    width: 55px;
+    height: 55px;
+    font-size: 1.2rem;
+  }
+
+  .floating-btn.telegram {
+    right: 85px;
+  }
+
+  .floating-btn.whatsapp {
+    right: 20px;
+  }
+
   .online-status {
     font-size: 0.8rem;
     padding: 5px 9px;
     right: 15px;
-    bottom: 15px;
+    bottom: 80px;
   }
 }
