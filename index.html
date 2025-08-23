@@ -74,10 +74,10 @@
   <!-- About Section -->
   <section id="about" class="about">
     <div class="container">
-      <h2 class="section-title">Я не собираю сайты.<br>Я запускаю бизнес</h2>
+      <h2 class="section-title">Я не пишу код.<br>Я создаю прибыль</h2>
       <div class="about-content">
         <p>
-          За последние 2 года я реализовал <strong><span id="projectCounter">15</span>+ проектов</strong> — от лендингов до интернет-магазинов.
+          За последние 2 года я реализовал <strong><span id="projectCounter">0</span>+ проектов</strong> — от лендингов до интернет-магазинов.
         </p>
         <p>
           Мой подход: <strong>максимум пользы, минимум шума</strong>.
@@ -194,20 +194,101 @@
     </div>
   </section>
 
+  <!-- Mistakes Section -->
+  <section class="mistakes">
+    <div class="container">
+      <h2 class="section-title">5 ошибок при заказе сайта,<br>которые убивают результат</h2>
+      <div class="mistakes-grid">
+        <div class="mistake-card">
+          <div class="mistake-number">01</div>
+          <h3>Выбирают "красивый дизайн", а не результат</h3>
+          <p>Сайт может быть красивым, но если он не приносит клиентов — это просто картинка. Я создаю сайты, которые работают.</p>
+        </div>
+        <div class="mistake-card">
+          <div class="mistake-number">02</div>
+          <h3>Экономят на скорости загрузки</h3>
+          <p>Если сайт грузится дольше 2 секунд — 50% уйдут. Все мои сайты загружаются за 0.8–1.2 сек.</p>
+        </div>
+        <div class="mistake-card">
+          <div class="mistake-number">03</div>
+          <h3>Забывают про мобильную версию</h3>
+          <p>80% заходят с телефона. Если сайт не адаптирован — вы теряете клиентов. Все мои сайты идеальны на любом устройстве.</p>
+        </div>
+        <div class="mistake-card">
+          <div class="mistake-number">04</div>
+          <h3>Не делают сайт с фокусом на действие</h3>
+          <p>Кнопка "Заказать" должна кричать. Если нет CTA — нет и заявок. Я проектирую сайты так, чтобы пользователь действовал.</p>
+        </div>
+        <div class="mistake-card">
+          <div class="mistake-number">05</div>
+          <h3>Думают, что сайт = разработка</h3>
+          <p>Сайт — это инструмент роста. Я не пишу код. Я создаю прибыль, трафик и доверие.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Testimonials -->
   <section class="testimonials">
     <div class="container">
       <h2 class="section-title">Что говорят клиенты</h2>
       <div class="quotes">
         <blockquote>
-          "Запустили сайт за 5 дней. Уже через неделю — 45 заявок. Web-Thunder — это не просто разработка, это рост бизнеса."
+          "Запустили сайт за 5 дней. Уже через неделю — 120 заявок. web-thunder — это не просто разработка, это рост бизнеса."
         </blockquote>
         <blockquote>
-          "Работал с 3 разработчиками. Только Web-Thunder сделал всё без косяков и в срок."
+          "Работал с 3 разработчиками. Только web-thunder сделал всё без косяков и в срок."
         </blockquote>
         <blockquote>
-          "Сайт загружается за 0.8 сек. SEO в топе. Конверсия выросла на 30%."
+          "Сайт загружается за 0.8 сек. SEO в топе. Конверсия выросла на 70%."
         </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Quiz -->
+  <section class="quiz" id="quiz">
+    <div class="container">
+      <h2 class="section-title">Подходит ли тебе сайт?</h2>
+      <p class="quiz-subtitle">Ответь на 3 вопроса — и узнай, нужен ли тебе сайт, лендинг или визитка.</p>
+
+      <div class="quiz-container">
+        <!-- Вопрос 1 -->
+        <div class="quiz-question active" id="q1">
+          <h3>Что ты хочешь получить от сайта?</h3>
+          <button class="quiz-btn" onclick="nextQuestion(1, 'business')">Больше клиентов или продаж</button>
+          <button class="quiz-btn" onclick="nextQuestion(1, 'presence')">Просто быть в интернете</button>
+          <button class="quiz-btn" onclick="nextQuestion(1, 'portfolio')">Показать своё портфолио или работы</button>
+        </div>
+
+        <!-- Вопрос 2 -->
+        <div class="quiz-question" id="q2">
+          <h3>У тебя уже есть сайт?</h3>
+          <button class="quiz-btn" onclick="nextQuestion(2, 'yes')">Да, но он не работает</button>
+          <button class="quiz-btn" onclick="nextQuestion(2, 'no')">Нет, хочу первый</button>
+          <button class="quiz-btn" onclick="nextQuestion(2, 'old')">Да, но он старый и устаревший</button>
+        </div>
+
+        <!-- Вопрос 3 -->
+        <div class="quiz-question" id="q3">
+          <h3>Какой бюджет ты готов вложить?</h3>
+          <button class="quiz-btn" onclick="showResult('low')">До 30 000 ₽</button>
+          <button class="quiz-btn" onclick="showResult('mid')">50 000 – 80 000 ₽</button>
+          <button class="quiz-btn" onclick="showResult('high')">100 000+ ₽</button>
+          <button class="quiz-btn" onclick="showResult('not-sure')">Пока не знаю</button>
+        </div>
+
+        <!-- Результат -->
+        <div class="quiz-result" id="result" style="display: none;">
+          <div class="result-content">
+            <h3 id="result-title">Ты на верном пути!</h3>
+            <p id="result-text">Узнай, как я могу помочь.</p>
+            <a href="https://t.me/overgrand" target="_blank" class="btn btn-primary">Написать в Telegram</a>
+          </div>
+        </div>
+
+        <!-- Кнопка "Назад" -->
+        <button class="quiz-back" onclick="prevQuestion()" id="back-btn" style="display: none;">← Назад</button>
       </div>
     </div>
   </section>
@@ -261,87 +342,6 @@
   <div class="online-status">
     <span class="status-dot"></span> В сети — отвечаю в течение 15 минут
   </div>
-
-  <!-- === СЕКЦИЯ: ОШИБКИ КЛИЕНТОВ === -->
-<section class="mistakes">
-  <div class="container">
-    <h2 class="section-title">5 ошибок при заказе сайта,<br>которые убивают результат</h2>
-    <div class="mistakes-grid">
-      <div class="mistake-card">
-        <div class="mistake-number">01</div>
-        <h3>Выбирают "красивый дизайн", а не результат</h3>
-        <p>Сайт может быть красивым, но если он не приносит клиентов — это просто картинка. Я создаю сайты, которые работают.</p>
-      </div>
-      <div class="mistake-card">
-        <div class="mistake-number">02</div>
-        <h3>Экономят на скорости загрузки</h3>
-        <p>Если сайт грузится дольше 2 секунд — 50% уйдут. Все мои сайты загружаются за 0.8–1.2 сек.</p>
-      </div>
-      <div class="mistake-card">
-        <div class="mistake-number">03</div>
-        <h3>Забывают про мобильную версию</h3>
-        <p>80% заходят с телефона. Если сайт не адаптирован — вы теряете клиентов. Все мои сайты идеальны на любом устройстве.</p>
-      </div>
-      <div class="mistake-card">
-        <div class="mistake-number">04</div>
-        <h3>Не делают сайт с фокусом на действие</h3>
-        <p>Кнопка "Заказать" должна кричать. Если нет CTA — нет и заявок. Я проектирую сайты так, чтобы пользователь действовал.</p>
-      </div>
-      <div class="mistake-card">
-        <div class="mistake-number">05</div>
-        <h3>Думают, что сайт = разработка</h3>
-        <p>Сайт — это инструмент роста. Я не пишу код. Я создаю прибыль, трафик и доверие.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- === СЕКЦИЯ: ИНТЕРАКТИВНЫЙ ТЕСТ === -->
-<section class="quiz" id="quiz">
-  <div class="container">
-    <h2 class="section-title">Подходит ли тебе сайт?</h2>
-    <p class="quiz-subtitle">Ответь на 3 вопроса — и узнай, нужен ли тебе сайт, лендинг или визитка.</p>
-
-    <div class="quiz-container">
-      <!-- Вопрос 1 -->
-      <div class="quiz-question active" id="q1">
-        <h3>Что ты хочешь получить от сайта?</h3>
-        <button class="quiz-btn" onclick="nextQuestion(1, 'business')">Больше клиентов или продаж</button>
-        <button class="quiz-btn" onclick="nextQuestion(1, 'presence')">Просто быть в интернете</button>
-        <button class="quiz-btn" onclick="nextQuestion(1, 'portfolio')">Показать своё портфолио или работы</button>
-      </div>
-
-      <!-- Вопрос 2 -->
-      <div class="quiz-question" id="q2">
-        <h3>У тебя уже есть сайт?</h3>
-        <button class="quiz-btn" onclick="nextQuestion(2, 'yes')">Да, но он не работает</button>
-        <button class="quiz-btn" onclick="nextQuestion(2, 'no')">Нет, хочу первый</button>
-        <button class="quiz-btn" onclick="nextQuestion(2, 'old')">Да, но он старый и устаревший</button>
-      </div>
-
-      <!-- Вопрос 3 -->
-      <div class="quiz-question" id="q3">
-        <h3>Какой бюджет ты готов вложить?</h3>
-        <button class="quiz-btn" onclick="showResult('low')">До 20 000 ₽</button>
-        <button class="quiz-btn" onclick="showResult('mid')">30 000 – 70 000 ₽</button>
-        <button class="quiz-btn" onclick="showResult('high')">100 000+ ₽</button>
-        <button class="quiz-btn" onclick="showResult('not-sure')">Пока не знаю</button>
-      </div>
-
-      <!-- Результат -->
-      <div class="quiz-result" id="result" style="display: none;">
-        <div class="result-content">
-          <h3 id="result-title">Ты на верном пути!</h3>
-          <p id="result-text">Узнай, как я могу помочь.</p>
-          <a href="https://t.me/overgrand" target="_blank" class="btn btn-primary">Написать в Telegram</a>
-        </div>
-      </div>
-
-      <!-- Кнопка "Назад" -->
-      <button class="quiz-back" onclick="prevQuestion()" id="back-btn" style="display: none;">← Назад</button>
-    </div>
-  </div>
-</section>
 
   <script src="code.js"></script>
 </body>
