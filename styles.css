@@ -217,7 +217,7 @@ body {
   z-index: 0;
 }
 
-/* === ТИКЕРЫ С ПАДАЮЩИМИ ЦИФРАМИ === */
+/* === ТИКЕРЫ С РЕЗУЛЬТАТАМИ === */
 .result-tickers {
   padding: 3rem 0;
   background: #0f1421;
@@ -234,7 +234,14 @@ body {
 
 .ticker-item {
   text-align: center;
-  position: relative;
+}
+
+.ticker-number {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #00eeff;
+  text-shadow: 0 0 20px rgba(0, 238, 255, 0.4);
+  line-height: 1;
 }
 
 .ticker-label {
@@ -243,123 +250,31 @@ body {
   margin-top: 0.5rem;
 }
 
-.ticker-fall {
-  font-size: 3.5rem;
-  font-weight: 800;
-  color: #00eeff;
-  text-shadow: 0 0 20px rgba(0, 238, 255, 0.4);
-  line-height: 1;
-  min-height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  width: 80px;
-}
-
-.falling-digit {
-  position: absolute;
-  font-size: 3.5rem;
-  font-weight: 800;
-  color: #00eeff;
-  opacity: 0;
-  animation: fall 1.5s ease-out forwards;
-}
-
-@keyframes fall {
-  0% { transform: translateY(-100px); opacity: 0; }
-  10% { opacity: 1; }
-  100% { transform: translateY(70px); opacity: 0; }
-}
-
-/* === ОШИБКИ — СТИЛЬ САЙТА + 3D ПОВОРОТ === */
-.mistakes-thunder {
-  padding: 6rem 0;
-  background: #0f1421;
-  position: relative;
-  overflow: hidden;
-}
-
-.mistakes-thunder::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(0, 238, 255, 0.05), rgba(106, 90, 205, 0.05));
-  z-index: 0;
-  pointer-events: none;
-  border-radius: 15px;
-}
-
-.mistakes-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
+/* === ОБЩИЕ СТИЛИ === */
+.container {
   max-width: 1200px;
   margin: 0 auto;
-  position: relative;
-  z-index: 1;
+  padding: 0 2rem;
 }
 
-.mistake-card-t {
-  background: rgba(26, 38, 60, 0.5);
-  padding: 2rem;
-  border-radius: 15px;
-  width: 350px;
-  border: 1px solid rgba(0, 238, 255, 0.3);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: all 0.4s ease;
+.section-title {
+  font-size: 2.8rem;
+  margin-bottom: 3rem;
+  color: #fff;
+  text-align: center;
   position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  cursor: pointer;
 }
 
-.mistake-card-t::before {
-  content: attr(data-mistake);
+.section-title::after {
+  content: '';
   position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: rgba(0, 238, 255, 0.1);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.mistake-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  display: inline-block;
-  background: rgba(0, 238, 255, 0.1);
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  line-height: 60px;
-  color: #00eeff;
-  z-index: 2;
-}
-
-.mistake-card-t h3 {
-  color: #ffd700;
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
-  position: relative;
-  z-index: 2;
-}
-
-.mistake-card-t p {
-  color: #ccc;
-  font-size: 1rem;
-  line-height: 1.6;
-  position: relative;
-  z-index: 2;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #00eeff, #6a5acd);
+  border-radius: 2px;
 }
 
 /* === О НАС === */
@@ -449,6 +364,95 @@ body {
 .neon-card p {
   color: #aaa;
   font-size: 0.95rem;
+}
+
+/* === ОШИБКИ — 3D С ПОВОРОТОМ === */
+.mistakes-thunder {
+  padding: 6rem 0;
+  background: #0f1421;
+  position: relative;
+  overflow: hidden;
+}
+
+.mistakes-thunder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 238, 255, 0.05), rgba(106, 90, 205, 0.05));
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 15px;
+}
+
+.mistakes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.mistake-card-t {
+  background: rgba(26, 38, 60, 0.5);
+  padding: 2rem;
+  border-radius: 15px;
+  width: 350px;
+  border: 1px solid rgba(0, 238, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.mistake-card-t::before {
+  content: attr(data-mistake);
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: rgba(0, 238, 255, 0.1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mistake-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  background: rgba(0, 238, 255, 0.1);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  line-height: 60px;
+  color: #00eeff;
+  z-index: 2;
+}
+
+.mistake-card-t h3 {
+  color: #ffd700;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.mistake-card-t p {
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
 }
 
 /* === УСЛУГИ === */
@@ -960,10 +964,8 @@ body {
     gap: 1.5rem;
   }
 
-  .ticker-fall {
+  .ticker-number {
     font-size: 2.5rem;
-    min-height: 50px;
-    width: 60px;
   }
 
   .ticker-label {
