@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const slider = document.getElementById('projectsSlider');
   const prevBtn = document.getElementById('prevProject');
   const nextBtn = document.getElementById('nextProject');
-  const cardWidth = 320 + 32; // width + gap
+  const cardWidth = 320 + 32;
 
   prevBtn.addEventListener('click', () => {
     slider.scrollLeft -= cardWidth;
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
     slider.scrollLeft += cardWidth;
   });
 
-  // === ОСТАЛЬНЫЙ КОД (тот же, что был) ===
+  // === МОБИЛЬНОЕ МЕНЮ ===
   const mobileMenu = document.getElementById('mobile-menu');
   const navMenu = document.querySelector('.nav-menu');
 
@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // === ДАННЫЕ ПРОЕКТОВ ===
   const projectData = {
     travel: {
       images: [
@@ -94,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
 
+  // === МОДАЛЬНОЕ ОКНО ===
   const modal = document.getElementById("imageModal");
   const galleryInner = document.getElementById("galleryInner");
   const modalCaption = document.getElementById("modalCaption");
@@ -199,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (diff < -50) prevImage();
   }, { passive: true });
 
-  // === ТИКЕРЫ ===
+  // === СЧЁТЧИКИ ===
   const counters = {
     clients: { el: document.getElementById('clientsCounter'), target: 25 },
     projects: { el: document.getElementById('projectsCounter'), target: 15 },
@@ -251,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, stepTime);
   }
 
-  // === 3D ПОВОРОТ ===
+  // === 3D ПОВОРОТ КАРТОЧЕК ===
   document.querySelectorAll('.mistake-card-t').forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
