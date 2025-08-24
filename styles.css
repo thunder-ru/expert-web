@@ -62,6 +62,26 @@ body {
   99% { height: 0; opacity: 0; }
 }
 
+/* === ЛУЧ МОЛНИИ ЗА КУРСОРОМ === */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(0, 238, 255, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+body:hover .cursor-glow {
+  opacity: 1;
+}
+
 /* === МЕНЮ === */
 .navbar {
   position: fixed;
@@ -175,23 +195,17 @@ body {
 
 .hero-content {
   max-width: 800px;
-  animation: fadeInUp 1s ease, vortex 3s ease infinite;
+  animation: fadeInUp 1s ease;
   z-index: 4;
   position: relative;
-  transform: translateY(20px); /* Отодвигаем вниз на мобиле */
+  transform: translateY(20px);
 }
 
 @media (max-width: 768px) {
   .hero-content {
-    transform: translateY(40px); /* Ещё больше отодвигаем на мобиле */
+    transform: translateY(40px);
     padding-top: 2rem;
   }
-}
-
-@keyframes vortex {
-  0% { transform: scale(1) rotate(0deg) translateY(20px); }
-  50% { transform: scale(1.02) rotate(1deg) translateY(25px); }
-  100% { transform: scale(1) rotate(0deg) translateY(20px); }
 }
 
 .gradient-text {
@@ -957,16 +971,14 @@ body {
   font-size: 1.1rem;
 }
 
-.contact-info a,
-#telegram-link {
+.contact-info a {
   color: #00eeff;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.contact-info a:hover,
-#telegram-link:hover {
+.contact-info a:hover {
   text-decoration: underline;
   color: #00ccdd;
   transform: scale(1.05);
