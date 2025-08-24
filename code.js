@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // === КОПИРОВАНИЕ TELEGRAM ===
   document.getElementById('telegram-link').addEventListener('click', () => {
     navigator.clipboard.writeText('@overgrand').then(() => {
-      alert('Никнейм Telegram скопирован! Напишу в течение часа :)');
+      alert('Ожидаю твоего сообщения! :)');
     });
   });
 });
