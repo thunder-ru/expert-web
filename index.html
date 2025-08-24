@@ -154,45 +154,29 @@
     </div>
   </section>
 
-  <!-- Mobile Prototype Section -->
-  <section class="mobile-prototype">
+  <!-- Live Projects Section -->
+  <section class="live-projects">
     <div class="container">
-      <h2 class="section-title">Увидьте свой сайт уже сейчас</h2>
-      <p class="prototype-subtitle">Введите название вашего бизнеса — и посмотрите, как будет выглядеть ваш сайт на телефоне</p>
-      <div class="prototype-input-container">
-        <input type="text" id="businessName" placeholder="Например: Тур-агентство 'Горизонт'" class="prototype-input">
-        <button id="generateProto" class="btn btn-primary">Сгенерировать</button>
-      </div>
-      <div class="phone-preview">
-        <div class="phone-frame">
-          <div class="phone-camera"></div>
-          <div class="phone-screen">
-            <div class="screen-content">
-              <h3 id="protoTitle">Ваш сайт</h3>
-              <p>Готовый, быстрый, прибыльный</p>
-              <button class="btn btn-outline">Заказать</button>
-            </div>
-          </div>
-        </div>
+      <h2 class="section-title">В работе: <span id="projectCount">3</span> проекта</h2>
+      <p class="projects-status">
+        🔄 <strong>Следующее окно для нового клиента:</strong> через <span id="daysLeft">4</span> дня
+      </p>
+      <div class="urgency-note">
+        ⚠️ Сейчас я загружен. Если хотите попасть в ближайший цикл — пишите сегодня.
       </div>
     </div>
   </section>
 
-  <!-- 3D Site Model -->
-  <section class="site-3d">
+  <!-- Site Audit Section -->
+  <section class="site-audit">
     <div class="container">
-      <h2 class="section-title">Сайт, который работает</h2>
-      <p class="site-3d-subtitle">Парящая 3D-модель сайта. Поворачивается при скролле — как будущее, которое уже здесь.</p>
-      <div class="site-model-container">
-        <div class="site-model">
-          <div class="model-front">Front</div>
-          <div class="model-back">Back</div>
-          <div class="model-left">Left</div>
-          <div class="model-right">Right</div>
-          <div class="model-top">Top</div>
-          <div class="model-bottom">Bottom</div>
-        </div>
+      <h2 class="section-title">Получите бесплатный аудит сайта</h2>
+      <p class="audit-subtitle">Вставьте ссылку на ваш сайт — и через 24 часа получите честный разбор: что работает, а что убивает прибыль.</p>
+      <div class="audit-form">
+        <input type="url" id="siteUrl" placeholder="https://ваш-сайт.ru" class="audit-input">
+        <button id="submitAudit" class="btn btn-primary">Отправить на аудит</button>
       </div>
+      <div id="auditResult" class="audit-result"></div>
     </div>
   </section>
 
@@ -238,40 +222,6 @@
       <div class="mobile-nav">
         <button id="prevProject" class="nav-btn">‹ Предыдущий</button>
         <button id="nextProject" class="nav-btn">Следующий ›</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Mistakes Section -->
-  <section class="mistakes-thunder">
-    <div class="container">
-      <h2 class="section-title">5 ошибок при заказе сайта,<br>которые убивают результат</h2>
-      <div class="mistakes-grid">
-        <div class="mistake-card-t" data-mistake="1">
-          <div class="mistake-icon">❌</div>
-          <h3>Красивый дизайн вместо результата</h3>
-          <p>Сайт может быть красивым, но если он не приносит клиентов — это просто картинка. Я создаю сайты, которые работают.</p>
-        </div>
-        <div class="mistake-card-t" data-mistake="2">
-          <div class="mistake-icon">🐢</div>
-          <h3>Медленная загрузка</h3>
-          <p>Если сайт грузится дольше 2 секунд — 50% уйдут. Все мои сайты загружаются за 0.8–1.2 сек.</p>
-        </div>
-        <div class="mistake-card-t" data-mistake="3">
-          <div class="mistake-icon">📱</div>
-          <h3>Нет адаптации под мобильные</h3>
-          <p>80% заходят с телефона. Если сайт не адаптирован — вы теряете клиентов. Все мои сайты идеальны на любом устройстве.</p>
-        </div>
-        <div class="mistake-card-t" data-mistake="4">
-          <div class="mistake-icon">🔇</div>
-          <h3>Нет CTA (призыва к действию)</h3>
-          <p>Кнопка "Заказать" должна кричать. Если нет CTA — нет и заявок. Я проектирую сайты так, чтобы пользователь действовал.</p>
-        </div>
-        <div class="mistake-card-t" data-mistake="5">
-          <div class="mistake-icon">💻</div>
-          <h3>Думают, что сайт = разработка</h3>
-          <p>Сайт — это инструмент роста. Я не пишу код. Я создаю прибыль, трафик и доверие.</p>
-        </div>
       </div>
     </div>
   </section>
