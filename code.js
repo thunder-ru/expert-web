@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
   const thunderSound = document.getElementById('thunderSound');
-  const notifySound = document.getElementById('notifySound');
-  const clickSound = document.getElementById('clickSound');
   const navbar = document.querySelector('.navbar');
+  const cursorGlow = document.querySelector('.cursor-glow');
 
   // === Меню при скролле ===
   window.addEventListener('scroll', () => {
@@ -28,26 +27,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }, 5000);
 
-  // === Уведомление при клике на Telegram ===
-  document.getElementById('telegram-link')?.addEventListener('click', () => {
-    if (notifySound) {
-      notifySound.currentTime = 0;
-      notifySound.play().catch(() => {});
+  // === Луч молнии за курсором ===
+  document.addEventListener('mousemove', (e) => {
+    if (cursorGlow) {
+      cursorGlow.style.left = e.clientX + 'px';
+      cursorGlow.style.top = e.clientY + 'px';
     }
-    setTimeout(() => {
-      window.open('https://t.me/overgrand', '_blank');
-    }, 300);
-    alert('Открою Telegram... Готов к диалогу! 💬');
-  });
-
-  // === Звук при клике на любую кнопку ===
-  document.querySelectorAll('.btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (clickSound) {
-        clickSound.currentTime = 0;
-        clickSound.play().catch(() => {});
-      }
-    });
   });
 
   // === МОБИЛЬНАЯ НАВИГАЦИЯ ПО ПОРТФОЛИО ===
@@ -315,11 +300,4 @@ document.addEventListener('DOMContentLoaded', function () {
   }, { threshold: 0.1 });
 
   fadeElements.forEach(el => fadeObserver.observe(el));
-
-  // === КОПИРОВАНИЕ TELEGRAM ===
-  document.getElementById('telegram-link').addEventListener('click', () => {
-    navigator.clipboard.writeText('@overgrand').then(() => {
-      alert('Никнейм Telegram скопирован! Напишу в течение часа :)');
-    });
-  });
 });
