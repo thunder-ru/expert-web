@@ -10,13 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       navbar.classList.remove('scrolled');
     }
-
-    // === 3D модель медленно вращается при скролле ===
-    const model = document.querySelector('.site-model');
-    if (model) {
-      const rotateY = (window.scrollY / 10) % 360;
-      model.style.transform = `rotateX(20deg) rotateY(${rotateY}deg)`;
-    }
   });
 
   // === Молнии и гром ===
@@ -42,23 +35,92 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // === МОБИЛЬНЫЙ ПРОТОТИП ===
-  const businessName = document.getElementById('businessName');
-  const protoTitle = document.getElementById('protoTitle');
-  const generateBtn = document.getElementById('generateProto');
+  // === СЧЁТЧИКИ ===
+  const counters = {
+    clients: { el: document.getElementById('clientsCounter'), target: 25 },
+    projects: { el: document.getElementById('projectsCounter'), target: 15 },
+    conversion: { el: document.getElementById('conversionCounter'), target: 70 },
+    speed: { el: document.getElementById('speedCounter'), target: 0.8 }
+  };
 
-  generateBtn.addEventListener('click', () => {
-    const name = businessName.value.trim();
-    if (name) {
-      protoTitle.textContent = name;
-    } else {
-      protoTitle.textContent = 'Ваш сайт';
-    }
+  Object.keys(counters).forEach(key => {
+    const counter = counters[key];
+    if (!counter.el) return;
+
+    let count = 0;
+    const target = counter.target;
+    const duration = 1500;
+    const stepTime = duration / (target * 10);
+
+    const timer = setInterval(() => {
+      count += target / (target * 10);
+      if (key === 'speed') {
+        counter.el.textContent = count.toFixed(1);
+      } else {
+        counter.el.textContent = Math.floor(count);
+      }
+      if (count >= target) {
+        clearInterval(timer);
+        if (key === 'speed') {
+          counter.el.textContent = target.toFixed(1);
+        } else {
+          counter.el.textContent = target;
+        }
+      }
+    }, stepTime);
   });
 
-  businessName.addEventListener('keypress', (e) => {
+  const projectCounterEl = document.getElementById('projectCounter');
+  if (projectCounterEl) {
+    let count = 0;
+    const target = 15;
+    const duration = 1500;
+    const stepTime = duration / (target * 10);
+
+    const timer = setInterval(() => {
+      count += 1;
+      projectCounterEl.textContent = Math.floor(count);
+      if (count >= target) {
+        clearInterval(timer);
+        projectCounterEl.textContent = target;
+      }
+    }, stepTime);
+  }
+
+  // === ЖИВОЙ СЧЁТЧИК ПРОЕКТОВ ===
+  const projectCountEl = document.getElementById('projectCount');
+  const daysLeftEl = document.getElementById('daysLeft');
+  let projectCount = 3;
+  let daysLeft = 4;
+
+  setInterval(() => {
+    projectCountEl.textContent = projectCount;
+    daysLeftEl.textContent = daysLeft;
+  }, 100);
+
+  // === АУДИТ САЙТА ===
+  const siteUrl = document.getElementById('siteUrl');
+  const submitAudit = document.getElementById('submitAudit');
+  const auditResult = document.getElementById('auditResult');
+
+  submitAudit.addEventListener('click', () => {
+    const url = siteUrl.value.trim();
+    if (!url) {
+      alert('Введите ссылку на сайт');
+      return;
+    }
+
+    auditResult.style.display = 'block';
+    auditResult.innerHTML = `
+      ✅ Сайт принят в обработку.<br>
+      📅 Через 24 часа вы получите разбор: что работает, а что убивает прибыль.<br>
+      🔗 <a href="mailto:rosanov.danila2016@yandex.ru" style="color:#00eeff;">rosanov.danila2016@yandex.ru</a>
+    `;
+  });
+
+  siteUrl.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
-      generateBtn.click();
+      submitAudit.click();
     }
   });
 
@@ -230,58 +292,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (diff > 50) nextImage();
     if (diff < -50) prevImage();
   }, { passive: true });
-
-  // === СЧЁТЧИКИ ===
-  const counters = {
-    clients: { el: document.getElementById('clientsCounter'), target: 25 },
-    projects: { el: document.getElementById('projectsCounter'), target: 15 },
-    conversion: { el: document.getElementById('conversionCounter'), target: 70 },
-    speed: { el: document.getElementById('speedCounter'), target: 0.8 }
-  };
-
-  Object.keys(counters).forEach(key => {
-    const counter = counters[key];
-    if (!counter.el) return;
-
-    let count = 0;
-    const target = counter.target;
-    const duration = 1500;
-    const stepTime = duration / (target * 10);
-
-    const timer = setInterval(() => {
-      count += target / (target * 10);
-      if (key === 'speed') {
-        counter.el.textContent = count.toFixed(1);
-      } else {
-        counter.el.textContent = Math.floor(count);
-      }
-      if (count >= target) {
-        clearInterval(timer);
-        if (key === 'speed') {
-          counter.el.textContent = target.toFixed(1);
-        } else {
-          counter.el.textContent = target;
-        }
-      }
-    }, stepTime);
-  });
-
-  const projectCounterEl = document.getElementById('projectCounter');
-  if (projectCounterEl) {
-    let count = 0;
-    const target = 15;
-    const duration = 1500;
-    const stepTime = duration / (target * 10);
-
-    const timer = setInterval(() => {
-      count += 1;
-      projectCounterEl.textContent = Math.floor(count);
-      if (count >= target) {
-        clearInterval(timer);
-        projectCounterEl.textContent = target;
-      }
-    }, stepTime);
-  }
 
   // === 3D ПОВОРОТ КАРТОЧЕК ===
   document.querySelectorAll('.mistake-card-t').forEach(card => {
