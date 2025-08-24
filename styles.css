@@ -15,32 +15,6 @@ body {
   position: relative;
 }
 
-/* === ФОНОВЫЕ ЗВЁЗДЫ === */
-#stars {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-  background: radial-gradient(ellipse at bottom, #0a0f1a 0%, #0d1b2a 100%);
-}
-
-.star {
-  position: absolute;
-  background: #fff;
-  border-radius: 50%;
-  opacity: 0.3;
-  animation: float 10s infinite linear;
-}
-
-@keyframes float {
-  0% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
-  50% { opacity: 0.8; }
-  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0.3; }
-}
-
 /* === МОЛНИИ === */
 .lightning-container {
   position: fixed;
