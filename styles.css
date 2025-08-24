@@ -163,15 +163,20 @@ body {
   padding: 0 2rem;
   position: relative;
   overflow: hidden;
-  /* clip-path удалён — он обрезал контент */
   z-index: 3;
 }
 
 .hero-content {
   max-width: 800px;
-  animation: fadeInUp 1s ease;
+  animation: fadeInUp 1s ease, vortex 3s ease infinite;
   z-index: 4;
   position: relative;
+}
+
+@keyframes vortex {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.02) rotate(1deg); }
+  100% { transform: scale(1) rotate(0deg); }
 }
 
 .gradient-text {
@@ -811,6 +816,27 @@ body {
   cursor: pointer;
   display: inline-block;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.4s ease;
+  pointer-events: none;
+}
+
+.btn:hover::before {
+  opacity: 1;
+  transform: scale(1.5);
 }
 
 .btn-primary {
@@ -881,11 +907,14 @@ body {
   color: #00eeff;
   text-decoration: none;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .contact-info a:hover,
 #telegram-link:hover {
   text-decoration: underline;
+  color: #00ccdd;
+  transform: scale(1.05);
 }
 
 /* === ФУТЕР === */
@@ -915,10 +944,16 @@ body {
   text-decoration: none;
   color: white;
   overflow: hidden;
+  animation: floatBtn 3s ease infinite;
 }
 
 .floating-btn:hover {
   transform: scale(1.1);
+}
+
+@keyframes floatBtn {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 
 .floating-btn.telegram {
