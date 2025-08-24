@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
   // === МОЛНИИ И ГРОМ ===
   const thunderSound = document.getElementById('thunderSound');
+  const notifySound = document.getElementById('notifySound');
+  
   function playThunder() {
     if (thunderSound) {
       thunderSound.currentTime = 0;
@@ -14,6 +16,18 @@ document.addEventListener('DOMContentLoaded', function () {
       playThunder();
     }
   }, 5000);
+
+  // === Уведомление при клике на Telegram ===
+  document.getElementById('telegram-link')?.addEventListener('click', () => {
+    if (notifySound) {
+      notifySound.currentTime = 0;
+      notifySound.play().catch(() => {});
+    }
+    setTimeout(() => {
+      window.open('https://t.me/overgrand', '_blank');
+    }, 300);
+    alert('Открою Telegram... Готов к диалогу! 💬');
+  });
 
   // === МОБИЛЬНАЯ НАВИГАЦИЯ ПО ПОРТФОЛИО ===
   const slider = document.getElementById('projectsSlider');
