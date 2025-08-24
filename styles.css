@@ -303,14 +303,6 @@ body:hover .cursor-glow {
   border-radius: 2px;
 }
 
-.mistakes-subtitle {
-  text-align: center;
-  font-size: 1.3rem;
-  color: #a0d2ff;
-  margin-bottom: 2rem;
-  font-style: italic;
-}
-
 /* === О НАС === */
 .about {
   padding: 6rem 0;
