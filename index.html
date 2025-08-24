@@ -1,308 +1,1205 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Web-Thunder | Сайты, которые гремят</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-</head>
-<body>
+/* Обнуление и базовые стили */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <!-- Молнии -->
-  <div class="lightning-container">
-    <div class="lightning lightning-left"></div>
-    <div class="lightning lightning-right"></div>
-  </div>
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #0a0f1a;
+  color: #e0e0ff;
+  line-height: 1.6;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  position: relative;
+}
 
-  <!-- Меню -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="#" class="nav-logo">⚡ Web-Thunder</a>
-      <ul class="nav-menu">
-        <li class="nav-item"><a href="#about" class="nav-link">О нас</a></li>
-        <li class="nav-item"><a href="#projects" class="nav-link">Портфолио</a></li>
-        <li class="nav-item"><a href="#contact" class="nav-link">Контакты</a></li>
-      </ul>
-      <div class="nav-toggle" id="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </div>
-    </div>
-  </nav>
+/* === МОЛНИИ === */
+.lightning-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1 class="hero-title">
-        <span class="gradient-text">Сайт, который работает на вас</span><br>
-        <span class="highlight">с первого дня</span>
-      </h1>
-      <p class="hero-subtitle">
-        Я — <strong>веб-архитектор бизнеса</strong>. Собираю сайты как конструктор: быстро, надёжно, с фокусом на прибыль, а не на красивый код.
-      </p>
-    </div>
-  </section>
+.lightning {
+  position: absolute;
+  top: -10%;
+  width: 4px;
+  height: 0;
+  background: #fff;
+  box-shadow: 
+    0 0 20px 4px #00eeff,
+    0 0 40px 8px rgba(0, 238, 255, 0.4),
+    0 0 60px 12px rgba(106, 90, 205, 0.3);
+  opacity: 0;
+}
 
-  <!-- Тикеры с результатами -->
-  <section class="result-tickers">
-    <div class="container">
-      <div class="ticker-item">
-        <div class="ticker-number" id="clientsCounter">0</div>
-        <div class="ticker-label">клиентов</div>
-      </div>
-      <div class="ticker-item">
-        <div class="ticker-number" id="projectsCounter">0</div>
-        <div class="ticker-label">проектов</div>
-      </div>
-      <div class="ticker-item">
-        <div class="ticker-number" id="conversionCounter">0</div>
-        <div class="ticker-label">+ конверсии</div>
-      </div>
-      <div class="ticker-item">
-        <div class="ticker-number" id="speedCounter">0</div>
-        <div class="ticker-label">сек загрузка</div>
-      </div>
-    </div>
-  </section>
+.lightning-left {
+  left: 10%;
+  animation: strike-left 6s infinite;
+}
 
-  <!-- About Section -->
-  <section id="about" class="about">
-    <div class="container">
-      <h2 class="section-title">Я не пишу код.<br>Я создаю прибыль</h2>
-      <div class="about-content">
-        <p>
-          За последние 2 года я реализовал <strong><span id="projectCounter">0</span>+ проектов</strong> — от лендингов до интернет-магазинов.
-        </p>
-        <p>
-          Мой подход: <strong>максимум пользы, минимум шума</strong>.
-        </p>
-        <p>
-          Я не гонюсь за сложностью. Я создаю сайты, которые:
-        </p>
-        <ul class="features-list">
-          <li>✅ Приносят клиентов с первого дня</li>
-          <li>✅ Загружаются за секунду</li>
-          <li>✅ Выглядят идеально на любом устройстве</li>
-          <li>✅ Увеличивают конверсию</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+.lightning-right {
+  right: 10%;
+  animation: strike-right 5s infinite 1.5s;
+}
 
-  <!-- Skills Section -->
-  <section class="skills">
-    <div class="container">
-      <h2 class="section-title">Мои инструменты</h2>
-      <div class="skills-grid">
-        <div class="skill-card neon-card">
-          <i class="fas fa-th-large"></i>
-          <h3>Конструкторы</h3>
-          <p>Tilda, Webflow, Wix</p>
-        </div>
-        <div class="skill-card neon-card">
-          <i class="fab fa-html5"></i>
-          <h3>HTML/CSS</h3>
-          <p>Pixel perfect, адаптив</p>
-        </div>
-        <div class="skill-card neon-card">
-          <i class="fab fa-js"></i>
-          <h3>JavaScript</h3>
-          <p>Интерактив, анимации</p>
-        </div>
-        <div class="skill-card neon-card">
-          <i class="fas fa-search"></i>
-          <h3>SEO</h3>
-          <p>Трафик из поиска</p>
-        </div>
-        <div class="skill-card neon-card">
-          <i class="fas fa-chart-line"></i>
-          <h3>Аналитика</h3>
-          <p>Google, Яндекс.Метрика</p>
-        </div>
-      </div>
-    </div>
-  </section>
+@keyframes strike-left {
+  0%, 97%, 100% { height: 0; opacity: 0; }
+  98% { height: 110vh; opacity: 1; }
+  99% { height: 0; opacity: 0; }
+}
 
-  <!-- Services Section -->
-  <section class="services">
-    <div class="container">
-      <h2 class="section-title">Услуги</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <h3>Сайт под ключ</h3>
-          <p>От дизайна до запуска. Готовый сайт за 5–7 дней.</p>
-        </div>
-        <div class="service-card">
-          <h3>Верстка макетов</h3>
-          <p>Pixel perfect, адаптив, кроссбраузерность.</p>
-        </div>
-        <div class="service-card">
-          <h3>Поддержка сайтов</h3>
-          <p>Обновления, баги, доработки — я всегда на связи.</p>
-        </div>
-        <div class="service-card">
-          <h3>Оптимизация и SEO</h3>
-          <p>Ускорение, индексация, повышение позиций.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+@keyframes strike-right {
+  0%, 97%, 100% { height: 0; opacity: 0; }
+  98% { height: 110vh; opacity: 1; }
+  99% { height: 0; opacity: 0; }
+}
 
-  <!-- Projects Section -->
-  <section id="projects" class="projects">
-    <div class="container">
-      <h2 class="section-title">Портфолио</h2>
-      <p class="projects-subtitle">Проекты, которые <strong>запускали бизнес</strong></p>
-      <div class="projects-slider" id="projectsSlider">
-        <div class="project-card" data-project="travel">
-          <img src="https://i.postimg.cc/MT4Kbg6d/1.jpg" alt="Тур-агентство">
-          <div class="project-info">
-            <h3>Тур-агентство "Аюрведа Тур"</h3>
-            <p>Сайт с бронированием туров и анимацией природы</p>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-outline btn-gallery" onclick="openModal('travel')">Посмотреть галерею</button>
-          </div>
-        </div>
-        <div class="project-card" data-project="dentist">
-          <img src="https://i.postimg.cc/g02R2wgR/1.jpg" alt="Стоматология">
-          <div class="project-info">
-            <h3>Стоматология "Дентикс+"</h3>
-            <p>Клиника с онлайн-записью</p>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-outline btn-gallery" onclick="openModal('dentist')">Посмотреть галерею</button>
-          </div>
-        </div>
-        <div class="project-card" data-project="trainer">
-          <img src="https://i.postimg.cc/MThj59qb/1.jpg" alt="Персональный тренер">
-          <div class="project-info">
-            <h3>Фитнес-тренер Альмир Мусаев</h3>
-            <p>Сайт-визитка с покупкой абонемента</p>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-outline btn-gallery" onclick="openModal('trainer')">Посмотреть галерею</button>
-          </div>
-        </div>
-      </div>
+/* === МЕНЮ === */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(10, 15, 26, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(100, 150, 255, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
 
-      <!-- Кнопки навигации (видны только на мобильных) -->
-      <div class="mobile-nav">
-        <button id="prevProject" class="nav-btn">‹ Предыдущий</button>
-        <button id="nextProject" class="nav-btn">Следующий ›</button>
-      </div>
-    </div>
-  </section>
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  <!-- Mistakes Section -->
-  <section class="mistakes-thunder">
-    <div class="container">
-      <h2 class="section-title">5 ошибок при заказе сайта,<br>которые убивают результат</h2>
-      <div class="mistakes-grid">
-        <div class="mistake-card-t" data-mistake="1">
-          <div class="mistake-icon">❌</div>
-          <h3>Красивый дизайн вместо результата</h3>
-          <p>Сайт может быть красивым, но если он не приносит клиентов — это просто картинка. Я создаю сайты, которые работают.</p>
-        </div>
-        <div class="mistake-card-t" data-mistake="2">
-          <div class="mistake-icon">🐢</div>
-          <h3>Медленная загрузка</h3>
-          <p>Если сайт грузится дольше 2 секунд — 50% уйдут. Все мои сайты загружаются за 0.8–1.2 сек.</p>
-        </div>
-        <div class="mistake-card-t" data-mistake="3">
-          <div class="mistake-icon">📱</div>
-          <h3>Нет адаптации под мобильные</h3>
-          <p>80% заходят с телефона. Если сайт не адаптирован — вы теряете клиентов. Все мои сайты идеальны на любом устройстве.</p>
-        </div>
-        <div class="mistake-card-t" data-mistake="4">
-          <div class="mistake-icon">🔇</div>
-          <h3>Нет CTA (призыва к действию)</h3>
-          <p>Кнопка "Заказать" должна кричать. Если нет CTA — нет и заявок. Я проектирую сайты так, чтобы пользователь действовал.</p>
-        </div>
-        <div class="mistake-card-t" data-mistake="5">
-          <div class="mistake-icon">💻</div>
-          <h3>Думают, что сайт = разработка</h3>
-          <p>Сайт — это инструмент роста. Я не пишу код. Я создаю прибыль, трафик и доверие.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+.nav-logo {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #00eeff;
+  text-decoration: none;
+  letter-spacing: 1px;
+  animation: pulse 2s infinite;
+}
 
-  <!-- Testimonials -->
-  <section class="testimonials">
-    <div class="container">
-      <h2 class="section-title">Что говорят клиенты</h2>
-      <div class="quotes">
-        <blockquote>
-          "Запустили сайт за 5 дней. Уже через неделю — 120 заявок. web-thunder — это не просто разработка, это рост бизнеса."
-        </blockquote>
-        <blockquote>
-          "Работал с 3 разработчиками. Только web-thunder сделал всё без косяков и в срок."
-        </blockquote>
-        <blockquote>
-          "Сайт загружается за 0.8 сек. SEO в топе. Конверсия выросла на 70%."
-        </blockquote>
-      </div>
-    </div>
-  </section>
+@keyframes pulse {
+  0% { text-shadow: 0 0 10px #00eeff; }
+  50% { text-shadow: 0 0 20px #00eeff, 0 0 30px #6a5acd; }
+  100% { text-shadow: 0 0 10px #00eeff; }
+}
 
-  <!-- Contact Section -->
-  <section id="contact" class="contact">
-    <div class="container">
-      <h2 class="section-title">Готовы к запуску?</h2>
-      <p>Напишите — и через 24 часа у вас будет <strong>прототип сайта</strong> или <strong>коммерческое предложение</strong>.</p>
-      <div class="contact-buttons">
-        <a href="mailto:rosanov.danila2016@yandex.ru" class="btn btn-outline">Написать на почту</a>
-        <a href="https://t.me/overgrand" target="_blank" class="btn btn-primary">Написать в Telegram</a>
-        <a href="https://wa.me/79036254250" target="_blank" class="btn btn-whatsapp">Написать в WhatsApp</a>
-      </div>
-      <p class="contact-info">
-        <i class="fas fa-paper-plane"></i> Telegram: <span id="telegram-link" style="cursor: pointer; text-decoration: underline; color: #00eeff;">@overgrand</span><br>
-        <i class="fas fa-envelope"></i> Email: <a href="mailto:rosanov.danila2016@yandex.ru">rosanov.danila2016@yandex.ru</a>
-      </p>
-    </div>
-  </section>
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2025 Web-Thunder. Сайты, которые <strong>грозят</strong> успехом.</p>
-  </footer>
+.nav-link {
+  color: #ddd;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
 
-  <!-- Плавающие кнопки -->
-  <a href="https://t.me/overgrand" target="_blank" class="floating-btn telegram" data-tooltip="Telegram">
-    <span class="btn-label">TG</span>
-  </a>
-  <a href="https://wa.me/79036254250" target="_blank" class="floating-btn whatsapp" data-tooltip="WhatsApp">
-    <span class="btn-label">WA</span>
-  </a>
+.nav-link:hover {
+  color: #00eeff;
+}
 
-  <!-- Онлайн-статус -->
-  <div class="online-status">
-    <span class="status-dot"></span> В сети — отвечаю в течение 15 минут
-  </div>
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
 
-  <!-- Модальное окно -->
-  <div id="imageModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <div class="modal-vertical-gallery">
-        <button class="gallery-btn up" onclick="prevImage()">&#10094;</button>
-        <div class="gallery-container" id="galleryContainer">
-          <div class="gallery-inner" id="galleryInner"></div>
-        </div>
-        <button class="gallery-btn down" onclick="nextImage()">&#10095;</button>
-      </div>
-      <div class="modal-caption" id="modalCaption"></div>
-    </div>
-  </div>
+.bar {
+  width: 25px;
+  height: 3px;
+  background: #00eeff;
+  margin: 3px 0;
+  transition: 0.3s;
+}
 
-  <!-- Аудио для грома и уведомлений -->
-  <audio id="thunderSound" src="https://assets.mixkit.co/sfx/preview/mixkit-distant-thunder-2293.mp3" preload="auto"></audio>
-  <audio id="notifySound" src="https://assets.mixkit.co/sfx/preview/mixkit-software-interface-start-2574.mp3" preload="auto"></audio>
+@media (max-width: 768px) {
+  .nav-menu {
+    position: fixed;
+    left: -100%;
+    top: 70px;
+    flex-direction: column;
+    background: #0a0f1a;
+    width: 100%;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    padding: 2rem 0;
+  }
 
-  <script src="code.js"></script>
-</body>
-</html>
+  .nav-menu.active {
+    left: 0;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+}
+
+/* === HERO === */
+.hero {
+  background: linear-gradient(135deg, #0d1b2a, #1b263b, #1e3a5f);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 2rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 3;
+}
+
+.hero-content {
+  max-width: 800px;
+  animation: fadeInUp 1s ease, vortex 3s ease infinite;
+  z-index: 4;
+  position: relative;
+}
+
+@keyframes vortex {
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.02) rotate(1deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.gradient-text {
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #00eeff, #6a5acd, #00eeff, #6a5acd);
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 8s ease infinite;
+  line-height: 1.3;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-title .highlight {
+  color: #00eeff;
+  text-shadow: 0 0 10px rgba(0, 238, 255, 0.4);
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.3;
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 2.5rem;
+  color: #a0d2ff;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* === ТИКЕРЫ === */
+.result-tickers {
+  padding: 5rem 0 3rem;
+  background: #0f1421;
+  position: relative;
+  z-index: 1;
+}
+
+.result-tickers .container {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.ticker-item {
+  text-align: center;
+}
+
+.ticker-number {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #00eeff;
+  text-shadow: 0 0 20px rgba(0, 238, 255, 0.4);
+  line-height: 1;
+}
+
+.ticker-label {
+  font-size: 1.2rem;
+  color: #ccc;
+  margin-top: 0.5rem;
+}
+
+/* === ОБЩИЕ СТИЛИ === */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-title {
+  font-size: 2.8rem;
+  margin-bottom: 3rem;
+  color: #fff;
+  text-align: center;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #00eeff, #6a5acd);
+  border-radius: 2px;
+}
+
+/* === О НАС === */
+.about {
+  padding: 6rem 0;
+  background: #0f1421;
+}
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #ccc;
+  line-height: 1.8;
+}
+
+.features-list {
+  margin: 2rem 0;
+  text-align: left;
+  display: inline-block;
+}
+
+.features-list li {
+  margin: 0.8rem 0;
+  color: #a0eaff;
+  transition: transform 0.2s ease;
+}
+
+.features-list li:hover {
+  transform: translateX(5px);
+}
+
+/* === НАВЫКИ === */
+.skills {
+  padding: 6rem 0;
+  background: #0f1421;
+}
+
+.skills-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.neon-card {
+  background: rgba(26, 38, 60, 0.3);
+  padding: 2rem;
+  border-radius: 15px;
+  width: 260px;
+  text-align: center;
+  border: 1px solid rgba(0, 238, 255, 0.3);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s ease;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.neon-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.neon-card:hover {
+  transform: translateY(-10px);
+  border-color: #00eeff;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(0, 238, 255, 0.4),
+    0 0 40px rgba(0, 238, 255, 0.2);
+}
+
+.neon-card i {
+  font-size: 2.5rem;
+  color: #00eeff;
+  text-shadow: 0 0 15px rgba(0, 238, 255, 0.6);
+  margin-bottom: 1rem;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.neon-card:hover i {
+  text-shadow: 
+    0 0 20px rgba(0, 238, 255, 0.8),
+    0 0 30px rgba(0, 238, 255, 0.5),
+    0 0 40px rgba(0, 238, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.neon-card h3 {
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  transition: color 0.3s ease;
+}
+
+.neon-card:hover h3 {
+  color: #00eeff;
+}
+
+.neon-card p {
+  color: #aaa;
+  font-size: 0.95rem;
+}
+
+/* === ОШИБКИ === */
+.mistakes-thunder {
+  padding: 6rem 0;
+  background: #0f1421;
+  position: relative;
+  overflow: hidden;
+}
+
+.mistakes-thunder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 238, 255, 0.05), rgba(106, 90, 205, 0.05));
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 15px;
+}
+
+.mistakes-thunder::after {
+  content: 'Хочешь избежать этих ошибок? Напиши — и получишь бесплатный аудит сайта';
+  display: block;
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1.2rem;
+  color: #a0d2ff;
+  font-style: italic;
+  opacity: 0.9;
+  animation: fadeIn 1s ease 2s forwards;
+  pointer-events: none;
+}
+
+.mistakes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.mistake-card-t {
+  background: rgba(26, 38, 60, 0.5);
+  padding: 2rem;
+  border-radius: 15px;
+  width: 350px;
+  border: 1px solid rgba(0, 238, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.mistake-card-t::before {
+  content: attr(data-mistake);
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: rgba(0, 238, 255, 0.1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mistake-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  background: rgba(0, 238, 255, 0.1);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  line-height: 60px;
+  color: #00eeff;
+  z-index: 2;
+}
+
+.mistake-card-t h3 {
+  color: #ffd700;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s ease;
+}
+
+.mistake-card-t p {
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s ease;
+}
+
+.mistake-card-t h3:hover,
+.mistake-card-t p:hover {
+  transform: translateX(5px);
+}
+
+/* === УСЛУГИ === */
+.services {
+  padding: 6rem 0;
+  background: #121220;
+}
+
+.services::after {
+  content: 'Хочешь такой же результат? Получи прототип за 24 часа';
+  display: block;
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1.2rem;
+  color: #a0d2ff;
+  font-style: italic;
+  opacity: 0.9;
+  animation: fadeIn 1s ease 2s forwards;
+  pointer-events: none;
+}
+
+.services-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: rgba(26, 38, 60, 0.5);
+  padding: 2rem;
+  border-radius: 15px;
+  width: 280px;
+  text-align: center;
+  border: 1px solid rgba(106, 90, 205, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  border-color: #00eeff;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+.service-card h3 {
+  color: #ffd700;
+  margin-bottom: 1rem;
+}
+
+.service-card p {
+  color: #ccc;
+  font-size: 1rem;
+}
+
+/* === ПРОЕКТЫ === */
+.projects {
+  padding: 6rem 0;
+  background: #121220;
+  overflow: hidden;
+}
+
+.projects-subtitle {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #00eeff;
+  margin-bottom: 3rem;
+}
+
+.projects-slider {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 1rem 0 2rem;
+  scrollbar-width: none;
+}
+
+.projects-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.project-card {
+  min-width: 320px;
+  background: #1a1a2e;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s cubic-bezier(0.25, 0.7, 0.35, 1), box-shadow 0.4s ease;
+  cursor: pointer;
+}
+
+.project-card:hover {
+  transform: translateY(-10px) rotateX(5deg) rotateY(2deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.project-info {
+  padding: 1.2rem;
+}
+
+.project-info h3 {
+  font-size: 1.3rem;
+  color: #ffd700;
+  margin-bottom: 0.5rem;
+}
+
+.project-info p {
+  color: #aaa;
+  font-size: 0.95rem;
+}
+
+/* === МОБИЛЬНЫЕ КНОПКИ НАВИГАЦИИ === */
+.mobile-nav {
+  display: none;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.nav-btn {
+  padding: 0.6rem 1.2rem;
+  background: #00eeff;
+  color: #000;
+  border: none;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.nav-btn:hover {
+  background: #00ccdd;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .mobile-nav {
+    display: flex;
+  }
+
+  .projects-slider {
+    scroll-snap-type: x mandatory;
+  }
+
+  .project-card {
+    scroll-snap-align: start;
+  }
+}
+
+/* === ОТЗЫВЫ === */
+.testimonials {
+  padding: 6rem 0;
+  background: #0f1421;
+}
+
+.testimonials::after {
+  content: 'Хочешь такие же отзывы? Напиши — и начнём завтра';
+  display: block;
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1.2rem;
+  color: #a0d2ff;
+  font-style: italic;
+  opacity: 0.9;
+  animation: fadeIn 1s ease 2s forwards;
+  pointer-events: none;
+}
+
+.quotes {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.quotes blockquote {
+  background: rgba(26, 38, 60, 0.5);
+  padding: 1.5rem;
+  border-radius: 15px;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: #a0eaff;
+  border-left: 4px solid #00eeff;
+  transition: transform 0.2s ease;
+}
+
+.quotes blockquote:hover {
+  transform: translateX(5px);
+}
+
+/* === МОДАЛЬНОЕ ОКНО === */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.95);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 95%;
+  width: 1200px;
+  max-height: 90vh;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 50px rgba(0, 238, 255, 0.6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: #1a1a2e;
+}
+
+.modal-vertical-gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 650px;
+  position: relative;
+}
+
+.gallery-btn {
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.gallery-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.up { margin-bottom: 20px; }
+.down { margin-top: 20px; }
+
+.gallery-container {
+  flex: 1;
+  overflow-y: auto;
+  width: 100%;
+  padding: 20px 0;
+  scrollbar-width: none;
+}
+
+.gallery-container::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  padding: 30px;
+}
+
+.gallery-inner img {
+  width: 100%;
+  max-width: 1100px;
+  height: auto;
+  max-height: 480px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.gallery-inner img:hover {
+  transform: scale(1.01);
+}
+
+.close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 4rem;
+  color: #fff;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+  z-index: 10;
+}
+
+.close:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.modal-caption {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.6rem;
+  color: #00eeff;
+  padding: 0 2rem;
+}
+
+/* === КНОПКИ === */
+.btn {
+  padding: 1rem 2.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.4s ease;
+  pointer-events: none;
+}
+
+.btn:hover::before {
+  opacity: 1;
+  transform: scale(1.5);
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #00eeff, #6a5acd);
+  color: #fff;
+  box-shadow: 0 5px 15px rgba(0, 238, 255, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(0, 238, 255, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #00eeff;
+  border: 2px solid #00eeff;
+  box-shadow: 0 0 10px rgba(0, 238, 255, 0.2);
+}
+
+.btn-outline:hover {
+  background: rgba(0, 238, 255, 0.1);
+  transform: translateY(-3px) scale(1.03);
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  color: white;
+  border: none;
+  box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+}
+
+/* === КОНТАКТЫ === */
+.contact {
+  padding: 6rem 0;
+  background: #0f1421;
+  text-align: center;
+}
+
+.contact p {
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+  font-size: 1.2rem;
+  color: #ccc;
+}
+
+.contact-buttons {
+  display: flex;
+  gap: 1.8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.contact-info {
+  margin-top: 2rem;
+  color: #888;
+  font-size: 1.1rem;
+}
+
+.contact-info a,
+#telegram-link {
+  color: #00eeff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact-info a:hover,
+#telegram-link:hover {
+  text-decoration: underline;
+  color: #00ccdd;
+  transform: scale(1.05);
+}
+
+/* === ФУТЕР === */
+.footer {
+  text-align: center;
+  padding: 2.5rem;
+  background: #0a0a14;
+  color: #666;
+  font-size: 0.95rem;
+  border-top: 1px solid #222;
+}
+
+/* === ПЛАВАЮЩИЕ КНОПКИ === */
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  text-decoration: none;
+  color: white;
+  overflow: hidden;
+  animation: floatBtn 3s ease infinite;
+}
+
+.floating-btn:hover {
+  transform: scale(1.1);
+}
+
+@keyframes floatBtn {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.floating-btn.telegram {
+  background: #0088cc;
+  right: 90px;
+}
+
+.floating-btn.whatsapp {
+  background: #25D366;
+  right: 20px;
+}
+
+.floating-btn .btn-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.floating-btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1;
+}
+
+.floating-btn:hover::after {
+  opacity: 1;
+}
+
+/* === СТАТУС "В СЕТИ" === */
+.online-status {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  background: rgba(0, 238, 255, 0.1);
+  color: #00eeff;
+  padding: 6px 10px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 10px rgba(0, 238, 255, 0.2);
+}
+
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #00eeff;
+  border-radius: 50%;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* === АДАПТИВ === */
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding: 4rem 0 6rem;
+  }
+
+  .gradient-text,
+  .hero-title .highlight {
+    font-size: 2.4rem !important;
+    line-height: 1.3;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    padding: 0 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .result-tickers .container {
+    gap: 1.5rem;
+  }
+
+  .ticker-number {
+    font-size: 2.5rem;
+  }
+
+  .ticker-label {
+    font-size: 1rem;
+  }
+
+  .contact-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .btn {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .services-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    width: 100%;
+    max-width: 320px;
+    padding: 1.5rem;
+  }
+
+  .projects-slider {
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+
+  .project-card {
+    min-width: 280px;
+  }
+
+  .btn-gallery {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .modal-content {
+    width: 95%;
+    max-height: 95vh;
+    border-radius: 12px;
+  }
+
+  .modal-vertical-gallery {
+    height: 70vh;
+  }
+
+  .gallery-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
+  .gallery-inner img {
+    max-height: 320px;
+  }
+
+  .modal-caption {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+
+  .close {
+    top: 15px;
+    right: 15px;
+    font-size: 2.5rem;
+  }
+
+  .contact-info {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .nav-container {
+    padding: 1rem 1.5rem;
+  }
+
+  .nav-logo {
+    font-size: 1.6rem;
+  }
+
+  .nav-menu {
+    top: 60px;
+    padding: 1.5rem 0;
+  }
+
+  .quotes blockquote {
+    font-size: 1rem;
+    padding: 1.2rem;
+  }
+
+  .section-title {
+    font-size: 2.4rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-title::after {
+    width: 60px;
+    height: 3px;
+    bottom: -8px;
+  }
+
+  .features-list {
+    margin: 1.5rem 0;
+  }
+
+  .features-list li {
+    margin: 0.6rem 0;
+    font-size: 0.95rem;
+  }
+
+  .footer {
+    padding: 2rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  body.modal-open {
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  /* Навыки на мобиле */
+  .skills-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .neon-card {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  /* Ошибки на мобиле */
+  .mistake-card-t {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .online-status {
+    font-size: 0.8rem;
+    padding: 5px 9px;
+    right: 15px;
+    bottom: 80px;
+  }
+}
