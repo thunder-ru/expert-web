@@ -12,70 +12,80 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  position: relative;
 }
 
-/* === РЕАЛИСТИЧНЫЕ SVG-МОЛНИИ === */
-.storm-overlay {
+/* === ФОНОВЫЕ ЗВЁЗДЫ === */
+#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at bottom, #0a0f1a 0%, #0d1b2a 100%);
+}
+
+.star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: float 10s infinite linear;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+  50% { opacity: 0.8; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0.3; }
+}
+
+/* === МОЛНИИ === */
+.lightning-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 3000;
+  z-index: 2;
   overflow: hidden;
 }
 
-.lightning-svg {
-  position: fixed;
-  width: 5%;
-  height: 100%;
-  top: 0;
-  z-index: 2999;
+.lightning {
+  position: absolute;
+  top: -10%;
+  width: 4px;
+  height: 0;
+  background: #fff;
+  box-shadow: 
+    0 0 20px 4px #00eeff,
+    0 0 40px 8px rgba(0, 238, 255, 0.4),
+    0 0 60px 12px rgba(106, 90, 205, 0.3);
+  opacity: 0;
 }
 
-.lightning-svg.left {
+.lightning-left {
   left: 10%;
-  animation: flash-left 6s infinite;
+  animation: strike-left 6s infinite;
 }
 
-.lightning-svg.right {
+.lightning-right {
   right: 10%;
-  animation: flash-right 5s infinite 1.5s;
+  animation: strike-right 5s infinite 1.5s;
 }
 
-@keyframes flash-left {
-  0%, 97%, 100% { 
-    opacity: 0; 
-    filter: none; 
-  }
-  98% { 
-    opacity: 1; 
-    filter: 
-      drop-shadow(0 0 10px #00eeff) 
-      drop-shadow(0 0 20px rgba(0, 238, 255, 0.5)) 
-      drop-shadow(0 0 30px rgba(106, 90, 205, 0.3));
-  }
-  99% { 
-    opacity: 0; 
-  }
+@keyframes strike-left {
+  0%, 97%, 100% { height: 0; opacity: 0; }
+  98% { height: 110vh; opacity: 1; }
+  99% { height: 0; opacity: 0; }
 }
 
-@keyframes flash-right {
-  0%, 97%, 100% { 
-    opacity: 0; 
-    filter: none; 
-  }
-  98% { 
-    opacity: 1; 
-    filter: 
-      drop-shadow(0 0 10px #00eeff) 
-      drop-shadow(0 0 20px rgba(0, 238, 255, 0.5)) 
-      drop-shadow(0 0 30px rgba(106, 90, 205, 0.3));
-  }
-  99% { 
-    opacity: 0; 
-  }
+@keyframes strike-right {
+  0%, 97%, 100% { height: 0; opacity: 0; }
+  98% { height: 110vh; opacity: 1; }
+  99% { height: 0; opacity: 0; }
 }
 
 /* === МЕНЮ === */
@@ -170,7 +180,7 @@ body {
 
 /* === HERO === */
 .hero {
-  background: linear-gradient(135deg, #0d1b2a, #1b263b, #1e3a5f);
+  background: transparent;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -180,15 +190,16 @@ body {
   position: relative;
   overflow: hidden;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
-  z-index: 1;
+  z-index: 3;
 }
 
 .hero-content {
   max-width: 800px;
   animation: fadeInUp 1s ease;
+  z-index: 4;
+  position: relative;
 }
 
-/* Анимированный градиентный текст */
 .gradient-text {
   font-size: 3.5rem;
   font-weight: 800;
@@ -223,7 +234,6 @@ body {
   margin-right: auto;
 }
 
-/* Волна */
 .hero-wave {
   position: absolute;
   bottom: 0;
@@ -235,7 +245,7 @@ body {
   z-index: 0;
 }
 
-/* === ТИКЕРЫ С РЕЗУЛЬТАТАМИ === */
+/* === ТИКЕРЫ === */
 .result-tickers {
   padding: 3rem 0;
   background: #0f1421;
@@ -266,7 +276,6 @@ body {
   font-size: 1.2rem;
   color: #ccc;
   margin-top: 0.5rem;
-  transition: color 0.3s ease, transform 0.2s ease;
 }
 
 /* === ОБЩИЕ СТИЛИ === */
@@ -342,7 +351,6 @@ body {
   margin: 0 auto;
 }
 
-/* Неон-карточки */
 .neon-card {
   background: rgba(26, 38, 60, 0.3);
   padding: 2rem;
@@ -404,7 +412,7 @@ body {
   font-size: 0.95rem;
 }
 
-/* === ОШИБКИ — 3D С ПОВОРОТОМ === */
+/* === ОШИБКИ === */
 .mistakes-thunder {
   padding: 6rem 0;
   background: #0f1421;
@@ -574,19 +582,6 @@ body {
   overflow: hidden;
 }
 
-.projects::after {
-  content: 'Хочешь такой же результат? Получи прототип за 24 часа';
-  display: block;
-  text-align: center;
-  margin-top: 3rem;
-  font-size: 1.2rem;
-  color: #a0d2ff;
-  font-style: italic;
-  opacity: 0.9;
-  animation: fadeIn 1s ease 2s forwards;
-  pointer-events: none;
-}
-
 .projects-subtitle {
   text-align: center;
   font-size: 1.5rem;
@@ -643,24 +638,43 @@ body {
   font-size: 0.95rem;
 }
 
-/* === КНОПКА "ПОСМОТРЕТЬ ГАЛЕРЕЮ" === */
-.project-actions {
-  padding: 0 1.2rem 1.2rem;
-  text-align: center;
+/* === МОБИЛЬНЫЕ КНОПКИ НАВИГАЦИИ === */
+.mobile-nav {
+  display: none;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
 
-.btn-gallery {
+.nav-btn {
   padding: 0.6rem 1.2rem;
-  font-size: 0.95rem;
+  background: #00eeff;
+  color: #000;
+  border: none;
   border-radius: 30px;
-  min-width: 160px;
+  font-size: 0.95rem;
+  cursor: pointer;
   transition: all 0.3s ease;
+  font-weight: 600;
 }
 
-.btn-gallery:hover {
-  transform: scale(1.05) translateY(-2px);
-  background: rgba(0, 238, 255, 0.15);
-  box-shadow: 0 5px 15px rgba(0, 238, 255, 0.2);
+.nav-btn:hover {
+  background: #00ccdd;
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .mobile-nav {
+    display: flex;
+  }
+
+  .projects-slider {
+    scroll-snap-type: x mandatory;
+  }
+
+  .project-card {
+    scroll-snap-align: start;
+  }
 }
 
 /* === ОТЗЫВЫ === */
@@ -859,7 +873,6 @@ body {
   transform: translateY(-3px) scale(1.03);
 }
 
-/* Кнопка WhatsApp */
 .btn-whatsapp {
   background: #25D366;
   color: white;
@@ -922,35 +935,6 @@ body {
   border-top: 1px solid #222;
 }
 
-/* === АНИМАЦИИ === */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 0.9; }
-}
-
-/* === ПЛАВНОЕ ПОЯВЛЕНИЕ БЛОКОВ === */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* === ПЛАВАЮЩИЕ КНОПКИ === */
 .floating-btn {
   position: fixed;
@@ -991,7 +975,6 @@ body {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
-/* Подсказки при наведении */
 .floating-btn::after {
   content: attr(data-tooltip);
   position: absolute;
@@ -1043,201 +1026,4 @@ body {
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
-}
-
-/* === АДАПТИВ === */
-@media (max-width: 768px) {
-  .hero {
-    clip-path: none;
-    min-height: 100vh;
-    height: auto;
-    padding: 4rem 0 8rem;
-  }
-
-  .hero-wave {
-    display: none;
-  }
-
-  .gradient-text,
-  .hero-title .highlight {
-    font-size: 2.4rem !important;
-    line-height: 1.3;
-  }
-
-  .hero-subtitle {
-    font-size: 1.1rem;
-    padding: 0 1rem;
-    margin-bottom: 2rem;
-  }
-
-  .result-tickers .container {
-    gap: 1.5rem;
-  }
-
-  .ticker-number {
-    font-size: 2.5rem;
-  }
-
-  .ticker-label {
-    font-size: 1rem;
-  }
-
-  .contact-buttons {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .btn {
-    width: 90%;
-    max-width: 300px;
-  }
-
-  .services-grid {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .service-card {
-    width: 100%;
-    max-width: 320px;
-    padding: 1.5rem;
-  }
-
-  .projects-slider {
-    gap: 1.5rem;
-    padding: 1rem;
-  }
-
-  .project-card {
-    min-width: 280px;
-  }
-
-  .btn-gallery {
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-  }
-
-  .modal-content {
-    width: 95%;
-    max-height: 95vh;
-    border-radius: 12px;
-  }
-
-  .modal-vertical-gallery {
-    height: 70vh;
-  }
-
-  .gallery-btn {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
-  }
-
-  .gallery-inner img {
-    max-height: 320px;
-  }
-
-  .modal-caption {
-    font-size: 1.2rem;
-    padding: 1rem;
-  }
-
-  .close {
-    top: 15px;
-    right: 15px;
-    font-size: 2.5rem;
-  }
-
-  .contact-info {
-    font-size: 1rem;
-    padding: 0 1rem;
-  }
-
-  .nav-container {
-    padding: 1rem 1.5rem;
-  }
-
-  .nav-logo {
-    font-size: 1.6rem;
-  }
-
-  .nav-menu {
-    top: 60px;
-    padding: 1.5rem 0;
-  }
-
-  .quotes blockquote {
-    font-size: 1rem;
-    padding: 1.2rem;
-  }
-
-  .section-title {
-    font-size: 2.4rem;
-    margin-bottom: 2rem;
-  }
-
-  .section-title::after {
-    width: 60px;
-    height: 3px;
-    bottom: -8px;
-  }
-
-  .features-list {
-    margin: 1.5rem 0;
-  }
-
-  .features-list li {
-    margin: 0.6rem 0;
-    font-size: 0.95rem;
-  }
-
-  .footer {
-    padding: 2rem 1rem;
-    font-size: 0.9rem;
-  }
-
-  body.modal-open {
-    overflow: hidden;
-    height: 100vh;
-  }
-
-  /* Навыки на мобиле */
-  .skills-grid {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .neon-card {
-    width: 100%;
-    max-width: 300px;
-  }
-
-  /* Ошибки на мобиле */
-  .mistake-card-t {
-    width: 100%;
-    max-width: 350px;
-  }
-
-  .online-status {
-    font-size: 0.8rem;
-    padding: 5px 9px;
-    right: 15px;
-    bottom: 80px;
-  }
-
-  /* Молнии на мобиле */
-  .lightning-svg {
-    width: 8%;
-  }
-
-  .lightning-svg.left {
-    left: 8%;
-  }
-
-  .lightning-svg.right {
-    right: 8%;
-  }
 }
