@@ -593,6 +593,152 @@ body:hover .cursor-glow {
   font-size: 1rem;
 }
 
+/* === МОБИЛЬНЫЙ ПРОТОТИП === */
+.mobile-prototype {
+  padding: 6rem 0;
+  background: #0f1421;
+  position: relative;
+  overflow: hidden;
+}
+
+.prototype-subtitle {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #a0d2ff;
+  margin-bottom: 2rem;
+}
+
+.prototype-input-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.prototype-input {
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+  border: 2px solid #00eeff;
+  background: rgba(26, 38, 60, 0.5);
+  color: #fff;
+  border-radius: 30px;
+  width: 300px;
+  max-width: 100%;
+}
+
+.prototype-input::placeholder {
+  color: #aaa;
+}
+
+.phone-preview {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.phone-frame {
+  width: 280px;
+  height: 580px;
+  background: #000;
+  border-radius: 40px;
+  border: 10px solid #222;
+  position: relative;
+  overflow: hidden;
+}
+
+.phone-camera {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 4px;
+  background: #333;
+  border-radius: 2px;
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  background: #1a1a2e;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.screen-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #00eeff;
+}
+
+.screen-content p {
+  color: #ccc;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* === 3D МОДЕЛЬ САЙТА === */
+.site-3d {
+  padding: 8rem 0;
+  background: #0a0f1a;
+  position: relative;
+  perspective: 1000px;
+}
+
+.site-3d-subtitle {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #a0d2ff;
+  margin-bottom: 3rem;
+}
+
+.site-model-container {
+  display: flex;
+  justify-content: center;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.site-model {
+  width: 300px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(20deg) rotateY(20deg);
+  animation: rotateModel 20s linear infinite;
+}
+
+.site-model > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0d1b2a, #1b263b);
+  border: 1px solid rgba(0, 238, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00eeff;
+  font-weight: bold;
+  opacity: 0.9;
+}
+
+.model-front  { transform: translateZ(100px); }
+.model-back   { transform: rotateY(180deg) translateZ(100px); }
+.model-right  { transform: rotateY(90deg) translateZ(100px); }
+.model-left   { transform: rotateY(-90deg) translateZ(100px); }
+.model-top    { transform: rotateX(90deg) translateZ(100px); }
+.model-bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+@keyframes rotateModel {
+  0% { transform: rotateX(20deg) rotateY(0deg); }
+  100% { transform: rotateX(20deg) rotateY(360deg); }
+}
+
 /* === ПРОЕКТЫ === */
 .projects {
   padding: 6rem 0;
@@ -906,6 +1052,27 @@ body:hover .cursor-glow {
 .btn:hover::before {
   opacity: 1;
   transform: scale(1.5);
+}
+
+/* === ОГОНЬ ПОД КНОПКАМИ === */
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 200, 0, 0.6), transparent);
+  transition: none;
+  animation: fireflow 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes fireflow {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: -100%; }
 }
 
 .btn-primary {
