@@ -12,21 +12,9 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   scroll-behavior: smooth;
-  position: relative;
 }
 
-/* === ФОНОВЫЕ ЧАСТИЦЫ === */
-#particles-js {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* === МОЛНИИ ПО БОКАМ === */
+/* === РЕАЛИСТИЧНЫЕ SVG-МОЛНИИ === */
 .storm-overlay {
   position: fixed;
   top: 0;
@@ -38,45 +26,56 @@ body {
   overflow: hidden;
 }
 
-.lightning {
-  position: absolute;
-  width: 3px;
-  height: 0;
-  background: #fff;
-  box-shadow: 
-    0 0 20px 4px #00eeff,
-    0 0 40px 8px rgba(0, 238, 255, 0.4);
-  opacity: 0;
+.lightning-svg {
+  position: fixed;
+  width: 5%;
+  height: 100%;
+  top: 0;
+  z-index: 2999;
 }
 
-.lightning.left {
+.lightning-svg.left {
   left: 10%;
-  top: 0;
-  animation: strike-vertical 6s infinite;
+  animation: flash-left 6s infinite;
 }
 
-.lightning.right {
+.lightning-svg.right {
   right: 10%;
-  top: 0;
-  animation: strike-vertical 5s infinite 1.5s;
+  animation: flash-right 5s infinite 1.5s;
 }
 
-.lightning.left-delay {
-  left: 15%;
-  top: 0;
-  animation: strike-vertical 7s infinite 3s;
+@keyframes flash-left {
+  0%, 97%, 100% { 
+    opacity: 0; 
+    filter: none; 
+  }
+  98% { 
+    opacity: 1; 
+    filter: 
+      drop-shadow(0 0 10px #00eeff) 
+      drop-shadow(0 0 20px rgba(0, 238, 255, 0.5)) 
+      drop-shadow(0 0 30px rgba(106, 90, 205, 0.3));
+  }
+  99% { 
+    opacity: 0; 
+  }
 }
 
-.lightning.right-delay {
-  right: 15%;
-  top: 0;
-  animation: strike-vertical 4s infinite 2s;
-}
-
-@keyframes strike-vertical {
-  0%, 97%, 100% { height: 0; opacity: 0; }
-  98% { height: 100vh; opacity: 1; }
-  99% { height: 0; opacity: 0; }
+@keyframes flash-right {
+  0%, 97%, 100% { 
+    opacity: 0; 
+    filter: none; 
+  }
+  98% { 
+    opacity: 1; 
+    filter: 
+      drop-shadow(0 0 10px #00eeff) 
+      drop-shadow(0 0 20px rgba(0, 238, 255, 0.5)) 
+      drop-shadow(0 0 30px rgba(106, 90, 205, 0.3));
+  }
+  99% { 
+    opacity: 0; 
+  }
 }
 
 /* === МЕНЮ === */
@@ -100,7 +99,6 @@ body {
   align-items: center;
 }
 
-/* Логотип с "мигающим глазом" */
 .nav-logo {
   font-size: 1.8rem;
   font-weight: 800;
@@ -182,14 +180,12 @@ body {
   position: relative;
   overflow: hidden;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
-  z-index: 2;
+  z-index: 1;
 }
 
 .hero-content {
   max-width: 800px;
   animation: fadeInUp 1s ease;
-  z-index: 3;
-  position: relative;
 }
 
 /* Анимированный градиентный текст */
@@ -1230,5 +1226,18 @@ body {
     padding: 5px 9px;
     right: 15px;
     bottom: 80px;
+  }
+
+  /* Молнии на мобиле */
+  .lightning-svg {
+    width: 8%;
+  }
+
+  .lightning-svg.left {
+    left: 8%;
+  }
+
+  .lightning-svg.right {
+    right: 8%;
   }
 }
