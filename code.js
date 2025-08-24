@@ -10,6 +10,13 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       navbar.classList.remove('scrolled');
     }
+
+    // === 3D модель медленно вращается при скролле ===
+    const model = document.querySelector('.site-model');
+    if (model) {
+      const rotateY = (window.scrollY / 10) % 360;
+      model.style.transform = `rotateX(20deg) rotateY(${rotateY}deg)`;
+    }
   });
 
   // === Молнии и гром ===
@@ -32,6 +39,26 @@ document.addEventListener('DOMContentLoaded', function () {
     if (cursorGlow) {
       cursorGlow.style.left = e.clientX + 'px';
       cursorGlow.style.top = e.clientY + 'px';
+    }
+  });
+
+  // === МОБИЛЬНЫЙ ПРОТОТИП ===
+  const businessName = document.getElementById('businessName');
+  const protoTitle = document.getElementById('protoTitle');
+  const generateBtn = document.getElementById('generateProto');
+
+  generateBtn.addEventListener('click', () => {
+    const name = businessName.value.trim();
+    if (name) {
+      protoTitle.textContent = name;
+    } else {
+      protoTitle.textContent = 'Ваш сайт';
+    }
+  });
+
+  businessName.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      generateBtn.click();
     }
   });
 
