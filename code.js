@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const thunderSound = document.getElementById('thunderSound');
   const navbar = document.querySelector('.navbar');
   const cursorGlow = document.querySelector('.cursor-glow');
+  const secretOffer = document.getElementById('secretOffer');
 
   // === Меню при скролле ===
   window.addEventListener('scroll', () => {
@@ -10,6 +11,14 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       navbar.classList.remove('scrolled');
     }
+
+    // === Плавное появление блоков при скролле ===
+    document.querySelectorAll('.about-content, .service-card, .project-card, .quotes blockquote').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.8 && !el.classList.contains('visible')) {
+        el.classList.add('visible');
+      }
+    });
   });
 
   // === Молнии и гром ===
@@ -87,40 +96,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }, stepTime);
   }
 
-  // === ЖИВОЙ СЧЁТЧИК ПРОЕКТОВ ===
-  const projectCountEl = document.getElementById('projectCount');
-  const daysLeftEl = document.getElementById('daysLeft');
-  let projectCount = 3;
-  let daysLeft = 4;
-
-  setInterval(() => {
-    projectCountEl.textContent = projectCount;
-    daysLeftEl.textContent = daysLeft;
-  }, 100);
-
-  // === АУДИТ САЙТА ===
-  const siteUrl = document.getElementById('siteUrl');
-  const submitAudit = document.getElementById('submitAudit');
-  const auditResult = document.getElementById('auditResult');
-
-  submitAudit.addEventListener('click', () => {
-    const url = siteUrl.value.trim();
-    if (!url) {
-      alert('Введите ссылку на сайт');
-      return;
-    }
-
-    auditResult.style.display = 'block';
-    auditResult.innerHTML = `
-      ✅ Сайт принят в обработку.<br>
-      📅 Через 24 часа вы получите разбор: что работает, а что убивает прибыль.<br>
-      🔗 <a href="mailto:rosanov.danila2016@yandex.ru" style="color:#00eeff;">rosanov.danila2016@yandex.ru</a>
-    `;
-  });
-
-  siteUrl.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      submitAudit.click();
+  // === СЕКРЕТНОЕ ПРЕДЛОЖЕНИЕ ПРИ НАВЕДЕНИИ НА @overgrand ===
+  document.getElementById('telegram-link')?.addEventListener('mouseenter', () => {
+    if (secretOffer) {
+      secretOffer.classList.add('show');
+      setTimeout(() => {
+        secretOffer.classList.remove('show');
+      }, 4000);
     }
   });
 
