@@ -72,6 +72,13 @@ body {
   z-index: 1000;
   border-bottom: 1px solid rgba(100, 150, 255, 0.1);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(10, 15, 26, 0.85);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
 }
 
 .nav-container {
@@ -171,12 +178,20 @@ body {
   animation: fadeInUp 1s ease, vortex 3s ease infinite;
   z-index: 4;
   position: relative;
+  transform: translateY(20px); /* Отодвигаем вниз на мобиле */
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    transform: translateY(40px); /* Ещё больше отодвигаем на мобиле */
+    padding-top: 2rem;
+  }
 }
 
 @keyframes vortex {
-  0% { transform: scale(1) rotate(0deg); }
-  50% { transform: scale(1.02) rotate(1deg); }
-  100% { transform: scale(1) rotate(0deg); }
+  0% { transform: scale(1) rotate(0deg) translateY(20px); }
+  50% { transform: scale(1.02) rotate(1deg) translateY(25px); }
+  100% { transform: scale(1) rotate(0deg) translateY(20px); }
 }
 
 .gradient-text {
@@ -525,6 +540,27 @@ body {
   text-align: center;
   border: 1px solid rgba(106, 90, 205, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.4s ease;
+  pointer-events: none;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+  transform: scale(1.5);
 }
 
 .service-card:hover {
@@ -578,6 +614,24 @@ body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   transition: transform 0.4s cubic-bezier(0.25, 0.7, 0.35, 1), box-shadow 0.4s ease;
   cursor: pointer;
+  position: relative;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent 70%, rgba(0,0,0,0.6));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.project-card:hover::before {
+  opacity: 1;
 }
 
 .project-card:hover {
@@ -818,6 +872,7 @@ body {
   text-align: center;
   position: relative;
   overflow: hidden;
+  transform: perspective(1px) translateZ(0);
 }
 
 .btn::before {
@@ -940,15 +995,17 @@ body {
   font-size: 1.4rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   z-index: 1000;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
   text-decoration: none;
   color: white;
   overflow: hidden;
   animation: floatBtn 3s ease infinite;
+  transform: perspective(1px) translateZ(0);
 }
 
 .floating-btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.1) translateZ(0);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
 @keyframes floatBtn {
