@@ -1,8 +1,19 @@
 document.addEventListener('DOMContentLoaded', function () {
-  // === МОЛНИИ И ГРОМ ===
   const thunderSound = document.getElementById('thunderSound');
   const notifySound = document.getElementById('notifySound');
-  
+  const clickSound = document.getElementById('clickSound');
+  const navbar = document.querySelector('.navbar');
+
+  // === Меню при скролле ===
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+
+  // === Молнии и гром ===
   function playThunder() {
     if (thunderSound) {
       thunderSound.currentTime = 0;
@@ -27,6 +38,16 @@ document.addEventListener('DOMContentLoaded', function () {
       window.open('https://t.me/overgrand', '_blank');
     }, 300);
     alert('Открою Telegram... Готов к диалогу! 💬');
+  });
+
+  // === Звук при клике на любую кнопку ===
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (clickSound) {
+        clickSound.currentTime = 0;
+        clickSound.play().catch(() => {});
+      }
+    });
   });
 
   // === МОБИЛЬНАЯ НАВИГАЦИЯ ПО ПОРТФОЛИО ===
@@ -298,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // === КОПИРОВАНИЕ TELEGRAM ===
   document.getElementById('telegram-link').addEventListener('click', () => {
     navigator.clipboard.writeText('@overgrand').then(() => {
-      alert('Ожидаю твоего сообщения! :)');
+      alert('Никнейм Telegram скопирован! Напишу в течение часа :)');
     });
   });
 });
