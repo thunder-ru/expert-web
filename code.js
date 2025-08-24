@@ -1,23 +1,52 @@
-// Ждём загрузки DOM
 document.addEventListener('DOMContentLoaded', function () {
-  // Инициализация particles.js
-  if (typeof particlesJS !== 'undefined') {
-    particlesJS('particles-js', {
-      particles: {
-        number: { value: 80, density: { enable: true, value_area: 800 } },
-        color: { value: '#00eeff' },
-        shape: { type: 'circle' },
-        opacity: { value: 0.3, random: true },
-        size: { value: 2, random: true },
-        line_linked: { enable: false },
-        move: { enable: true, speed: 1, direction: 'none', random: true, out_mode: 'out' }
-      },
-      interactivity: { detect_on: 'canvas', events: { onhover: { enable: false }, onclick: { enable: false }, resize: true } },
-      retina_detect: true
-    });
+  // === ЗВЁЗДЫ ===
+  const starsContainer = document.getElementById('stars');
+  const colors = ['#fff', '#ffd700', '#00eeff'];
+  for (let i = 0; i < 100; i++) {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.style.width = Math.random() * 3 + 'px';
+    star.style.height = star.style.width;
+    star.style.left = Math.random() * 100 + 'vw';
+    star.style.top = Math.random() * 100 + 'vh';
+    star.style.opacity = Math.random() * 0.8 + 0.2;
+    star.style.animationDuration = Math.random() * 10 + 5 + 's';
+    star.style.animationDelay = Math.random() * 5 + 's';
+    star.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+    starsContainer.appendChild(star);
   }
 
-  // Мобильное меню
+  // === МОЛНИИ И ГРОМ ===
+  const thunderSound = document.getElementById('thunderSound');
+  function playThunder() {
+    if (thunderSound) {
+      thunderSound.currentTime = 0;
+      thunderSound.volume = 0.3;
+      thunderSound.play().catch(() => {});
+    }
+  }
+
+  setInterval(() => {
+    if (Math.random() < 0.3) {
+      playThunder();
+    }
+  }, 5000);
+
+  // === МОБИЛЬНАЯ НАВИГАЦИЯ ПО ПОРТФОЛИО ===
+  const slider = document.getElementById('projectsSlider');
+  const prevBtn = document.getElementById('prevProject');
+  const nextBtn = document.getElementById('nextProject');
+  const cardWidth = 320 + 32; // width + gap
+
+  prevBtn.addEventListener('click', () => {
+    slider.scrollLeft -= cardWidth;
+  });
+
+  nextBtn.addEventListener('click', () => {
+    slider.scrollLeft += cardWidth;
+  });
+
+  // === ОСТАЛЬНЫЙ КОД (тот же, что был) ===
   const mobileMenu = document.getElementById('mobile-menu');
   const navMenu = document.querySelector('.nav-menu');
 
@@ -28,7 +57,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Данные проектов
   const projectData = {
     travel: {
       images: [
@@ -66,7 +94,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
 
-  // Элементы модального окна
   const modal = document.getElementById("imageModal");
   const galleryInner = document.getElementById("galleryInner");
   const modalCaption = document.getElementById("modalCaption");
@@ -74,19 +101,10 @@ document.addEventListener('DOMContentLoaded', function () {
   let currentProjectKey = null;
   let currentImageIndex = 0;
 
-  if (!modal || !galleryInner || !modalCaption || !galleryContainer) {
-    console.error("Модальные элементы не найдены");
-    return;
-  }
-
-  // Открытие модального окна
   window.openModal = function (key) {
     currentProjectKey = key;
     const project = projectData[key];
-    if (!project) {
-      console.error("Проект не найден:", key);
-      return;
-    }
+    if (!project) return;
 
     galleryInner.innerHTML = '';
     project.images.forEach(imgSrc => {
@@ -108,7 +126,6 @@ document.addEventListener('DOMContentLoaded', function () {
     scrollToCurrent();
   };
 
-  // Прокрутка к текущему изображению
   function scrollToCurrent() {
     const images = galleryInner.querySelectorAll('img');
     if (images[currentImageIndex]) {
@@ -116,7 +133,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Следующее изображение
   window.nextImage = function () {
     const project = projectData[currentProjectKey];
     if (!project || currentImageIndex >= project.images.length - 1) return;
@@ -125,7 +141,6 @@ document.addEventListener('DOMContentLoaded', function () {
     scrollToCurrent();
   };
 
-  // Предыдущее изображение
   window.prevImage = function () {
     if (currentImageIndex <= 0) return;
     currentImageIndex--;
@@ -133,13 +148,11 @@ document.addEventListener('DOMContentLoaded', function () {
     scrollToCurrent();
   };
 
-  // Обновление подписи
   function updateCaption() {
     const project = projectData[currentProjectKey];
     modalCaption.textContent = `${project.caption} (${currentImageIndex + 1}/${project.images.length})`;
   }
 
-  // Закрытие модального окна
   window.closeModal = function () {
     const modalContent = modal.querySelector('.modal-content');
     if (modalContent) {
@@ -151,7 +164,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }, 300);
   };
 
-  // Обработчик кликов по карточкам
   document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('click', function () {
       const key = this.getAttribute('data-project');
@@ -161,14 +173,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Закрытие по клику вне
   modal.addEventListener("click", (e) => {
     if (e.target === modal) {
       closeModal();
     }
   });
 
-  // Управление стрелками
   document.addEventListener("keydown", (e) => {
     if (currentProjectKey) {
       if (e.key === "ArrowDown") nextImage();
@@ -177,7 +187,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.key === "Escape") closeModal();
   });
 
-  // Свайп в модальном окне
   let startY = 0;
   galleryContainer.addEventListener('touchstart', e => {
     startY = e.touches[0].clientY;
@@ -190,7 +199,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (diff < -50) prevImage();
   }, { passive: true });
 
-  // === СЧЁТЧИКИ В ТИКЕРАХ ===
+  // === ТИКЕРЫ ===
   const counters = {
     clients: { el: document.getElementById('clientsCounter'), target: 25 },
     projects: { el: document.getElementById('projectsCounter'), target: 15 },
@@ -225,7 +234,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }, stepTime);
   });
 
-  // === СЧЁТЧИК ПРОЕКТОВ ===
   const projectCounterEl = document.getElementById('projectCounter');
   if (projectCounterEl) {
     let count = 0;
@@ -243,28 +251,24 @@ document.addEventListener('DOMContentLoaded', function () {
     }, stepTime);
   }
 
-  // === 3D ПОВОРОТ КАРТОЧЕК ПО ДВИЖЕНИЮ МЫШИ ===
+  // === 3D ПОВОРОТ ===
   document.querySelectorAll('.mistake-card-t').forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-
       const rotateY = (x - centerX) / 10;
       const rotateX = (centerY - y) / 10;
-
       card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
-
     card.addEventListener('mouseleave', () => {
       card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
     });
   });
 
-  // === АНИМАЦИЯ ПОЯВЛЕНИЯ НАВЫКОВ ===
+  // === АНИМАЦИЯ НАВЫКОВ ===
   const skillCards = document.querySelectorAll('.neon-card');
   const skillObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -278,7 +282,7 @@ document.addEventListener('DOMContentLoaded', function () {
     skillObserver.observe(card);
   });
 
-  // === ПЛАВНОЕ ПОЯВЛЕНИЕ БЛОКОВ ===
+  // === ПЛАВНОЕ ПОЯВЛЕНИЕ ===
   const fadeElements = document.querySelectorAll('.section-title, .service-card, .project-card, .quotes blockquote, .about-content, .contact p');
   fadeElements.forEach(el => el.classList.add('fade-in'));
 
@@ -292,7 +296,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   fadeElements.forEach(el => fadeObserver.observe(el));
 
-  // Копирование Telegram
+  // === КОПИРОВАНИЕ TELEGRAM ===
   document.getElementById('telegram-link').addEventListener('click', () => {
     navigator.clipboard.writeText('@overgrand').then(() => {
       alert('Никнейм Telegram скопирован! Напишу в течение часа :)');
