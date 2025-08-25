@@ -15,6 +15,32 @@ body {
   position: relative;
 }
 
+/* === ЛЕТАЮЩИЕ ЗВЁЗДЫ НА ФОНЕ === */
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  filter: blur(1px);
+  animation: twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.2; }
+  100% { opacity: 0.8; }
+}
+
 /* === МОЛНИИ === */
 .lightning-container {
   position: fixed;
