@@ -258,13 +258,13 @@ body:hover .cursor-glow {
   animation: fadeInUp 1s ease, vortex 3s ease infinite;
   z-index: 4;
   position: relative;
-  transform: translateY(20px);
+  /* Убираем translateY для мобильной версии */
 }
 
 @keyframes vortex {
-  0% { transform: scale(1) rotate(0deg) translateY(20px); }
-  50% { transform: scale(1.02) rotate(1deg) translateY(25px); }
-  100% { transform: scale(1) rotate(0deg) translateY(20px); }
+  0% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.02) rotate(1deg); }
+  100% { transform: scale(1) rotate(0deg); }
 }
 
 .gradient-text {
@@ -349,24 +349,9 @@ body:hover .cursor-glow {
   position: relative;
 }
 
+/* УБИРАЕМ ТОЧКИ (ЛИНИИ) ПОД ЗАГОЛОВКАМИ */
 .section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(90deg, #00eeff, #6a5acd);
-  border-radius: 2px;
-}
-
-.mistakes-subtitle {
-  text-align: center;
-  font-size: 1.3rem;
-  color: #a0d2ff;
-  margin-bottom: 2rem;
-  font-style: italic;
+  content: none; /* Заменено: было линией, теперь ничего */
 }
 
 /* === О НАС === */
@@ -1243,8 +1228,16 @@ body:hover .cursor-glow {
 /* === АДАПТИВ === */
 @media (max-width: 768px) {
   .hero {
-    min-height: auto;
-    padding: 4rem 0 6rem;
+    min-height: 100vh;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-content {
+    padding: 4rem 1rem;
+    transform: none;
   }
 
   .gradient-text,
@@ -1255,7 +1248,6 @@ body:hover .cursor-glow {
 
   .hero-subtitle {
     font-size: 1.1rem;
-    padding: 0 1rem;
     margin-bottom: 2rem;
   }
 
@@ -1367,10 +1359,9 @@ body:hover .cursor-glow {
     margin-bottom: 2rem;
   }
 
+  /* УБРАЛИ ЛИНИЮ ПОД ЗАГОЛОВКОМ */
   .section-title::after {
-    width: 60px;
-    height: 3px;
-    bottom: -8px;
+    content: none;
   }
 
   .features-list {
