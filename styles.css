@@ -1178,7 +1178,15 @@ body:hover .cursor-glow {
 @media (max-width: 768px) {
   .hero {
     min-height: auto;
-    padding: 4rem 0 6rem;
+    padding: 6rem 0 6rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .hero-content {
+    padding-top: 4rem;
+    transform: translateY(0);
   }
 
   .gradient-text,
