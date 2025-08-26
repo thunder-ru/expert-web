@@ -462,6 +462,19 @@ body:hover .cursor-glow {
   perspective: 1000px;
 }
 
+.services::after {
+  content: 'Хочешь такой же результат? Получи прототип за 24 часа';
+  display: block;
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1.2rem;
+  color: #a0d2ff;
+  font-style: italic;
+  opacity: 0.9;
+  animation: fadeIn 1s ease 2s forwards;
+  pointer-events: none;
+}
+
 .services-grid {
   display: flex;
   flex-wrap: wrap;
@@ -656,11 +669,133 @@ body:hover .cursor-glow {
   }
 }
 
+/* === ОШИБКИ === */
+.mistakes-thunder {
+  padding: 6rem 0;
+  background: #0f1421;
+  position: relative;
+  overflow: hidden;
+}
+
+.mistakes-thunder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 238, 255, 0.05), rgba(106, 90, 205, 0.05));
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 15px;
+}
+
+.mistakes-thunder::after {
+  content: 'Хочешь избежать этих ошибок? Напиши — и получишь бесплатный аудит сайта';
+  display: block;
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1.2rem;
+  color: #a0d2ff;
+  font-style: italic;
+  opacity: 0.9;
+  animation: fadeIn 1s ease 2s forwards;
+  pointer-events: none;
+}
+
+.mistakes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.mistake-card-t {
+  background: rgba(26, 38, 60, 0.5);
+  padding: 2rem;
+  border-radius: 15px;
+  width: 350px;
+  border: 1px solid rgba(0, 238, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.mistake-card-t::before {
+  content: attr(data-mistake);
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: rgba(0, 238, 255, 0.1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mistake-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  background: rgba(0, 238, 255, 0.1);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  line-height: 60px;
+  color: #00eeff;
+  z-index: 2;
+}
+
+.mistake-card-t h3 {
+  color: #ffd700;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s ease;
+}
+
+.mistake-card-t p {
+  color: #ccc;
+  font-size: 1rem;
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s ease;
+}
+
+.mistake-card-t h3:hover,
+.mistake-card-t p:hover {
+  transform: translateX(5px);
+}
+
 /* === ОТЗЫВЫ === */
 .testimonials {
   padding: 6rem 0;
   background: #0f1421;
   perspective: 1000px;
+}
+
+.testimonials::after {
+  content: 'Хочешь такие же отзывы? Напиши — и начнём завтра';
+  display: block;
+  text-align: center;
+  margin-top: 3rem;
+  font-size: 1.2rem;
+  color: #a0d2ff;
+  font-style: italic;
+  opacity: 0.9;
+  animation: fadeIn 1s ease 2s forwards;
+  pointer-events: none;
 }
 
 .quotes {
@@ -1273,112 +1408,4 @@ body:hover .cursor-glow {
     font-size: 0.85rem;
     max-width: 250px;
   }
-
-  /* === ОШИБКИ === */
-.mistakes-thunder {
-  padding: 6rem 0;
-  background: #0f1421;
-  position: relative;
-  overflow: hidden;
-}
-
-.mistakes-thunder::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(0, 238, 255, 0.05), rgba(106, 90, 205, 0.05));
-  z-index: 0;
-  pointer-events: none;
-  border-radius: 15px;
-}
-
-.mistakes-thunder::after {
-  content: 'Хочешь избежать этих ошибок? Напиши — и получишь бесплатный аудит сайта';
-  display: block;
-  text-align: center;
-  margin-top: 3rem;
-  font-size: 1.2rem;
-  color: #a0d2ff;
-  font-style: italic;
-  opacity: 0.9;
-  animation: fadeIn 1s ease 2s forwards;
-  pointer-events: none;
-}
-
-.mistakes-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-}
-
-.mistake-card-t {
-  background: rgba(26, 38, 60, 0.5);
-  padding: 2rem;
-  border-radius: 15px;
-  width: 350px;
-  border: 1px solid rgba(0, 238, 255, 0.3);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-  transform-style: preserve-3d;
-  perspective: 1000px;
-  cursor: pointer;
-}
-
-.mistake-card-t::before {
-  content: attr(data-mistake);
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: rgba(0, 238, 255, 0.1);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.mistake-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  display: inline-block;
-  background: rgba(0, 238, 255, 0.1);
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  line-height: 60px;
-  color: #00eeff;
-  z-index: 2;
-}
-
-.mistake-card-t h3 {
-  color: #ffd700;
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
-  position: relative;
-  z-index: 2;
-  transition: transform 0.2s ease;
-}
-
-.mistake-card-t p {
-  color: #ccc;
-  font-size: 1rem;
-  line-height: 1.6;
-  position: relative;
-  z-index: 2;
-  transition: transform 0.2s ease;
-}
-
-.mistake-card-t h3:hover,
-.mistake-card-t p:hover {
-  transform: translateX(5px);
 }
