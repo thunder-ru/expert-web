@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
   <!-- === STRUCTURED DATA (фото в поиске) === -->
   <script type="application/ld+json">
   {
@@ -30,6 +31,7 @@
     }
   }
   </script>
+
   <!-- === OPEN GRAPH (для соцсетей и поисковиков) === -->
   <meta property="og:site_name" content="Web-Thunder">
   <meta property="og:title" content="Сайт, который работает на вас с первого дня">
@@ -38,60 +40,15 @@
   <meta property="og:url" content="https://web-thunder.github.io/web-thunder">
   <meta property="og:image" content="https://i.postimg.cc/mkm4phxN/1756110974.jpg">
   <meta property="og:image:alt" content="Данил Росанов — веб-архитектор бизнеса">
+
   <!-- === TWITTER CARD === -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Web-Thunder | Сайты, которые гремят">
   <meta name="twitter:description" content="Создаю сайты, которые приносят прибыль с первого дня.">
   <meta name="twitter:image" content="https://i.postimg.cc/mkm4phxN/1756110974.jpg">
-
-  <!-- === СТИЛИ ДЛЯ УНИВЕРСАЛЬНОЙ НАВИГАЦИИ === -->
-  <style>
-    /* === УНИВЕРСАЛЬНАЯ НАВИГАЦИЯ ПРОЕКТОВ === */
-    .projects-nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 2rem;
-      padding: 0 1rem;
-    }
-
-    .nav-btn {
-      background: rgba(0, 238, 255, 0.1);
-      border: 2px solid #00eeff;
-      color: #00eeff;
-      padding: 0.75rem 1.5rem;
-      border-radius: 50px;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-    }
-
-    .nav-btn:hover {
-      background: #00eeff;
-      color: #0a0a0a;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(0, 238, 255, 0.3);
-    }
-
-    /* Скрываем текстовые стрелки на мобильных, оставляем только символы */
-    @media (max-width: 768px) {
-      .desktop-arrow {
-        display: none;
-      }
-    }
-
-    /* На десктопе делаем кнопки крупнее */
-    @media (min-width: 769px) {
-      .nav-btn {
-        padding: 0.85rem 2rem;
-        font-size: 1.1rem;
-      }
-    }
-  </style>
 </head>
 <body>
+
   <!-- Звёзды на фоне -->
   <div class="stars-container">
     <div class="star star-1"></div>
@@ -115,17 +72,21 @@
     <div class="star star-19"></div>
     <div class="star star-20"></div>
   </div>
+
   <!-- Молнии -->
   <div class="lightning-container">
     <div class="lightning lightning-left"></div>
     <div class="lightning lightning-right"></div>
   </div>
+
   <!-- Луч молнии за курсором -->
   <div class="cursor-glow"></div>
+
   <!-- Секретное предложение -->
   <div id="secretOffer" class="secret-offer">
     🔥 Скидка 10% для первых 3 клиентов этой недели! Напишите в Telegram — и получите прототип бесплатно.
   </div>
+
   <!-- Меню -->
   <nav class="navbar">
     <div class="nav-container">
@@ -142,6 +103,7 @@
       </div>
     </div>
   </nav>
+
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
@@ -150,10 +112,11 @@
         <span class="highlight">с первого дня</span>
       </h1>
       <p class="hero-subtitle">
-        Я — <strong>веб-разработчик</strong>. Собираю сайты как конструктор: быстро, надёжно, с фокусом на прибыль и на красивый код.
+        Я — <strong>веб-архитектор бизнеса</strong>. Собираю сайты как конструктор: быстро, надёжно, с фокусом на прибыль, а не на красивый код.
       </p>
     </div>
   </section>
+
   <!-- Тикеры с результатами -->
   <section class="result-tickers">
     <div class="container">
@@ -175,10 +138,11 @@
       </div>
     </div>
   </section>
+
   <!-- About Section -->
   <section id="about" class="about">
     <div class="container">
-      <h2 class="section-title">Я пишу не только код.<br>Я создаю прибыль</h2>
+      <h2 class="section-title">Я не пишу код.<br>Я создаю прибыль</h2>
       <div class="about-content">
         <p>
           За последние 2 года я реализовал <strong><span id="projectCounter">0</span>+ проектов</strong> — от лендингов до интернет-магазинов.
@@ -198,6 +162,7 @@
       </div>
     </div>
   </section>
+
   <!-- Skills Section -->
   <section class="skills">
     <div class="container">
@@ -206,7 +171,7 @@
         <div class="skill-card neon-card">
           <i class="fas fa-th-large"></i>
           <h3>Конструкторы</h3>
-          <p>Tilda, Craftum, Motor, Bitrix</p>
+          <p>Tilda, Webflow, Wix</p>
         </div>
         <div class="skill-card neon-card">
           <i class="fab fa-html5"></i>
@@ -231,6 +196,7 @@
       </div>
     </div>
   </section>
+
   <!-- Services Section -->
   <section class="services">
     <div class="container">
@@ -255,12 +221,14 @@
       </div>
     </div>
   </section>
+
   <!-- Projects Section -->
   <section id="projects" class="projects">
     <div class="container">
       <h2 class="section-title">Портфолио</h2>
-      <p class="projects-subtitle">Последние проекты, которые <strong>запускали бизнес</strong></p>
+      <p class="projects-subtitle">Проекты, которые <strong>запускали бизнес</strong></p>
       <div class="projects-slider" id="projectsSlider">
+        <!-- Тур-агентство -->
         <div class="project-card" data-project="travel">
           <img src="https://i.postimg.cc/MT4Kbg6d/1.jpg" alt="Тур-агентство">
           <div class="project-info">
@@ -271,6 +239,8 @@
             <button class="btn btn-outline btn-gallery" onclick="openModal('travel')">Посмотреть галерею</button>
           </div>
         </div>
+
+        <!-- Стоматология -->
         <div class="project-card" data-project="dentist">
           <img src="https://i.postimg.cc/g02R2wgR/1.jpg" alt="Стоматология">
           <div class="project-info">
@@ -281,6 +251,8 @@
             <button class="btn btn-outline btn-gallery" onclick="openModal('dentist')">Посмотреть галерею</button>
           </div>
         </div>
+
+        <!-- Фитнес-тренер -->
         <div class="project-card" data-project="trainer">
           <img src="https://i.postimg.cc/MThj59qb/1.jpg" alt="Персональный тренер">
           <div class="project-info">
@@ -292,9 +264,9 @@
           </div>
         </div>
 
-        <!-- === САЛОН КРАСОТЫ === -->
+        <!-- Салон красоты -->
         <div class="project-card" data-project="beauty">
-          <img src="https://i.postimg.cc/QdBJN5Yj/1.png" alt="Салон красоты">
+          <img src="https://i.postimg.cc/QdBJN5Yj/1.png" alt="Салон красоты Aura Beauty">
           <div class="project-info">
             <h3>Салон красоты "Aura Beauty"</h3>
             <p>Сайт с онлайн-записью и каталогом услуг</p>
@@ -304,9 +276,9 @@
           </div>
         </div>
 
-        <!-- === ДЕТСКИЙ ЛАГЕРЬ === -->
+        <!-- Детский лагерь -->
         <div class="project-card" data-project="camp">
-          <img src="https://i.postimg.cc/pdCTgcQr/1.png" alt="Детский лагерь">
+          <img src="https://i.postimg.cc/pdCTgcQr/1.png" alt="Детский лагерь HappyKids">
           <div class="project-info">
             <h3>Детский лагерь "HappyKids"</h3>
             <p>Яркий сайт с формой бронирования смен</p>
@@ -316,11 +288,11 @@
           </div>
         </div>
 
-        <!-- === ВИЗИТКА ДЛЯ ВЕБИНАРА === -->
+        <!-- Вебинар -->
         <div class="project-card" data-project="webinar">
-          <img src="https://i.postimg.cc/FH91DQc8/image.png" alt="Визитка для вебинара">
+          <img src="https://i.postimg.cc/FH91DQc8/image.png" alt="Лендинг для вебинара">
           <div class="project-info">
-            <h3>Визитка для вебинара</h3>
+            <h3>Вебинар "Онлайн-профессии"</h3>
             <p>Лендинг с формой регистрации</p>
           </div>
           <div class="project-actions">
@@ -328,11 +300,11 @@
           </div>
         </div>
 
-        <!-- === МАГАЗИН МЕБЕЛИ === -->
+        <!-- Интернет-магазин мебели -->
         <div class="project-card" data-project="furniture">
-          <img src="https://i.postimg.cc/Y9xsNYwJ/1.png" alt="Магазин мебели">
+          <img src="https://i.postimg.cc/Y9xsNYwJ/1.png" alt="Мебель Havel">
           <div class="project-info">
-            <h3>Интернет-магазин "Havel"</h3>
+            <h3>Интернет-магазин мебели "Havel"</h3>
             <p>Каталог с фильтрами и корзиной</p>
           </div>
           <div class="project-actions">
@@ -340,36 +312,32 @@
           </div>
         </div>
 
-        <!-- === САЛОН МАНИКЮРА === -->
+        <!-- Салон маникюра -->
         <div class="project-card" data-project="manicure">
-          <img src="https://i.postimg.cc/KY2f9jQF/12.png" alt="Салон маникюра">
+          <img src="https://i.postimg.cc/KY2f9jQF/12.png" alt="Салон маникюра Beauty Oasis">
           <div class="project-info">
             <h3>Салон маникюра "Beauty Oasis"</h3>
-            <p>Сайт лендинг и онлайн-записью</p>
+            <p>Сайт-лендинг с онлайн-записью</p>
           </div>
           <div class="project-actions">
             <button class="btn btn-outline btn-gallery" onclick="openModal('manicure')">Посмотреть галерею</button>
           </div>
         </div>
-
       </div>
 
-      <!-- Универсальные кнопки навигации (видны на всех устройствах) -->
-      <div class="projects-nav">
-        <button id="prevProject" class="nav-btn" aria-label="Предыдущий проект">
-          <span class="desktop-arrow">← </span>‹ Предыдущий
-        </button>
-        <button id="nextProject" class="nav-btn" aria-label="Следующий проект">
-          Следующий ›<span class="desktop-arrow"> →</span>
-        </button>
+      <!-- Кнопки навигации (видны только на мобильных) -->
+      <div class="mobile-nav">
+        <button id="prevProject" class="nav-btn">‹ Предыдущий</button>
+        <button id="nextProject" class="nav-btn">Следующий ›</button>
       </div>
     </div>
   </section>
+
   <!-- Mistakes Section -->
   <section class="mistakes-thunder">
     <div class="container">
       <h2 class="section-title">5 ошибок при заказе сайта,<br>которые убивают результат</h2>
-      <p class="mistakes-subtitle"></p>
+      <p class="mistakes-subtitle">Не повторяйте их. Или потеряете до 70% клиентов.</p>
       <div class="mistakes-grid">
         <div class="mistake-card-t" data-mistake="1">
           <div class="mistake-icon">❌</div>
@@ -399,23 +367,25 @@
       </div>
     </div>
   </section>
+
   <!-- Testimonials -->
   <section class="testimonials">
     <div class="container">
       <h2 class="section-title">Что говорят клиенты</h2>
       <div class="quotes">
         <blockquote>
-          "Запустили сайт за 5 дней. Уже через неделю — 60 заявок. Web-Thunder — это не просто разработка, это рост бизнеса."
+          "Запустили сайт за 5 дней. Уже через неделю — 120 заявок. web-thunder — это не просто разработка, это рост бизнеса."
         </blockquote>
         <blockquote>
-          "Работал с 3 разработчиками. Только Web-Thunder сделал всё без косяков и в срок."
+          "Работал с 3 разработчиками. Только web-thunder сделал всё без косяков и в срок."
         </blockquote>
         <blockquote>
-          "Сайт загружается за 0.8 сек. SEO в топе. Конверсия выросла на 50%."
+          "Сайт загружается за 0.8 сек. SEO в топе. Конверсия выросла на 70%."
         </blockquote>
       </div>
     </div>
   </section>
+
   <!-- Contact Section -->
   <section id="contact" class="contact">
     <div class="container">
@@ -432,10 +402,12 @@
       </p>
     </div>
   </section>
+
   <!-- Footer -->
   <footer class="footer">
     <p>&copy; 2025 Web-Thunder. Сайты, которые <strong>грозят</strong> успехом.</p>
   </footer>
+
   <!-- Плавающие кнопки -->
   <a href="https://t.me/overgrand" target="_blank" class="floating-btn telegram" data-tooltip="Telegram">
     <span class="btn-label">TG</span>
@@ -443,10 +415,12 @@
   <a href="https://wa.me/79036254250" target="_blank" class="floating-btn whatsapp" data-tooltip="WhatsApp">
     <span class="btn-label">WA</span>
   </a>
+
   <!-- Онлайн-статус -->
   <div class="online-status">
     <span class="status-dot"></span> В сети — отвечаю в течение 15 минут
   </div>
+
   <!-- Модальное окно -->
   <div id="imageModal" class="modal">
     <div class="modal-content">
@@ -461,8 +435,10 @@
       <div class="modal-caption" id="modalCaption"></div>
     </div>
   </div>
+
   <!-- Аудио для грома -->
   <audio id="thunderSound" src="https://assets.mixkit.co/sfx/preview/mixkit-distant-thunder-2293.mp3" preload="auto"></audio>
+
   <script src="code.js"></script>
 </body>
 </html>
