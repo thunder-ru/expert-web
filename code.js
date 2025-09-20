@@ -93,17 +93,37 @@ document.addEventListener('DOMContentLoaded', function () {
       }, 4000);
     }
   });
-  // === МОБИЛЬНАЯ НАВИГАЦИЯ ПО ПОРТФОЛИО ===
+    // === УНИВЕРСАЛЬНАЯ НАВИГАЦИЯ ПО ПОРТФОЛИО (ПК + МОБИЛЬНЫЕ) ===
   const slider = document.getElementById('projectsSlider');
   const prevBtn = document.getElementById('prevProject');
   const nextBtn = document.getElementById('nextProject');
-  const cardWidth = 320 + 32;
-  prevBtn.addEventListener('click', () => {
-    slider.scrollLeft -= cardWidth;
-  });
-  nextBtn.addEventListener('click', () => {
-    slider.scrollLeft += cardWidth;
-  });
+
+  function getCardWidth() {
+    if (slider && slider.children.length > 0) {
+      const firstCard = slider.children[0];
+      const style = window.getComputedStyle(firstCard);
+      return firstCard.offsetWidth + parseInt(style.marginRight) + parseInt(style.marginLeft) || 352;
+    }
+    return 352; // fallback
+  }
+
+  if (prevBtn && nextBtn && slider) {
+    prevBtn.addEventListener('click', () => {
+      const cardWidth = getCardWidth();
+      slider.scrollBy({
+        left: -cardWidth,
+        behavior: 'smooth'
+      });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const cardWidth = getCardWidth();
+      slider.scrollBy({
+        left: cardWidth,
+        behavior: 'smooth'
+      });
+    });
+  }
   // === МОБИЛЬНОЕ МЕНЮ ===
   const mobileMenu = document.getElementById('mobile-menu');
   const navMenu = document.querySelector('.nav-menu');
