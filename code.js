@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
       navMenu.classList.toggle('active');
     });
   }
-  // === ДАННЫЕ ПРОЕКТОВ ===
+    // === ДАННЫЕ ПРОЕКТОВ ===
   const projectData = {
     travel: {
       images: [
