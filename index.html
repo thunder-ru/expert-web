@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-
   <!-- === STRUCTURED DATA (фото в поиске) === -->
   <script type="application/ld+json">
   {
@@ -31,7 +30,6 @@
     }
   }
   </script>
-
   <!-- === OPEN GRAPH (для соцсетей и поисковиков) === -->
   <meta property="og:site_name" content="Web-Thunder">
   <meta property="og:title" content="Сайт, который работает на вас с первого дня">
@@ -40,7 +38,6 @@
   <meta property="og:url" content="https://web-thunder.github.io/web-thunder">
   <meta property="og:image" content="https://i.postimg.cc/mkm4phxN/1756110974.jpg">
   <meta property="og:image:alt" content="Данил Росанов — веб-архитектор бизнеса">
-
   <!-- === TWITTER CARD === -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Web-Thunder | Сайты, которые гремят">
@@ -48,7 +45,6 @@
   <meta name="twitter:image" content="https://i.postimg.cc/mkm4phxN/1756110974.jpg">
 </head>
 <body>
-
   <!-- Звёзды на фоне -->
   <div class="stars-container">
     <div class="star star-1"></div>
@@ -72,21 +68,17 @@
     <div class="star star-19"></div>
     <div class="star star-20"></div>
   </div>
-
   <!-- Молнии -->
   <div class="lightning-container">
     <div class="lightning lightning-left"></div>
     <div class="lightning lightning-right"></div>
   </div>
-
   <!-- Луч молнии за курсором -->
   <div class="cursor-glow"></div>
-
   <!-- Секретное предложение -->
   <div id="secretOffer" class="secret-offer">
     🔥 Скидка 10% для первых 3 клиентов этой недели! Напишите в Telegram — и получите прототип бесплатно.
   </div>
-
   <!-- Меню -->
   <nav class="navbar">
     <div class="nav-container">
@@ -103,7 +95,6 @@
       </div>
     </div>
   </nav>
-
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
@@ -116,7 +107,6 @@
       </p>
     </div>
   </section>
-
   <!-- Тикеры с результатами -->
   <section class="result-tickers">
     <div class="container">
@@ -138,7 +128,6 @@
       </div>
     </div>
   </section>
-
   <!-- About Section -->
   <section id="about" class="about">
     <div class="container">
@@ -162,7 +151,6 @@
       </div>
     </div>
   </section>
-
   <!-- Skills Section -->
   <section class="skills">
     <div class="container">
@@ -196,7 +184,6 @@
       </div>
     </div>
   </section>
-
   <!-- Services Section -->
   <section class="services">
     <div class="container">
@@ -221,7 +208,6 @@
       </div>
     </div>
   </section>
-
   <!-- Projects Section -->
   <section id="projects" class="projects">
     <div class="container">
@@ -258,8 +244,68 @@
             <button class="btn btn-outline btn-gallery" onclick="openModal('trainer')">Посмотреть галерею</button>
           </div>
         </div>
-      </div>
 
+        <!-- === САЛОН КРАСОТЫ === -->
+        <div class="project-card" data-project="beauty">
+          <img src="ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_МИНИАТЮРУ" alt="Салон красоты">
+          <div class="project-info">
+            <h3>Салон красоты "Лилия"</h3>
+            <p>Сайт с онлайн-записью и каталогом услуг</p>
+          </div>
+          <div class="project-actions">
+            <button class="btn btn-outline btn-gallery" onclick="openModal('beauty')">Посмотреть галерею</button>
+          </div>
+        </div>
+
+        <!-- === ДЕТСКИЙ ЛАГЕРЬ === -->
+        <div class="project-card" data-project="camp">
+          <img src="ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_МИНИАТЮРУ" alt="Детский лагерь">
+          <div class="project-info">
+            <h3>Детский лагерь "Солнышко"</h3>
+            <p>Яркий сайт с формой бронирования смен</p>
+          </div>
+          <div class="project-actions">
+            <button class="btn btn-outline btn-gallery" onclick="openModal('camp')">Посмотреть галерею</button>
+          </div>
+        </div>
+
+        <!-- === ВИЗИТКА ДЛЯ ВЕБИНАРА === -->
+        <div class="project-card" data-project="webinar">
+          <img src="ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_МИНИАТЮРУ" alt="Визитка для вебинара">
+          <div class="project-info">
+            <h3>Визитка для вебинара</h3>
+            <p>Лендинг с формой регистрации</p>
+          </div>
+          <div class="project-actions">
+            <button class="btn btn-outline btn-gallery" onclick="openModal('webinar')">Посмотреть галерею</button>
+          </div>
+        </div>
+
+        <!-- === МАГАЗИН МЕБЕЛИ === -->
+        <div class="project-card" data-project="furniture">
+          <img src="ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_МИНИАТЮРУ" alt="Магазин мебели">
+          <div class="project-info">
+            <h3>Интернет-магазин "Уют"</h3>
+            <p>Каталог с фильтрами и корзиной</p>
+          </div>
+          <div class="project-actions">
+            <button class="btn btn-outline btn-gallery" onclick="openModal('furniture')">Посмотреть галерею</button>
+          </div>
+        </div>
+
+        <!-- === САЛОН МАНИКЮРА === -->
+        <div class="project-card" data-project="manicure">
+          <img src="ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_МИНИАТЮРУ" alt="Салон маникюра">
+          <div class="project-info">
+            <h3>Салон маникюра "Арт-Ноготок"</h3>
+            <p>Сайт с портфолио и онлайн-записью</p>
+          </div>
+          <div class="project-actions">
+            <button class="btn btn-outline btn-gallery" onclick="openModal('manicure')">Посмотреть галерею</button>
+          </div>
+        </div>
+
+      </div>
       <!-- Кнопки навигации (видны только на мобильных) -->
       <div class="mobile-nav">
         <button id="prevProject" class="nav-btn">‹ Предыдущий</button>
@@ -267,7 +313,6 @@
       </div>
     </div>
   </section>
-
   <!-- Mistakes Section -->
   <section class="mistakes-thunder">
     <div class="container">
@@ -302,7 +347,6 @@
       </div>
     </div>
   </section>
-
   <!-- Testimonials -->
   <section class="testimonials">
     <div class="container">
@@ -320,7 +364,6 @@
       </div>
     </div>
   </section>
-
   <!-- Contact Section -->
   <section id="contact" class="contact">
     <div class="container">
@@ -337,12 +380,10 @@
       </p>
     </div>
   </section>
-
   <!-- Footer -->
   <footer class="footer">
     <p>&copy; 2025 Web-Thunder. Сайты, которые <strong>грозят</strong> успехом.</p>
   </footer>
-
   <!-- Плавающие кнопки -->
   <a href="https://t.me/overgrand" target="_blank" class="floating-btn telegram" data-tooltip="Telegram">
     <span class="btn-label">TG</span>
@@ -350,12 +391,10 @@
   <a href="https://wa.me/79036254250" target="_blank" class="floating-btn whatsapp" data-tooltip="WhatsApp">
     <span class="btn-label">WA</span>
   </a>
-
   <!-- Онлайн-статус -->
   <div class="online-status">
     <span class="status-dot"></span> В сети — отвечаю в течение 15 минут
   </div>
-
   <!-- Модальное окно -->
   <div id="imageModal" class="modal">
     <div class="modal-content">
@@ -370,10 +409,8 @@
       <div class="modal-caption" id="modalCaption"></div>
     </div>
   </div>
-
   <!-- Аудио для грома -->
   <audio id="thunderSound" src="https://assets.mixkit.co/sfx/preview/mixkit-distant-thunder-2293.mp3" preload="auto"></audio>
-
   <script src="code.js"></script>
 </body>
 </html>
