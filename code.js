@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // === УПРАВЛЕНИЕ ПРОКРУТКОЙ ПОРТФОЛИО ===
+  // === УПРАВЛЕНИЕ ПРОКРУТКОЙ ПОРТФОЛИО (по 1 карточке) ===
   const slider = document.getElementById('projectsSlider');
   const prevBtn = document.getElementById('prevProject');
   const nextBtn = document.getElementById('nextProject');
@@ -114,39 +114,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (prevBtn && nextBtn) {
     prevBtn.addEventListener('click', () => {
-      slider.scrollLeft -= cardWidth * 2;
+      slider.scrollLeft -= cardWidth;
     });
 
     nextBtn.addEventListener('click', () => {
-      slider.scrollLeft += cardWidth * 2;
+      slider.scrollLeft += cardWidth;
     });
   }
 
-  // === УПРАВЛЕНИЕ ПРОКРУТКОЙ ПОРТФОЛИО (по 1 карточке) ===
-const slider = document.getElementById('projectsSlider');
-const prevBtn = document.getElementById('prevProject');
-const nextBtn = document.getElementById('nextProject');
-
-// Ширина одной карточки + gap (320px + 32px)
-const cardWidth = 352;
-
-if (prevBtn && nextBtn) {
-  // Назад на 1 карточку
-  prevBtn.addEventListener('click', () => {
-    slider.scrollLeft -= cardWidth;
+  // Прокрутка колесиком мыши
+  slider.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    slider.scrollLeft += e.deltaY * 1.5;
   });
 
-  // Вперёд на 1 карточку
-  nextBtn.addEventListener('click', () => {
-    slider.scrollLeft += cardWidth;
-  });
-}
+  // === МОБИЛЬНОЕ МЕНЮ ===
+  const mobileMenu = document.getElementById('mobile-menu');
+  const navMenu = document.querySelector('.nav-menu');
 
-// Прокрутка колесиком (плавная)
-slider.addEventListener('wheel', (e) => {
-  e.preventDefault();
-  slider.scrollLeft += e.deltaY * 1.5;
-});
+  if (mobileMenu && navMenu) {
+    mobileMenu.addEventListener('click', function () {
+      mobileMenu.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+  }
 
   // === ДАННЫЕ ПРОЕКТОВ ===
   const projectData = {
