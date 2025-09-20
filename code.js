@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const navbar = document.querySelector('.navbar');
   const cursorGlow = document.querySelector('.cursor-glow');
   const secretOffer = document.getElementById('secretOffer');
-
   // === Меню при скролле ===
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       navbar.classList.remove('scrolled');
     }
-
     // === Плавное появление блоков при скролле ===
     document.querySelectorAll('.about-content, .service-card, .project-card, .quotes blockquote').forEach(el => {
       const rect = el.getBoundingClientRect();
@@ -20,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
-
   // === Молнии и гром ===
   function playThunder() {
     if (thunderSound) {
@@ -29,13 +26,11 @@ document.addEventListener('DOMContentLoaded', function () {
       thunderSound.play().catch(() => {});
     }
   }
-
   setInterval(() => {
     if (Math.random() < 0.3) {
       playThunder();
     }
   }, 5000);
-
   // === Луч молнии за курсором ===
   document.addEventListener('mousemove', (e) => {
     if (cursorGlow) {
@@ -43,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function () {
       cursorGlow.style.top = e.clientY + 'px';
     }
   });
-
   // === СЧЁТЧИКИ ===
   const counters = {
     clients: { el: document.getElementById('clientsCounter'), target: 25 },
@@ -51,16 +45,13 @@ document.addEventListener('DOMContentLoaded', function () {
     conversion: { el: document.getElementById('conversionCounter'), target: 70 },
     speed: { el: document.getElementById('speedCounter'), target: 0.8 }
   };
-
   Object.keys(counters).forEach(key => {
     const counter = counters[key];
     if (!counter.el) return;
-
     let count = 0;
     const target = counter.target;
     const duration = 1500;
     const stepTime = duration / (target * 10);
-
     const timer = setInterval(() => {
       count += target / (target * 10);
       if (key === 'speed') {
@@ -78,14 +69,12 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }, stepTime);
   });
-
   const projectCounterEl = document.getElementById('projectCounter');
   if (projectCounterEl) {
     let count = 0;
     const target = 15;
     const duration = 1500;
     const stepTime = duration / (target * 10);
-
     const timer = setInterval(() => {
       count += 1;
       projectCounterEl.textContent = Math.floor(count);
@@ -95,7 +84,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }, stepTime);
   }
-
   // === СЕКРЕТНОЕ ПРЕДЛОЖЕНИЕ ПРИ НАВЕДЕНИИ НА @overgrand ===
   document.getElementById('telegram-link')?.addEventListener('mouseenter', () => {
     if (secretOffer) {
@@ -105,32 +93,26 @@ document.addEventListener('DOMContentLoaded', function () {
       }, 4000);
     }
   });
-
   // === МОБИЛЬНАЯ НАВИГАЦИЯ ПО ПОРТФОЛИО ===
   const slider = document.getElementById('projectsSlider');
   const prevBtn = document.getElementById('prevProject');
   const nextBtn = document.getElementById('nextProject');
   const cardWidth = 320 + 32;
-
   prevBtn.addEventListener('click', () => {
     slider.scrollLeft -= cardWidth;
   });
-
   nextBtn.addEventListener('click', () => {
     slider.scrollLeft += cardWidth;
   });
-
   // === МОБИЛЬНОЕ МЕНЮ ===
   const mobileMenu = document.getElementById('mobile-menu');
   const navMenu = document.querySelector('.nav-menu');
-
   if (mobileMenu && navMenu) {
     mobileMenu.addEventListener('click', function () {
       mobileMenu.classList.toggle('active');
       navMenu.classList.toggle('active');
     });
   }
-
   // === ДАННЫЕ ПРОЕКТОВ ===
   const projectData = {
     travel: {
@@ -166,9 +148,49 @@ document.addEventListener('DOMContentLoaded', function () {
         "https://i.postimg.cc/8PsWBV1g/image.jpg"
       ],
       caption: "Фитнес-тренер Анна — сайт с видео и программами тренировок"
+    },
+    // === НОВЫЕ ПРОЕКТЫ ===
+    beauty: {
+      images: [
+        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_1",
+        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_2",
+        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_3"
+      ],
+      caption: "Салон красоты «Лилия» — сайт с онлайн-записью и каталогом услуг"
+    },
+    camp: {
+      images: [
+        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_1",
+        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_2",
+        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_3"
+      ],
+      caption: "Детский лагерь «Солнышко» — яркий сайт с формой бронирования смен"
+    },
+    webinar: {
+      images: [
+        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_1",
+        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_2"
+      ],
+      caption: "Визитка для вебинара «Как стать миллионером» — лендинг с формой регистрации"
+    },
+    furniture: {
+      images: [
+        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_1",
+        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_2",
+        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_3",
+        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_4"
+      ],
+      caption: "Интернет-магазин мебели «Уют» — каталог с фильтрами и корзиной"
+    },
+    manicure: {
+      images: [
+        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_1",
+        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_2",
+        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_3"
+      ],
+      caption: "Салон маникюра «Арт-Ноготок» — сайт с портфолио и онлайн-записью"
     }
   };
-
   // === МОДАЛЬНОЕ ОКНО ===
   const modal = document.getElementById("imageModal");
   const galleryInner = document.getElementById("galleryInner");
@@ -176,12 +198,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const galleryContainer = document.getElementById("galleryContainer");
   let currentProjectKey = null;
   let currentImageIndex = 0;
-
   window.openModal = function (key) {
     currentProjectKey = key;
     const project = projectData[key];
     if (!project) return;
-
     galleryInner.innerHTML = '';
     project.images.forEach(imgSrc => {
       const img = document.createElement('img');
@@ -189,26 +209,21 @@ document.addEventListener('DOMContentLoaded', function () {
       img.alt = "Фото проекта";
       galleryInner.appendChild(img);
     });
-
     currentImageIndex = 0;
     modalCaption.textContent = `${project.caption} (1/${project.images.length})`;
     modal.style.display = "flex";
     document.body.classList.add('modal-open');
-
     setTimeout(() => {
       modal.querySelector('.modal-content').style.opacity = "1";
     }, 10);
-
     scrollToCurrent();
   };
-
   function scrollToCurrent() {
     const images = galleryInner.querySelectorAll('img');
     if (images[currentImageIndex]) {
       images[currentImageIndex].scrollIntoView({ block: 'center', behavior: 'smooth' });
     }
   }
-
   window.nextImage = function () {
     const project = projectData[currentProjectKey];
     if (!project || currentImageIndex >= project.images.length - 1) return;
@@ -216,19 +231,16 @@ document.addEventListener('DOMContentLoaded', function () {
     updateCaption();
     scrollToCurrent();
   };
-
   window.prevImage = function () {
     if (currentImageIndex <= 0) return;
     currentImageIndex--;
     updateCaption();
     scrollToCurrent();
   };
-
   function updateCaption() {
     const project = projectData[currentProjectKey];
     modalCaption.textContent = `${project.caption} (${currentImageIndex + 1}/${project.images.length})`;
   }
-
   window.closeModal = function () {
     const modalContent = modal.querySelector('.modal-content');
     if (modalContent) {
@@ -239,7 +251,6 @@ document.addEventListener('DOMContentLoaded', function () {
       document.body.classList.remove('modal-open');
     }, 300);
   };
-
   document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('click', function () {
       const key = this.getAttribute('data-project');
@@ -248,13 +259,11 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
-
   modal.addEventListener("click", (e) => {
     if (e.target === modal) {
       closeModal();
     }
   });
-
   document.addEventListener("keydown", (e) => {
     if (currentProjectKey) {
       if (e.key === "ArrowDown") nextImage();
@@ -262,19 +271,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     if (e.key === "Escape") closeModal();
   });
-
   let startY = 0;
   galleryContainer.addEventListener('touchstart', e => {
     startY = e.touches[0].clientY;
   }, { passive: true });
-
   galleryContainer.addEventListener('touchend', e => {
     const endY = e.changedTouches[0].clientY;
     const diff = startY - endY;
     if (diff > 50) nextImage();
     if (diff < -50) prevImage();
   }, { passive: true });
-
   // === 3D ПОВОРОТ КАРТОЧЕК ОШИБОК ===
   document.querySelectorAll('.mistake-card-t').forEach(card => {
     card.addEventListener('mousemove', (e) => {
@@ -291,7 +297,6 @@ document.addEventListener('DOMContentLoaded', function () {
       card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
     });
   });
-
   // === АНИМАЦИЯ НАВЫКОВ ===
   const skillCards = document.querySelectorAll('.neon-card');
   const skillObserver = new IntersectionObserver((entries) => {
@@ -301,15 +306,12 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }, { threshold: 0.1 });
-
   skillCards.forEach(card => {
     skillObserver.observe(card);
   });
-
   // === ПЛАВНОЕ ПОЯВЛЕНИЕ ===
   const fadeElements = document.querySelectorAll('.section-title, .service-card, .project-card, .quotes blockquote, .about-content, .contact p');
   fadeElements.forEach(el => el.classList.add('fade-in'));
-
   const fadeObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -317,6 +319,5 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }, { threshold: 0.1 });
-
   fadeElements.forEach(el => fadeObserver.observe(el));
 });
