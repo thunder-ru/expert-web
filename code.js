@@ -97,7 +97,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const slider = document.getElementById('projectsSlider');
   const prevBtn = document.getElementById('prevProject');
   const nextBtn = document.getElementById('nextProject');
-
   function getCardWidth() {
     if (slider && slider.children.length > 0) {
       const firstCard = slider.children[0];
@@ -106,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     return 352; // fallback
   }
-
   if (prevBtn && nextBtn && slider) {
     prevBtn.addEventListener('click', () => {
       const cardWidth = getCardWidth();
@@ -115,7 +113,6 @@ document.addEventListener('DOMContentLoaded', function () {
         behavior: 'smooth'
       });
     });
-
     nextBtn.addEventListener('click', () => {
       const cardWidth = getCardWidth();
       slider.scrollBy({
