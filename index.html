@@ -43,6 +43,53 @@
   <meta name="twitter:title" content="Web-Thunder | Сайты, которые гремят">
   <meta name="twitter:description" content="Создаю сайты, которые приносят прибыль с первого дня.">
   <meta name="twitter:image" content="https://i.postimg.cc/mkm4phxN/1756110974.jpg">
+
+  <!-- === ДОБАВЛЕННЫЕ СТИЛИ ДЛЯ УНИВЕРСАЛЬНОЙ НАВИГАЦИИ === -->
+  <style>
+    /* === УНИВЕРСАЛЬНАЯ НАВИГАЦИЯ ПРОЕКТОВ === */
+    .projects-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+      padding: 0 1rem;
+    }
+
+    .nav-btn {
+      background: rgba(0, 238, 255, 0.1);
+      border: 2px solid #00eeff;
+      color: #00eeff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .nav-btn:hover {
+      background: #00eeff;
+      color: #0a0a0a;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 238, 255, 0.3);
+    }
+
+    /* Скрываем текстовые стрелки на мобильных, оставляем только символы */
+    @media (max-width: 768px) {
+      .desktop-arrow {
+        display: none;
+      }
+    }
+
+    /* На десктопе делаем кнопки крупнее */
+    @media (min-width: 769px) {
+      .nav-btn {
+        padding: 0.85rem 2rem;
+        font-size: 1.1rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Звёзды на фоне -->
@@ -306,10 +353,15 @@
         </div>
 
       </div>
-      <!-- Кнопки навигации (видны только на мобильных) -->
-      <div class="mobile-nav">
-        <button id="prevProject" class="nav-btn">‹ Предыдущий</button>
-        <button id="nextProject" class="nav-btn">Следующий ›</button>
+
+      <!-- Универсальные кнопки навигации (видны на всех устройствах) -->
+      <div class="projects-nav">
+        <button id="prevProject" class="nav-btn" aria-label="Предыдущий проект">
+          <span class="desktop-arrow">← </span>‹ Предыдущий
+        </button>
+        <button id="nextProject" class="nav-btn" aria-label="Следующий проект">
+          Следующий ›<span class="desktop-arrow"> →</span>
+        </button>
       </div>
     </div>
   </section>
