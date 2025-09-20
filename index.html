@@ -227,108 +227,107 @@
     <div class="container">
       <h2 class="section-title">Портфолио</h2>
       <p class="projects-subtitle">Проекты, которые <strong>запускали бизнес</strong></p>
-      <div class="projects-slider" id="projectsSlider">
-        <!-- Тур-агентство -->
-        <div class="project-card" data-project="travel">
-          <img src="https://i.postimg.cc/MT4Kbg6d/1.jpg" alt="Тур-агентство">
-          <div class="project-info">
-            <h3>Тур-агентство "Аюрведа Тур"</h3>
-            <p>Сайт с бронированием туров и анимацией природы</p>
+
+      <div class="projects-slider-container">
+        <button id="prevProject" class="nav-btn slider-btn prev"><</button>
+        <div class="projects-slider" id="projectsSlider">
+          <!-- Тур-агентство -->
+          <div class="project-card" data-project="travel">
+            <img src="https://i.postimg.cc/MT4Kbg6d/1.jpg" alt="Тур-агентство">
+            <div class="project-info">
+              <h3>Тур-агентство "Аюрведа Тур"</h3>
+              <p>Сайт с бронированием туров и анимацией природы</p>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-outline btn-gallery" onclick="openModal('travel')">Посмотреть галерею</button>
+            </div>
           </div>
-          <div class="project-actions">
-            <button class="btn btn-outline btn-gallery" onclick="openModal('travel')">Посмотреть галерею</button>
+
+          <!-- Стоматология -->
+          <div class="project-card" data-project="dentist">
+            <img src="https://i.postimg.cc/g02R2wgR/1.jpg" alt="Стоматология">
+            <div class="project-info">
+              <h3>Стоматология "Дентикс+"</h3>
+              <p>Клиника с онлайн-записью</p>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-outline btn-gallery" onclick="openModal('dentist')">Посмотреть галерею</button>
+            </div>
+          </div>
+
+          <!-- Фитнес-тренер -->
+          <div class="project-card" data-project="trainer">
+            <img src="https://i.postimg.cc/MThj59qb/1.jpg" alt="Персональный тренер">
+            <div class="project-info">
+              <h3>Фитнес-тренер Альмир Мусаев</h3>
+              <p>Сайт-визитка с покупкой абонемента</p>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-outline btn-gallery" onclick="openModal('trainer')">Посмотреть галерею</button>
+            </div>
+          </div>
+
+          <!-- Салон красоты -->
+          <div class="project-card" data-project="beauty">
+            <img src="https://i.postimg.cc/QdBJN5Yj/1.png" alt="Салон красоты Aura Beauty">
+            <div class="project-info">
+              <h3>Салон красоты "Aura Beauty"</h3>
+              <p>Сайт с онлайн-записью и каталогом услуг</p>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-outline btn-gallery" onclick="openModal('beauty')">Посмотреть галерею</button>
+            </div>
+          </div>
+
+          <!-- Детский лагерь -->
+          <div class="project-card" data-project="camp">
+            <img src="https://i.postimg.cc/pdCTgcQr/1.png" alt="Детский лагерь HappyKids">
+            <div class="project-info">
+              <h3>Детский лагерь "HappyKids"</h3>
+              <p>Яркий сайт с формой бронирования смен</p>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-outline btn-gallery" onclick="openModal('camp')">Посмотреть галерею</button>
+            </div>
+          </div>
+
+          <!-- Вебинар -->
+          <div class="project-card" data-project="webinar">
+            <img src="https://i.postimg.cc/FH91DQc8/image.png" alt="Лендинг для вебинара">
+            <div class="project-info">
+              <h3>Вебинар "Онлайн-профессии"</h3>
+              <p>Лендинг с формой регистрации</p>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-outline btn-gallery" onclick="openModal('webinar')">Посмотреть галерею</button>
+            </div>
+          </div>
+
+          <!-- Интернет-магазин мебели -->
+          <div class="project-card" data-project="furniture">
+            <img src="https://i.postimg.cc/Y9xsNYwJ/1.png" alt="Мебель Havel">
+            <div class="project-info">
+              <h3>Интернет-магазин мебели "Havel"</h3>
+              <p>Каталог с фильтрами и корзиной</p>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-outline btn-gallery" onclick="openModal('furniture')">Посмотреть галерею</button>
+            </div>
+          </div>
+
+          <!-- Салон маникюра -->
+          <div class="project-card" data-project="manicure">
+            <img src="https://i.postimg.cc/KY2f9jQF/12.png" alt="Салон маникюра Beauty Oasis">
+            <div class="project-info">
+              <h3>Салон маникюра "Beauty Oasis"</h3>
+              <p>Сайт-лендинг с онлайн-записью</p>
+            </div>
+            <div class="project-actions">
+              <button class="btn btn-outline btn-gallery" onclick="openModal('manicure')">Посмотреть галерею</button>
+            </div>
           </div>
         </div>
-
-        <!-- Стоматология -->
-        <div class="project-card" data-project="dentist">
-          <img src="https://i.postimg.cc/g02R2wgR/1.jpg" alt="Стоматология">
-          <div class="project-info">
-            <h3>Стоматология "Дентикс+"</h3>
-            <p>Клиника с онлайн-записью</p>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-outline btn-gallery" onclick="openModal('dentist')">Посмотреть галерею</button>
-          </div>
-        </div>
-
-        <!-- Фитнес-тренер -->
-        <div class="project-card" data-project="trainer">
-          <img src="https://i.postimg.cc/MThj59qb/1.jpg" alt="Персональный тренер">
-          <div class="project-info">
-            <h3>Фитнес-тренер Альмир Мусаев</h3>
-            <p>Сайт-визитка с покупкой абонемента</p>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-outline btn-gallery" onclick="openModal('trainer')">Посмотреть галерею</button>
-          </div>
-        </div>
-
-        <!-- Салон красоты -->
-        <div class="project-card" data-project="beauty">
-          <img src="https://i.postimg.cc/QdBJN5Yj/1.png" alt="Салон красоты Aura Beauty">
-          <div class="project-info">
-            <h3>Салон красоты "Aura Beauty"</h3>
-            <p>Сайт с онлайн-записью и каталогом услуг</p>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-outline btn-gallery" onclick="openModal('beauty')">Посмотреть галерею</button>
-          </div>
-        </div>
-
-        <!-- Детский лагерь -->
-        <div class="project-card" data-project="camp">
-          <img src="https://i.postimg.cc/pdCTgcQr/1.png" alt="Детский лагерь HappyKids">
-          <div class="project-info">
-            <h3>Детский лагерь "HappyKids"</h3>
-            <p>Яркий сайт с формой бронирования смен</p>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-outline btn-gallery" onclick="openModal('camp')">Посмотреть галерею</button>
-          </div>
-        </div>
-
-        <!-- Вебинар -->
-        <div class="project-card" data-project="webinar">
-          <img src="https://i.postimg.cc/FH91DQc8/image.png" alt="Лендинг для вебинара">
-          <div class="project-info">
-            <h3>Вебинар "Онлайн-профессии"</h3>
-            <p>Лендинг с формой регистрации</p>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-outline btn-gallery" onclick="openModal('webinar')">Посмотреть галерею</button>
-          </div>
-        </div>
-
-        <!-- Интернет-магазин мебели -->
-        <div class="project-card" data-project="furniture">
-          <img src="https://i.postimg.cc/Y9xsNYwJ/1.png" alt="Мебель Havel">
-          <div class="project-info">
-            <h3>Интернет-магазин мебели "Havel"</h3>
-            <p>Каталог с фильтрами и корзиной</p>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-outline btn-gallery" onclick="openModal('furniture')">Посмотреть галерею</button>
-          </div>
-        </div>
-
-        <!-- Салон маникюра -->
-        <div class="project-card" data-project="manicure">
-          <img src="https://i.postimg.cc/KY2f9jQF/12.png" alt="Салон маникюра Beauty Oasis">
-          <div class="project-info">
-            <h3>Салон маникюра "Beauty Oasis"</h3>
-            <p>Сайт-лендинг с онлайн-записью</p>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-outline btn-gallery" onclick="openModal('manicure')">Посмотреть галерею</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Кнопки навигации (видны только на мобильных) -->
-      <div class="mobile-nav">
-        <button id="prevProject" class="nav-btn">‹ Предыдущий</button>
-        <button id="nextProject" class="nav-btn">Следующий ›</button>
+        <button id="nextProject" class="nav-btn slider-btn next">></button>
       </div>
     </div>
   </section>
