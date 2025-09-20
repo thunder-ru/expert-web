@@ -106,18 +106,26 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // === МОБИЛЬНАЯ НАВИГАЦИЯ ПО ПОРТФОЛИО ===
+  // === УПРАВЛЕНИЕ ПРОКРУТКОЙ ПОРТФОЛИО ===
   const slider = document.getElementById('projectsSlider');
   const prevBtn = document.getElementById('prevProject');
   const nextBtn = document.getElementById('nextProject');
-  const cardWidth = 320 + 32;
+  const cardWidth = 320 + 32; // ширина карточки + gap
 
-  prevBtn.addEventListener('click', () => {
-    slider.scrollLeft -= cardWidth;
-  });
+  if (prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => {
+      slider.scrollLeft -= cardWidth * 2;
+    });
 
-  nextBtn.addEventListener('click', () => {
-    slider.scrollLeft += cardWidth;
+    nextBtn.addEventListener('click', () => {
+      slider.scrollLeft += cardWidth * 2;
+    });
+  }
+
+  // Прокрутка колесиком мыши
+  slider.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    slider.scrollLeft += e.deltaY * 2;
   });
 
   // === МОБИЛЬНОЕ МЕНЮ ===
