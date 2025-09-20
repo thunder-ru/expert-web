@@ -1,468 +1,377 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Web-Thunder | Сайты, которые гремят</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <!-- === STRUCTURED DATA (фото в поиске) === -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Данил Росанов",
-    "url": "https://web-thunder.ru",
-    "image": "https://i.postimg.cc/mkm4phxN/1756110974.jpg",
-    "jobTitle": "Веб-архитектор бизнеса",
-    "description": "Создаю сайты, которые приносят прибыль с первого дня. Быстро, надёжно, без лишнего шума.",
-    "sameAs": [
-      "https://t.me/overgrand"
-    ],
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Web-Thunder"
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "https://web-thunder.github.io/web-thunder"
+document.addEventListener('DOMContentLoaded', function () {
+  const thunderSound = document.getElementById('thunderSound');
+  const navbar = document.querySelector('.navbar');
+  const cursorGlow = document.querySelector('.cursor-glow');
+  const secretOffer = document.getElementById('secretOffer');
+
+  // === Меню при скролле ===
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+
+    // === Плавное появление блоков при скролле ===
+    document.querySelectorAll('.about-content, .service-card, .project-card, .quotes blockquote').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.8 && !el.classList.contains('visible')) {
+        el.classList.add('visible');
+      }
+    });
+  });
+
+  // === Молнии и гром ===
+  function playThunder() {
+    if (thunderSound) {
+      thunderSound.currentTime = 0;
+      thunderSound.volume = 0.3;
+      thunderSound.play().catch(() => {});
     }
   }
-  </script>
-  <!-- === OPEN GRAPH (для соцсетей и поисковиков) === -->
-  <meta property="og:site_name" content="Web-Thunder">
-  <meta property="og:title" content="Сайт, который работает на вас с первого дня">
-  <meta property="og:description" content="Я — Веб-Дизайнер. Собираю сайты как конструктор: быстро, надёжно, с фокусом на прибыль.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://web-thunder.github.io/web-thunder">
-  <meta property="og:image" content="https://i.postimg.cc/mkm4phxN/1756110974.jpg">
-  <meta property="og:image:alt" content="Данил Росанов — веб-архитектор бизнеса">
-  <!-- === TWITTER CARD === -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Web-Thunder | Сайты, которые гремят">
-  <meta name="twitter:description" content="Создаю сайты, которые приносят прибыль с первого дня.">
-  <meta name="twitter:image" content="https://i.postimg.cc/mkm4phxN/1756110974.jpg">
 
-  <!-- === СТИЛИ ДЛЯ УНИВЕРСАЛЬНОЙ НАВИГАЦИИ === -->
-  <style>
-    /* === УНИВЕРСАЛЬНАЯ НАВИГАЦИЯ ПРОЕКТОВ === */
-    .projects-nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-top: 2rem;
-      padding: 0 1rem;
+  setInterval(() => {
+    if (Math.random() < 0.3) {
+      playThunder();
     }
+  }, 5000);
 
-    .nav-btn {
-      background: rgba(0, 238, 255, 0.1);
-      border: 2px solid #00eeff;
-      color: #00eeff;
-      padding: 0.75rem 1.5rem;
-      border-radius: 50px;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      white-space: nowrap;
+  // === Луч молнии за курсором ===
+  document.addEventListener('mousemove', (e) => {
+    if (cursorGlow) {
+      cursorGlow.style.left = e.clientX + 'px';
+      cursorGlow.style.top = e.clientY + 'px';
     }
+  });
 
-    .nav-btn:hover {
-      background: #00eeff;
-      color: #0a0a0a;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(0, 238, 255, 0.3);
-    }
+  // === СЧЁТЧИКИ ===
+  const counters = {
+    clients: { el: document.getElementById('clientsCounter'), target: 25 },
+    projects: { el: document.getElementById('projectsCounter'), target: 15 },
+    conversion: { el: document.getElementById('conversionCounter'), target: 70 },
+    speed: { el: document.getElementById('speedCounter'), target: 0.8 }
+  };
 
-    /* Скрываем текстовые стрелки на мобильных, оставляем только символы */
-    @media (max-width: 768px) {
-      .desktop-arrow {
-        display: none;
+  Object.keys(counters).forEach(key => {
+    const counter = counters[key];
+    if (!counter.el) return;
+
+    let count = 0;
+    const target = counter.target;
+    const duration = 1500;
+    const stepTime = duration / (target * 10);
+
+    const timer = setInterval(() => {
+      count += target / (target * 10);
+      if (key === 'speed') {
+        counter.el.textContent = count.toFixed(1);
+      } else {
+        counter.el.textContent = Math.floor(count);
       }
-    }
-
-    /* На десктопе делаем кнопки крупнее */
-    @media (min-width: 769px) {
-      .nav-btn {
-        padding: 0.85rem 2rem;
-        font-size: 1.1rem;
+      if (count >= target) {
+        clearInterval(timer);
+        if (key === 'speed') {
+          counter.el.textContent = target.toFixed(1);
+        } else {
+          counter.el.textContent = target;
+        }
       }
+    }, stepTime);
+  });
+
+  const projectCounterEl = document.getElementById('projectCounter');
+  if (projectCounterEl) {
+    let count = 0;
+    const target = 15;
+    const duration = 1500;
+    const stepTime = duration / (target * 10);
+
+    const timer = setInterval(() => {
+      count += 1;
+      projectCounterEl.textContent = Math.floor(count);
+      if (count >= target) {
+        clearInterval(timer);
+        projectCounterEl.textContent = target;
+      }
+    }, stepTime);
+  }
+
+  // === СЕКРЕТНОЕ ПРЕДЛОЖЕНИЕ ПРИ НАВЕДЕНИИ НА @overgrand ===
+  document.getElementById('telegram-link')?.addEventListener('mouseenter', () => {
+    if (secretOffer) {
+      secretOffer.classList.add('show');
+      setTimeout(() => {
+        secretOffer.classList.remove('show');
+      }, 4000);
     }
-  </style>
-</head>
-<body>
-  <!-- Звёзды на фоне -->
-  <div class="stars-container">
-    <div class="star star-1"></div>
-    <div class="star star-2"></div>
-    <div class="star star-3"></div>
-    <div class="star star-4"></div>
-    <div class="star star-5"></div>
-    <div class="star star-6"></div>
-    <div class="star star-7"></div>
-    <div class="star star-8"></div>
-    <div class="star star-9"></div>
-    <div class="star star-10"></div>
-    <div class="star star-11"></div>
-    <div class="star star-12"></div>
-    <div class="star star-13"></div>
-    <div class="star star-14"></div>
-    <div class="star star-15"></div>
-    <div class="star star-16"></div>
-    <div class="star star-17"></div>
-    <div class="star star-18"></div>
-    <div class="star star-19"></div>
-    <div class="star star-20"></div>
-  </div>
-  <!-- Молнии -->
-  <div class="lightning-container">
-    <div class="lightning lightning-left"></div>
-    <div class="lightning lightning-right"></div>
-  </div>
-  <!-- Луч молнии за курсором -->
-  <div class="cursor-glow"></div>
-  <!-- Секретное предложение -->
-  <div id="secretOffer" class="secret-offer">
-    🔥 Скидка 10% для первых 3 клиентов этой недели! Напишите в Telegram — и получите прототип бесплатно.
-  </div>
-  <!-- Меню -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="#" class="nav-logo">⚡ Web-Thunder</a>
-      <ul class="nav-menu">
-        <li class="nav-item"><a href="#about" class="nav-link">О нас</a></li>
-        <li class="nav-item"><a href="#projects" class="nav-link">Портфолио</a></li>
-        <li class="nav-item"><a href="#contact" class="nav-link">Контакты</a></li>
-      </ul>
-      <div class="nav-toggle" id="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </div>
-    </div>
-  </nav>
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1 class="hero-title">
-        <span class="gradient-text">Сайт, который работает на вас</span><br>
-        <span class="highlight">с первого дня</span>
-      </h1>
-      <p class="hero-subtitle">
-        Я — <strong>веб-разработчик</strong>. Собираю сайты как конструктор: быстро, надёжно, с фокусом на прибыль и на красивый код.
-      </p>
-    </div>
-  </section>
-  <!-- Тикеры с результатами -->
-  <section class="result-tickers">
-    <div class="container">
-      <div class="ticker-item">
-        <div class="ticker-number" id="clientsCounter">0</div>
-        <div class="ticker-label">клиентов</div>
-      </div>
-      <div class="ticker-item">
-        <div class="ticker-number" id="projectsCounter">0</div>
-        <div class="ticker-label">проектов</div>
-      </div>
-      <div class="ticker-item">
-        <div class="ticker-number" id="conversionCounter">0</div>
-        <div class="ticker-label">+ конверсии</div>
-      </div>
-      <div class="ticker-item">
-        <div class="ticker-number" id="speedCounter">0</div>
-        <div class="ticker-label">сек загрузка</div>
-      </div>
-    </div>
-  </section>
-  <!-- About Section -->
-  <section id="about" class="about">
-    <div class="container">
-      <h2 class="section-title">Я пишу не только код.<br>Я создаю прибыль</h2>
-      <div class="about-content">
-        <p>
-          За последние 2 года я реализовал <strong><span id="projectCounter">0</span>+ проектов</strong> — от лендингов до интернет-магазинов.
-        </p>
-        <p>
-          Мой подход: <strong>максимум пользы, минимум шума</strong>.
-        </p>
-        <p>
-          Я не гонюсь за сложностью. Я создаю сайты, которые:
-        </p>
-        <ul class="features-list">
-          <li>✅ Приносят клиентов с первого дня</li>
-          <li>✅ Загружаются за секунду</li>
-          <li>✅ Выглядят идеально на любом устройстве</li>
-          <li>✅ Увеличивают конверсию</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-  <!-- Skills Section -->
-  <section class="skills">
-    <div class="container">
-      <h2 class="section-title">Мои инструменты</h2>
-      <div class="skills-grid">
-        <div class="skill-card neon-card">
-          <i class="fas fa-th-large"></i>
-          <h3>Конструкторы</h3>
-          <p>Tilda, Craftum, Motor, Bitrix</p>
-        </div>
-        <div class="skill-card neon-card">
-          <i class="fab fa-html5"></i>
-          <h3>HTML/CSS</h3>
-          <p>Pixel perfect, адаптив</p>
-        </div>
-        <div class="skill-card neon-card">
-          <i class="fab fa-js"></i>
-          <h3>JavaScript</h3>
-          <p>Интерактив, анимации</p>
-        </div>
-        <div class="skill-card neon-card">
-          <i class="fas fa-search"></i>
-          <h3>SEO</h3>
-          <p>Трафик из поиска</p>
-        </div>
-        <div class="skill-card neon-card">
-          <i class="fas fa-chart-line"></i>
-          <h3>Аналитика</h3>
-          <p>Google, Яндекс.Метрика</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Services Section -->
-  <section class="services">
-    <div class="container">
-      <h2 class="section-title">Услуги</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <h3>Сайт под ключ</h3>
-          <p>От дизайна до запуска. Готовый сайт за 5–7 дней.</p>
-        </div>
-        <div class="service-card">
-          <h3>Верстка макетов</h3>
-          <p>Pixel perfect, адаптив, кроссбраузерность.</p>
-        </div>
-        <div class="service-card">
-          <h3>Поддержка сайтов</h3>
-          <p>Обновления, баги, доработки — я всегда на связи.</p>
-        </div>
-        <div class="service-card">
-          <h3>Оптимизация и SEO</h3>
-          <p>Ускорение, индексация, повышение позиций.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Projects Section -->
-  <section id="projects" class="projects">
-    <div class="container">
-      <h2 class="section-title">Портфолио</h2>
-      <p class="projects-subtitle">Последние проекты, которые <strong>запускали бизнес</strong></p>
-      <div class="projects-slider" id="projectsSlider">
-        <div class="project-card" data-project="travel">
-          <img src="https://i.postimg.cc/MT4Kbg6d/1.jpg" alt="Тур-агентство">
-          <div class="project-info">
-            <h3>Тур-агентство "Аюрведа Тур"</h3>
-            <p>Сайт с бронированием туров и анимацией природы</p>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-outline btn-gallery" onclick="openModal('travel')">Посмотреть галерею</button>
-          </div>
-        </div>
-        <div class="project-card" data-project="dentist">
-          <img src="https://i.postimg.cc/g02R2wgR/1.jpg" alt="Стоматология">
-          <div class="project-info">
-            <h3>Стоматология "Дентикс+"</h3>
-            <p>Клиника с онлайн-записью</p>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-outline btn-gallery" onclick="openModal('dentist')">Посмотреть галерею</button>
-          </div>
-        </div>
-        <div class="project-card" data-project="trainer">
-          <img src="https://i.postimg.cc/MThj59qb/1.jpg" alt="Персональный тренер">
-          <div class="project-info">
-            <h3>Фитнес-тренер Альмир Мусаев</h3>
-            <p>Сайт-визитка с покупкой абонемента</p>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-outline btn-gallery" onclick="openModal('trainer')">Посмотреть галерею</button>
-          </div>
-        </div>
+  });
 
-        <!-- === САЛОН КРАСОТЫ === -->
-        <div class="project-card" data-project="beauty">
-          <img src="https://i.postimg.cc/QdBJN5Yj/1.png" alt="Салон красоты">
-          <div class="project-info">
-            <h3>Салон красоты "Aura Beauty"</h3>
-            <p>Сайт с онлайн-записью и каталогом услуг</p>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-outline btn-gallery" onclick="openModal('beauty')">Посмотреть галерею</button>
-          </div>
-        </div>
+  // === МОБИЛЬНАЯ НАВИГАЦИЯ ПО ПОРТФОЛИО ===
+  const slider = document.getElementById('projectsSlider');
+  const prevBtn = document.getElementById('prevProject');
+  const nextBtn = document.getElementById('nextProject');
+  const cardWidth = 320 + 32;
 
-        <!-- === ДЕТСКИЙ ЛАГЕРЬ === -->
-        <div class="project-card" data-project="camp">
-          <img src="https://i.postimg.cc/pdCTgcQr/1.png" alt="Детский лагерь">
-          <div class="project-info">
-            <h3>Детский лагерь "HappyKids"</h3>
-            <p>Яркий сайт с формой бронирования смен</p>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-outline btn-gallery" onclick="openModal('camp')">Посмотреть галерею</button>
-          </div>
-        </div>
+  prevBtn.addEventListener('click', () => {
+    slider.scrollLeft -= cardWidth;
+  });
 
-        <!-- === ВИЗИТКА ДЛЯ ВЕБИНАРА === -->
-        <div class="project-card" data-project="webinar">
-          <img src="https://i.postimg.cc/FH91DQc8/image.png" alt="Визитка для вебинара">
-          <div class="project-info">
-            <h3>Визитка для вебинара</h3>
-            <p>Лендинг с формой регистрации</p>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-outline btn-gallery" onclick="openModal('webinar')">Посмотреть галерею</button>
-          </div>
-        </div>
+  nextBtn.addEventListener('click', () => {
+    slider.scrollLeft += cardWidth;
+  });
 
-        <!-- === МАГАЗИН МЕБЕЛИ === -->
-        <div class="project-card" data-project="furniture">
-          <img src="https://i.postimg.cc/Y9xsNYwJ/1.png" alt="Магазин мебели">
-          <div class="project-info">
-            <h3>Интернет-магазин "Havel"</h3>
-            <p>Каталог с фильтрами и корзиной</p>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-outline btn-gallery" onclick="openModal('furniture')">Посмотреть галерею</button>
-          </div>
-        </div>
+  // === МОБИЛЬНОЕ МЕНЮ ===
+  const mobileMenu = document.getElementById('mobile-menu');
+  const navMenu = document.querySelector('.nav-menu');
 
-        <!-- === САЛОН МАНИКЮРА === -->
-        <div class="project-card" data-project="manicure">
-          <img src="https://i.postimg.cc/KY2f9jQF/12.png" alt="Салон маникюра">
-          <div class="project-info">
-            <h3>Салон маникюра "Beauty Oasis"</h3>
-            <p>Сайт лендинг и онлайн-записью</p>
-          </div>
-          <div class="project-actions">
-            <button class="btn btn-outline btn-gallery" onclick="openModal('manicure')">Посмотреть галерею</button>
-          </div>
-        </div>
+  if (mobileMenu && navMenu) {
+    mobileMenu.addEventListener('click', function () {
+      mobileMenu.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+  }
 
-      </div>
+  // === ДАННЫЕ ПРОЕКТОВ ===
+  const projectData = {
+    travel: {
+      images: [
+        "https://i.postimg.cc/8kvBPsBf/1.jpg",
+        "https://i.postimg.cc/zG02QPG8/2.jpg",
+        "https://i.postimg.cc/xdB5DrDD/3.jpg",
+        "https://i.postimg.cc/9FcpjtSM/4.jpg",
+        "https://i.postimg.cc/bwBHkXvD/5.jpg",
+        "https://i.postimg.cc/MGf0Yscs/6.jpg"
+      ],
+      caption: "Тур-агентство «Горизонт» — сайт с анимированными фонами и бронированием туров"
+    },
+    dentist: {
+      images: [
+        "https://i.postimg.cc/GmFkPfSL/1.jpg",
+        "https://i.postimg.cc/5tgJdxjX/2.jpg",
+        "https://i.postimg.cc/D0J3XL6G/3.jpg",
+        "https://i.postimg.cc/8k9SVXkm/4.jpg",
+        "https://i.postimg.cc/zf0s20PW/6.jpg",
+        "https://i.postimg.cc/g2dcft4B/7.jpg",
+        "https://i.postimg.cc/vm2QxYyp/8.jpg",
+        "https://i.postimg.cc/DfX2m3MM/9.jpg"
+      ],
+      caption: "Стоматология «Улыбка+» — современный сайт с 3D-эффектами и онлайн-записью"
+    },
+    trainer: {
+      images: [
+        "https://i.postimg.cc/qvP8vZHV/1.jpg",
+        "https://i.postimg.cc/YSQQGft4/2.jpg",
+        "https://i.postimg.cc/fLZmxtb8/3.jpg",
+        "https://i.postimg.cc/MTDRt6Mq/5.jpg",
+        "https://i.postimg.cc/8PsWBV1g/image.jpg"
+      ],
+      caption: "Фитнес-тренер Анна — сайт с видео и программами тренировок"
+    },
+    beauty: {
+      images: [
+        "https://i.postimg.cc/QdBJN5Yj/1.png",
+        "https://i.postimg.cc/4Njh50wT/2.png",
+        "https://i.postimg.cc/1zQVxNLC/3.png",
+        "https://i.postimg.cc/DZfW03f1/4.png",
+        "https://i.postimg.cc/9QGzBQrG/5.png",
+        "https://i.postimg.cc/TPf1NvDB/6.png"
+      ],
+      caption: "Салон красоты «Aura Beauty» — сайт с онлайн-записью и каталогом услуг"
+    },
+    camp: {
+      images: [
+        "https://i.postimg.cc/pdCTgcQr/1.png",
+        "https://i.postimg.cc/yxg83VM3/2.png",
+        "https://i.postimg.cc/cCp4QpW9/3.png",
+        "https://i.postimg.cc/y8z8WCvW/4.png",
+        "https://i.postimg.cc/sg9DhHNm/5.png",
+        "https://i.postimg.cc/Ss5yhBnS/6.png",
+        "https://i.postimg.cc/Wb0J5nyF/7.png",
+        "https://i.postimg.cc/qvL6T74p/8.png",
+        "https://i.postimg.cc/QtRHb9kJ/9.png"
+      ],
+      caption: "Детский лагерь «HappyKids» — яркий сайт с формой бронирования смен"
+    },
+    webinar: {
+      images: [
+        "https://i.postimg.cc/FH91DQc8/image.png"
+      ],
+      caption: "Визитка для вебинара «Онлайн-профессии» — лендинг с формой регистрации"
+    },
+    furniture: {
+      images: [
+        "https://i.postimg.cc/Y9xsNYwJ/1.png",
+        "https://i.postimg.cc/Kjqpwbjf/2.png",
+        "https://i.postimg.cc/v83Kcrhn/3.png",
+        "https://i.postimg.cc/kXGp82Yp/4.png",
+        "https://i.postimg.cc/g26tSfWy/5.png",
+        "https://i.postimg.cc/fbc2ZmkJ/6.png"
+      ],
+      caption: "Интернет-магазин мебели «Havel» — каталог с фильтрами и корзиной"
+    },
+    manicure: {
+      images: [
+        "https://i.postimg.cc/KY2f9jQF/12.png",
+        "https://i.postimg.cc/nrCGsDVK/2.png",
+        "https://i.postimg.cc/Y9y1wCNv/3.png",
+        "https://i.postimg.cc/WpCMWtbK/4.png",
+        "https://i.postimg.cc/YCwQ7VFz/5.png",
+        "https://i.postimg.cc/k5J86bfV/6.png",
+        "https://i.postimg.cc/1zvFp3jv/7.png",
+        "https://i.postimg.cc/j5C7vrVt/8.png"
+      ],
+      caption: "Салон маникюра «Beauty Oasis» — сайт-лендинг с онлайн-записью"
+    }
+  };
 
-      <!-- Универсальные кнопки навигации (видны на всех устройствах) -->
-      <div class="projects-nav">
-        <button id="prevProject" class="nav-btn" aria-label="Предыдущий проект">
-          <span class="desktop-arrow">← </span>‹ Предыдущий
-        </button>
-        <button id="nextProject" class="nav-btn" aria-label="Следующий проект">
-          Следующий ›<span class="desktop-arrow"> →</span>
-        </button>
-      </div>
-    </div>
-  </section>
-  <!-- Mistakes Section -->
-  <section class="mistakes-thunder">
-    <div class="container">
-      <h2 class="section-title">5 ошибок при заказе сайта,<br>которые убивают результат</h2>
-      <p class="mistakes-subtitle"></p>
-      <div class="mistakes-grid">
-        <div class="mistake-card-t" data-mistake="1">
-          <div class="mistake-icon">❌</div>
-          <h3>Красивый дизайн вместо результата</h3>
-          <p>Сайт может быть красивым, но если он не приносит клиентов — это просто картинка. Я создаю сайты, которые работают.</p>
-        </div>
-        <div class="mistake-card-t" data-mistake="2">
-          <div class="mistake-icon">🐢</div>
-          <h3>Медленная загрузка</h3>
-          <p>Если сайт грузится дольше 2 секунд — 50% уйдут. Все мои сайты загружаются за 0.8–1.2 сек.</p>
-        </div>
-        <div class="mistake-card-t" data-mistake="3">
-          <div class="mistake-icon">📱</div>
-          <h3>Нет адаптации под мобильные</h3>
-          <p>80% заходят с телефона. Если сайт не адаптирован — вы теряете клиентов. Все мои сайты идеальны на любом устройстве.</p>
-        </div>
-        <div class="mistake-card-t" data-mistake="4">
-          <div class="mistake-icon">🔇</div>
-          <h3>Нет CTA (призыва к действию)</h3>
-          <p>Кнопка "Заказать" должна кричать. Если нет CTA — нет и заявок. Я проектирую сайты так, чтобы пользователь действовал.</p>
-        </div>
-        <div class="mistake-card-t" data-mistake="5">
-          <div class="mistake-icon">💻</div>
-          <h3>Думают, что сайт = разработка</h3>
-          <p>Сайт — это инструмент роста. Я не пишу код. Я создаю прибыль, трафик и доверие.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- Testimonials -->
-  <section class="testimonials">
-    <div class="container">
-      <h2 class="section-title">Что говорят клиенты</h2>
-      <div class="quotes">
-        <blockquote>
-          "Запустили сайт за 5 дней. Уже через неделю — 60 заявок. Web-Thunder — это не просто разработка, это рост бизнеса."
-        </blockquote>
-        <blockquote>
-          "Работал с 3 разработчиками. Только Web-Thunder сделал всё без косяков и в срок."
-        </blockquote>
-        <blockquote>
-          "Сайт загружается за 0.8 сек. SEO в топе. Конверсия выросла на 50%."
-        </blockquote>
-      </div>
-    </div>
-  </section>
-  <!-- Contact Section -->
-  <section id="contact" class="contact">
-    <div class="container">
-      <h2 class="section-title">Готовы к запуску?</h2>
-      <p>Напишите — и через 24 часа у вас будет <strong>прототип сайта</strong> или <strong>коммерческое предложение</strong>.</p>
-      <div class="contact-buttons">
-        <a href="mailto:rosanov.danila2016@yandex.ru" class="btn btn-outline">Написать на почту</a>
-        <a href="https://t.me/overgrand" target="_blank" class="btn btn-primary">Написать в Telegram</a>
-        <a href="https://wa.me/79036254250" target="_blank" class="btn btn-whatsapp">Написать в WhatsApp</a>
-      </div>
-      <p class="contact-info">
-        <i class="fas fa-paper-plane"></i> Telegram: <a href="https://t.me/overgrand" target="_blank" id="telegram-link" style="text-decoration: underline; color: #00eeff;">@overgrand</a><br>
-        <i class="fas fa-envelope"></i> Email: <a href="mailto:rosanov.danila2016@yandex.ru">rosanov.danila2016@yandex.ru</a>
-      </p>
-    </div>
-  </section>
-  <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2025 Web-Thunder. Сайты, которые <strong>грозят</strong> успехом.</p>
-  </footer>
-  <!-- Плавающие кнопки -->
-  <a href="https://t.me/overgrand" target="_blank" class="floating-btn telegram" data-tooltip="Telegram">
-    <span class="btn-label">TG</span>
-  </a>
-  <a href="https://wa.me/79036254250" target="_blank" class="floating-btn whatsapp" data-tooltip="WhatsApp">
-    <span class="btn-label">WA</span>
-  </a>
-  <!-- Онлайн-статус -->
-  <div class="online-status">
-    <span class="status-dot"></span> В сети — отвечаю в течение 15 минут
-  </div>
-  <!-- Модальное окно -->
-  <div id="imageModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <div class="modal-vertical-gallery">
-        <button class="gallery-btn up" onclick="prevImage()">&#10094;</button>
-        <div class="gallery-container" id="galleryContainer">
-          <div class="gallery-inner" id="galleryInner"></div>
-        </div>
-        <button class="gallery-btn down" onclick="nextImage()">&#10095;</button>
-      </div>
-      <div class="modal-caption" id="modalCaption"></div>
-    </div>
-  </div>
-  <!-- Аудио для грома -->
-  <audio id="thunderSound" src="https://assets.mixkit.co/sfx/preview/mixkit-distant-thunder-2293.mp3" preload="auto"></audio>
-  <script src="code.js"></script>
-</body>
-</html>
+  // === МОДАЛЬНОЕ ОКНО ===
+  const modal = document.getElementById("imageModal");
+  const galleryInner = document.getElementById("galleryInner");
+  const modalCaption = document.getElementById("modalCaption");
+  const galleryContainer = document.getElementById("galleryContainer");
+  let currentProjectKey = null;
+  let currentImageIndex = 0;
+
+  window.openModal = function (key) {
+    currentProjectKey = key;
+    const project = projectData[key];
+    if (!project) return;
+
+    galleryInner.innerHTML = '';
+    project.images.forEach(imgSrc => {
+      const img = document.createElement('img');
+      img.src = imgSrc.trim();
+      img.alt = "Фото проекта";
+      galleryInner.appendChild(img);
+    });
+
+    currentImageIndex = 0;
+    modalCaption.textContent = `${project.caption} (1/${project.images.length})`;
+    modal.style.display = "flex";
+    document.body.classList.add('modal-open');
+
+    setTimeout(() => {
+      modal.querySelector('.modal-content').style.opacity = "1";
+    }, 10);
+
+    scrollToCurrent();
+  };
+
+  function scrollToCurrent() {
+    const images = galleryInner.querySelectorAll('img');
+    if (images[currentImageIndex]) {
+      images[currentImageIndex].scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+  }
+
+  window.nextImage = function () {
+    const project = projectData[currentProjectKey];
+    if (!project || currentImageIndex >= project.images.length - 1) return;
+    currentImageIndex++;
+    updateCaption();
+    scrollToCurrent();
+  };
+
+  window.prevImage = function () {
+    if (currentImageIndex <= 0) return;
+    currentImageIndex--;
+    updateCaption();
+    scrollToCurrent();
+  };
+
+  function updateCaption() {
+    const project = projectData[currentProjectKey];
+    modalCaption.textContent = `${project.caption} (${currentImageIndex + 1}/${project.images.length})`;
+  }
+
+  window.closeModal = function () {
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent) {
+      modalContent.style.opacity = "0";
+    }
+    setTimeout(() => {
+      modal.style.display = "none";
+      document.body.classList.remove('modal-open');
+    }, 300);
+  };
+
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', function () {
+      const key = this.getAttribute('data-project');
+      if (key && projectData[key]) {
+        openModal(key);
+      }
+    });
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (currentProjectKey) {
+      if (e.key === "ArrowDown") nextImage();
+      if (e.key === "ArrowUp") prevImage();
+    }
+    if (e.key === "Escape") closeModal();
+  });
+
+  let startY = 0;
+  galleryContainer.addEventListener('touchstart', e => {
+    startY = e.touches[0].clientY;
+  }, { passive: true });
+
+  galleryContainer.addEventListener('touchend', e => {
+    const endY = e.changedTouches[0].clientY;
+    const diff = startY - endY;
+    if (diff > 50) nextImage();
+    if (diff < -50) prevImage();
+  }, { passive: true });
+
+  // === 3D ПОВОРОТ КАРТОЧЕК ОШИБОК ===
+  document.querySelectorAll('.mistake-card-t').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateY = (x - centerX) / 10;
+      const rotateX = (centerY - y) / 10;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+    });
+  });
+
+  // === АНИМАЦИЯ НАВЫКОВ ===
+  const skillCards = document.querySelectorAll('.neon-card');
+  const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  skillCards.forEach(card => {
+    skillObserver.observe(card);
+  });
+
+  // === ПЛАВНОЕ ПОЯВЛЕНИЕ ===
+  const fadeElements = document.querySelectorAll('.section-title, .service-card, .project-card, .quotes blockquote, .about-content, .contact p');
+  fadeElements.forEach(el => el.classList.add('fade-in'));
+
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  fadeElements.forEach(el => fadeObserver.observe(el));
+});
