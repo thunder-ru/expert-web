@@ -172,43 +172,58 @@ document.addEventListener('DOMContentLoaded', function () {
     // === НОВЫЕ ПРОЕКТЫ ===
     beauty: {
       images: [
-        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_1",
-        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_2",
-        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_3"
+        "https://i.postimg.cc/QdBJN5Yj/1.png",
+        "https://i.postimg.cc/4Njh50wT/2.png",
+        "https://i.postimg.cc/1zQVxNLC/3.png",
+        "https://i.postimg.cc/DZfW03f1/4.png",
+        "https://i.postimg.cc/9QGzBQrG/5.png",
+        "https://i.postimg.cc/TPf1NvDB/6.png"
       ],
-      caption: "Салон красоты «Лилия» — сайт с онлайн-записью и каталогом услуг"
+      caption: "Салон красоты «Aura Beauty» — сайт с онлайн-записью и каталогом услуг"
     },
     camp: {
       images: [
-        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_1",
-        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_2",
-        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_3"
+        "https://i.postimg.cc/pdCTgcQr/1.png",
+        "https://i.postimg.cc/yxg83VM3/2.png",
+        "https://i.postimg.cc/cCp4QpW9/3.png",
+        "https://i.postimg.cc/y8z8WCvW/4.png",
+        "https://i.postimg.cc/sg9DhHNm/5.png",
+        "https://i.postimg.cc/Ss5yhBnS/6.png",
+        "https://i.postimg.cc/Wb0J5nyF/7.png",
+        "https://i.postimg.cc/qvL6T74p/8.png",
+        "https://i.postimg.cc/QtRHb9kJ/9.png"
       ],
-      caption: "Детский лагерь «Солнышко» — яркий сайт с формой бронирования смен"
+      caption: "Детский лагерь «HappyKids» — яркий сайт с формой бронирования смен"
     },
     webinar: {
       images: [
-        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_1",
-        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_2"
+        "https://i.postimg.cc/FH91DQc8/image.png"
       ],
-      caption: "Визитка для вебинара «Как стать миллионером» — лендинг с формой регистрации"
+      caption: "Визитка для вебинара «Онлайн-профессии» — лендинг с формой регистрации"
     },
     furniture: {
       images: [
-        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_1",
-        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_2",
-        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_3",
-        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_4"
+        "https://i.postimg.cc/Y9xsNYwJ/1.png",
+        "https://i.postimg.cc/Kjqpwbjf/2.png",
+        "https://i.postimg.cc/v83Kcrhn/3.png",
+        "https://i.postimg.cc/kXGp82Yp/4.png",
+        "https://i.postimg.cc/g26tSfWy/5.png",
+        "https://i.postimg.cc/fbc2ZmkJ/6.png"
       ],
-      caption: "Интернет-магазин мебели «Уют» — каталог с фильтрами и корзиной"
+      caption: "Интернет-магазин мебели «Havel» — каталог с фильтрами и корзиной"
     },
     manicure: {
       images: [
-        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_1",
-        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_2",
-        "ЗАМЕНИТЕ_ЭТУ_ССЫЛКУ_НА_ФОТО_3"
+        "https://i.postimg.cc/KY2f9jQF/12.png",
+        "https://i.postimg.cc/nrCGsDVK/2.png",
+        "https://i.postimg.cc/Y9y1wCNv/3.png",
+        "https://i.postimg.cc/WpCMWtbK/4.png",
+        "https://i.postimg.cc/YCwQ7VFz/5.png",
+        "https://i.postimg.cc/k5J86bfV/6.png",
+        "https://i.postimg.cc/1zvFp3jv/7.png",
+        "https://i.postimg.cc/j5C7vrVt/8.png"
       ],
-      caption: "Салон маникюра «Арт-Ноготок» — сайт с портфолио и онлайн-записью"
+      caption: "Салон маникюра «Beauty Oasis» — сайт лендинг и онлайн-записью"
     }
   };
   // === МОДАЛЬНОЕ ОКНО ===
