@@ -122,22 +122,31 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Прокрутка колесиком мыши
-  slider.addEventListener('wheel', (e) => {
-    e.preventDefault();
-    slider.scrollLeft += e.deltaY * 2;
+  // === УПРАВЛЕНИЕ ПРОКРУТКОЙ ПОРТФОЛИО (по 1 карточке) ===
+const slider = document.getElementById('projectsSlider');
+const prevBtn = document.getElementById('prevProject');
+const nextBtn = document.getElementById('nextProject');
+
+// Ширина одной карточки + gap (320px + 32px)
+const cardWidth = 352;
+
+if (prevBtn && nextBtn) {
+  // Назад на 1 карточку
+  prevBtn.addEventListener('click', () => {
+    slider.scrollLeft -= cardWidth;
   });
 
-  // === МОБИЛЬНОЕ МЕНЮ ===
-  const mobileMenu = document.getElementById('mobile-menu');
-  const navMenu = document.querySelector('.nav-menu');
+  // Вперёд на 1 карточку
+  nextBtn.addEventListener('click', () => {
+    slider.scrollLeft += cardWidth;
+  });
+}
 
-  if (mobileMenu && navMenu) {
-    mobileMenu.addEventListener('click', function () {
-      mobileMenu.classList.toggle('active');
-      navMenu.classList.toggle('active');
-    });
-  }
+// Прокрутка колесиком (плавная)
+slider.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  slider.scrollLeft += e.deltaY * 1.5;
+});
 
   // === ДАННЫЕ ПРОЕКТОВ ===
   const projectData = {
