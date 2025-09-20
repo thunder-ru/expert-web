@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
         projectCounterEl.textContent = target;
       }
     }, stepTime);
-  }
+  });
   // === СЕКРЕТНОЕ ПРЕДЛОЖЕНИЕ ПРИ НАВЕДЕНИИ НА @overgrand ===
   document.getElementById('telegram-link')?.addEventListener('mouseenter', () => {
     if (secretOffer) {
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }, 4000);
     }
   });
-    // === УНИВЕРСАЛЬНАЯ НАВИГАЦИЯ ПО ПОРТФОЛИО (ПК + МОБИЛЬНЫЕ) ===
+  // === УНИВЕРСАЛЬНАЯ НАВИГАЦИЯ ПО ПОРТФОЛИО (ПК + МОБИЛЬНЫЕ) ===
   const slider = document.getElementById('projectsSlider');
   const prevBtn = document.getElementById('prevProject');
   const nextBtn = document.getElementById('nextProject');
