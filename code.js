@@ -44,79 +44,80 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // === ФУНКЦИЯ ИНИЦИАЛИЗАЦИИ СЧЁТЧИКОВ (только при появлении на экране) ===
-  function initCounters() {
-    const counters = {
-      clients: { el: document.getElementById('clientsCounter'), target: 34 },
-      projects: { el: document.getElementById('projectsCounter'), target: 26 },
-      conversion: { el: document.getElementById('conversionCounter'), target: 70 },
-      speed: { el: document.getElementById('speedCounter'), target: 0.8 }
-    };
+  // === ФУНКЦИЯ ИНИЦИАЛИЗАЦИИ СЧЁТЧИКОВ ===
+function initCounters() {
+  const counters = {
+    clients: { el: document.getElementById('clientsCounter'), target: 34 },
+    projects: { el: document.getElementById('projectsCounter'), target: 26 },
+    conversion: { el: document.getElementById('conversionCounter'), target: 70 },
+    speed: { el: document.getElementById('speedCounter'), target: 0.8 }
+  };
 
-    Object.keys(counters).forEach(key => {
-      const counter = counters[key];
-      if (!counter.el) return;
+  Object.keys(counters).forEach(key => {
+    const counter = counters[key];
+    if (!counter.el) return;
 
-      let count = 0;
-      const target = counter.target;
-      const duration = 2500; // ⬅️ Замедлили анимацию до 2.5 сек
-      const stepTime = duration / (target * 10);
+    let count = 0;
+    const target = counter.target;
+    const duration = 2500; // Замедлили до 2.5 сек
+    const stepTime = duration / (target * 10);
 
-      const timer = setInterval(() => {
-        count += target / (target * 10);
+    const timer = setInterval(() => {
+      count += target / (target * 10);
+      if (key === 'speed') {
+        counter.el.textContent = count.toFixed(1);
+      } else {
+        counter.el.textContent = Math.floor(count);
+      }
+      if (count >= target) {
+        clearInterval(timer);
         if (key === 'speed') {
-          counter.el.textContent = count.toFixed(1);
+          counter.el.textContent = target.toFixed(1);
         } else {
-          counter.el.textContent = Math.floor(count);
+          counter.el.textContent = target;
         }
-        if (count >= target) {
-          clearInterval(timer);
-          if (key === 'speed') {
-            counter.el.textContent = target.toFixed(1);
-          } else {
-            counter.el.textContent = target;
-          }
-        }
-      }, stepTime);
-    });
+      }
+    }, stepTime);
+  });
 
-    // === ОТДЕЛЬНЫЙ СЧЁТЧИК projectCounter (если используется) ===
-    const projectCounterEl = document.getElementById('projectCounter');
-    if (projectCounterEl) {
-      let count = 0;
-      const target = 25;
-      const duration = 2500; // ⬅️ Также замедлили
-      const stepTime = duration / (target * 10);
+  // === ОТДЕЛЬНЫЙ СЧЁТЧИК projectCounter (если используется) ===
+  const projectCounterEl = document.getElementById('projectCounter');
+  if (projectCounterEl) {
+    let count = 0;
+    const target = 25;
+    const duration = 2500;
+    const stepTime = duration / (target * 10);
 
-      const timer = setInterval(() => {
-        count += 1;
-        projectCounterEl.textContent = Math.floor(count);
-        if (count >= target) {
-          clearInterval(timer);
-          projectCounterEl.textContent = target;
-        }
-      }, stepTime);
-    }
+    const timer = setInterval(() => {
+      count += 1;
+      projectCounterEl.textContent = Math.floor(count);
+      if (count >= target) {
+        clearInterval(timer);
+        projectCounterEl.textContent = target;
+      }
+    }, stepTime);
   }
+}
 
-  // === ЗАПУСКАЕМ СЧЁТЧИКИ ТОЛЬКО ПРИ ПОЯВЛЕНИИ БЛОКА ===
-  const statsSection = document.querySelector('.stats-section'); // ⬅️ Замени на нужный селектор, если отличается
-
-  if (statsSection) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          initCounters();
-          observer.unobserve(entry.target); // Запускаем только один раз
-        }
-      });
-    }, {
-      threshold: 0.1 // Когда 10% блока видны
+// === ЗАПУСК ПРИ ПОЯВЛЕНИИ ЛЮБОГО СЧЁТЧИКА ===
+const anyCounter = document.querySelector('#clientsCounter, #projectsCounter, #conversionCounter, #speedCounter');
+if (anyCounter) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        initCounters();
+        observer.disconnect(); // Отключаем наблюдение после первого запуска
+      }
     });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px' // Запускать чуть раньше, когда счётчик почти в зоне видимости
+  });
 
-    observer.observe(statsSection);
-  }
-
+  observer.observe(anyCounter);
+} else {
+  console.warn('Ни один элемент счётчика не найден. Проверь ID: clientsCounter, projectsCounter и т.д.');
+}
   // === СЕКРЕТНОЕ ПРЕДЛОЖЕНИЕ ПРИ НАВЕДЕНИИ НА @overgrand ===
   document.getElementById('telegram-link')?.addEventListener('mouseenter', () => {
     if (secretOffer) {
