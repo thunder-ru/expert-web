@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // === СЧЁТЧИКИ ===
   const counters = {
-    clients: { el: document.getElementById('clientsCounter'), target: 25 },
-    projects: { el: document.getElementById('projectsCounter'), target: 15 },
+    clients: { el: document.getElementById('clientsCounter'), target: 34 },
+    projects: { el: document.getElementById('projectsCounter'), target: 26 },
     conversion: { el: document.getElementById('conversionCounter'), target: 70 },
     speed: { el: document.getElementById('speedCounter'), target: 0.8 }
   };
