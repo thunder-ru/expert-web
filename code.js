@@ -44,56 +44,77 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  // === СЧЁТЧИКИ ===
-  const counters = {
-    clients: { el: document.getElementById('clientsCounter'), target: 34 },
-    projects: { el: document.getElementById('projectsCounter'), target: 26 },
-    conversion: { el: document.getElementById('conversionCounter'), target: 70 },
-    speed: { el: document.getElementById('speedCounter'), target: 0.8 }
-  };
+  // === ФУНКЦИЯ ИНИЦИАЛИЗАЦИИ СЧЁТЧИКОВ (только при появлении на экране) ===
+  function initCounters() {
+    const counters = {
+      clients: { el: document.getElementById('clientsCounter'), target: 34 },
+      projects: { el: document.getElementById('projectsCounter'), target: 26 },
+      conversion: { el: document.getElementById('conversionCounter'), target: 70 },
+      speed: { el: document.getElementById('speedCounter'), target: 0.8 }
+    };
 
-  Object.keys(counters).forEach(key => {
-    const counter = counters[key];
-    if (!counter.el) return;
+    Object.keys(counters).forEach(key => {
+      const counter = counters[key];
+      if (!counter.el) return;
 
-    let count = 0;
-    const target = counter.target;
-    const duration = 1500;
-    const stepTime = duration / (target * 10);
+      let count = 0;
+      const target = counter.target;
+      const duration = 2500; // ⬅️ Замедлили анимацию до 2.5 сек
+      const stepTime = duration / (target * 10);
 
-    const timer = setInterval(() => {
-      count += target / (target * 10);
-      if (key === 'speed') {
-        counter.el.textContent = count.toFixed(1);
-      } else {
-        counter.el.textContent = Math.floor(count);
-      }
-      if (count >= target) {
-        clearInterval(timer);
+      const timer = setInterval(() => {
+        count += target / (target * 10);
         if (key === 'speed') {
-          counter.el.textContent = target.toFixed(1);
+          counter.el.textContent = count.toFixed(1);
         } else {
-          counter.el.textContent = target;
+          counter.el.textContent = Math.floor(count);
         }
-      }
-    }, stepTime);
-  });
+        if (count >= target) {
+          clearInterval(timer);
+          if (key === 'speed') {
+            counter.el.textContent = target.toFixed(1);
+          } else {
+            counter.el.textContent = target;
+          }
+        }
+      }, stepTime);
+    });
 
-  const projectCounterEl = document.getElementById('projectCounter');
-  if (projectCounterEl) {
-    let count = 0;
-    const target = 25;
-    const duration = 1500;
-    const stepTime = duration / (target * 10);
+    // === ОТДЕЛЬНЫЙ СЧЁТЧИК projectCounter (если используется) ===
+    const projectCounterEl = document.getElementById('projectCounter');
+    if (projectCounterEl) {
+      let count = 0;
+      const target = 25;
+      const duration = 2500; // ⬅️ Также замедлили
+      const stepTime = duration / (target * 10);
 
-    const timer = setInterval(() => {
-      count += 1;
-      projectCounterEl.textContent = Math.floor(count);
-      if (count >= target) {
-        clearInterval(timer);
-        projectCounterEl.textContent = target;
-      }
-    }, stepTime);
+      const timer = setInterval(() => {
+        count += 1;
+        projectCounterEl.textContent = Math.floor(count);
+        if (count >= target) {
+          clearInterval(timer);
+          projectCounterEl.textContent = target;
+        }
+      }, stepTime);
+    }
+  }
+
+  // === ЗАПУСКАЕМ СЧЁТЧИКИ ТОЛЬКО ПРИ ПОЯВЛЕНИИ БЛОКА ===
+  const statsSection = document.querySelector('.stats-section'); // ⬅️ Замени на нужный селектор, если отличается
+
+  if (statsSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          initCounters();
+          observer.unobserve(entry.target); // Запускаем только один раз
+        }
+      });
+    }, {
+      threshold: 0.1 // Когда 10% блока видны
+    });
+
+    observer.observe(statsSection);
   }
 
   // === СЕКРЕТНОЕ ПРЕДЛОЖЕНИЕ ПРИ НАВЕДЕНИИ НА @overgrand ===
