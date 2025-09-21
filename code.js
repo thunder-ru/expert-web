@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const projectCounterEl = document.getElementById('projectCounter');
   if (projectCounterEl) {
     let count = 0;
-    const target = 15;
+    const target = 25;
     const duration = 1500;
     const stepTime = duration / (target * 10);
 
